@@ -1,0 +1,1 @@
+{"name":"hailah-alhejjei-portfolio","private":true,"scripts":{"build":"node -e \"require('fs').accessSync('index.html'); console.log('Portfolio is ready to deploy.')\""}}
