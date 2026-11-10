@@ -194,7 +194,7 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
   </article>
 
   <article class="proj rev rv">
-    <div class="stage" id="awn"><span class="tag">LoRa 868 MHz · NO NETWORK</span>
+    <div class="stage" id="awn"><span class="tag">SATELLITE LINK · NO NETWORK</span>
       <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
       <canvas class="lora" id="loraC"></canvas>
       <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices"></div>
@@ -207,8 +207,8 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
       <h3>Awn <i>(عون)</i></h3>
       <span class="award">🏁 Accepted to the SAIF 2026 Finals · Hackathon late Nov 2026</span>
       <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team — and the team replies, so the person knows help is coming.</p>
-      <p class="mine"><b>How it works:</b> Two handheld devices on TTGO LoRa32 (ESP32 + LoRa + OLED) talk directly over long-range LoRa radio — no tower, no internet, no satellite plan. The SOS device sends its NEO-6M GPS fix automatically and receives replies with LED and vibration alerts.</p>
-      <ul class="chips"><li>ESP32</li><li>LoRa</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
+      <p class="mine"><b>How it works:</b> Two handheld devices built on ESP32 talk through satellites — no mobile network, no internet, not even cell towers. The SOS device sends its NEO-6M GPS fix automatically and receives replies with LED and vibration alerts.</p>
+      <ul class="chips"><li>ESP32</li><li>Satellite link</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Aoun" target="_blank" rel="noreferrer">PROJECT SHOWCASE ↗</a></div>
   </article>
 
@@ -473,7 +473,7 @@ const A={
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
  working:()=>"Ooh, working with Hailah? It's like magic, I promise! She's SO hungry to learn. Give her a task that needs a brand new skill, and two days later, poof, she knows it! And even when a task doesn't need anything new, she still makes it better, because she's a little perfectionist, hehe. She doesn't like doing things that have already been done. She always finds a way to make it unique. I mean, look at ME! She made me! Have you ever seen anyone like me before? Anywhere? Nope! That's Hailah!",
  help:()=>"You can ask me anything! Try: what's it really like working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
- sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS on 868 megahertz! Watch Awn!"},
+ sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS through the satellites! Watch Awn!"},
  scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
  sudo:()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
