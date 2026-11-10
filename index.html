@@ -113,12 +113,23 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
-.pc{position:fixed;right:22px;bottom:22px;z-index:70;background:none;border:0;cursor:pointer;padding:0;animation:bob 3s ease-in-out infinite}
-.pc svg{width:86px;height:86px;display:block;filter:drop-shadow(0 8px 16px #0009)}
-.pc:hover svg{transform:rotate(-6deg) scale(1.06)}.pc svg{transition:transform .25s}
-.pc .tip{position:absolute;right:76px;top:4px;background:var(--ink);color:#081615;font:600 15px 'Caveat',cursive;padding:4px 10px;border-radius:12px 12px 2px 12px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s}
+.pc{position:fixed;right:18px;bottom:10px;z-index:70;background:none;border:0;cursor:pointer;padding:0}
+.pc svg{width:96px;height:104px;display:block;overflow:visible;filter:drop-shadow(0 10px 18px #0009)}
+.pc .body{transform-origin:60px 112px;animation:squish 2.6s ease-in-out infinite}
+@keyframes squish{0%,100%{transform:scale(1,1)}50%{transform:scale(1.04,.95) translateY(2px)}}
+.pc .ant{transform-origin:60px 44px;animation:sway 2.2s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.pc .waves circle{fill:none;stroke:#d9f067;stroke-width:2;opacity:0;transform-origin:60px 16px}
+.pc .w1{animation:wave 2.4s ease-out infinite}.pc .w2{animation:wave 2.4s ease-out 1.2s infinite}
+@keyframes wave{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(3.2)}}
+.pc .arm{transform-origin:98px 82px;transition:transform .3s}
+.pc:hover .arm,.pc.wave .arm{animation:hi .5s ease-in-out 3}
+@keyframes hi{0%,100%{transform:rotate(0)}50%{transform:rotate(-28deg)}}
+.pc .lid{transition:height .08s}
+.pc.blink .lid{height:26px}
+.pc.happy .mouth{d:path("M50 90 Q60 104 70 90")}
+.pc .tip{position:absolute;right:92px;top:30px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
 .pc:hover .tip,.pc.nudge .tip{opacity:1;transform:none}
-@keyframes bob{50%{transform:translateY(-6px)}}
 .term{position:fixed;right:clamp(10px,3vw,30px);bottom:120px;width:min(520px,94vw);height:min(360px,62vh);background:#0b1514;border:2px solid var(--lime);border-radius:16px;z-index:80;display:none;flex-direction:column;font:13px/1.55 'JetBrains Mono';box-shadow:0 30px 80px #000c;overflow:hidden}
 .term.open{display:flex;animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.85) translateY(20px);opacity:0}}
 .term-h{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--lime);color:#081615;font-size:12px;font-weight:600}
@@ -128,7 +139,7 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:var(--lime);color:#000;font:600 12px 'JetBrains Mono';padding:10px 16px;z-index:95;display:none}
 canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 @media(max-width:860px){nav a{display:none}.about-g,.tl,.proj{grid-template-columns:1fr;gap:28px}.proj.rev .stage{order:0}.skills{grid-template-columns:1fr 1fr}.hint{position:relative;right:auto;bottom:auto;text-align:left;margin-top:20px}}
-@media(max-width:600px){.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}.pc svg{width:64px;height:64px}.term{bottom:96px}}
+@media(max-width:600px){.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}.pc svg{width:70px;height:76px}.term{bottom:96px}}
 @media(max-width:480px){.skills{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.doodle path{stroke-dashoffset:0}}
 </style>
@@ -276,10 +287,26 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 </main>
 <footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand · no framework</span><a href="#top">BACK TO TOP ↑</a></footer>
 
-<button class="pc" id="pc" aria-label="Open terminal"><span class="tip">psst… type here!</span>
-  <svg viewBox="0 0 100 100"><rect x="14" y="10" width="72" height="58" rx="12" fill="#d9f067"/><rect x="22" y="18" width="56" height="40" rx="6" fill="#0b1514"/><text x="30" y="43" font-family="JetBrains Mono,monospace" font-size="15" fill="#d9f067">&gt;_<animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/></text><circle cx="62" cy="35" r="3" fill="#ff6f9c"/><circle cx="70" cy="35" r="3" fill="#ff6f9c"/><path d="M60 45 Q66 50 72 45" stroke="#d9f067" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="40" y="68" width="20" height="10" fill="#b5cc4f"/><rect x="26" y="78" width="48" height="10" rx="5" fill="#d9f067"/></svg>
+<button class="pc" id="pc" aria-label="Open terminal — talk to Sigi"><span class="tip" id="tip">hi, I'm Sigi! click me ✦</span>
+  <svg viewBox="0 0 120 130" id="sigi">
+    <g class="waves"><path d="M60 14 a10 10 0 0 1 0 0" /><circle class="w1" cx="60" cy="16" r="8"/><circle class="w2" cx="60" cy="16" r="8"/></g>
+    <g class="ant"><line x1="60" y1="44" x2="60" y2="20" stroke="#1d2a28" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="16" r="6" fill="#ff5a4e"/><circle cx="58" cy="14" r="2" fill="#fff" opacity=".8"/></g>
+    <g class="body">
+      <path d="M22 78 C22 50 40 40 60 40 C80 40 98 50 98 78 C98 104 84 114 60 114 C36 114 22 104 22 78Z" fill="#d9f067"/>
+      <path d="M30 70 C34 54 46 47 58 46" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/>
+      <ellipse cx="60" cy="112" rx="30" ry="4" fill="#00000033"/>
+      <g class="eyes"><ellipse cx="46" cy="76" rx="9" ry="10.5" fill="#0b1514"/><ellipse cx="74" cy="76" rx="9" ry="10.5" fill="#0b1514"/>
+        <circle class="pupil" cx="46" cy="76" r="3.4" fill="#fff"/><circle class="pupil" cx="74" cy="76" r="3.4" fill="#fff"/></g>
+      <rect class="lid" x="34" y="64" width="52" height="0" fill="#d9f067"/>
+      <ellipse cx="36" cy="92" rx="6" ry="3.5" fill="#ff6f9c" opacity=".7"/><ellipse cx="84" cy="92" rx="6" ry="3.5" fill="#ff6f9c" opacity=".7"/>
+      <path class="mouth" d="M54 92 Q60 98 66 92" stroke="#0b1514" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path class="arm" d="M98 82 C108 78 112 70 110 62" stroke="#c4dc52" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M22 84 C14 86 12 92 14 98" stroke="#c4dc52" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <ellipse cx="46" cy="116" rx="9" ry="5" fill="#c4dc52"/><ellipse cx="74" cy="116" rx="9" ry="5" fill="#c4dc52"/>
+    </g>
+  </svg>
 </button>
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>● hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
+<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>📡 sigi · hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -372,9 +399,18 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('hi! 👋 welcome to <span class="p">hailah-os</span>\ntype <span class="p">help</span> to see what I can do.\n')}
+function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('hi! I\'m <span class="p">Sigi</span> 📡 — Hailah\'s little signal buddy.\ntype <span class="p">help</span> to see what I can do.\n')}
 function toggleT(){term.classList.contains('open')?term.classList.remove('open'):openT()}
-pc.onclick=toggleT;document.getElementById('closeTerm').onclick=()=>term.classList.remove('open');
+pc.onclick=()=>{toggleT();pc.classList.add('happy');setTimeout(()=>pc.classList.remove('happy'),1200)};
+/* Sigi: eyes follow the mouse, blinks, waves when you come close */
+const pupils=pc.querySelectorAll('.pupil'),tips=["hi, I'm Sigi! click me ✦","psst… I know secrets","try: sudo hire hailah","I speak LoRa 📡","click me, I'm shy"];let ti2=0;
+addEventListener('mousemove',e=>{const r=pc.getBoundingClientRect(),sx=r.width/120,sy=r.height/130;
+ pupils.forEach((p,i)=>{const ex=r.left+(i?74:46)*sx,ey=r.top+76*sy,a=Math.atan2(e.clientY-ey,e.clientX-ex),d=Math.min(4.5,Math.hypot(e.clientX-ex,e.clientY-ey)/40);
+  p.setAttribute('cx',(i?74:46)+Math.cos(a)*d);p.setAttribute('cy',76+Math.sin(a)*d)});
+ const near=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2))<170;
+ if(near&&!pc.classList.contains('wave')){pc.classList.add('wave');setTimeout(()=>pc.classList.remove('wave'),1600)}});
+(function blink(){pc.classList.add('blink');setTimeout(()=>pc.classList.remove('blink'),140);setTimeout(blink,2500+Math.random()*3000)})();
+pc.addEventListener('mouseenter',()=>{document.getElementById('tip').textContent=tips[ti2++%tips.length]});document.getElementById('closeTerm').onclick=()=>term.classList.remove('open');
 setTimeout(()=>{pc.classList.add('nudge');setTimeout(()=>pc.classList.remove('nudge'),3500)},6000);
 addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape')term.classList.remove('open')});
 const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
@@ -430,19 +466,19 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
  const geo=new THREE.SphereGeometry(1,200,150),p=geo.attributes.position,v=new THREE.Vector3();
  const K=[[.9,.3,.2],[.2,.95,.25],[.35,.15,.92],[.6,-.7,.4],[-.5,.4,.75],[.7,.5,-.5]];
  for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=v.clone().normalize();
-  let f=0;K.forEach((k,j)=>{const q=n.x*k[0]+n.y*k[1]+n.z*k[2];const w=Math.sin(q*11+j*1.7+Math.sin((n.x*k[2]-n.z*k[0])*6+j)*1.6);f+=(1-Math.abs(w))*.022});
+  let f=0;K.forEach((k,j)=>{const q=n.x*k[0]+n.y*k[1]+n.z*k[2];const w=Math.sin(q*11+j*1.7+Math.sin((n.x*k[2]-n.z*k[0])*6+j)*1.6);f+=(1-Math.abs(w))*.03});
   const groove=Math.exp(-Math.pow(n.x/.05,2))*(n.y>-.1&&n.z<.7?.14:0);
   const m=Math.max(Math.abs(n.x),Math.abs(n.y),Math.abs(n.z));const box=n.clone().divideScalar(m).multiplyScalar(.82);
-  v.copy(n).lerp(box,.45).multiplyScalar(1+f-groove);
-  v.x*=1.08;v.y*=.92;if(v.z>.78)v.z=.78+(v.z-.78)*.15;
+  v.copy(n).lerp(box,.3).multiplyScalar(1+f-groove);
+  v.x*=1.1;v.y*=.97;if(v.z>.78)v.z=.78+(v.z-.78)*.15;
   p.setXYZ(i,v.x,v.y,v.z)}
  geo.computeVertexNormals();
  root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xff6b8b,roughness:.62})));
- const face=new THREE.Mesh(new RoundedBoxGeometry(1.5,1.32,.14,5,.08),new THREE.MeshStandardMaterial({color:0xff7393,roughness:.55}));face.position.set(0,-.06,.8);root.add(face);
- const bezel=new THREE.Mesh(new RoundedBoxGeometry(1.18,.8,.06,3,.02),new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:.4}));bezel.position.set(0,-.3,.88);root.add(bezel);
- const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.08,.7),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.3,.915);root.add(scr);
- const camBox=new THREE.Mesh(new RoundedBoxGeometry(.3,.22,.12,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.5}));camBox.position.set(0,.33,.9);root.add(camBox);
- const lens=new THREE.Mesh(new THREE.CircleGeometry(.06,32),new THREE.MeshStandardMaterial({color:0x2a3a5a,roughness:.05,metalness:.8}));lens.position.set(0,.33,.962);root.add(lens);
+ const face=new THREE.Mesh(new RoundedBoxGeometry(1.42,1.28,.14,5,.1),new THREE.MeshStandardMaterial({color:0xff7393,roughness:.55}));face.position.set(0,-.02,.8);root.add(face);
+ const bezel=new THREE.Mesh(new RoundedBoxGeometry(1.1,.74,.06,3,.02),new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:.4}));bezel.position.set(0,-.22,.88);root.add(bezel);
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.0,.65),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.22,.915);root.add(scr);
+ const camBox=new THREE.Mesh(new RoundedBoxGeometry(.3,.22,.12,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.5}));camBox.position.set(0,.4,.9);root.add(camBox);
+ const lens=new THREE.Mesh(new THREE.CircleGeometry(.06,32),new THREE.MeshStandardMaterial({color:0x2a3a5a,roughness:.05,metalness:.8}));lens.position.set(0,.4,.962);root.add(lens);
  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.25,1.32,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-1.02;root.add(base);
  root.rotation.y=-.35;setTick(t=>{root.position.y=Math.sin(t*1.2)*.03})}
 
