@@ -468,8 +468,8 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
   const front=Math.max(0,Math.min(1,(z-FZ+.2)/.2));const s=1-.06*sulci(x*1.6,y*1.6,z*1.6)*(1-front);x*=s;y*=s;z*=s;
   if(z>FZ)z=FZ;if(y<-H*.95)y=-H*.95;p.setXYZ(i,x,y,z)}
  geo.computeVertexNormals();
- const skin=tex('assets/ss-skin.jpg');skin.wrapS=skin.wrapT=THREE.MirroredRepeatWrapping;skin.repeat.set(4,3);
- root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xffffff,map:skin,roughness:.6})));
+ 
+ root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xf2606f,roughness:.62})));
  // front face = the real photo of the device front (camera + screen)
  const FW=1.78,FH=FW*428/478;
  const front=new THREE.Mesh(new THREE.PlaneGeometry(FW,FH),new THREE.MeshBasicMaterial({map:tex('assets/ss-front.webp'),transparent:true,toneMapped:false}));front.position.set(0,-.06,FZ+.006);root.add(front);
