@@ -3,37 +3,39 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hailah Alhejjei — Portfolio</title>
-<meta name="description" content="Hailah Alhejjei — developer building web, AI, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026.">
+<meta name="description" content="Hailah Alhejjei — developer building web, AI, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026, SAIF 2026 finalist.">
 <meta name="theme-color" content="#07100f"><meta property="og:title" content="Hailah Alhejjei | Portfolio"><meta property="og:description" content="Web, AI, embedded and immersive VR/XR projects by Hailah Alhejjei."><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
-:root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--line:#ffffff1f}
+:root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,Arial,sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--lime);color:#000}
+a{color:inherit;text-decoration:none}::selection{background:var(--lime);color:#000}
 .skip{position:absolute;left:-999px}.skip:focus{left:10px;top:10px;background:var(--lime);color:#000;padding:10px;z-index:99}
 .cur,.cur2{position:fixed;left:0;top:0;pointer-events:none;z-index:90;border-radius:50%}
 .cur{width:6px;height:6px;background:var(--lime)}.cur2{width:34px;height:34px;border:1px solid #d9f06788;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 .cur2.big{width:70px;height:70px;border-color:var(--lime)}
-@media (hover:none){.cur,.cur2{display:none}}
+/* guide arrow that follows the mouse and points to contact */
+.guide{position:fixed;left:0;top:0;z-index:89;pointer-events:none;display:flex;align-items:center;gap:6px;font:600 18px 'Caveat',cursive;color:var(--lime);transition:opacity .4s;white-space:nowrap}
+.guide svg{width:34px;height:34px;flex:none}
+.guide.hide{opacity:0}
+@media (hover:none){.cur,.cur2,.guide{display:none}}
 header{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,5vw,64px);mix-blend-mode:difference}
 .brand{font:600 15px 'JetBrains Mono';letter-spacing:.04em}.brand b{color:var(--lime)}
 nav{display:flex;gap:22px;font:12px 'JetBrains Mono'}nav a{opacity:.75}nav a:hover{opacity:1;color:var(--lime)}nav a span{color:var(--lime)}
-.termbtn{border:1px solid #ffffff55;padding:5px 10px;font:12px 'JetBrains Mono';background:none;color:var(--ink);cursor:pointer}.termbtn:hover{border-color:var(--lime);color:var(--lime)}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(18px,5vw,64px) 48px;overflow:hidden}
 #field{position:absolute;inset:0;width:100%;height:100%}
-.hero-in{position:relative;pointer-events:none}
+.hero:after{content:'';position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,#07100fe6 55%);pointer-events:none}
+.hero-in{position:relative;z-index:2;pointer-events:none}
 .hud{font:11px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em;display:flex;gap:24px;flex-wrap:wrap}.hud b{color:var(--lime);font-weight:400}
-.hero h1{font:400 clamp(84px,17vw,260px)/.82 'Instrument Serif';letter-spacing:-.04em;margin:18px 0 10px}
-.hero h1 i{color:var(--lime)}
+.hero h1{font:400 clamp(84px,17vw,260px)/.82 'Instrument Serif';letter-spacing:-.04em;margin:18px 0 10px}.hero h1 i{color:var(--lime)}
 .lede{max-width:620px;font-size:clamp(16px,1.6vw,20px);color:#c9d6cd}
 .typed{color:var(--lime);font-family:'JetBrains Mono';font-size:.9em}.typed:after{content:'▍';animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.hint{position:absolute;right:clamp(18px,5vw,64px);bottom:48px;font:11px 'JetBrains Mono';color:var(--mute);text-align:right;line-height:1.8;pointer-events:none}
-.hint kbd{border:1px solid var(--line);padding:1px 6px;color:var(--ink)}
+.hint{position:absolute;z-index:2;right:clamp(18px,5vw,64px);bottom:48px;font:11px 'JetBrains Mono';color:var(--mute);text-align:right;line-height:1.8;pointer-events:none}
 .marq{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:14px 0;background:var(--bg2)}
-.marq div{display:inline-block;animation:mq 38s linear infinite}.marq span{font:400 30px 'Instrument Serif';margin:0 28px}.marq em{color:var(--lime);font-style:normal;font:12px 'JetBrains Mono';vertical-align:middle}
+.marq div{display:inline-block;animation:mq 42s linear infinite}.marq span{font:400 30px 'Instrument Serif';margin:0 28px}.marq em{color:var(--lime);font-style:normal;font:12px 'JetBrains Mono';vertical-align:middle}
 @keyframes mq{to{transform:translateX(-50%)}}
 section{padding:110px clamp(18px,5vw,64px)}
 .label{font:11px 'JetBrains Mono';letter-spacing:.14em;color:var(--mute)}.label b{color:var(--lime);font-weight:400}
@@ -45,11 +47,15 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .skill small{font:11px 'JetBrains Mono';color:var(--lime)}.skill h3{font:400 30px 'Instrument Serif';margin:28px 0 4px}.skill p{font-size:13px;color:var(--mute);margin:0}
 .proj{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,70px);padding:70px 0;border-top:1px solid var(--line);align-items:center}
 .proj.rev .stage{order:2}
-.stage{position:relative;aspect-ratio:4/3;border:1px solid var(--line);overflow:hidden;background:#000}
-.stage img{width:100%;height:100%;object-fit:cover;display:block}
-.stage .tag{position:absolute;left:12px;top:12px;font:10px 'JetBrains Mono';background:#000a;padding:5px 8px;letter-spacing:.1em;z-index:3}
-.act{position:absolute;right:12px;bottom:12px;z-index:4;font:600 12px 'JetBrains Mono';background:var(--lime);color:#081615;border:0;padding:10px 14px;cursor:pointer;letter-spacing:.05em}
+.stage{position:relative;aspect-ratio:4/3;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 40%,#1b2f2c,#060c0c 75%)}
+.stage>img{width:100%;height:100%;object-fit:cover;display:block}
+.stage canvas.three{position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab;touch-action:pan-y}.stage canvas.three:active{cursor:grabbing}
+.stage .tag{position:absolute;left:12px;top:12px;font:10px 'JetBrains Mono';background:#000a;padding:5px 8px;letter-spacing:.1em;z-index:5}
+.drag{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font:10px 'JetBrains Mono';color:var(--mute);letter-spacing:.12em;z-index:5;pointer-events:none;background:#0008;padding:4px 8px}
+.act{position:absolute;right:12px;bottom:12px;z-index:8;font:600 12px 'JetBrains Mono';background:var(--lime);color:#081615;border:0;padding:10px 14px;cursor:pointer;letter-spacing:.05em}
 .act:hover{filter:brightness(1.1)}.act.red{background:var(--red);color:#fff}
+.mini{position:absolute;right:12px;top:12px;z-index:8;font:10px 'JetBrains Mono';background:#000a;color:var(--ink);border:1px solid var(--line);padding:5px 8px;cursor:pointer}
+.mini:hover{border-color:var(--lime);color:var(--lime)}
 .num{font:11px 'JetBrains Mono';color:var(--lime)}
 .copy h3{font:400 clamp(44px,5.5vw,80px)/.95 'Instrument Serif';margin:10px 0 14px;letter-spacing:-.02em}.copy h3 i{color:var(--lime)}
 .meta{font:11px 'JetBrains Mono';letter-spacing:.1em;color:var(--mute)}
@@ -57,47 +63,81 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .copy p{color:#c3d1c7}.copy .mine{border-left:2px solid var(--lime);padding-left:14px;font-size:14px;color:var(--mute)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:16px 0}.chips li{font:10px 'JetBrains Mono';border:1px solid var(--line);padding:4px 8px;color:var(--mute)}
 .go{font:600 12px 'JetBrains Mono';letter-spacing:.06em;border-bottom:1px solid var(--lime);padding-bottom:3px}.go:hover{color:var(--lime)}
-.scanbar{position:absolute;left:0;right:0;height:3px;background:var(--cyan);box-shadow:0 0 22px 6px #5ee6ff88;top:-10px;z-index:2;opacity:0}
-.scanning .scanbar{opacity:1;animation:scan 1.6s ease-in-out forwards}
-@keyframes scan{from{top:0}to{top:100%}}
-.readout{position:absolute;left:12px;bottom:12px;z-index:3;font:11px/1.6 'JetBrains Mono';background:#000c;border:1px solid #5ee6ff55;padding:10px 12px;min-width:220px;opacity:0;transform:translateY(8px);transition:.4s}
-.readout.on{opacity:1;transform:none}.readout b{color:var(--red);font-weight:400}.readout i{color:var(--cyan);font-style:normal}
-.lora{position:absolute;inset:0;z-index:2;pointer-events:none;width:100%;height:100%}
-.log{position:absolute;left:12px;bottom:12px;z-index:3;font:11px/1.7 'JetBrains Mono';background:#000c;padding:10px 12px;border:1px solid #ff5a4e55;min-width:230px;display:none}
+/* smartscan app run */
+.app{position:absolute;inset:0;z-index:6;background:#0b1220;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .4s}
+.app.on{opacity:1;pointer-events:auto}
+.bar{height:26px;background:#1b2333;display:flex;align-items:center;gap:6px;padding:0 10px;flex:none}.bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.bar i+i{background:#febc2e}.bar i+i+i{background:#28c840}
+.bar span{margin-left:10px;font:10px 'JetBrains Mono';color:#8a9bb5;background:#0e1524;padding:2px 10px;border-radius:4px;flex:1;max-width:260px}
+.screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s}
+.screen .res{opacity:0}.screen.done .res{opacity:1}.screen.done .home{opacity:0}
+.fakecur{position:absolute;width:18px;height:18px;z-index:3;left:70%;top:80%;transition:left .9s cubic-bezier(.6,.1,.3,1),top .9s cubic-bezier(.6,.1,.3,1);filter:drop-shadow(0 1px 2px #000)}
+.fakecur.click{animation:clk .25s}@keyframes clk{50%{transform:scale(.75)}}
+.prog{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:#0b1220ee;border:1px solid #5ee6ff66;padding:14px 18px;font:11px 'JetBrains Mono';color:var(--cyan);min-width:230px;display:none}
+.prog.on{display:block}.prog .pb{height:4px;background:#1b2a3a;margin-top:8px}.prog .pb div{height:100%;width:0;background:var(--cyan);transition:width 1.6s linear}
+/* awn */
+.lora{position:absolute;inset:0;z-index:4;pointer-events:none;width:100%;height:100%}
+.log{position:absolute;left:12px;bottom:12px;z-index:6;font:11px/1.7 'JetBrains Mono';background:#000c;padding:10px 12px;border:1px solid #ff5a4e55;min-width:230px;display:none}
 .log.on{display:block}.log .ok{color:var(--lime)}.log .w{color:#ffcc66}
-.uv img{filter:brightness(.16) saturate(.4)}
-.uv .lamp{position:absolute;inset:0;z-index:2;background:url('https://raw.githubusercontent.com/HailahAlhejjei/Beyond-VR-Experience/main/media/screenshots/uv-flashlight.jpg') center/cover;-webkit-mask:radial-gradient(130px circle at var(--mx,50%) var(--my,50%),#000 40%,transparent 72%);mask:radial-gradient(130px circle at var(--mx,50%) var(--my,50%),#000 40%,transparent 72%)}
-.clue{position:absolute;z-index:3;font:600 12px 'JetBrains Mono';color:#c9a8ff;text-shadow:0 0 12px #b48cff;opacity:0;transition:opacity .25s;pointer-events:none}
-#water{width:100%;height:100%;display:block}
-.decode{position:absolute;left:12px;bottom:12px;right:12px;z-index:3;font:12px 'JetBrains Mono';color:var(--lime);background:#000b;padding:8px 10px;white-space:nowrap;overflow:hidden}
-.sat-photo{position:absolute;right:12px;top:12px;width:34%!important;height:auto!important;border:1px solid var(--line);z-index:3}
+.photo{position:absolute;inset:0;z-index:5;opacity:0;pointer-events:none;transition:opacity .4s}.photo.on{opacity:1}.photo img{width:100%;height:100%;object-fit:cover}
+/* beyond uv */
+.uv>img{filter:brightness(.62) saturate(.85) contrast(1.05)}
+.uv .dark{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(170px circle at var(--mx,50%) var(--my,45%),transparent 0,transparent 35%,#05080acc 80%)}
+.uv .glow{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(160px circle at var(--mx,50%) var(--my,45%),#b48cff2e,transparent 70%);mix-blend-mode:screen}
+.clue{position:absolute;z-index:4;font:600 12px 'JetBrains Mono';color:#d9c4ff;text-shadow:0 0 12px #b48cff;opacity:0;transition:opacity .25s;pointer-events:none}
+/* satathon */
+.sat>img{filter:brightness(.75)}
+.orbit{position:absolute;inset:0;z-index:3;pointer-events:none}
+.satmsg{position:absolute;left:12px;bottom:12px;z-index:4;font:12px 'JetBrains Mono';background:#000c;border:1px solid #d9f06755;padding:8px 12px;color:var(--mute);transition:.3s}
+.satmsg b{color:var(--lime);font-weight:400}
+/* timeline */
 .tl{display:grid;grid-template-columns:1fr 1.3fr;gap:70px}.steps{border-left:1px solid var(--line)}
 .step{padding:0 0 34px 28px;position:relative}.step:before{content:'';position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--lime)}
 .step.gold:before{background:var(--lime);box-shadow:0 0 14px var(--lime)}
 .step small{font:11px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em}.step h4{font:400 28px/1.1 'Instrument Serif';margin:6px 0 4px}.step p{margin:0;color:var(--mute);font-size:14px}
-.contact h2 a{color:var(--lime);font-style:italic}
-.links{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;font:600 12px 'JetBrains Mono'}.links a:hover{color:var(--lime)}
+/* contact */
+.contact{min-height:90vh;display:flex;flex-direction:column;justify-content:center}
+.contact h2{font:400 clamp(52px,9vw,140px)/.92 'Instrument Serif';letter-spacing:-.03em;margin:18px 0 40px}.contact h2 i{color:var(--lime)}
+.cta{position:relative;display:inline-flex;align-items:center;gap:18px;font:400 clamp(30px,5.4vw,78px)/1.1 'Instrument Serif';border-bottom:2px solid var(--lime);padding-bottom:6px;word-break:break-all}
+.cta:hover{color:var(--lime)}.cta small{font:12px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em}
+.row{display:flex;gap:16px;flex-wrap:wrap;margin-top:38px;align-items:center}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;font:600 15px 'JetBrains Mono';padding:16px 22px;border:1px solid var(--line);background:var(--bg2)}
+.btn:hover{border-color:var(--lime);color:var(--lime)}.btn.li{background:var(--lime);color:#081615;border-color:var(--lime)}.btn.li:hover{color:#081615;filter:brightness(1.08)}
+.copied{font:11px 'JetBrains Mono';color:var(--lime);opacity:0;transition:.3s}.copied.on{opacity:1}
+.doodle{position:absolute;pointer-events:none;overflow:visible;z-index:3}
+.doodle path{fill:none;stroke:var(--lime);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l)}
+.doodle.pink path{stroke:var(--pink)}
+.drawn .doodle path{animation:draw .9s ease forwards}.drawn .doodle path:nth-child(2){animation-delay:.25s}.drawn .doodle path:nth-child(3){animation-delay:.45s}.drawn .doodle path:nth-child(4){animation-delay:.6s}
+.drawn .note{opacity:1;transform:rotate(-6deg)}
+.note{position:absolute;font:600 22px 'Caveat',cursive;color:var(--lime);opacity:0;transition:opacity .5s .6s;white-space:nowrap;pointer-events:none}
+@keyframes draw{to{stroke-dashoffset:0}}
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
-.term{position:fixed;right:clamp(10px,3vw,30px);bottom:clamp(10px,3vw,30px);width:min(560px,94vw);height:min(380px,70vh);background:#050b0bf2;border:1px solid #d9f06766;z-index:80;display:none;flex-direction:column;font:13px/1.55 'JetBrains Mono';box-shadow:0 30px 80px #000c}
-.term.open{display:flex}.term-h{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--line);color:var(--mute);font-size:11px}
-.term-h button{background:none;border:0;color:var(--mute);cursor:pointer;font:inherit}
+/* little computer that opens the terminal */
+.pc{position:fixed;right:22px;bottom:22px;z-index:70;background:none;border:0;cursor:pointer;padding:0;animation:bob 3s ease-in-out infinite}
+.pc svg{width:86px;height:86px;display:block;filter:drop-shadow(0 8px 16px #0009)}
+.pc:hover svg{transform:rotate(-6deg) scale(1.06)}.pc svg{transition:transform .25s}
+.pc .tip{position:absolute;right:76px;top:4px;background:var(--ink);color:#081615;font:600 15px 'Caveat',cursive;padding:4px 10px;border-radius:12px 12px 2px 12px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s}
+.pc:hover .tip,.pc.nudge .tip{opacity:1;transform:none}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.term{position:fixed;right:clamp(10px,3vw,30px);bottom:120px;width:min(520px,94vw);height:min(360px,62vh);background:#0b1514;border:2px solid var(--lime);border-radius:16px;z-index:80;display:none;flex-direction:column;font:13px/1.55 'JetBrains Mono';box-shadow:0 30px 80px #000c;overflow:hidden}
+.term.open{display:flex;animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.85) translateY(20px);opacity:0}}
+.term-h{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--lime);color:#081615;font-size:12px;font-weight:600}
+.term-h button{background:#081615;border:0;color:var(--lime);cursor:pointer;font:inherit;width:22px;height:22px;border-radius:50%}
 .term-o{flex:1;overflow:auto;padding:12px;white-space:pre-wrap}.term-o .p{color:var(--lime)}.term-o .e{color:var(--red)}.term-o a{color:var(--cyan);text-decoration:underline}
 .term-i{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}.term-i span{color:var(--lime)}.term-i input{flex:1;background:none;border:0;color:var(--ink);font:inherit;outline:none}
 .toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:var(--lime);color:#000;font:600 12px 'JetBrains Mono';padding:10px 16px;z-index:95;display:none}
 canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
-.hero:after{content:'';position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,#07100fe6 55%);pointer-events:none}.hero-in,.hint{z-index:2}
-.termbtn{white-space:nowrap}
-@media(max-width:600px){.readout,.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}}
 @media(max-width:860px){nav a{display:none}.about-g,.tl,.proj{grid-template-columns:1fr;gap:28px}.proj.rev .stage{order:0}.skills{grid-template-columns:1fr 1fr}.hint{position:relative;right:auto;bottom:auto;text-align:left;margin-top:20px}}
+@media(max-width:600px){.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}.pc svg{width:64px;height:64px}.term{bottom:96px}}
 @media(max-width:480px){.skills{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.doodle path{stroke-dashoffset:0}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="cur"></div><div class="cur2"></div>
-<header><a class="brand" href="#top">HAILAH<b>.</b>ALHEJJEI</a><nav><a href="#about"><span>01</span> about</a><a href="#work"><span>02</span> work</a><a href="#path"><span>03</span> path</a><a href="#contact"><span>04</span> contact</a></nav><button class="termbtn" id="openTerm" aria-label="Open terminal">&gt;_ terminal</button></header>
+<div class="guide hide" id="guide" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 20 C14 18 22 18 32 20 M24 12 L33 20 L24 28" fill="none" stroke="#d9f067" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>say hi!</span></div>
+<header><a class="brand" href="#top">HAILAH<b>.</b>ALHEJJEI</a><nav><a href="#about"><span>01</span> about</a><a href="#work"><span>02</span> work</a><a href="#path"><span>03</span> path</a><a href="#contact"><span>04</span> contact</a></nav></header>
 <main id="main">
 <section class="hero" id="top">
   <canvas id="field" aria-hidden="true"></canvas>
@@ -106,12 +146,12 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
     <h1>Hailah<br><i>Alhejjei</i></h1>
     <p class="lede">I build things that send a signal: AI that reads an MRI, a device that calls for help with no network, worlds you can walk into in VR.<br><span class="typed" id="typed"></span></p>
   </div>
-  <div class="hint">move to disturb the field<br>click to transmit a pulse<br>press <kbd>`</kbd> for the terminal</div>
+  <div class="hint">move to disturb the field<br>click to transmit a pulse</div>
 </section>
 
 <div class="marq" aria-label="Awards"><div>
-  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
-  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
+  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🏁 Finalist <em>SAIF 2026 · AWN</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
+  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🏁 Finalist <em>SAIF 2026 · AWN</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
 </div></div>
 
 <section class="about" id="about">
@@ -128,13 +168,16 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 </section>
 
 <section id="work">
-  <p class="label"><b>02</b> / SELECTED WORK — <span style="color:var(--ink)">every project here is interactive. Try them.</span></p>
+  <p class="label"><b>02</b> / SELECTED WORK — <span style="color:var(--ink)">drag the models, press the buttons, explore.</span></p>
 
   <article class="proj rv">
     <div class="stage" id="ss"><span class="tag">MRI · ON-DEVICE AI</span>
-      <img src="https://raw.githubusercontent.com/HailahAlhejjei/MS-SmartScan/main/media/hardware/prototype-device.jpg" alt="MS SmartScan Raspberry Pi prototype in a brain-shaped case" style="object-position:center 60%">
-      <div class="scanbar"></div>
-      <div class="readout" id="ssr"></div>
+      <canvas class="three" id="brain3d" aria-label="3D model of the MS SmartScan brain-shaped device, drag to rotate"></canvas>
+      <span class="drag" id="ssDrag">⟲ DRAG TO ROTATE</span>
+      <div class="app" id="app"><div class="bar"><i></i><i></i><i></i><span>ms-smartscan.local / workspace</span></div>
+        <div class="screen" id="scr"><img class="home" src="assets/ss-home.jpg" alt="MS SmartScan home screen"><img class="res" src="assets/ss-result.jpg" alt="MS SmartScan AI result with lesions marked">
+          <svg class="fakecur" id="fc" viewBox="0 0 24 24"><path d="M3 2l7 19 2.6-7.4L20 11z" fill="#fff" stroke="#000" stroke-width="1.2"/></svg>
+          <div class="prog" id="prog"><span id="progT">Uploading MRI…</span><div class="pb"><div id="pb"></div></div></div></div></div>
       <button class="act" id="ssBtn">▶ RUN AI SCAN</button>
     </div>
     <div class="copy"><span class="num">01</span> <span class="meta">HEALTHON 2026 · TEAM PROJECT · PATENT PENDING</span>
@@ -148,13 +191,17 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 
   <article class="proj rev rv">
     <div class="stage" id="awn"><span class="tag">LoRa 868 MHz · NO NETWORK</span>
-      <img src="assets/awn-devices.webp" alt="Awn prototype: red SOS device and green Aoun Rescue receiver">
+      <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
       <canvas class="lora" id="loraC"></canvas>
+      <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices"></div>
+      <button class="mini" id="photoBtn">📷 REAL PHOTO</button>
+      <span class="drag">⟲ DRAG TO ROTATE</span>
       <div class="log" id="awnLog"></div>
       <button class="act red" id="sosBtn">● PRESS SOS</button>
     </div>
     <div class="copy"><span class="num">02</span> <span class="meta">GRADUATION PROJECT · PATENT PENDING</span>
       <h3>Awn <i>(عون)</i></h3>
+      <span class="award">🏁 Finalist · SAIF 2026</span>
       <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team — and the team replies, so the person knows help is coming.</p>
       <p class="mine"><b>How it works:</b> Two handheld devices on TTGO LoRa32 (ESP32 + LoRa + OLED) talk directly over long-range LoRa radio — no tower, no internet, no satellite plan. The SOS device sends its NEO-6M GPS fix automatically and receives replies with LED and vibration alerts.</p>
       <ul class="chips"><li>ESP32</li><li>LoRa</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
@@ -164,7 +211,7 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
   <article class="proj rv">
     <div class="stage uv" id="uv"><span class="tag">UV LIGHT · MOVE TO SEARCH</span>
       <img src="https://raw.githubusercontent.com/HailahAlhejjei/Beyond-VR-Experience/main/media/screenshots/uv-flashlight.jpg" alt="CASE 017 VR crime scene">
-      <div class="lamp"></div>
+      <div class="dark"></div><div class="glow"></div>
       <span class="clue" style="left:14%;top:30%">CLUE #1 · FOOTPRINT</span><span class="clue" style="left:52%;top:64%">CLUE #2 · TRACE</span><span class="clue" style="left:60%;top:22%">CLUE #3 · TIME 02:17</span>
     </div>
     <div class="copy"><span class="num">03</span> <span class="meta">TUWAIQ ACADEMY · TEAM PROJECT</span>
@@ -176,15 +223,20 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
   </article>
 
   <article class="proj rev rv">
-    <div class="stage" id="sat"><span class="tag">LIVE WATERFALL · HF / SAT</span>
-      <canvas id="water"></canvas>
-      <img class="sat-photo" src="https://raw.githubusercontent.com/HailahAlhejjei/Satathon/main/media/station/satellite-tracking-station.jpeg" alt="Digital Apollo satellite tracking station">
-      <div class="decode" id="decode"></div>
+    <div class="stage sat" id="sat"><span class="tag">SATELLITE PASS · LIVE</span>
+      <img src="https://raw.githubusercontent.com/HailahAlhejjei/Satathon/main/media/station/satellite-tracking-station.jpeg" alt="Digital Apollo satellite tracking station">
+      <svg class="orbit" id="orbit" viewBox="0 0 400 300" preserveAspectRatio="none">
+        <path id="orbPath" d="M-20 150 Q200 -60 420 150" fill="none" stroke="#d9f06788" stroke-width="1.2" stroke-dasharray="4 6"/>
+        <g id="satG"><rect x="-6" y="-4" width="12" height="8" fill="#e9f0ea"/><rect x="-18" y="-2.5" width="10" height="5" fill="#5ee6ff"/><rect x="8" y="-2.5" width="10" height="5" fill="#5ee6ff"/></g>
+        <line id="beam" x1="0" y1="0" x2="200" y2="250" stroke="#d9f067" stroke-width="1.5" stroke-dasharray="3 4" opacity="0"/>
+        <circle id="ping" cx="200" cy="250" r="6" fill="none" stroke="#d9f067" stroke-width="2" opacity="0"/>
+      </svg>
+      <div class="satmsg" id="satmsg">waiting for satellite pass…</div>
     </div>
     <div class="copy"><span class="num">04</span> <span class="meta">SATATHON 2026 · DIGITAL APOLLO TEAM</span>
       <h3>Signal, <i>received.</i></h3>
       <span class="award">🥉 3rd Place · Satathon 2026</span>
-      <p>A hands-on satellite and HF radio challenge: tracking satellites, receiving live signals, decoding multiple modes and logging every contact.</p>
+      <p>A hands-on satellite and HF radio challenge: tracking satellites as they pass overhead, receiving their live signals, decoding multiple modes and logging every contact.</p>
       <p class="mine"><b>Team work:</b> Digital Apollo documented satellite tracking, manual tuning, CW/Morse, FT8, WSPR, SSTV, voice reception and structured signal logging.</p>
       <ul class="chips"><li>Satellite tracking</li><li>SDR</li><li>FT8</li><li>SSTV</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Satathon" target="_blank" rel="noreferrer">EXPLORE THE FIELD LOG ↗</a></div>
@@ -195,33 +247,61 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
   <div class="tl"><div class="rv"><p class="label"><b>03</b> / TRAJECTORY</p><h2 class="big">A path built through <i>making.</i></h2><p style="color:var(--mute);max-width:440px">Each step expanded how I work: the foundations of the web, building in teams under pressure, and shipping real hardware.</p></div>
   <div class="steps rv">
     <div class="step gold"><small>NOV 2026 · AWARD</small><h4>🥇 1st Place — Riyadah AI Hackathon</h4><p>MS SmartScan team · AI-assisted MRI lesion detection</p></div>
+    <div class="step gold"><small>2026 · FINALIST</small><h4>🏁 SAIF 2026 Finals — Awn (عون)</h4><p>Off-grid LoRa + GPS search-and-rescue device</p></div>
     <div class="step gold"><small>2026 · AWARD</small><h4>🥉 3rd Place — Satathon 2026</h4><p>Digital Apollo · satellite &amp; HF radio communications</p></div>
     <div class="step"><small>OCT 2026 · HACKATHON</small><h4>Healthon 2026</h4><p>Healthcare AI prototype · KSU Medical City</p></div>
     <div class="step"><small>JUL–SEP 2026 · TRAINING</small><h4>VR Development &amp; Emerging Technologies Bootcamp</h4><p>Tuwaiq Academy · 160 hours</p></div>
-    <div class="step"><small>GRADUATION PROJECT</small><h4>Awn (عون) — patent pending</h4><p>ESP32 · LoRa · GPS search-and-rescue system</p></div>
     <div class="step"><small>EDUCATION</small><h4>Programming &amp; Web Development</h4><p>Technical and Vocational Training Corporation · Riyadh</p></div>
   </div></div>
 </section>
 
 <section class="contact" id="contact">
   <p class="label"><b>04</b> / LET’S CONNECT</p>
-  <h2 class="big rv">Have a role or project<br>in mind? <a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noreferrer">Let’s talk ↗</a></h2>
-  <div class="links"><a href="https://github.com/HailahAlhejjei" target="_blank" rel="noreferrer">GITHUB ↗</a><a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="Hailah_Alhejjei_CV_2026.pdf" download>DOWNLOAD CV ↓</a><a href="#" id="openTerm2">&gt;_ OPEN TERMINAL</a></div>
+  <h2 class="rv">Have a role or project<br>in mind? <i>Let’s talk.</i></h2>
+  <div><a class="cta" id="mail" href="mailto:alhejjeihailah@gmail.com"><span>alhejjeihailah@gmail.com</span><span style="font-size:.6em">↗</span>
+    <svg class="doodle" style="left:-18px;top:-26px;width:calc(100% + 36px);height:calc(100% + 46px)" viewBox="0 0 400 120" preserveAspectRatio="none"><path style="--l:1100" d="M30 70 C20 20 200 8 360 22 C410 30 400 100 300 108 C180 118 40 112 28 80 C22 60 60 40 110 34"/></svg>
+    <svg class="doodle pink" style="right:-70px;top:-40px;width:70px;height:70px" viewBox="0 0 70 70"><path style="--l:200" d="M35 58 C10 40 8 22 20 16 C28 12 34 18 35 24 C36 18 42 12 50 16 C62 22 60 40 35 58Z"/><path style="--l:40" d="M8 8 L16 14"/><path style="--l:40" d="M62 6 L56 14"/></svg>
+    <span class="note" style="right:-150px;top:48px">← that's me!</span>
+  </a> <span class="copied" id="copied">copied ✓</span></div>
+  <div class="row">
+    <a class="btn li" id="liBtn" href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noreferrer">in&nbsp; LINKEDIN ↗
+      <svg class="doodle" style="left:-14px;top:-16px;width:calc(100% + 28px);height:calc(100% + 32px)" viewBox="0 0 200 80" preserveAspectRatio="none"><path style="--l:600" d="M18 40 C14 10 120 4 182 14 C200 30 196 66 120 72 C60 76 10 70 14 44"/></svg>
+      <svg class="doodle" style="right:-46px;top:-30px;width:46px;height:46px" viewBox="0 0 46 46"><path style="--l:30" d="M23 4 V14"/><path style="--l:30" d="M42 23 H32"/><path style="--l:30" d="M37 9 L30 16"/><path style="--l:30" d="M4 23 H12"/></svg>
+      <span class="note" style="left:20px;top:64px">let's connect ✦</span></a>
+    <a class="btn" href="https://github.com/HailahAlhejjei" target="_blank" rel="noreferrer">GITHUB ↗</a>
+    <a class="btn" href="Hailah_Alhejjei_CV_2026.pdf" download>DOWNLOAD CV ↓</a>
+    <button class="btn" id="copyBtn" style="cursor:pointer;color:inherit">⧉ COPY EMAIL</button>
+  </div>
 </section>
 </main>
 <footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand · no framework</span><a href="#top">BACK TO TOP ↑</a></footer>
 
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>hailah@portfolio: ~</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input"></div></div>
+<button class="pc" id="pc" aria-label="Open terminal"><span class="tip">psst… type here!</span>
+  <svg viewBox="0 0 100 100"><rect x="14" y="10" width="72" height="58" rx="12" fill="#d9f067"/><rect x="22" y="18" width="56" height="40" rx="6" fill="#0b1514"/><text x="30" y="43" font-family="JetBrains Mono,monospace" font-size="15" fill="#d9f067">&gt;_<animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/></text><circle cx="62" cy="35" r="3" fill="#ff6f9c"/><circle cx="70" cy="35" r="3" fill="#ff6f9c"/><path d="M60 45 Q66 50 72 45" stroke="#d9f067" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="40" y="68" width="20" height="10" fill="#b5cc4f"/><rect x="26" y="78" width="48" height="10" rx="5" fill="#d9f067"/></svg>
+</button>
+<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>● hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,DPR=Math.min(devicePixelRatio||1,2);
 document.getElementById('yr').textContent=new Date().getFullYear();
-/* cursor */
-const c1=document.querySelector('.cur'),c2=document.querySelector('.cur2');let mx=-99,my=-99,cx=mx,cy=my;
-addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.transform=`translate(${mx-3}px,${my-3}px)`});
-(function lp(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;c2.style.left=cx+'px';c2.style.top=cy+'px';requestAnimationFrame(lp)})();
+/* cursor + guide arrow */
+const c1=document.querySelector('.cur'),c2=document.querySelector('.cur2'),guide=document.getElementById('guide'),mailEl=document.getElementById('mail'),contactSec=document.getElementById('contact');
+let mx=-99,my=-99,cx=mx,cy=my,gx=-99,gy=-99,moved=false;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;moved=true;c1.style.transform=`translate(${mx-3}px,${my-3}px)`});
+(function lp(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;c2.style.left=cx+'px';c2.style.top=cy+'px';
+ const r=mailEl.getBoundingClientRect(),tx=r.left+r.width/2,ty=r.top+r.height/2,ang=Math.atan2(ty-my,tx-mx),dist=Math.hypot(tx-mx,ty-my);
+ const near=dist<260||r.top<innerHeight*.75&&r.bottom>0;
+ const ox=mx+Math.cos(ang)*80-17,oy=my+Math.sin(ang)*80-17;gx+=(ox-gx)*.08;gy+=(oy-gy)*.08;
+ guide.style.transform=`translate(${gx}px,${gy}px)`;guide.querySelector('svg').style.transform=`rotate(${ang}rad)`;
+ guide.classList.toggle('hide',!moved||near||scrollY<innerHeight*.5);
+ requestAnimationFrame(lp)})();
 document.querySelectorAll('a,button,.stage').forEach(el=>{el.addEventListener('mouseenter',()=>c2.classList.add('big'));el.addEventListener('mouseleave',()=>c2.classList.remove('big'))});
+/* doodles drawn when you reach email / linkedin */
+[mailEl,document.getElementById('liBtn')].forEach(el=>{el.addEventListener('mouseenter',()=>el.classList.add('drawn'));el.addEventListener('focus',()=>el.classList.add('drawn'))});
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&matchMedia('(hover:none)').matches)e.target.classList.add('drawn')}),{threshold:.9}).observe(mailEl);
+const copyEmail=()=>{navigator.clipboard?.writeText('alhejjeihailah@gmail.com');const c=document.getElementById('copied');c.classList.add('on');setTimeout(()=>c.classList.remove('on'),1600)};
+document.getElementById('copyBtn').onclick=copyEmail;
 /* typed */
 const words=['web & UX developer','AI prototyper','hardware tinkerer','VR/XR builder','hackathon winner'];let wi=0,ci=0,del=false;const ty=document.getElementById('typed');
 (function t(){const w=words[wi];ty.textContent='> '+w.slice(0,ci);if(!del&&ci<w.length)ci++;else if(del&&ci>0)ci--;else if(!del){del=true;return setTimeout(t,1400)}else{del=false;wi=(wi+1)%words.length}setTimeout(t,del?35:70)})();
@@ -244,61 +324,73 @@ function field(){tt+=.016;fx.clearRect(0,0,W,H);fx.font=`${11*DPR}px JetBrains M
  document.getElementById('freq').textContent=(868+Math.sin(tt)*.012).toFixed(3);
  if(!RM&&heroOn)requestAnimationFrame(field)}
 field();
-/* skill glow */
 document.querySelectorAll('.skill').forEach(s=>s.addEventListener('mousemove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--x',e.clientX-r.left+'px');s.style.setProperty('--y',e.clientY-r.top+'px')}));
-/* reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-/* smartscan */
-const ss=document.getElementById('ss'),ssr=document.getElementById('ssr');
-document.getElementById('ssBtn').onclick=()=>{ss.classList.remove('scanning');ssr.classList.remove('on');void ss.offsetWidth;ss.classList.add('scanning');
- setTimeout(()=>{ssr.innerHTML='MRI gate ........ <i>PASS</i><br>Regions flagged . <b>4</b><br>Top confidence .. <b>68.3%</b><br>Analysis time ... <i>1.57 s</i><br>Result .......... <b>SUSPECTED MS / SVD</b><br><span style="color:#93a69b">the decision stays with the doctor</span>';ssr.classList.add('on')},1600)};
-/* awn */
+/* smartscan: play the real web app */
+const app=document.getElementById('app'),scr=document.getElementById('scr'),fc=document.getElementById('fc'),prog=document.getElementById('prog'),pb=document.getElementById('pb'),progT=document.getElementById('progT'),ssBtn=document.getElementById('ssBtn');let ssRun=false,ssOpen=false;
+ssBtn.onclick=()=>{if(ssRun)return;
+ if(ssOpen){app.classList.remove('on');scr.classList.remove('done');ssOpen=false;ssBtn.textContent='▶ RUN AI SCAN';return}
+ ssRun=true;ssOpen=true;app.classList.add('on');scr.classList.remove('done');prog.classList.remove('on');pb.style.transition='none';pb.style.width='0';fc.style.left='70%';fc.style.top='85%';
+ const at=(f,d)=>setTimeout(f,d);
+ at(()=>{fc.style.left='22%';fc.style.top='52%'},500);
+ at(()=>fc.classList.add('click'),1450);at(()=>fc.classList.remove('click'),1750);
+ at(()=>{prog.classList.add('on');progT.textContent='Checking it is an MRI…';pb.style.transition='width 2.4s linear';pb.style.width='100%'},1700);
+ at(()=>progT.textContent='Detecting lesions (YOLO)…',2600);at(()=>progT.textContent='Scoring confidence…',3400);
+ at(()=>{prog.classList.remove('on');scr.classList.add('done');fc.style.left='88%';fc.style.top='30%'},4200);
+ at(()=>{ssRun=false;ssBtn.textContent='↺ BACK TO 3D'},4600)};
+/* awn sos (2D waves + log over the 3D scene) */
 const lc=document.getElementById('loraC'),lx=lc.getContext('2d'),aw=document.getElementById('awn'),log=document.getElementById('awnLog');let waves=[],sending=false,lrun=false;
 function lsz(){lc.width=aw.offsetWidth;lc.height=aw.offsetHeight}lsz();addEventListener('resize',lsz);
-function lora(){lx.clearRect(0,0,lc.width,lc.height);const sy=lc.height*.4,max=lc.width*.45;
+function lora(){lx.clearRect(0,0,lc.width,lc.height);const sy=lc.height*.42,max=lc.width*.42;
  for(const w of waves){w.r+=3;lx.strokeStyle=`rgba(${w.c},${Math.max(0,1-w.r/max)})`;lx.lineWidth=2.5;lx.beginPath();if(w.dir>0)lx.arc(w.x,sy,w.r,-Math.PI/4,Math.PI/4);else lx.arc(w.x,sy,w.r,Math.PI*3/4,Math.PI*5/4);lx.stroke()}
  waves=waves.filter(w=>w.r<max);if(waves.length)requestAnimationFrame(lora);else{lrun=false;lx.clearRect(0,0,lc.width,lc.height)}}
-function emit(dir,c,n){let k=0;const iv=setInterval(()=>{waves.push({x:dir>0?lc.width*.33:lc.width*.68,r:10,dir,c});if(!lrun){lrun=true;lora()}if(++k>=n)clearInterval(iv)},180)}
+function emit(dir,c,n){let k=0;const iv=setInterval(()=>{waves.push({x:dir>0?lc.width*.32:lc.width*.68,r:10,dir,c});if(!lrun){lrun=true;lora()}if(++k>=n)clearInterval(iv)},180)}
 document.getElementById('sosBtn').onclick=()=>{if(sending)return;sending=true;log.className='log on';log.innerHTML='';
  const L=(t,cl,d)=>setTimeout(()=>{log.innerHTML+=`<div class="${cl||''}">${t}</div>`},d);
- emit(1,'255,90,78',6);L('▲ SOS SENT · attempt 1/3','w',0);L('  GPS fix + BAT 96% attached','',500);L('▼ AOUN RESCUE · SOS received','',1400);L('  signal −6 dBm · SNR 11.3','',1800);
- setTimeout(()=>emit(-1,'217,240,103',5),2300);L('▲ CONFIRMED · help is on the way','ok',2900);L('  LED + vibration on SOS device','ok',3300);setTimeout(()=>sending=false,3600)};
+ window.awnState?.('sos');emit(1,'255,90,78',6);L('▲ SOS SENT · attempt 1/3','w',0);L('  GPS fix + BAT 96% attached','',500);
+ setTimeout(()=>window.awnState?.('received'),1300);L('▼ AOUN RESCUE · SOS received','',1400);L('  signal −6 dBm · SNR 11.3','',1800);
+ setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L('▲ CONFIRMED · help is on the way','ok',2900);L('  LED + vibration on SOS device','ok',3300);
+ setTimeout(()=>sending=false,3600);setTimeout(()=>{if(!sending)window.awnState?.('ready')},9000)};
+const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
+photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=on?'🧊 3D MODEL':'📷 REAL PHOTO'};
 /* uv flashlight */
 const uv=document.getElementById('uv'),clues=uv.querySelectorAll('.clue');
 function uvMove(x0,y0){const r=uv.getBoundingClientRect(),x=x0-r.left,y=y0-r.top;uv.style.setProperty('--mx',x+'px');uv.style.setProperty('--my',y+'px');
  clues.forEach(c=>{const cr=c.getBoundingClientRect(),d=Math.hypot(cr.left-r.left+cr.width/2-x,cr.top-r.top+cr.height/2-y);c.style.opacity=d<110?1:0})}
 uv.addEventListener('mousemove',e=>uvMove(e.clientX,e.clientY));
 uv.addEventListener('touchmove',e=>{const t=e.touches[0];uvMove(t.clientX,t.clientY)},{passive:true});
-/* waterfall */
-const wc=document.getElementById('water'),wx=wc.getContext('2d'),sat=document.getElementById('sat');function wsz(){wc.width=Math.max(1,sat.offsetWidth>>1);wc.height=Math.max(1,sat.offsetHeight>>1)}wsz();addEventListener('resize',wsz);
-let wt=0,satOn=false;const sigs=[{f:.18,w:2},{f:.42,w:6,cw:1},{f:.55,w:1.5},{f:.7,w:4}];
-new IntersectionObserver(e=>{satOn=e[0].isIntersecting;if(satOn&&!RM)requestAnimationFrame(water)}).observe(sat);
-function water(){wt++;const w=wc.width,h=wc.height;wx.drawImage(wc,0,0,w,h-1,0,1,w,h-1);const row=wx.createImageData(w,1);
- for(let x=0;x<w;x++){let v=Math.random()*45;for(const s of sigs){const d=Math.abs(x/w-s.f)*w;if(d<s.w&&(!s.cw||Math.sin(wt*.25)>0))v+=210*(1-d/s.w)}
-  const i=x*4;if(v>160){row.data[i]=217;row.data[i+1]=240;row.data[i+2]=103}else if(v>90){row.data[i]=94;row.data[i+1]=230;row.data[i+2]=255}else{row.data[i]=8;row.data[i+1]=25+v;row.data[i+2]=40+v*.6}row.data[i+3]=255}
- wx.putImageData(row,0,0);if(!RM&&satOn)requestAnimationFrame(water)}
-const msg='CQ CQ CQ DE DIGITAL APOLLO · FT8 −12dB 14.074 MHz · WSPR SPOT LOGGED · SSTV IMAGE RECEIVED · SAT PASS AOS 23° · 73 · ';let mi=0;
-setInterval(()=>{document.getElementById('decode').textContent='DECODE > '+(msg+msg).slice(mi,mi+70);mi=(mi+1)%msg.length},120);
+/* satellite pass */
+const orbP=document.getElementById('orbPath'),satG=document.getElementById('satG'),beam=document.getElementById('beam'),ping=document.getElementById('ping'),satmsg=document.getElementById('satmsg');
+const OL=orbP.getTotalLength();let sp=0,pr=0,satVis=false;const modes=['FT8 · CQ DE DIGITAL APOLLO','SSTV · image received 📷','CW · ·−· · −·−· · ·· ···− · −··','WSPR · spot logged · −12 dB'];let mode=0,lastIn=false;
+new IntersectionObserver(e=>{satVis=e[0].isIntersecting;if(satVis&&!RM)requestAnimationFrame(satLoop)}).observe(document.getElementById('sat'));
+function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.setAttribute('transform',`translate(${p.x},${p.y})`);
+ const inView=sp>.3&&sp<.7;beam.setAttribute('x1',p.x);beam.setAttribute('y1',p.y);beam.setAttribute('opacity',inView?.9:0);
+ if(inView){pr=(pr+1.2)%40;ping.setAttribute('r',6+pr);ping.setAttribute('opacity',1-pr/40)}else ping.setAttribute('opacity',0);
+ if(inView&&!lastIn){satmsg.innerHTML='📡 AOS · signal received → <b>'+modes[mode]+'</b>';mode=(mode+1)%modes.length}
+ if(!inView&&lastIn)satmsg.textContent='LOS · waiting for next pass…';lastIn=inView;
+ if(satVis&&!RM)requestAnimationFrame(satLoop)}
 /* terminal */
-const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti');
+const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('Welcome to <span class="p">hailah-os</span> v2026.11\nType <span class="p">help</span> to see what you can do.\n')}
-document.getElementById('openTerm').onclick=openT;document.getElementById('openTerm2').onclick=e=>{e.preventDefault();openT()};
-document.getElementById('closeTerm').onclick=()=>term.classList.remove('open');
-addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();term.classList.contains('open')?term.classList.remove('open'):openT()}if(e.key==='Escape')term.classList.remove('open')});
+function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('hi! 👋 welcome to <span class="p">hailah-os</span>\ntype <span class="p">help</span> to see what I can do.\n')}
+function toggleT(){term.classList.contains('open')?term.classList.remove('open'):openT()}
+pc.onclick=toggleT;document.getElementById('closeTerm').onclick=()=>term.classList.remove('open');
+setTimeout(()=>{pc.classList.add('nudge');setTimeout(()=>pc.classList.remove('nudge'),3500)},6000);
+addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape')term.classList.remove('open')});
 const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
 const cmds={
- help:()=>'commands:\n  whoami     who is hailah\n  projects   list projects\n  awards     trophies\n  skills     tech stack\n  sos        send a distress signal\n  scan       run the MRI model\n  contact    get in touch\n  cv         download the CV\n  sudo hire hailah\n  clear',
+ help:()=>'commands:\n  whoami     who is hailah\n  projects   list projects\n  awards     trophies\n  skills     tech stack\n  sos        send a distress signal\n  scan       run the MRI model\n  email      copy my email\n  contact    get in touch\n  cv         download the CV\n  sudo hire hailah\n  clear',
  whoami:()=>'Hailah Alhejjei — developer from Riyadh.\nWeb · AI · embedded hardware · VR/XR. Open to co-op.',
  projects:()=>'01 MS SmartScan      offline AI for MS lesions on MRI\n02 Awn (عون)          off-grid LoRa SOS device\n03 Beyond: Case 017  VR detective story\n04 Satathon          satellite & HF radio',
- awards:()=>'🥇 1st  Riyadah AI Hackathon (Nov 2026)\n🥉 3rd  Satathon 2026\n📜 2× patent pending',
+ awards:()=>'🥇 1st  Riyadah AI Hackathon (Nov 2026)\n🏁 Finalist  SAIF 2026 (Awn)\n🥉 3rd  Satathon 2026\n📜 2× patent pending',
  skills:()=>'HTML CSS JS PHP · Python SQL PL/SQL Oracle SQLite\nESP32 LoRa GPS Raspberry Pi · Unity C# Meta Quest',
- contact:()=>'linkedin → <a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>\ngithub   → <a href="https://github.com/HailahAlhejjei" target="_blank">github.com/HailahAlhejjei</a>',
+ email:()=>{copyEmail();return 'copied → alhejjeihailah@gmail.com ✓'},
+ contact:()=>'email    → <a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>\nlinkedin → <a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>\ngithub   → <a href="https://github.com/HailahAlhejjei" target="_blank">github.com/HailahAlhejjei</a>',
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return 'downloading CV…'},
  sos:()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700);return 'transmitting on 868 MHz…'},
- scan:()=>{go('ss');setTimeout(()=>document.getElementById('ssBtn').click(),700);return 'loading model…'},
+ scan:()=>{go('ss');setTimeout(()=>{if(ssOpen)ssBtn.click();ssBtn.click()},700);return 'loading model…'},
  clear:()=>{to.innerHTML='';return null},
- 'sudo hire hailah':()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return '<span class="p">[sudo] permission granted.</span>\nGreat choice. Make it official →\n<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>'},
+ 'sudo hire hailah':()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return '<span class="p">[sudo] permission granted.</span>\nGreat choice. Make it official →\n<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>'},
  'hire hailah':()=>'<span class="e">permission denied.</span> try: sudo hire hailah',
  sudo:()=>'usage: sudo hire hailah'};
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const v=ti.value.trim().toLowerCase();ti.value='';const safe=v.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;');out('<span class="p">❯</span> '+safe);if(!v)return;const f=cmds[v];const r=f?f():`<span class="e">command not found:</span> ${safe} — try help`;if(r!==null)out(r)});
@@ -306,6 +398,83 @@ function toast(t){const el=document.getElementById('toast');el.textContent=t;el.
 function confetti(){if(RM)return;const cv=document.createElement('canvas');cv.className='confetti';document.body.appendChild(cv);const x=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
  const P=Array.from({length:160},()=>({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*16,vy:Math.random()*-16-4,c:['#d9f067','#5ee6ff','#ff5a4e','#fff'][Math.random()*4|0],s:Math.random()*6+3}));let f=0;
  (function a(){x.clearRect(0,0,cv.width,cv.height);for(const p of P){p.vy+=.45;p.x+=p.vx;p.y+=p.vy;x.fillStyle=p.c;x.fillRect(p.x,p.y,p.s,p.s*.6)}if(++f<160)requestAnimationFrame(a);else cv.remove()})()}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function scene3d(canvas,camZ){
+ const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
+ const s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,100);cam.position.set(0,.4,camZ);
+ s.add(new THREE.HemisphereLight(0xffffff,0x223333,1.6));const d=new THREE.DirectionalLight(0xffffff,2.2);d.position.set(3,4,5);s.add(d);const d2=new THREE.DirectionalLight(0xd9f067,.8);d2.position.set(-4,1,-3);s.add(d2);
+ const c=new OrbitControls(cam,canvas);c.enableZoom=false;c.enablePan=false;c.enableDamping=true;c.autoRotate=!RM;c.autoRotateSpeed=1.4;c.minPolarAngle=Math.PI*.25;c.maxPolarAngle=Math.PI*.7;
+ c.addEventListener('start',()=>c.autoRotate=false);c.addEventListener('end',()=>setTimeout(()=>c.autoRotate=!RM,2500));
+ function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+ size();addEventListener('resize',size);let vis=false,tick=null;
+ const loop=()=>{if(!vis)return;tick&&tick();c.update();r.render(s,cam);requestAnimationFrame(loop)};
+ new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis){size();loop()}}).observe(canvas);
+ return {s,setTick:f=>tick=f}}
+function texCanvas(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const g=cv.getContext('2d');return {t,redraw:a=>{g.clearRect(0,0,w,h);draw(g,a);t.needsUpdate=true}}}
+
+/* ---------- MS SmartScan: brain-shaped device ---------- */
+{const {s,setTick}=scene3d(document.getElementById('brain3d'),5.2);
+ const geo=new THREE.SphereGeometry(1,160,120),p=geo.attributes.position,v=new THREE.Vector3();
+ for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=v.clone().normalize();
+  let f=.055*Math.sin(9*n.x+2*Math.sin(7*n.y))*Math.sin(10*n.y+1.5*Math.cos(6*n.z))+.035*Math.sin(17*n.z+3*n.x)*Math.cos(15*n.y);
+  const groove=Math.exp(-Math.pow(n.x/.07,2))*(n.y>-.2?.16:0);
+  v.copy(n).multiplyScalar(1+f-groove);v.x*=1.12;v.y*=.86;v.z*=1.02;p.setXYZ(i,v.x,v.y,v.z)}
+ geo.computeVertexNormals();
+ const brain=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xff6f9c,roughness:.55,metalness:.05}));
+ const g=new THREE.Group();g.add(brain);
+ const bez=new THREE.Mesh(new RoundedBoxGeometry(.95,.66,.12,4,.04),new THREE.MeshStandardMaterial({color:0xff5a8a,roughness:.5}));bez.position.set(0,-.12,.98);g.add(bez);
+ const img=new Image();img.crossOrigin='anonymous';const scrT=texCanvas(512,352,(x,a)=>{x.fillStyle='#0b1220';x.fillRect(0,0,512,352);if(img.complete&&img.naturalWidth)x.drawImage(img,0,0,512,352);});
+ img.onload=()=>scrT.redraw();img.src='assets/ss-result.jpg';
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry(.85,.56),new THREE.MeshBasicMaterial({map:scrT.t}));scr.position.set(0,-.12,1.045);g.add(scr);
+ const cam=new THREE.Mesh(new RoundedBoxGeometry(.24,.16,.08,3,.02),new THREE.MeshStandardMaterial({color:0x111111}));cam.position.set(0,.36,.93);g.add(cam);
+ const lens=new THREE.Mesh(new THREE.CircleGeometry(.045,24),new THREE.MeshStandardMaterial({color:0x223355,roughness:.1,metalness:.6}));lens.position.set(0,.36,.975);g.add(lens);
+ g.rotation.y=-.5;s.add(g);
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(1.1,1.2,.08,48),new THREE.MeshStandardMaterial({color:0xe9f0ea,roughness:.8}));base.position.y=-.98;s.add(base);
+ let t=0;setTick(()=>{t+=.02;g.position.y=Math.sin(t)*.04})}
+
+/* ---------- Awn: red SOS device + green Aoun Rescue receiver ---------- */
+{const {s,setTick}=scene3d(document.getElementById('awn3d'),6.6);
+ const mat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.6});
+ function device(color,w,h){const g=new THREE.Group();const body=new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.14),mat(color));g.add(body);
+  const ant=new THREE.Mesh(new THREE.CylinderGeometry(.045,.055,.95,16),mat(0x111111));ant.position.set(w*.12,h/2+.47,0);g.add(ant);
+  const tip=new THREE.Mesh(new THREE.SphereGeometry(.055,16,12),mat(0x111111));tip.position.set(w*.12,h/2+.95,0);g.add(tip);
+  for(const sx of [-1,1]){const lug=new THREE.Mesh(new THREE.TorusGeometry(.09,.04,10,20),mat(color));lug.position.set(sx*(w/2-.18),h/2+.03,0);g.add(lug)}
+  return g}
+ // red SOS device
+ const red=device(0xb3121e,1.9,1.55);red.position.x=-1.05;
+ const oled=texCanvas(256,96,(x,st)=>{x.fillStyle='#02060a';x.fillRect(0,0,256,96);x.font='bold 24px monospace';
+  const m={ready:['READY','#ffd23a','Press SOS button','to call for help'],sos:['SOS SENT','#ffd23a','Waiting for team..','Attempt 1 of 3'],received:['SOS SENT','#ffd23a','Team receiving..','signal -6 dBm'],confirmed:['HELP COMING','#9dff6a','Team confirmed!','Stay where you are']}[st||'ready'];
+  x.fillStyle=m[1];x.fillText(m[0],10,28);x.font='16px monospace';x.fillStyle='#5ee6ff';x.fillText(m[2],10,54);x.fillText(m[3],10,76);x.fillStyle='#5ee6ff';x.fillRect(6,84,244,2)});oled.redraw('ready');
+ const o=new THREE.Mesh(new THREE.PlaneGeometry(.62,.24),new THREE.MeshBasicMaterial({map:oled.t}));o.position.set(-.48,.34,.252);red.add(o);
+ const btn=new THREE.Mesh(new THREE.CylinderGeometry(.19,.21,.12,32),mat(0xe0141f));btn.rotation.x=Math.PI/2;btn.position.set(.52,.34,.27);red.add(btn);
+ const led=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),new THREE.MeshStandardMaterial({color:0x111133,emissive:0x2244ff,emissiveIntensity:0}));led.position.set(-.02,.42,.26);red.add(led);
+ for(const yy of [.25,.08]){const k=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),mat(0x111111));k.position.set(-.02,yy,.25);red.add(k)}
+ const logo=texCanvas(256,256,x=>{x.fillStyle='#8f0f18';x.fillRect(0,0,256,256);x.fillStyle='#d8b45a';x.font='bold 120px "Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif';x.textAlign='center';x.fillText('عون',128,140);x.font='bold 30px monospace';x.fillText('⠁⠺⠝',128,210)});logo.redraw();
+ const lg=new THREE.Mesh(new THREE.PlaneGeometry(.55,.55),new THREE.MeshBasicMaterial({map:logo.t}));lg.position.set(0,-.38,.252);red.add(lg);
+ // gold stripes
+ for(const sx of [-1,1])for(let i=0;i<4;i++){const st=new THREE.Mesh(new THREE.BoxGeometry(.02,.42,.01),mat(0xd8b45a));st.position.set(sx*(.55+i*.07),-.4,.255);st.rotation.z=sx*-.45;red.add(st)}
+ s.add(red);
+ // green rescue receiver
+ const grn=device(0x2fbf3a,2.05,1.45);grn.position.x=1.12;
+ const lcd=texCanvas(480,300,(x,st)=>{x.fillStyle='#5a6b7d';x.fillRect(0,0,480,300);x.fillStyle='#2bb8e8';x.fillRect(0,0,480,46);x.fillStyle='#fff';x.font='bold 26px sans-serif';x.fillText('AOUN RESCUE',14,32);
+  const sos=st==='received'||st==='confirmed';x.fillStyle=sos?'#ff4a4a':'#b8e8f8';x.beginPath();x.roundRect(310,10,156,26,13);x.fill();x.fillStyle=sos?'#fff':'#557';x.font='14px sans-serif';x.fillText(sos?'SOS!':'LISTENING',sos?370:350,28);
+  x.strokeStyle='#dfe';x.lineWidth=2;x.beginPath();x.arc(110,170,85,0,7);x.stroke();x.beginPath();x.arc(110,170,40,0,7);x.stroke();x.beginPath();x.moveTo(25,170);x.lineTo(195,170);x.moveTo(110,85);x.lineTo(110,255);x.stroke();
+  x.fillStyle=sos?'#ff4a4a':'#2bd8ff';x.beginPath();x.arc(sos?150:110,sos?130:170,8,0,7);x.fill();
+  x.fillStyle='#fff';x.font='bold 24px sans-serif';x.fillText(st==='confirmed'?'Help confirmed':sos?'SOS received!':'No SOS received',220,92);x.font='15px sans-serif';
+  x.fillText(sos?'Battery: 96 %':'Listening on 868 MHz',225,122);x.fillText(sos?'Signal: -6 dBm  SNR 11.3':'Team GPS searching…',225,146);
+  if(sos){x.fillStyle=st==='confirmed'?'#2a8a35':'#4cff4c';x.fillRect(230,215,220,52);x.fillStyle='#063';x.font='bold 24px sans-serif';x.fillText(st==='confirmed'?'SENT ✓':'CONFIRM',282,250)}});lcd.redraw('ready');
+ const frame=new THREE.Mesh(new RoundedBoxGeometry(1.62,1.08,.06,3,.03),mat(0x249a2e));frame.position.set(0,-.02,.26);grn.add(frame);
+ const sc=new THREE.Mesh(new THREE.PlaneGeometry(1.48,.94),new THREE.MeshBasicMaterial({map:lcd.t}));sc.position.set(0,-.02,.295);grn.add(sc);
+ s.add(grn);
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(2.6,2.7,.08,64),mat(0xe9f0ea));base.position.y=-.82;s.add(base);
+ let blink=0;window.awnState=st=>{oled.redraw(st);lcd.redraw(st);blink=st==='sos'||st==='confirmed'?120:0};
+ let t=0;setTick(()=>{t++;led.material.emissiveIntensity=blink>0?(t%14<7?3:0):0;if(blink>0)blink--;btn.position.z=.27-(blink>110?.04:0)})}
 </script>
 </body>
 </html>
