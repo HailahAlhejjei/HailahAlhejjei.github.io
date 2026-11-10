@@ -6,7 +6,7 @@
 <meta name="description" content="Hailah Alhejjei — developer building web, UX, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026, SAIF 2026 finalist.">
 <meta name="theme-color" content="#07100f"><meta property="og:title" content="Hailah Alhejjei | Portfolio"><meta property="og:description" content="Web, UX, embedded and immersive VR/XR projects by Hailah Alhejjei."><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
 :root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
@@ -455,7 +455,7 @@ function scene3d(canvas,camZ,camY,swing){
  function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
  size();addEventListener('resize',size);let vis=false,tick=null,t=0;
  const loop=()=>{if(!vis)return;t+=.016;idle+=.016;
-  if(!held&&!RM&&idle>2.5)root.rotation.y+=(Math.sin(t*.6)*swing*.55-root.rotation.y)*.03;
+  if(!held&&!RM&&idle>2.5){if(swing===Infinity)root.rotation.y+=.005;else root.rotation.y+=(Math.sin(t*.6)*swing*.55-root.rotation.y)*.03}
   tick&&tick(t);c.update();r.render(s,cam);requestAnimationFrame(loop)};
  new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis){size();loop()}}).observe(canvas);
  return {root,setTick:f=>tick=f}}
@@ -505,42 +505,77 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.3,1.38,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-.92;root.add(base);
  root.rotation.y=-.45;setTick(t=>{root.position.y=Math.sin(t*1.2)*.03})}
 
-/* ---------- Awn: the real device fronts (from the photo) on 3D bodies ---------- */
-{const {root,setTick}=scene3d(document.getElementById('awn3d'),6.8,.5,.95);
- const mat=(c,r=.6)=>new THREE.MeshStandardMaterial({color:c,roughness:r});
- function device(color,w,h,front){const g=new THREE.Group();g.add(new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.12),mat(color)));
-  const f=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex(front),transparent:true,toneMapped:false}));f.position.z=.252;g.add(f);
-  for(const sx of [-1,1]){const lug=new THREE.Mesh(new THREE.TorusGeometry(.09,.04,10,20),mat(color));lug.position.set(sx*(w/2-.2),h/2+.02,0);g.add(lug)}
+/* ---------- Awn: both devices modelled from the real prototypes (front + back) ---------- */
+{const {root,setTick}=scene3d(document.getElementById('awn3d'),7.2,.6,Infinity);
+ const mat=(c,r=.55,m=0)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
+ const RED=0xb5121d,RED2=0x9c0f18,GRN=0x2fb53c,GRN2=0x249a2e,GOLD=0xd9b052,DARK=0x111111;
+ const flat=(w,h,map,opts={})=>new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map,toneMapped:false,...opts}));
+ function shell(color,w,h){const g=new THREE.Group();g.add(new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.12),mat(color)));
+  for(const sx of [-1,1]){const lug=new THREE.Mesh(new THREE.TorusGeometry(.09,.045,12,24),mat(color));lug.position.set(sx*(w/2-.22),h/2+.03,0);g.add(lug)}
   return g}
- function antenna(x,top){const a=new THREE.Mesh(new THREE.CylinderGeometry(.045,.06,1.05,16),mat(0x151515,.4));a.position.set(x,top+.52,0);const tip=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),mat(0x151515,.4));tip.position.set(x,top+1.05,0);return [a,tip]}
- const RW=1.9,RH=1.39,red=device(0xa5141c,RW,RH,'assets/awn-red-front.webp');red.position.set(-1.0,0,0);
- antenna(RW*.24,RH/2).forEach(o=>red.add(o));
- const solar=new THREE.Mesh(new THREE.PlaneGeometry(1.3,.8),new THREE.MeshStandardMaterial({color:0x14213d,roughness:.25,metalness:.4}));solar.position.set(0,0,-.252);solar.rotation.y=Math.PI;red.add(solar);
- const px=(x,y)=>[(x-122)/643*RW-RW/2,RH/2-(y-338)/470*RH];
+ function antenna(g,x,top){const a=new THREE.Mesh(new THREE.CylinderGeometry(.045,.06,1.05,16),mat(0x151515,.4));a.position.set(x,top+.52,0);g.add(a);const t=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),mat(0x151515,.4));t.position.set(x,top+1.05,0);g.add(t)}
+ function screws(g,w,h,z,col){for(const sx of [-1,1])for(const sy of [-1,1]){const s=new THREE.Mesh(new THREE.CircleGeometry(.025,12),mat(col));s.position.set(sx*(w/2-.1),sy*(h/2-.1),z);if(z<0)s.rotation.y=Math.PI;g.add(s)}}
+ function textTex(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const x=cv.getContext('2d');const go=()=>{x.clearRect(0,0,w,h);draw(x);t.needsUpdate=true};go();document.fonts&&document.fonts.load('700 100px "Aref Ruqaa"').then(go);return t}
+ const awnLogo=(braille)=>textTex(512,400,x=>{x.fillStyle='#d9b052';x.textAlign='center';x.font='700 230px "Aref Ruqaa", "Noto Naskh Arabic", serif';x.shadowColor='#0006';x.shadowOffsetY=4;x.shadowBlur=6;x.fillText('عون',256,250);
+  if(braille){x.shadowBlur=0;x.shadowOffsetY=2;const dots=[[1,0,1,1,0,0],[1,0,0,1,1,0],[1,1,0,0,1,0]];dots.forEach((d,ci)=>d.forEach((on,k)=>{if(!on)return;x.beginPath();x.arc(186+ci*58+(k%2)*22,300+Math.floor(k/2)*22,7,0,7);x.fill()}))}});
+
+ /* --- red SOS unit --- */
+ const RW=1.9,RH=1.39,red=shell(RED,RW,RH);red.position.x=-1.05;antenna(red,RW*.24,RH/2);
+ const Z=.252,P=(x,y)=>[(x-122)/643*RW-RW/2,RH/2-(y-338)/470*RH];
+ const seam=new THREE.Mesh(new THREE.BoxGeometry(RW-.08,.012,.01),mat(0x6a0a10));seam.position.set(0,P(0,598)[1],Z);red.add(seam);
+ // OLED (real screen) + live overlay
+ const [o0x,o0y]=P(168,452),[o1x,o1y]=P(302,522);
+ const oledBase=flat(o1x-o0x,o0y-o1y,tex('assets/awn-oled.jpg'));oledBase.position.set((o0x+o1x)/2,(o0y+o1y)/2,Z+.004);red.add(oledBase);
  const oled=canvasTex(256,110,(x,st)=>{x.fillStyle='#02060a';x.fillRect(0,0,256,110);
   const m={sos:['SOS SENT','#ffd23a','Waiting for team..','Attempt 1 of 3'],received:['SOS SENT','#ffd23a','Team receiving..','signal -6 dBm'],confirmed:['HELP OK','#9dff6a','Help is coming','Stay where you are']}[st]||['READY','#ffd23a','',''];
   x.font='bold 30px monospace';x.fillStyle=m[1];x.fillText(m[0],8,32);x.font='18px monospace';x.fillStyle='#5ee6ff';x.fillText(m[2],8,62);x.fillText(m[3],8,86);x.fillRect(4,96,248,3)});
- const [ox0,oy0]=px(168,452),[ox1,oy1]=px(302,522);
- const oMesh=new THREE.Mesh(new THREE.PlaneGeometry(ox1-ox0,oy0-oy1),new THREE.MeshBasicMaterial({map:oled.t,toneMapped:false}));oMesh.position.set((ox0+ox1)/2,(oy0+oy1)/2,.254);oMesh.visible=false;red.add(oMesh);
- const [lx0,ly0]=px(338,505);const ledM=new THREE.Mesh(new THREE.CircleGeometry(.035,20),new THREE.MeshBasicMaterial({color:0x3b6bff,transparent:true,opacity:0}));ledM.position.set(lx0,ly0,.256);red.add(ledM);
+ const oMesh=flat(o1x-o0x,o0y-o1y,oled.t);oMesh.position.set((o0x+o1x)/2,(o0y+o1y)/2,Z+.006);oMesh.visible=false;red.add(oMesh);
+ // 3 LED holes (the top one blinks blue)
+ const leds=[];[445,487,530].forEach(py=>{const [hx,hy]=P(338,py);const h=new THREE.Mesh(new THREE.CircleGeometry(.04,20),new THREE.MeshBasicMaterial({color:0x0c0c0c}));h.position.set(hx,hy,Z+.003);red.add(h);leds.push(h)});
+ // speaker grille
+ const [gx0,gy0]=P(395,415);for(let i=0;i<3;i++)for(let j=0;j<3;j++){if((i+j)%2)continue;const d=new THREE.Mesh(new THREE.CircleGeometry(.012,10),new THREE.MeshBasicMaterial({color:0x2a0508}));d.position.set(gx0+i*.035,gy0-j*.035,Z+.003);red.add(d)}
+ // big red SOS button
+ const [bx,by]=P(470,470);const ring=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,.04,40),mat(RED2));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,Z+.02);red.add(ring);
+ const btn=new THREE.Mesh(new THREE.CylinderGeometry(.15,.16,.1,40),mat(0xe0141f,.35));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,Z+.07);red.add(btn);
+ // raised emblem with "عون" + braille (from the real device)
+ const [e0x,e0y]=P(298,612),[e1x,e1y]=P(426,728);
+ const emb=new THREE.Mesh(new RoundedBoxGeometry(e1x-e0x,e0y-e1y,.05,3,.015),mat(RED2));emb.position.set((e0x+e1x)/2,(e0y+e1y)/2,Z+.01);red.add(emb);
+ const embF=flat((e1x-e0x)*.94,(e0y-e1y)*.94,tex('assets/awn-emblem.jpg'));embF.position.set((e0x+e1x)/2,(e0y+e1y)/2,Z+.038);red.add(embF);
+ // gold stripes
+ const stripe=(x,y,rot)=>{const s=new THREE.Mesh(new THREE.BoxGeometry(.018,.42,.012),mat(GOLD,.4,.3));s.position.set(x,y,Z+.006);s.rotation.z=rot;red.add(s)};
+ for(let i=0;i<4;i++){stripe(P(150+i*24,0)[0],P(0,700)[1],.5);stripe(P(472+i*24,0)[0],P(0,700)[1],-.5)}
+ const slot=new THREE.Mesh(new THREE.PlaneGeometry(.03,.09),new THREE.MeshBasicMaterial({color:0x111111}));slot.position.set(P(283,0)[0],P(0,700)[1],Z+.003);red.add(slot);
+ // back: big solar panel in a red frame
+ const solarTex=textTex(512,360,x=>{const g=x.createLinearGradient(0,0,512,360);g.addColorStop(0,'#1a2740');g.addColorStop(.5,'#0b1220');g.addColorStop(1,'#16223a');x.fillStyle=g;x.fillRect(0,0,512,360);
+  x.strokeStyle='#2a3a5a';x.lineWidth=2;for(let i=1;i<6;i++){x.beginPath();x.moveTo(i*512/6,0);x.lineTo(i*512/6,360);x.stroke()}for(let j=1;j<4;j++){x.beginPath();x.moveTo(0,j*90);x.lineTo(512,j*90);x.stroke()}
+  x.fillStyle='#ffffff10';x.beginPath();x.moveTo(0,0);x.lineTo(220,0);x.lineTo(0,200);x.fill()});
+ const solar=new THREE.Mesh(new THREE.PlaneGeometry(RW-.28,RH-.3),new THREE.MeshStandardMaterial({map:solarTex,roughness:.15,metalness:.5}));solar.position.set(0,-.02,-Z-.003);solar.rotation.y=Math.PI;red.add(solar);
+ screws(red,RW,RH,-Z-.004,0x5a0a0f);
  root.add(red);
- const GW=1.98,GH=1.3,grn=device(0x2bb53a,GW,GH,'assets/awn-green-front.webp');grn.position.set(1.0,0,0);
- antenna(GW*.07,GH/2).forEach(o=>grn.add(o));
- const gx=(x,y)=>[(x-768)/670*GW-GW/2,GH/2-(y-368)/440*GH];
+
+ /* --- green Aoun Rescue unit --- */
+ const GW=1.98,GH=1.3,grn=shell(GRN,GW,GH);grn.position.x=1.08;antenna(grn,GW*.07,GH/2);
+ const frame=new THREE.Mesh(new RoundedBoxGeometry(GW-.2,GH-.22,.06,4,.05),mat(GRN2));frame.position.set(0,-.04,Z+.01);grn.add(frame);
+ const bez=new THREE.Mesh(new THREE.PlaneGeometry(GW-.42,GH-.4),new THREE.MeshBasicMaterial({color:0x0e1a12}));bez.position.set(0,-.04,Z+.042);grn.add(bez);
+ const lw=GW-.5,lh=lw*306/460;
+ const lcdBase=flat(lw,lh,tex('assets/awn-lcd.jpg'));lcdBase.position.set(0,-.04,Z+.045);grn.add(lcdBase);
  const lcd=canvasTex(480,300,(x,st)=>{x.fillStyle='#5f7184';x.fillRect(0,0,480,300);x.fillStyle='#2bb8e8';x.fillRect(0,0,480,44);x.fillStyle='#fff';x.font='bold 26px sans-serif';x.fillText('AOUN RESCUE',14,31);
   x.fillStyle='#ff4a4a';x.beginPath();x.roundRect(318,9,148,26,13);x.fill();x.fillStyle='#fff';x.font='bold 15px sans-serif';x.fillText('SOS!',375,27);
   x.strokeStyle='#e6f0f0';x.lineWidth=2;x.beginPath();x.arc(105,170,82,0,7);x.stroke();x.beginPath();x.arc(105,170,40,0,7);x.stroke();x.beginPath();x.moveTo(23,170);x.lineTo(187,170);x.moveTo(105,88);x.lineTo(105,252);x.stroke();
   x.fillStyle='#2bd8ff';x.beginPath();x.arc(105,170,7,0,7);x.fill();x.strokeStyle='#ffb000';x.lineWidth=3;x.beginPath();x.moveTo(105,170);x.lineTo(150,128);x.stroke();x.fillStyle='#ff4a4a';x.beginPath();x.arc(150,128,9,0,7);x.fill();
   x.fillStyle='#fff';x.font='bold 30px sans-serif';x.fillText('1.24 km',220,88);x.font='bold 22px sans-serif';x.fillText('NE 45 deg',220,116);x.font='15px sans-serif';x.fillText('Battery: 96 %',222,150);x.fillText('Signal: -6 dBm  SNR 11.3',222,172);x.fillText('Last heard: 0 s ago',222,194);
   x.fillStyle=st==='confirmed'?'#1f8a2c':'#3fd94a';x.fillRect(228,222,230,56);x.fillStyle='#04350a';x.font='bold 24px sans-serif';x.fillText(st==='confirmed'?'SENT ✓':'CONFIRM',st==='confirmed'?296:282,259)});
- const [lx1,ly1]=gx(882,465),[lx2,ly2]=gx(1335,765);
- const lMesh=new THREE.Mesh(new THREE.PlaneGeometry(lx2-lx1,ly1-ly2),new THREE.MeshBasicMaterial({map:lcd.t,toneMapped:false}));lMesh.position.set((lx1+lx2)/2,(ly1+ly2)/2,.254);lMesh.visible=false;grn.add(lMesh);
+ const lMesh=flat(lw,lh,lcd.t);lMesh.position.set(0,-.04,Z+.047);lMesh.visible=false;grn.add(lMesh);
+ // back: gold "عون" calligraphy + braille, 4 screws
+ const back=flat(1.05,.82,awnLogo(true),{transparent:true});back.position.set(0,-.05,-Z-.004);back.rotation.y=Math.PI;grn.add(back);
+ screws(grn,GW,GH,-Z-.004,0x0e4a18);
  root.add(grn);
- const base=new THREE.Mesh(new THREE.CylinderGeometry(2.6,2.7,.08,64),mat(0xf2f2ee,.85));base.position.y=-.73;root.add(base);
+
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(2.7,2.8,.08,64),mat(0xf2f2ee,.85));base.position.y=-.73;root.add(base);
  let blink=0;
  window.awnState=st=>{if(st==='ready'){oMesh.visible=false;lMesh.visible=false;blink=0;return}
   oled.redraw(st);oMesh.visible=true;if(st!=='sos'){lcd.redraw(st);lMesh.visible=true}if(st==='sos'||st==='confirmed')blink=140};
- let k=0;setTick(()=>{k++;ledM.material.opacity=blink>0?(k%14<7?1:0):0;if(blink>0)blink--})}
+ let k=0;setTick(()=>{k++;leds[0].material.color.setHex(blink>0&&k%14<7?0x3b6bff:0x0c0c0c);btn.position.z=Z+(blink>125?.04:.07);if(blink>0)blink--})}
 </script>
 </body>
 </html>
