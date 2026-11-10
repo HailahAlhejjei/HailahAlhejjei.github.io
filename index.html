@@ -435,10 +435,10 @@ voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇
 function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
-function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;const t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thah-nah-yah');const kid=VOICE&&/Ana/i.test(VOICE.name);
+function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;let t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
+ speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thah-nah-yah').replace(/Ta-daa!?/gi,'Ta. Daaaaaaah!');const kid=VOICE&&/Ana/i.test(VOICE.name);
  (t.match(/[^.!?]+[.!?]*/g)||[t]).forEach(p=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);m.lang='en-US';if(VOICE)m.voice=VOICE;
-  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)})}
+  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=/daaa/i.test(p)?.45:(/^ta\.?$/i.test(p)?.9:.95+(ex?.05:0));if(/daaa/i.test(p))m.pitch+=.15;speechSynthesis.speak(m)})}
 function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
