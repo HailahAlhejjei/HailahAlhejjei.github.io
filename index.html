@@ -362,7 +362,7 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya, a little being made of folds, and every fold hides a light. Ask me anything about Hailah, her projects, or how to work with her!")}
+function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Ask me anything about Hailah, her projects, or how to work with her!")}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
 /* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
 const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
@@ -415,13 +415,22 @@ const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block
 /* ---- Thanaya speaks: enthusiastic, creative answers (typed + spoken aloud) ---- */
 let voiceOn=true;const voiceBtn=document.getElementById('voiceBtn');
 voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇';if(!voiceOn)speechSynthesis.cancel()};
+function pickVoice(){const V=speechSynthesis.getVoices();const by=re=>V.find(v=>re.test(v.name));
+ return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Samantha|Google US English|Zira|Karen|Moira|Tessa/i)||V.find(v=>/^en/.test(v.lang))}
+let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;const t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();const m=new SpeechSynthesisUtterance(t);const v=speechSynthesis.getVoices().find(v=>/en(-|_)(US|GB)/.test(v.lang)&&/female|samantha|zira|jenny|aria|google us/i.test(v.name))||speechSynthesis.getVoices().find(v=>/^en/.test(v.lang));if(v)m.voice=v;m.rate=1.04;m.pitch=1.25;speechSynthesis.speak(m)}
+ speechSynthesis.cancel();const kid=VOICE&&/Ana/i.test(VOICE.name);
+ const parts=t.match(/[^.!?]+[.!?]*/g)||[t];
+ parts.forEach((p,i)=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);if(VOICE)m.voice=VOICE;
+  const ex=/!/.test(p),q=/\?/.test(p),soft=/\b(oh|hmm|psst|little|shy|tiny)\b/i.test(p)||/…/.test(p);
+  const basePitch=kid?1.15:1.75,baseRate=kid?1.02:1.08;
+  m.pitch=Math.min(2,basePitch+(ex?.18:0)+(q?.12:0)-(soft?.12:0)+(i%2?.05:-.03));
+  m.rate=baseRate+(ex?.08:0)-(soft?.12:0);m.volume=soft?.85:1;speechSynthesis.speak(m)})}
 function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
  hi:()=>"Oh, hello hello! You found me hiding in my folds! I'm Thanaya, and I'm SO happy you're here. Ask me about Hailah, her projects, or anything you're curious about!",
- me:()=>"I'm Thanaya, a little being made of folds. Every fold hides a tiny light, and I open up for curious people like you. I guard Hailah's work and I love talking about it!",
+ me:()=>"I'm Thanaya! I'm a little girl made of soft folds. Every fold hides a tiny light, and I open up for curious people like you. I take care of Hailah's work, and I LOVE talking about it!",
  hailah:()=>"Hailah! Oh, she's a builder of useful things. A developer from Riyadh who works across web, UX, real hardware and VR. She turns real problems into things you can hold, click, or step inside. And yes, she's open to co-op right now!",
  projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a rescue device that calls for help with no network at all. Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
  awn:()=>"Awn means help, and that's exactly what it does! Two little devices talk over LoRa radio with no tower and no internet. Someone lost in the desert presses SOS, the rescue team sees their location and replies, so the person knows help is coming. And guess what? It got into the SAIF 2026 finals!",
