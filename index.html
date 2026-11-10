@@ -113,9 +113,12 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
+#goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 92px) calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)}
+#goldLight.on{opacity:.96}
+#bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
 #bitsy{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:69}
-.pc{position:fixed;right:14px;bottom:8px;width:160px;height:180px;z-index:70;background:none;border:0;cursor:pointer;padding:0}
-.pc .tip{position:absolute;right:150px;top:44px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
+.pc{position:fixed;right:20px;bottom:20px;width:140px;height:140px;border-radius:50%;z-index:70;background:none;border:0;cursor:pointer;padding:0}
+.pc .tip{position:absolute;right:130px;top:20px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
 .pc:hover .tip,.pc.nudge .tip{opacity:1;transform:none}
 .term{position:fixed;right:clamp(10px,3vw,30px);bottom:120px;width:min(520px,94vw);height:min(360px,62vh);background:#0b1514;border:2px solid var(--lime);border-radius:16px;z-index:80;display:none;flex-direction:column;font:13px/1.55 'JetBrains Mono';box-shadow:0 30px 80px #000c;overflow:hidden}
 .term.open{display:flex;animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.85) translateY(20px);opacity:0}}
@@ -271,9 +274,9 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 </main>
 <footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand · no framework</span><a href="#top">BACK TO TOP ↑</a></footer>
 
-<canvas id="bitsy" aria-hidden="true"></canvas>
-<button class="pc" id="pc" aria-label="Open terminal — talk to Bitsy"><span class="tip" id="tip">hi, I'm Bitsy — made of pure code ✦</span></button>
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>📡 bitsy · hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
+<div id="goldLight" aria-hidden="true"></div><canvas id="bitsy" aria-hidden="true"></canvas>
+<button class="pc" id="pc" aria-label="Talk to Thanaya"><span class="tip" id="tip">hi… I'm Thanaya ✦ come closer</span></button>
+<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>✦ ask Thanaya</span><span><button id="voiceBtn" aria-label="Toggle voice" style="margin-right:6px">🔊</button><button id="closeTerm" aria-label="Close">✕</button></span></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="ask me anything… (e.g. tell me about Awn)"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -359,85 +362,91 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('beep. I\'m <span class="p">Bitsy</span> — a little creature made of 0s and 1s,\nand I just streamed myself in here 📡\ntype <span class="p">help</span> to see what I can do.\n')}
+function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya, a little being made of folds, and every fold hides a light. Ask me anything about Hailah, her projects, or how to work with her!")}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
-/* ---- Bitsy: a creature made of code glyphs. Breathes, watches you, scatters like data, streams into the terminal ---- */
-const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2);
-function bsz(){BC.width=innerWidth*BD;BC.height=innerHeight*BD}bsz();addEventListener('resize',()=>{bsz();bHome()});
-const tips=["hi, I'm Bitsy — made of pure code ✦","I'm 0s and 1s, but I'm cute","psst… try: sudo hire hailah","I speak LoRa 📡","click me → I become a data stream"];let tipI=0;
-const BW=120,BH=135;let parts=[],eyesP=[],bmode='home',tB=0,bmx=-999,bmy=-999,bwaves=[];
-function inBody(x,y){const e=((x-60)/41)**2+((y-82)/35)**2;return e<1}
-function bHome(){const sc=innerWidth<600?.85:1.3,ax=innerWidth-14-BW*sc,ay=innerHeight-8-BH*sc;const pts=[];
- const G=5.2;for(let y=40;y<=125;y+=G)for(let x=12;x<=108;x+=G*.9){
-  let kind=null;if(inBody(x,y)){const edge=((x-60)/41)**2+((y-82)/35)**2>.72;kind=edge?'edge':'fill'}
-  else if((((x-45)/9)**2+((y-119)/5)**2<1)||(((x-75)/9)**2+((y-119)/5)**2<1))kind='foot';
-  else if(Math.abs(x-60)<2.6&&y>=20&&y<48)kind='ant';
-  if(kind)pts.push({lx:x,ly:y,kind})}
- for(let y=18;y<48;y+=5)pts.push({lx:60,ly:y,kind:'ant'});
- [[96,72],[101,66],[105,60],[19,86],[14,92]].forEach(([x,y])=>pts.push({lx:x,ly:y,kind:'arm'}));
- const old=parts;parts=pts.map((q,i)=>{const o=old[i];const ch=q.kind==='edge'?(q.lx<60?(q.ly<82?'/':'\\'):(q.ly<82?'\\':'/')).replace(/./,m=>Math.random()<.5?m:(q.lx<60?'{':'}')):q.kind==='ant'?'|':q.kind==='foot'?'=':q.kind==='arm'?'~':(Math.random()<.5?'0':'1');
-  return {...q,ch,hx:ax+q.lx*sc,hy:ay+q.ly*sc,x:o?o.x:ax+q.lx*sc,y:o?o.y:ay+q.ly*sc,vx:0,vy:0,ph:Math.random()*6.28,d:Math.random()}});
- bx.sc=sc;bx.ax=ax;bx.ay=ay}
-bHome();
-addEventListener('mousemove',e=>{bmx=e.clientX;bmy=e.clientY});
-let blinkT=0;(function bl(){blinkT=8;setTimeout(bl,2600+Math.random()*3000)})();
-function termCenter(){const r=term.getBoundingClientRect();return r.width?[r.left+r.width/2,r.top+r.height/2]:[innerWidth-280,innerHeight-300]}
-function streamIn(){bmode='out';const [tx,ty]=termCenter();parts.forEach(p=>{p.tx=tx+(Math.random()-.5)*240;p.ty=ty+(Math.random()-.5)*160;p.delay=p.d*25});setTimeout(()=>{openT();bmode='hidden'},900)}
-function streamBack(){const [tx,ty]=termCenter();term.classList.remove('open');parts.forEach(p=>{p.x=tx+(Math.random()-.5)*200;p.y=ty+(Math.random()-.5)*140;p.vx=p.vy=0});bmode='home'}
-pc.onclick=()=>{if(term.classList.contains('open'))streamBack();else streamIn()};
-document.getElementById('closeTerm').onclick=streamBack;
-const _tog=toggleT;toggleT=()=>{term.classList.contains('open')?streamBack():streamIn()};
-pc.addEventListener('mouseenter',()=>{document.getElementById('tip').textContent=tips[tipI++%tips.length]});
-function bitsy(){tB+=.016;bx.setTransform(BD,0,0,BD,0,0);bx.clearRect(0,0,innerWidth,innerHeight);
- const sc=bx.sc,breathe=1+Math.sin(tB*2.2)*.03,cx=bx.ax+60*sc,cy=bx.ay+120*sc;
- bx.font=`600 ${9*sc}px JetBrains Mono, monospace`;bx.textAlign='center';bx.textBaseline='middle';
- for(const p of parts){
-  if(bmode==='hidden'){p.x=p.tx;p.y=p.ty;continue}
-  let tx,ty;
-  if(bmode==='out'){if(p.delay>0){p.delay--;tx=p.hx;ty=p.hy}else{tx=p.tx;ty=p.ty}}
-  else{tx=cx+(p.hx-cx)*breathe+Math.sin(tB*1.5+p.ph)*.6;ty=cy+(p.hy-cy)*breathe+Math.cos(tB*1.3+p.ph)*.6;
-   if(p.kind==='arm'&&Math.hypot(bmx-cx,bmy-cy)<220){const a=Math.sin(tB*12)*6*sc;ty+=p.lx>60?-Math.abs(a):0}}
-  const dx=p.x-bmx,dy=p.y-bmy,dd=Math.hypot(dx,dy);if(bmode==='home'&&dd<55){const f=(55-dd)/55*3.2;p.vx+=dx/dd*f;p.vy+=dy/dd*f}
-  p.vx+=(tx-p.x)*(bmode==='out'?.06:.09);p.vy+=(ty-p.y)*(bmode==='out'?.06:.09);p.vx*=.8;p.vy*=.8;p.x+=p.vx;p.y+=p.vy;
-  if(Math.random()<.004&&p.kind==='fill')p.ch=p.ch==='0'?'1':'0';
-  const col=p.kind==='ant'?'#9fb0a6':p.kind==='edge'?'#efffb0':p.kind==='foot'||p.kind==='arm'?'#b9d24a':'#d9f067';
-  bx.fillStyle=col;bx.globalAlpha=bmode==='out'?.9:(.75+.25*Math.sin(tB*3+p.ph));bx.fillText(bmode==='out'&&p.delay<=0?(Math.random()<.5?'0':'1'):p.ch,p.x,p.y)}
- bx.globalAlpha=1;
- if(bmode==='home'){
-  // antenna bulb + code-signal bwaves
-  const bxp=cx,byp=bx.ay+14*sc*breathe+(cy-(bx.ay+14*sc))*(1-breathe);
-  bx.fillStyle='#ff5a4e';bx.font=`${14*sc}px sans-serif`;bx.fillText('●',bxp,byp);
-  if(Math.random()<.02)bwaves.push(0);bwaves=bwaves.map(r=>r+.9).filter(r=>r<34);
-  bx.font=`${8*sc}px JetBrains Mono`;for(const r of bwaves){bx.globalAlpha=1-r/34;bx.fillStyle='#d9f067';for(let a=-2.4;a<=-.7;a+=.32)bx.fillText(r%8<4?'1':'0',bxp+Math.cos(a)*r*sc,byp+Math.sin(a)*r*sc)}bx.globalAlpha=1;
-  // eyes follow the mouse, blink
-  const ey=bx.ay+78*sc+(cy-(bx.ay+78*sc))*(1-breathe);
-  [-1,1].forEach(sd=>{const ex=cx+sd*15*sc,a=Math.atan2(bmy-ey,bmx-ex),dist=Math.min(3*sc,Math.hypot(bmx-ex,bmy-ey)/50);
-   bx.fillStyle='#07100f';bx.beginPath();bx.ellipse(ex,ey,8*sc,(blinkT>0?1.5:9)*sc,0,0,7);bx.fill();
-   if(blinkT<=0){bx.fillStyle='#fff';bx.beginPath();bx.arc(ex+Math.cos(a)*dist,ey+Math.sin(a)*dist,3.2*sc,0,7);bx.fill()}});
-  if(blinkT>0)blinkT--;
-  bx.fillStyle='#ff6f9c';bx.font=`600 ${10*sc}px JetBrains Mono`;bx.fillText('* ',cx-27*sc,ey+12*sc);bx.fillText(' *',cx+27*sc,ey+12*sc);
-  bx.fillStyle='#07100f';bx.font=`700 ${12*sc}px JetBrains Mono`;bx.fillText(Math.hypot(bmx-cx,bmy-cy)<200?'ᴗ':'‿',cx,ey+15*sc)}
- if(!RM)requestAnimationFrame(bitsy)}
-bitsy();
+/* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
+const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
+function bsz(){BC.width=innerWidth*BD;BC.height=innerHeight*BD}bsz();addEventListener('resize',bsz);
+const tips=["hi… I'm Thanaya ✦ come closer","every fold hides a little light","psst… click me, I'll light everything up","ask me anything about Hailah","I unfold for curious people"];let tipI=0;
+let u=0,glow=0,lit=false,hover=false,tT=0,mxT=-999,myT=-999,blinkT=0,sparks=[];
+const SC=()=>innerWidth<600?.72:1;
+const anchor=()=>[innerWidth-100*SC(),innerHeight-96*SC()];
+addEventListener('mousemove',e=>{mxT=e.clientX;myT=e.clientY});
+(function bl(){blinkT=7;setTimeout(bl,2500+Math.random()*3500)})();
+pc.addEventListener('mouseenter',()=>{hover=true;document.getElementById('tip').textContent=tips[tipI++%tips.length]});
+pc.addEventListener('mouseleave',()=>hover=false);
+function lightUp(){lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
+function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');speechSynthesis&&speechSynthesis.cancel()}
+pc.onclick=e=>{e.stopPropagation();lit?lightDown():lightUp()};
+document.getElementById('closeTerm').onclick=lightDown;
+addEventListener('mousedown',e=>{if(lit&&!term.contains(e.target)&&!pc.contains(e.target))lightDown()});
+toggleT=()=>{lit?lightDown():lightUp()};
+function streamBack(){lightDown()}
+function spark(big){const [ax,ay]=anchor(),s=SC();sparks.push({x:ax+(Math.random()-.5)*60*s,y:ay+(Math.random()-.5)*50*s,vx:(Math.random()-.5)*(big?4:.6),vy:-Math.random()*(big?4:1)-.3,l:1,r:Math.random()*2+.8})}
+const IMG={};[['base',15,37],['top',123,37],['left',21,206],['right',204,207]].forEach(([n,x,y])=>{const i=new Image();i.src='assets/th-'+n+'.webp';IMG[n]={i,x,y}});
+const CX=206,CY=221;
+function piece(n,k){const p=IMG[n];if(!p.i.complete||!p.i.naturalWidth)return;bx.drawImage(p.i,(p.x-CX)*k,(p.y-CY)*k,p.i.naturalWidth*k,p.i.naturalHeight*k)}
+function pieceAt(n,k,px,py){const p=IMG[n];if(!p.i.complete||!p.i.naturalWidth)return;const w=p.i.naturalWidth*k,h=p.i.naturalHeight*k;bx.drawImage(p.i,-w*px,-h*py,w,h)}
+function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
+ const d=Math.hypot(mxT-ax,myT-ay),near=Math.max(0,Math.min(1,1-(d-70)/330));
+ const uT=lit?1:hover?Math.max(.8,near):Math.pow(near,1.2);
+ u+=(uT-u)*(uT>u?.1:.035);const gT=lit?1:hover?.85:near*.5;glow+=(gT-glow)*.08;
+ bx.setTransform(BD,0,0,BD,0,0);bx.clearRect(0,0,innerWidth,innerHeight);
+ const R=(55+75*glow)*s,hg=bx.createRadialGradient(ax,ay,8,ax,ay,R);hg.addColorStop(0,`rgba(255,220,140,${.15+glow*.4})`);hg.addColorStop(1,'rgba(255,220,140,0)');bx.fillStyle=hg;bx.beginPath();bx.arc(ax,ay,R,0,7);bx.fill();
+ if(Math.random()<.04+glow*.25)spark(false);
+ sparks=sparks.filter(p=>(p.l-=.014)>0);for(const p of sparks){p.x+=p.vx;p.y+=p.vy;p.vy*=.98;bx.globalAlpha=p.l;bx.fillStyle='#ffe3a0';bx.beginPath();bx.arc(p.x,p.y,p.r*s,0,7);bx.fill()}bx.globalAlpha=1;
+ const e=u*u*(3-2*u),br=1+Math.sin(tT*2.1)*.018,fl=Math.sin(tT*3.2)*e,k=.37*s;
+ bx.save();bx.translate(ax,ay);bx.scale(br,1/br);
+ // top fold rises up behind like a third hand
+ const tp=IMG.top;bx.save();bx.translate((tp.x+107-CX)*k+e*4*s,(tp.y+47-CY)*k-e*40*s);bx.rotate(-.06*e+fl*.05);pieceAt('top',k*(1+e*.12),.5,.5);bx.restore();
+ // warm light from inside, revealed as it unfolds
+ bx.save();bx.shadowColor='#ffcf6b';bx.shadowBlur=20+glow*25;const ig=bx.createRadialGradient(0,10*s,4,0,10*s,70*s);ig.addColorStop(0,`rgba(255,236,170,${.5+glow*.5})`);ig.addColorStop(1,'rgba(255,200,110,0)');bx.fillStyle=ig;bx.beginPath();bx.ellipse(0,8*s,68*s,48*s,0,0,7);bx.fill();bx.restore();
+ bx.save();if(glow>.05){bx.shadowColor='rgba(255,210,120,.9)';bx.shadowBlur=glow*22}piece('base',k);bx.restore();
+ // left / right hands
+ const lp=IMG.left;bx.save();bx.translate((lp.x+186-CX)*k-e*30*s,(lp.y+40-CY)*k-e*34*s);bx.rotate(-e*.5-fl*.07);pieceAt('left',k,1,.5);bx.restore();
+ const rp=IMG.right;bx.save();bx.translate((rp.x-CX)*k+e*30*s,(rp.y+40-CY)*k-e*38*s);bx.rotate(e*.5+fl*.07);pieceAt('right',k,0,.5);bx.restore();
+ bx.restore();
+ pc.style.right=(innerWidth-ax-70*s)+'px';pc.style.bottom=(innerHeight-ay-70*s)+'px';
+ if(!RM)requestAnimationFrame(thanaya)}
+thanaya();
 setTimeout(()=>{pc.classList.add('nudge');setTimeout(()=>pc.classList.remove('nudge'),3500)},6000);
-addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape'&&term.classList.contains('open'))streamBack()});
+addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape'&&lit)lightDown()});
 const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
-const cmds={
- help:()=>'commands:\n  whoami     who is hailah\n  projects   list projects\n  awards     trophies\n  skills     tech stack\n  sos        send a distress signal\n  scan       run the MRI model\n  email      copy my email\n  contact    get in touch\n  cv         download the CV\n  sudo hire hailah\n  clear',
- whoami:()=>'Hailah Alhejjei — developer from Riyadh.\nWeb · UX · embedded hardware · VR/XR. Open to co-op.',
- projects:()=>'01 MS SmartScan      offline AI for MS lesions on MRI\n02 Awn (عون)          off-grid LoRa SOS device\n03 Beyond: Case 017  VR detective story\n04 Satathon          satellite & HF radio',
- awards:()=>'🥇 1st  Riyadah AI Hackathon (Nov 2026)\n🏁 SAIF 2026 Finals  Awn, accepted (finals late Nov)\n🥉 3rd  Satathon 2026\n📜 2× patent pending',
- skills:()=>'HTML CSS JS PHP · Python SQL PL/SQL Oracle SQLite\nESP32 LoRa GPS Raspberry Pi · Unity C# Meta Quest',
- email:()=>{copyEmail();return 'copied → alhejjeihailah@gmail.com ✓'},
- contact:()=>'email    → <a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>\nlinkedin → <a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>\ngithub   → <a href="https://github.com/HailahAlhejjei" target="_blank">github.com/HailahAlhejjei</a>',
- cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return 'downloading CV…'},
- sos:()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700);return 'transmitting on 868 MHz…'},
- scan:()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700);return 'playing the real MS SmartScan demo…'},
- clear:()=>{to.innerHTML='';return null},
- 'sudo hire hailah':()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return '<span class="p">[sudo] permission granted.</span>\nGreat choice. Make it official →\n<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>'},
- 'hire hailah':()=>'<span class="e">permission denied.</span> try: sudo hire hailah',
- sudo:()=>'usage: sudo hire hailah'};
-ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const v=ti.value.trim().toLowerCase();ti.value='';const safe=v.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;');out('<span class="p">❯</span> '+safe);if(!v)return;const f=cmds[v];const r=f?f():`<span class="e">command not found:</span> ${safe} — try help`;if(r!==null)out(r)});
+/* ---- Thanaya speaks: enthusiastic, creative answers (typed + spoken aloud) ---- */
+let voiceOn=true;const voiceBtn=document.getElementById('voiceBtn');
+voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇';if(!voiceOn)speechSynthesis.cancel()};
+function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;const t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
+ speechSynthesis.cancel();const m=new SpeechSynthesisUtterance(t);const v=speechSynthesis.getVoices().find(v=>/en(-|_)(US|GB)/.test(v.lang)&&/female|samantha|zira|jenny|aria|google us/i.test(v.name))||speechSynthesis.getVoices().find(v=>/^en/.test(v.lang));if(v)m.voice=v;m.rate=1.04;m.pitch=1.25;speechSynthesis.speak(m)}
+function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
+const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
+const A={
+ hi:()=>"Oh, hello hello! You found me hiding in my folds! I'm Thanaya, and I'm SO happy you're here. Ask me about Hailah, her projects, or anything you're curious about!",
+ me:()=>"I'm Thanaya, a little being made of folds. Every fold hides a tiny light, and I open up for curious people like you. I guard Hailah's work and I love talking about it!",
+ hailah:()=>"Hailah! Oh, she's a builder of useful things. A developer from Riyadh who works across web, UX, real hardware and VR. She turns real problems into things you can hold, click, or step inside. And yes, she's open to co-op right now!",
+ projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a rescue device that calls for help with no network at all. Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
+ awn:()=>"Awn means help, and that's exactly what it does! Two little devices talk over LoRa radio with no tower and no internet. Someone lost in the desert presses SOS, the rescue team sees their location and replies, so the person knows help is coming. And guess what? It got into the SAIF 2026 finals!",
+ ss:()=>"MS SmartScan is a brain-shaped device, literally! It looks at an MRI and highlights suspected lesions in seconds, completely offline. Hailah built the scanner and patient registry experiences and the secure doctor PIN. Their team won first place at the Riyadah AI Hackathon!",
+ vr:()=>"Beyond, Case 017! Put on a Meta Quest, walk into a rainy crime scene, and interrogate suspects with your own voice. Hailah built the scene, the storm, the lightning and the phone call. It's spooky and wonderful!",
+ sat:()=>"Satathon was magical! Her team, Digital Apollo, tracked satellites passing overhead and caught their real signals, decoding images and messages from the sky. They took third place!",
+ awards:()=>"Shiny things, my favourite! First place at the Riyadah AI Hackathon, a place in the SAIF 2026 finals with Awn, third place at Satathon, and two patents pending!",
+ skills:()=>"She speaks many languages, computer ones! HTML, CSS, JavaScript, PHP, Python, SQL and PL SQL on the web side; ESP32, LoRa, GPS and Raspberry Pi on the hardware side; and Unity, C sharp and Meta Quest for VR.",
+ hire:()=>`Oh yes yes yes! Hailah is looking for a co-op starting January 2027. Write to her at ${ME} or connect on ${LI}. Tell her Thanaya sent you!`,
+ contact:()=>`The fastest way to reach her: ${ME}. Or say hi on ${LI}. She'd love to hear from you!`,
+ cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
+ help:()=>"You can ask me anything! Try: who is Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
+ sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS on 868 megahertz! Watch Awn!"},
+ scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
+ sudo:()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return `Permission granted! Wonderful choice! Make it official at ${ME}`},
+ fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
+const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam|السلام|مرحبا|هلا)/,'hi'],[/who are you|your name|thanaya|ثنايا|انت مين|من انت/,'me'],
+ [/hire|co-?op|intern|job|work with|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
+ [/beyond|case 017|\bvr\b|virtual|quest/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|win|won|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|language|tech|know|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
+ [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|هيله/,'hailah']];
+ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=raw.toLowerCase();ti.value='';if(!v)return;
+ out('<span style="color:#9fb0a6">you:</span> '+raw.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;'));
+ const hit=RULES.find(([re])=>re.test(v));const k=hit?hit[1]:'fallback';
+ if(k==='clear'){to.innerHTML='';return}
+ setTimeout(()=>say(A[k](v)),350)});
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',2600)}
 function confetti(){if(RM)return;const cv=document.createElement('canvas');cv.className='confetti';document.body.appendChild(cv);const x=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
  const P=Array.from({length:160},()=>({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*16,vy:Math.random()*-16-4,c:['#d9f067','#5ee6ff','#ff5a4e','#fff'][Math.random()*4|0],s:Math.random()*6+3}));let f=0;
