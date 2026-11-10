@@ -6,7 +6,7 @@
 <meta name="description" content="Hailah Alhejjei — developer building web, UX, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026, SAIF 2026 finalist.">
 <meta name="theme-color" content="#07100f"><meta property="og:title" content="Hailah Alhejjei | Portfolio"><meta property="og:description" content="Web, UX, embedded and immersive VR/XR projects by Hailah Alhejjei."><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@400;700&family=Lateef:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Reem+Kufi+Fun:wght@500&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@400&family=Lateef:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Reem+Kufi+Fun:wght@500&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
 :root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
@@ -120,8 +120,8 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .chips2 .hot:hover{color:#000;filter:brightness(1.08)}
 @keyframes shim{to{background-position:-200% 0}}@keyframes nudge2{0%,90%,100%{transform:none}93%{transform:rotate(-1.2deg)}96%{transform:rotate(1.2deg)}}
 .langbtn{background:none;border:0;color:inherit;font:12px 'JetBrains Mono';opacity:.75;cursor:pointer;padding:0 0 0 22px}.langbtn:hover{opacity:1;color:var(--lime)}
-html[lang=ar] body,html[lang=ar] body *:not(svg):not(svg *){font-family:'Lateef','Aref Ruqaa',cursive!important;font-size-adjust:.62;letter-spacing:0!important}
-html[lang=ar] .hero h1,html[lang=ar] h2.big,html[lang=ar] .copy h3,html[lang=ar] .contact h2,html[lang=ar] .step h4,html[lang=ar] .skill h3,html[lang=ar] .marq span,html[lang=ar] .cta{font-family:'Aref Ruqaa',cursive!important;line-height:1.3!important}
+html[lang=ar] body,html[lang=ar] body *:not(svg):not(svg *){font-family:'Lateef','Aref Ruqaa',cursive!important;font-weight:400!important;font-size-adjust:.62;letter-spacing:0!important}
+html[lang=ar] .hero h1,html[lang=ar] h2.big,html[lang=ar] .copy h3,html[lang=ar] .contact h2,html[lang=ar] .step h4,html[lang=ar] .skill h3,html[lang=ar] .marq span,html[lang=ar] .cta{font-family:'Aref Ruqaa',cursive!important;font-weight:400!important;line-height:1.3!important}
 html[lang=ar] .hero h1{font-size:clamp(56px,10vw,160px)!important}
 html[lang=ar] .note,html[lang=ar] .pc .tip,html[lang=ar] .guide{font-family:'Aref Ruqaa',cursive!important}
 html[lang=ar] .marq div{animation-direction:reverse}
@@ -461,7 +461,7 @@ let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis
 function speak(text,onWord,onEnd){if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
  speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
  window._spT=setTimeout(()=>{const t=LANG==='ar'?text:text.replace(/Thanaya/g,'Tha-naa-ya');const m=new SpeechSynthesisUtterance(t);m.lang=LANG==='ar'?'ar-SA':'en-US';if(VOICE)m.voice=VOICE;
-  const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=LANG==='ar'?1.9:(kid?1.15:1.4);m.rate=LANG==='ar'?1.08:1.0;
+  const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=LANG==='ar'?2:(kid?1.15:1.4);m.rate=LANG==='ar'?1.2:1.0;
   let words=0,got=false;m.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;got=true;words++;onWord&&onWord(words,t.slice(ev.charIndex).split(/\s/)[0])};
   m.onstart=()=>{started=true;setTimeout(()=>{if(!got)onEnd&&onEnd(false)},700)};m.onend=()=>onEnd&&onEnd(true);m.onerror=()=>onEnd&&onEnd(false);
   speechSynthesis.speak(m);speechSynthesis.resume()},60)}
@@ -518,10 +518,10 @@ const AR={
 "about":"نبذة","work":"أعمالي","path":"مسيرتي","contact":"تواصل",
 "RIYADH · SA":"الرياض · السعودية","FREQ":"التردد","MHz":"ميغاهرتز","SIGNAL":"الإشارة","LISTENING":"أستمع","PULSE SENT":"أُرسلت النبضة","STATUS":"الحالة","OPEN TO CO-OP":"متاحة للتدريب التعاوني",
 "Hailah":"هيلة","Alhejjei":"الحجي",
-"I build things that send a signal: AI that reads an MRI, a device that calls for help with no network, worlds you can walk into in VR.":"أصنع أشياء ترسل إشارة: ذكاء اصطناعي يقرأ صور الرنين، وجهاز يطلب النجدة بلا شبكة، وعوالم تدخلها بالواقع الافتراضي.",
+"I build things that send a signal: AI that reads an MRI, a device that calls for help with no network, worlds you can walk into in VR.":"أسوّي أشياء توصّل رسالة: ذكاء يقرأ رنين المخ، جهاز يفزع لك بلا شبكة، وعوالم تمشي فيها بالواقع الافتراضي.",
 "🥇 1st Place":"🥇 المركز الأول","RIYADAH AI HACKATHON":"هاكاثون ريادة للذكاء الاصطناعي","🏁 SAIF 2026 Finals":"🏁 نهائيات سيف 2026","AWN · ACCEPTED":"عون · مقبول","🥉 3rd Place":"🥉 المركز الثالث","SATATHON 2026":"ساتاثون 2026",
 "2× Patent pending":"براءتا اختراع قيد التسجيل","AWN · MS SMARTSCAN":"عون · MS SmartScan","Healthon 2026":"هيلثون 2026","KSU MEDICAL CITY":"المدينة الطبية بجامعة الملك سعود","160h VR Bootcamp":"معسكر واقع افتراضي 160 ساعة","TUWAIQ ACADEMY":"أكاديمية طويق",
-"/ ABOUT":"/ نبذة","Curious by default.":"فضولية بطبعي.","Intentional":"مقصودة","by design.":"في كل تفصيل.",
+"/ ABOUT":"/ نبذة","Curious by default.":"الفضول طبعي،","Intentional":"والإتقان","by design.":"اختياري.",
 "I work across web development, UX, embedded hardware, and immersive VR/XR. Every project starts with real people and real constraints — a radiologist with too little time, a hiker with no signal — and ends as something you can actually hold, click or step inside.":"أعمل في تطوير الويب وتجربة المستخدم والأجهزة المدمجة والواقع الافتراضي. كل مشروع يبدأ من أناس حقيقيين وقيود حقيقية — طبيب أشعة وقته ضيق، ومتنزّه بلا إشارة — وينتهي بشيء تقدر تمسكه أو تضغطه أو تدخل فيه.",
 "Programming & Web Development student at the Technical and Vocational Training Corporation, Riyadh.":"طالبة برمجة وتطوير ويب في المؤسسة العامة للتدريب التقني والمهني، الرياض.",
 "Web & UX":"الويب وتجربة المستخدم","Responsive interfaces · UX design":"واجهات متجاوبة · تصميم تجربة المستخدم","Data & Back end":"البيانات والخلفية","Oracle · Authentication":"Oracle · المصادقة","Hardware":"العتاد","3D-printed enclosures":"علب مطبوعة ثلاثياً","VR / XR":"الواقع الافتراضي",
@@ -538,22 +538,22 @@ const AR={
 "UV LIGHT · MOVE TO SEARCH":"ضوء فوق بنفسجي · حرّك للبحث","CLUE #1 · FOOTPRINT":"دليل 1 · أثر قدم","CLUE #2 · TRACE":"دليل 2 · أثر","CLUE #3 · TIME 02:17":"دليل 3 · الساعة 02:17","TUWAIQ ACADEMY · TEAM PROJECT":"أكاديمية طويق · مشروع فريق","Beyond:":"Beyond:","Case 017":"القضية 017",
 "A story-driven VR detective experience for Meta Quest: investigate a crime scene, interrogate AI-driven suspects by voice, and reach your own conclusion.":"تجربة تحقيق قصصية بالواقع الافتراضي على Meta Quest: افحص مسرح الجريمة، واستجوب مشتبهين بالذكاء الاصطناعي بصوتك، ووصل لاستنتاجك بنفسك.",
 "Built and optimised the crime-scene environment; created the weather, lighting, rain, thunder and lightning systems; and developed the voice-driven phone call, countdown, ambience and scene transitions.":"بنيت بيئة مسرح الجريمة وحسّنتها، وصنعت أنظمة الطقس والإضاءة والمطر والرعد والبرق، وطوّرت المكالمة الصوتية والعد التنازلي والأجواء والانتقالات بين المشاهد.",
-"VIEW PROJECT & TRAILER ↗":"شاهد المشروع والإعلان ↗","SATELLITE PASS · LIVE":"مرور قمر صناعي · مباشر","waiting for satellite pass…":"بانتظار مرور القمر…","SATATHON 2026 · DIGITAL APOLLO TEAM":"ساتاثون 2026 · فريق أبولو الرقمي","Signal,":"الإشارة،","received.":"وصلت.","🥉 3rd Place · Satathon 2026":"🥉 المركز الثالث · ساتاثون 2026",
+"VIEW PROJECT & TRAILER ↗":"شاهد المشروع والإعلان ↗","SATELLITE PASS · LIVE":"مرور قمر صناعي · مباشر","waiting for satellite pass…":"بانتظار مرور القمر…","SATATHON 2026 · DIGITAL APOLLO TEAM":"ساتاثون 2026 · فريق أبولو الرقمي","Signal,":"الإشارة…","received.":"وصلت!","🥉 3rd Place · Satathon 2026":"🥉 المركز الثالث · ساتاثون 2026",
 "A hands-on satellite and HF radio challenge: tracking satellites as they pass overhead, receiving their live signals, decoding multiple modes and logging every contact.":"تحدٍ عملي في الأقمار الصناعية والراديو: تتبع الأقمار وهي تمر فوقنا، واستقبال إشاراتها مباشرة، وفك عدة أنماط، وتسجيل كل اتصال.",
 "Team work:":"عمل الفريق:","Digital Apollo documented satellite tracking, manual tuning, CW/Morse, FT8, WSPR, SSTV, voice reception and structured signal logging.":"وثّق فريق أبولو الرقمي تتبع الأقمار والضبط اليدوي ومورس وFT8 وWSPR وSSTV واستقبال الصوت وتسجيل الإشارات.",
 "Satellite tracking":"تتبع الأقمار","EXPLORE THE FIELD LOG ↗":"استكشف سجل الميدان ↗",
-"/ TRAJECTORY":"/ مسيرتي","A path built through":"مسيرة بُنيت","making.":"بالصنع.","Each step expanded how I work: the foundations of the web, building in teams under pressure, and shipping real hardware.":"كل خطوة وسّعت طريقة عملي: أساسيات الويب، والعمل في فرق تحت الضغط، وتسليم أجهزة حقيقية.",
+"/ TRAJECTORY":"/ مسيرتي","A path built through":"طريق صنعته","making.":"بإيديني.","Each step expanded how I work: the foundations of the web, building in teams under pressure, and shipping real hardware.":"كل خطوة وسّعت طريقة عملي: أساسيات الويب، والعمل في فرق تحت الضغط، وتسليم أجهزة حقيقية.",
 "NOV 2026 · AWARD":"نوفمبر 2026 · جائزة","🥇 1st Place — Riyadah AI Hackathon":"🥇 المركز الأول — هاكاثون ريادة للذكاء الاصطناعي","MS SmartScan team · AI-assisted MRI lesion detection":"فريق MS SmartScan · كشف آفات الرنين بمساعدة الذكاء الاصطناعي",
 "NOV 2026 · FINALIST":"نوفمبر 2026 · متأهلة للنهائي","🏁 Accepted to the SAIF 2026 Finals — Awn (عون)":"🏁 مقبول في نهائيات سيف 2026 — عون","Final acceptance for our team · competing in the finals hackathon (late Nov 2026)":"قبول نهائي لفريقنا · ننافس في هاكاثون النهائيات (أواخر نوفمبر 2026)",
 "OCT 2026 · HACKATHON":"أكتوبر 2026 · هاكاثون","Healthcare AI prototype · KSU Medical City":"نموذج ذكاء اصطناعي صحي · المدينة الطبية بجامعة الملك سعود","JUL–SEP 2026 · TRAINING":"يوليو–سبتمبر 2026 · تدريب","VR Development & Emerging Technologies Bootcamp":"معسكر تطوير الواقع الافتراضي والتقنيات الناشئة","Tuwaiq Academy · 160 hours":"أكاديمية طويق · 160 ساعة",
 "2026 · AWARD":"2026 · جائزة","🥉 3rd Place — Satathon 2026":"🥉 المركز الثالث — ساتاثون 2026","Digital Apollo · satellite & HF radio communications":"أبولو الرقمي · اتصالات الأقمار والراديو","EDUCATION":"التعليم","Programming & Web Development":"البرمجة وتطوير الويب","Technical and Vocational Training Corporation · Riyadh":"المؤسسة العامة للتدريب التقني والمهني · الرياض",
-"/ LET’S CONNECT":"/ لنتواصل","Have a role or project":"عندك فرصة أو مشروع","in mind?":"في بالك؟","Let’s talk.":"خلنا نتكلم.","← that's me!":"← هذي أنا!","copied ✓":"تم النسخ ✓","in  LINKEDIN ↗":"in  لينكدإن ↗","let's connect ✦":"لنتواصل ✦","GITHUB ↗":"جيت هب ↗","DOWNLOAD CV ↓":"حمّل السيرة الذاتية ↓","⧉ COPY EMAIL":"⧉ انسخ الإيميل",
+"/ LET’S CONNECT":"/ لنتواصل","Have a role or project":"عندك فرصة أو فكرة","in mind?":"تدور مين يسويها؟","Let’s talk.":"أنا لها.","← that's me!":"← هذي أنا!","copied ✓":"تم النسخ ✓","in  LINKEDIN ↗":"in  لينكدإن ↗","let's connect ✦":"تعال نسولف ✦","GITHUB ↗":"جيت هب ↗","DOWNLOAD CV ↓":"حمّل السيرة الذاتية ↓","⧉ COPY EMAIL":"⧉ انسخ الإيميل",
 "Hailah Alhejjei":"هيلة الحجي","built by hand · no framework":"مبني يدوياً · بدون أطر جاهزة","BACK TO TOP ↑":"للأعلى ↑",
 "hi… I'm Thanaya ✦ come closer":"هلا… أنا ثنايا ✦ قرّب","✦ ask Thanaya":"✦ اسأل ثنايا","🤫 psst… what's it REALLY like working with Hailah?":"🤫 بِسّت… وش يعني تشتغل مع هيلة؟","Awn 🛰":"عون 🛰","her projects":"مشاريعها","reach her ✉":"تواصل معها ✉",
 "Awards":"الجوائز","Talk to Thanaya":"كلّم ثنايا","Terminal":"الطرفية","Toggle voice":"تشغيل/كتم الصوت","Close":"إغلاق","Terminal input":"اكتب سؤالك",
 "ask me anything… (e.g. tell me about Awn)":"اسألني أي شي… (مثلاً: كلميني عن عون)",
 "what is it really like working with hailah":"وش يعني تشتغل مع هيلة","tell me about awn":"علّميني عن عون","what are her projects":"وش مشاريعها","how can i work with her":"كيف أتواصل معها",
-"web & UX developer":"مطورة ويب وتجربة مستخدم","hardware tinkerer":"صانعة أجهزة","VR/XR builder":"بانية عوالم افتراضية","hackathon winner":"فائزة بالهاكاثونات",
+"web & UX developer":"تصمم ويب يحبه المستخدم","hardware tinkerer":"تفكّك وتركّب أجهزة","VR/XR builder":"تبني عوالم افتراضية","hackathon winner":"تكسب الهاكاثونات",
 "▲ SOS SENT · attempt 1/3":"▲ أُرسل SOS · المحاولة 1/3","  blue LED blinking · GPS + BAT 96%":"  الضوء الأزرق يومض · الموقع + البطارية 96%","▼ AOUN RESCUE · SOS received":"▼ جهاز الإنقاذ · وصل النداء","  signal −6 dBm · SNR 11.3":"  الإشارة −6 dBm · SNR 11.3","▲ CONFIRMED · help is on the way":"▲ تم التأكيد · النجدة في الطريق","  green LED + vibration on SOS device":"  ضوء أخضر واهتزاز في جهاز الاستغاثة",
 "LOS · waiting for next pass…":"انقطع · بانتظار المرور القادم…","📡 AOS · signal received → ":"📡 بدأ المرور · وصلت الإشارة ← ",
 "ACCESS GRANTED — welcome to the team ✦":"تم منح الصلاحية — أهلاً في الفريق ✦",
