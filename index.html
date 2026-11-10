@@ -114,7 +114,7 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%);mix-blend-mode:screen}
-#goldLight.on{opacity:.96}
+#goldLight.on{opacity:.82}
 #bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
 #bitsy{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:69}
 .pc{position:fixed;right:20px;bottom:20px;width:140px;height:140px;border-radius:50%;z-index:70;background:none;border:0;cursor:pointer;padding:0}
@@ -375,7 +375,7 @@ addEventListener('mousemove',e=>{mxT=e.clientX;myT=e.clientY});
 (function bl(){blinkT=7;setTimeout(bl,2500+Math.random()*3500)})();
 pc.addEventListener('mouseenter',()=>{hover=true;document.getElementById('tip').textContent=tips[tipI++%tips.length]});
 pc.addEventListener('mouseleave',()=>hover=false);
-function lightUp(){lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
+let flash=0,litT=0;function lightUp(){flash=1;litT=0;lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
 function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');speechSynthesis&&speechSynthesis.cancel()}
 pc.onclick=e=>{e.stopPropagation();lit?lightDown():lightUp()};
 document.getElementById('closeTerm').onclick=lightDown;
@@ -401,6 +401,16 @@ function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
  // floating motes of light
  if(Math.random()<.06+glow*.35)spark(false);
  sparks=sparks.filter(p=>(p.l-=.012)>0);for(const p of sparks){p.x+=p.vx+Math.sin(tT*2+p.r*9)*.25;p.y+=p.vy;p.vy*=.985;const r=p.r*s*3,g=bx.createRadialGradient(p.x,p.y,0,p.x,p.y,r);g.addColorStop(0,`rgba(255,250,225,${p.l})`);g.addColorStop(.3,`rgba(255,220,140,${p.l*.6})`);g.addColorStop(1,'rgba(255,200,110,0)');bx.fillStyle=g;bx.beginPath();bx.arc(p.x,p.y,r,0,7);bx.fill()}
+
+ // ---- click: light bursting out over the whole screen ----
+ if(lit||flash>.01){litT+=.016;flash*=.955;const W=innerWidth,Hh=innerHeight,big=Math.hypot(W,Hh);
+  bx.translate(ax,ay);bx.rotate(tT*.05);const n=16;
+  for(let i=0;i<n;i++){bx.rotate(Math.PI*2/n);const len=big*(.55+.35*Math.sin(tT*.9+i*2.3))*Math.min(1,litT*2.2+.15),wd=.05+.03*Math.sin(tT*1.7+i);
+   const g=bx.createLinearGradient(0,0,len,0);g.addColorStop(0,`rgba(255,250,220,${(.22+flash*.5)*fl})`);g.addColorStop(.5,`rgba(255,226,150,${(.08+flash*.2)*fl})`);g.addColorStop(1,'rgba(255,214,120,0)');
+   bx.fillStyle=g;bx.beginPath();bx.moveTo(0,0);bx.lineTo(len,-len*wd);bx.lineTo(len,len*wd);bx.closePath();bx.fill()}
+  bx.setTransform(BD,0,0,BD,0,0);
+  const fr=big*(.15+Math.min(1,litT*1.5)),fg=bx.createRadialGradient(ax,ay,0,ax,ay,fr);fg.addColorStop(0,`rgba(255,255,245,${.55*flash+.25})`);fg.addColorStop(.25,`rgba(255,236,170,${.35*flash+.12})`);fg.addColorStop(1,'rgba(255,214,120,0)');bx.fillStyle=fg;bx.fillRect(0,0,W,Hh);
+  if(lit&&Math.random()<.9)for(let j=0;j<3;j++){const a=Math.random()*6.28,v=1+Math.random()*4;sparks.push({x:ax,y:ay,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,r:Math.random()*2.2+1})}}
  bx.restore();
  const e=u*u*(3-2*u),br=1+Math.sin(tT*2.1)*.02,k=.37*s;
  const closedA=Math.max(0,1-e*1.6),openA=Math.min(1,e*1.6);
