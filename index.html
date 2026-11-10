@@ -400,7 +400,7 @@ function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
   OC.width=Math.ceil(w*BD);OC.height=Math.ceil(h*BD);ox.setTransform(BD,0,0,BD,0,0);ox.drawImage(imO,0,0,w,h);
   // ribbons grow outward from the body
   ox.globalCompositeOperation='destination-in';const rr=Math.max(1,(40+e*e*520)*ko*2.2);const mg=ox.createRadialGradient(bxo,byo,rr*.55,bxo,byo,rr);mg.addColorStop(0,'#000');mg.addColorStop(1,'rgba(0,0,0,0)');ox.fillStyle=mg;ox.fillRect(0,0,w,h);ox.globalCompositeOperation='source-over';
-  bx.save();bx.globalAlpha=openA;bx.translate(ax,ay+8*s);bx.rotate(Math.sin(tT*1.6)*.035*e);bx.scale(br,1/br);
+  bx.save();bx.globalAlpha=openA;bx.translate(ax-70*s*e,ay+8*s-10*s*e);bx.rotate(Math.sin(tT*1.6)*.035*e);bx.scale(br,1/br);
   if(glow>.05){bx.shadowColor='rgba(255,210,120,.9)';bx.shadowBlur=glow*20}
   bx.drawImage(OC,-bxo,-byo,w,h);bx.restore()}
  pc.style.right=(innerWidth-ax-70*s)+'px';pc.style.bottom=(innerHeight-ay-70*s)+'px';
