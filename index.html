@@ -530,7 +530,7 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  const [bx,by]=R(637,487),br=40/643*RW;
  const ring=new THREE.Mesh(new THREE.CylinderGeometry(br*1.12,br*1.15,.012,48),M(RED2,.5));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,ZF+.004);red.add(ring);
  const btn=new THREE.Mesh(new THREE.CylinderGeometry(br,br*1.02,.04,48),M(0xe3141f,.3));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,ZF+.02);red.add(btn);
- const cap=new THREE.Mesh(new THREE.SphereGeometry(br,32,16,0,Math.PI*2,0,Math.PI*.18),M(0xe3141f,.3));cap.rotation.x=Math.PI/2;cap.position.set(bx,by,ZF+.03);red.add(cap);
+ 
  // raised ribbed emblem with traced "عون" + braille
  const [e0x,e0y]=R(400,628),[e1x,e1y]=R(560,780),ew=e1x-e0x,eh=e0y-e1y,ecx=(e0x+e1x)/2,ecy=(e0y+e1y)/2;
  const emb=new THREE.Mesh(new RoundedBoxGeometry(ew,eh,.04,3,.02),M(RED2,.6));emb.position.set(ecx,ecy,ZF+.01);red.add(emb);
