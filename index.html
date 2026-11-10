@@ -68,7 +68,7 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .app.on{opacity:1;pointer-events:auto}
 .bar{height:26px;background:#1b2333;display:flex;align-items:center;gap:6px;padding:0 10px;flex:none}.bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.bar i+i{background:#febc2e}.bar i+i+i{background:#28c840}
 .bar span{margin-left:10px;font:10px 'JetBrains Mono';color:#8a9bb5;background:#0e1524;padding:2px 10px;border-radius:4px;flex:1;max-width:260px}
-.screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s}
+.screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0b1220}
 .screen .res{opacity:0}.screen.done .res{opacity:1}.screen.done .home{opacity:0}
 .fakecur{position:absolute;width:18px;height:18px;z-index:3;left:70%;top:80%;transition:left .9s cubic-bezier(.6,.1,.3,1),top .9s cubic-bezier(.6,.1,.3,1);filter:drop-shadow(0 1px 2px #000)}
 .fakecur.click{animation:clk .25s}@keyframes clk{50%{transform:scale(.75)}}
@@ -185,10 +185,7 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
     <div class="stage" id="ss"><span class="tag">MRI · ON-DEVICE AI</span>
       <canvas class="three" id="brain3d" aria-label="3D model of the MS SmartScan brain-shaped device, drag to rotate"></canvas>
       <span class="drag" id="ssDrag">⟲ DRAG TO ROTATE</span>
-      <div class="app" id="app"><div class="bar"><i></i><i></i><i></i><span>ms-smartscan.local / workspace</span></div>
-        <div class="screen" id="scr"><img class="home" src="assets/ss-home.jpg" alt="MS SmartScan home screen"><img class="res" src="assets/ss-result.jpg" alt="MS SmartScan AI result with lesions marked">
-          <svg class="fakecur" id="fc" viewBox="0 0 24 24"><path d="M3 2l7 19 2.6-7.4L20 11z" fill="#fff" stroke="#000" stroke-width="1.2"/></svg>
-          <div class="prog" id="prog"><span id="progT">Uploading MRI…</span><div class="pb"><div id="pb"></div></div></div></div></div>
+      <div class="app" id="app"><div class="bar"><i></i><i></i><i></i><span>MS SmartScan · real website demo</span></div><div class="screen"><video id="ssVid" src="assets/ss-demo.mp4" muted playsinline preload="none"></video></div></div>
       <button class="act" id="ssBtn">▶ RUN AI SCAN</button>
     </div>
     <div class="copy"><span class="num">01</span> <span class="meta">HEALTHON 2026 · TEAM PROJECT · PATENT PENDING</span>
@@ -353,18 +350,11 @@ function field(){tt+=.016;fx.clearRect(0,0,W,H);fx.font=`${11*DPR}px JetBrains M
 field();
 document.querySelectorAll('.skill').forEach(s=>s.addEventListener('mousemove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--x',e.clientX-r.left+'px');s.style.setProperty('--y',e.clientY-r.top+'px')}));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-/* smartscan: play the real web app */
-const app=document.getElementById('app'),scr=document.getElementById('scr'),fc=document.getElementById('fc'),prog=document.getElementById('prog'),pb=document.getElementById('pb'),progT=document.getElementById('progT'),ssBtn=document.getElementById('ssBtn');let ssRun=false,ssOpen=false;
-ssBtn.onclick=()=>{if(ssRun)return;
- if(ssOpen){app.classList.remove('on');scr.classList.remove('done');ssOpen=false;ssBtn.textContent='▶ RUN AI SCAN';return}
- ssRun=true;ssOpen=true;app.classList.add('on');scr.classList.remove('done');prog.classList.remove('on');pb.style.transition='none';pb.style.width='0';fc.style.left='70%';fc.style.top='85%';
- const at=(f,d)=>setTimeout(f,d);
- at(()=>{fc.style.left='22%';fc.style.top='52%'},500);
- at(()=>fc.classList.add('click'),1450);at(()=>fc.classList.remove('click'),1750);
- at(()=>{prog.classList.add('on');progT.textContent='Checking it is an MRI…';pb.style.transition='width 2.4s linear';pb.style.width='100%'},1700);
- at(()=>progT.textContent='Detecting lesions (YOLO)…',2600);at(()=>progT.textContent='Scoring confidence…',3400);
- at(()=>{prog.classList.remove('on');scr.classList.add('done');fc.style.left='88%';fc.style.top='30%'},4200);
- at(()=>{ssRun=false;ssBtn.textContent='↺ BACK TO 3D'},4600)};
+/* smartscan: play the real website demo */
+const app=document.getElementById('app'),vid=document.getElementById('ssVid'),ssBtn=document.getElementById('ssBtn');let ssOpen=false;
+const closeApp=()=>{app.classList.remove('on');vid.pause();ssOpen=false;ssBtn.textContent='▶ RUN AI SCAN'};
+ssBtn.onclick=()=>{if(ssOpen)return closeApp();ssOpen=true;app.classList.add('on');vid.currentTime=0;vid.play().catch(()=>{});ssBtn.textContent='↺ BACK TO 3D'};
+vid.addEventListener('ended',closeApp);
 /* awn sos (2D waves + log over the 3D scene) */
 const lc=document.getElementById('loraC'),lx=lc.getContext('2d'),aw=document.getElementById('awn'),log=document.getElementById('awnLog');let waves=[],sending=false,lrun=false;
 function lsz(){lc.width=aw.offsetWidth;lc.height=aw.offsetHeight}lsz();addEventListener('resize',lsz);
@@ -374,9 +364,9 @@ function lora(){lx.clearRect(0,0,lc.width,lc.height);const sy=lc.height*.42,max=
 function emit(dir,c,n){let k=0;const iv=setInterval(()=>{waves.push({x:dir>0?lc.width*.32:lc.width*.68,r:10,dir,c});if(!lrun){lrun=true;lora()}if(++k>=n)clearInterval(iv)},180)}
 document.getElementById('sosBtn').onclick=()=>{if(sending)return;sending=true;log.className='log on';log.innerHTML='';
  const L=(t,cl,d)=>setTimeout(()=>{log.innerHTML+=`<div class="${cl||''}">${t}</div>`},d);
- window.awnState?.('sos');emit(1,'255,90,78',6);L('▲ SOS SENT · attempt 1/3','w',0);L('  GPS fix + BAT 96% attached','',500);
+ window.awnState?.('sos');emit(1,'255,90,78',6);L('▲ SOS SENT · attempt 1/3','w',0);L('  blue LED blinking · GPS + BAT 96%','',500);
  setTimeout(()=>window.awnState?.('received'),1300);L('▼ AOUN RESCUE · SOS received','',1400);L('  signal −6 dBm · SNR 11.3','',1800);
- setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L('▲ CONFIRMED · help is on the way','ok',2900);L('  LED + vibration on SOS device','ok',3300);
+ setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L('▲ CONFIRMED · help is on the way','ok',2900);L('  green LED + vibration on SOS device','ok',3300);
  setTimeout(()=>sending=false,3600);setTimeout(()=>{if(!sending)window.awnState?.('ready')},9000)};
 const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
 photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=on?'🧊 3D MODEL':'📷 REAL PHOTO'};
@@ -424,7 +414,7 @@ const cmds={
  contact:()=>'email    → <a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>\nlinkedin → <a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>\ngithub   → <a href="https://github.com/HailahAlhejjei" target="_blank">github.com/HailahAlhejjei</a>',
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return 'downloading CV…'},
  sos:()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700);return 'transmitting on 868 MHz…'},
- scan:()=>{go('ss');setTimeout(()=>{if(ssOpen)ssBtn.click();ssBtn.click()},700);return 'loading model…'},
+ scan:()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700);return 'playing the real MS SmartScan demo…'},
  clear:()=>{to.innerHTML='';return null},
  'sudo hire hailah':()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return '<span class="p">[sudo] permission granted.</span>\nGreat choice. Make it official →\n<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>'},
  'hire hailah':()=>'<span class="e">permission denied.</span> try: sudo hire hailah',
@@ -461,117 +451,78 @@ function scene3d(canvas,camZ,camY,swing){
  return {root,setTick:f=>tick=f}}
 function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const g=cv.getContext('2d');return {t,redraw:a=>{g.clearRect(0,0,w,h);draw(g,a);t.needsUpdate=true}}}
 
-/* ---------- MS SmartScan: the real device — a brain-textured rounded cube with a flat front, camera on top, big screen, 4 feet ---------- */
-{const {root,setTick}=scene3d(document.getElementById('brain3d'),5.6,.7,1.25);
+/* ---------- MS SmartScan: the real device. Front = real photo, body = brain folds textured from the real print ---------- */
+{const {root,setTick}=scene3d(document.getElementById('brain3d'),5.6,.6,1.2);
  const P=new Uint8Array(512);for(let i=0;i<256;i++)P[i]=i;for(let i=255;i>0;i--){const j=(Math.abs(Math.sin(i*91.7)*43758.5453)%1)*(i+1)|0;[P[i],P[j]]=[P[j],P[i]]}for(let i=0;i<256;i++)P[i+256]=P[i];
  const fade=t=>t*t*t*(t*(t*6-15)+10),L=(a,b,t)=>a+(b-a)*t;
  const gr=(h,x,y,z)=>{const u=h<8?x:y,v=h<4?y:(h===12||h===14?x:z);return((h&1)?-u:u)+((h&2)?-v:v)};
  function noise(x,y,z){const X=Math.floor(x)&255,Y=Math.floor(y)&255,Z=Math.floor(z)&255;x-=Math.floor(x);y-=Math.floor(y);z-=Math.floor(z);const u=fade(x),v=fade(y),w=fade(z);
   const A=P[X]+Y,AA=P[A]+Z,AB=P[A+1]+Z,B=P[X+1]+Y,BA=P[B]+Z,BB=P[B+1]+Z;
   return L(L(L(gr(P[AA]&15,x,y,z),gr(P[BA]&15,x-1,y,z),u),L(gr(P[AB]&15,x,y-1,z),gr(P[BB]&15,x-1,y-1,z),u),v),L(L(gr(P[AA+1]&15,x,y,z-1),gr(P[BA+1]&15,x-1,y,z-1),u),L(gr(P[AB+1]&15,x,y-1,z-1),gr(P[BB+1]&15,x-1,y-1,z-1),u),v),w)}
- // sulci = narrow grooves along the zero-lines of warped noise -> winding brain folds
  const sulci=(x,y,z)=>{const w=noise(x*.9+7,y*.9,z*.9)*.8;const n=noise(x*2.6+w,y*2.6-w,z*2.6+w);const n2=noise(x*5.2+3,y*5.2,z*5.2);return Math.exp(-Math.pow(n/.07,2))*.85+Math.exp(-Math.pow(n2/.05,2))*.3};
- const PINK=0xff7a8a,PINK2=0xff8796;
- const W=1.0,H=.92,D=1.0,FZ=.86; // half sizes; FZ = flat front plane
- const geo=new THREE.SphereGeometry(1,260,200),p=geo.attributes.position,v=new THREE.Vector3();
+ const W=1.05,H=.9,D=.95,FZ=.84;
+ const geo=new THREE.SphereGeometry(1,240,180),p=geo.attributes.position,v=new THREE.Vector3();
  for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=v.clone().normalize();
-  // superellipsoid -> rounded cube
-  const e=3.2,k=Math.pow(Math.pow(Math.abs(n.x),e)+Math.pow(Math.abs(n.y),e)+Math.pow(Math.abs(n.z),e),1/e);
+  const e=2.6,k=Math.pow(Math.pow(Math.abs(n.x),e)+Math.pow(Math.abs(n.y),e)+Math.pow(Math.abs(n.z),e),1/e);
   let x=n.x/k*W,y=n.y/k*H,z=n.z/k*D;
-  const front=Math.max(0,Math.min(1,(z-FZ+.25)/.25));
-  const g=sulci(x*1.6,y*1.6,z*1.6)*(1-front);
-  const s=1-.055*g;x*=s;y*=s;z*=s;
-  if(z>FZ)z=FZ;                 // flat front face
-  if(y<-H*.97)y=-H*.97;         // flat-ish bottom
-  p.setXYZ(i,x,y,z)}
+  const front=Math.max(0,Math.min(1,(z-FZ+.2)/.2));const s=1-.06*sulci(x*1.6,y*1.6,z*1.6)*(1-front);x*=s;y*=s;z*=s;
+  if(z>FZ)z=FZ;if(y<-H*.95)y=-H*.95;p.setXYZ(i,x,y,z)}
  geo.computeVertexNormals();
- root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:PINK,roughness:.62})));
- // front panel (slightly lighter pink, rounded rectangle)
- const panel=new THREE.Mesh(new RoundedBoxGeometry(W*1.62,H*1.66,.06,6,.22),new THREE.MeshStandardMaterial({color:PINK,roughness:.55}));panel.position.set(0,0,FZ);root.add(panel);
- // camera block at the top centre
- const cam=new THREE.Mesh(new RoundedBoxGeometry(.32,.3,.1,3,.03),new THREE.MeshStandardMaterial({color:0x151515,roughness:.45}));cam.position.set(0,.52,FZ+.05);root.add(cam);
- const lens=new THREE.Mesh(new THREE.CircleGeometry(.075,32),new THREE.MeshStandardMaterial({color:0x101a2a,roughness:.05,metalness:.9}));lens.position.set(0,.52,FZ+.102);root.add(lens);
- const glint=new THREE.Mesh(new THREE.CircleGeometry(.022,16),new THREE.MeshBasicMaterial({color:0x8fb4ff}));glint.position.set(-.025,.545,FZ+.104);root.add(glint);
- // big screen with black bezel
- const bez=new THREE.Mesh(new RoundedBoxGeometry(1.42,.98,.06,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.35}));bez.position.set(0,-.2,FZ+.05);root.add(bez);
- const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.33,.88),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.2,FZ+.082);root.add(scr);
- // feet
- for(const sx of [-1,1])for(const sz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),new THREE.MeshStandardMaterial({color:0xff6f80,roughness:.6}));f.position.set(sx*.62,-H*.97-.05,sz*.55);root.add(f)}
- root.position.y=.08;
+ const skin=tex('assets/ss-skin.jpg');skin.wrapS=skin.wrapT=THREE.MirroredRepeatWrapping;skin.repeat.set(4,3);
+ root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xffffff,map:skin,roughness:.6})));
+ // front face = the real photo of the device front (camera + screen)
+ const FW=1.78,FH=FW*428/478;
+ const front=new THREE.Mesh(new THREE.PlaneGeometry(FW,FH),new THREE.MeshStandardMaterial({map:tex('assets/ss-front.webp'),transparent:true,roughness:.6}));front.position.set(0,-.06,FZ+.006);root.add(front);
+ // live screen on top of the real (switched-off) screen: shows the AI result
+ const sx0=26/478,sx1=455/478,sy0=140/428,sy1=402/428;
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry((sx1-sx0)*FW*.97,(sy1-sy0)*FH*.95),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));
+ scr.position.set(((sx0+sx1)/2-.5)*FW,-.06+(.5-(sy0+sy1)/2)*FH,FZ+.01);root.add(scr);
+ for(const fx of [-1,1])for(const fz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),new THREE.MeshStandardMaterial({color:0xff6f80,roughness:.6}));f.position.set(fx*.6,-H*.95-.05,fz*.5);root.add(f)}
+ root.position.y=.1;
  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.4,1.48,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-1.02;root.add(base);
- root.rotation.y=-.6;setTick(t=>{})}
+ root.rotation.y=-.5;setTick(()=>{})}
 
-/* ---------- Awn: both devices modelled from the real prototypes (front + back) ---------- */
+/* ---------- Awn: front + back are the real photos of each device; LEDs and screens react to SOS ---------- */
 {const {root,setTick}=scene3d(document.getElementById('awn3d'),7.2,.6,Infinity);
- const mat=(c,r=.55,m=0)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
- const RED=0xb5121d,RED2=0x9c0f18,GRN=0x2fb53c,GRN2=0x249a2e,GOLD=0xd9b052,DARK=0x111111;
- const flat=(w,h,map,opts={})=>new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map,toneMapped:false,...opts}));
- function shell(color,w,h){const g=new THREE.Group();g.add(new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.12),mat(color)));
+ const mat=(c,r=.55)=>new THREE.MeshStandardMaterial({color:c,roughness:r});
+ const face=(w,h,url,z,back)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshStandardMaterial({map:tex(url),transparent:true,roughness:.55}));m.position.z=z;if(back)m.rotation.y=Math.PI;return m};
+ function device(color,w,h,f,b,antX){const g=new THREE.Group();g.add(new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.12),mat(color)));
+  g.add(face(w,h,f,.253,false));g.add(face(w,h,b,-.253,true));
   for(const sx of [-1,1]){const lug=new THREE.Mesh(new THREE.TorusGeometry(.09,.045,12,24),mat(color));lug.position.set(sx*(w/2-.22),h/2+.03,0);g.add(lug)}
+  const a=new THREE.Mesh(new THREE.CylinderGeometry(.045,.06,1.05,16),mat(0x151515,.4));a.position.set(antX,h/2+.52,0);g.add(a);const t=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),mat(0x151515,.4));t.position.set(antX,h/2+1.05,0);g.add(t);
   return g}
- function antenna(g,x,top){const a=new THREE.Mesh(new THREE.CylinderGeometry(.045,.06,1.05,16),mat(0x151515,.4));a.position.set(x,top+.52,0);g.add(a);const t=new THREE.Mesh(new THREE.SphereGeometry(.05,16,12),mat(0x151515,.4));t.position.set(x,top+1.05,0);g.add(t)}
- function screws(g,w,h,z,col){for(const sx of [-1,1])for(const sy of [-1,1]){const s=new THREE.Mesh(new THREE.CircleGeometry(.025,12),mat(col));s.position.set(sx*(w/2-.1),sy*(h/2-.1),z);if(z<0)s.rotation.y=Math.PI;g.add(s)}}
- function textTex(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const x=cv.getContext('2d');const go=()=>{x.clearRect(0,0,w,h);draw(x);t.needsUpdate=true};go();document.fonts&&document.fonts.load('700 100px "Aref Ruqaa"').then(go);return t}
- const awnLogo=(braille)=>textTex(512,400,x=>{x.fillStyle='#d9b052';x.textAlign='center';x.font='700 230px "Aref Ruqaa", "Noto Naskh Arabic", serif';x.shadowColor='#0006';x.shadowOffsetY=4;x.shadowBlur=6;x.fillText('عون',256,250);
-  if(braille){x.shadowBlur=0;x.shadowOffsetY=2;const dots=[[1,0,1,1,0,0],[1,0,0,1,1,0],[1,1,0,0,1,0]];dots.forEach((d,ci)=>d.forEach((on,k)=>{if(!on)return;x.beginPath();x.arc(186+ci*58+(k%2)*22,300+Math.floor(k/2)*22,7,0,7);x.fill()}))}});
-
- /* --- red SOS unit --- */
- const RW=1.9,RH=1.39,red=shell(RED,RW,RH);red.position.x=-1.05;antenna(red,RW*.24,RH/2);
- const Z=.252,P=(x,y)=>[(x-122)/643*RW-RW/2,RH/2-(y-338)/470*RH];
- const seam=new THREE.Mesh(new THREE.BoxGeometry(RW-.08,.012,.01),mat(0x6a0a10));seam.position.set(0,P(0,598)[1],Z);red.add(seam);
- // OLED (real screen) + live overlay
- const [o0x,o0y]=P(168,452),[o1x,o1y]=P(302,522);
- const oledBase=flat(o1x-o0x,o0y-o1y,tex('assets/awn-oled.jpg'));oledBase.position.set((o0x+o1x)/2,(o0y+o1y)/2,Z+.004);red.add(oledBase);
+ const RW=1.9,RH=RW*470/643,red=device(0xb0131d,RW,RH,'assets/awn-red-front.webp','assets/awn-red-back.webp',RW*.24);red.position.x=-1.05;
+ const R=(x,y)=>[(x-122)/643*RW-RW/2,RH/2-(y-338)/470*RH];
+ // OLED overlay (only while an SOS is running)
  const oled=canvasTex(256,110,(x,st)=>{x.fillStyle='#02060a';x.fillRect(0,0,256,110);
   const m={sos:['SOS SENT','#ffd23a','Waiting for team..','Attempt 1 of 3'],received:['SOS SENT','#ffd23a','Team receiving..','signal -6 dBm'],confirmed:['HELP OK','#9dff6a','Help is coming','Stay where you are']}[st]||['READY','#ffd23a','',''];
   x.font='bold 30px monospace';x.fillStyle=m[1];x.fillText(m[0],8,32);x.font='18px monospace';x.fillStyle='#5ee6ff';x.fillText(m[2],8,62);x.fillText(m[3],8,86);x.fillRect(4,96,248,3)});
- const oMesh=flat(o1x-o0x,o0y-o1y,oled.t);oMesh.position.set((o0x+o1x)/2,(o0y+o1y)/2,Z+.006);oMesh.visible=false;red.add(oMesh);
- // 3 LED holes (the top one blinks blue)
- const leds=[];[445,487,530].forEach(py=>{const [hx,hy]=P(338,py);const h=new THREE.Mesh(new THREE.CircleGeometry(.04,20),new THREE.MeshBasicMaterial({color:0x0c0c0c}));h.position.set(hx,hy,Z+.003);red.add(h);leds.push(h)});
- // speaker grille
- const [gx0,gy0]=P(395,415);for(let i=0;i<3;i++)for(let j=0;j<3;j++){if((i+j)%2)continue;const d=new THREE.Mesh(new THREE.CircleGeometry(.012,10),new THREE.MeshBasicMaterial({color:0x2a0508}));d.position.set(gx0+i*.035,gy0-j*.035,Z+.003);red.add(d)}
- // big red SOS button
- const [bx,by]=P(470,470);const ring=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,.04,40),mat(RED2));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,Z+.02);red.add(ring);
- const btn=new THREE.Mesh(new THREE.CylinderGeometry(.15,.16,.1,40),mat(0xe0141f,.35));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,Z+.07);red.add(btn);
- // raised emblem with "عون" + braille (from the real device)
- const [e0x,e0y]=P(298,612),[e1x,e1y]=P(426,728);
- const emb=new THREE.Mesh(new RoundedBoxGeometry(e1x-e0x,e0y-e1y,.05,3,.015),mat(RED2));emb.position.set((e0x+e1x)/2,(e0y+e1y)/2,Z+.01);red.add(emb);
- const embF=flat((e1x-e0x)*.94,(e0y-e1y)*.94,awnLogo(true),{transparent:true});embF.position.set((e0x+e1x)/2,(e0y+e1y)/2,Z+.038);red.add(embF);
- // gold stripes
- const stripe=(x,y,rot)=>{const s=new THREE.Mesh(new THREE.BoxGeometry(.018,.42,.012),mat(GOLD,.4,.3));s.position.set(x,y,Z+.006);s.rotation.z=rot;red.add(s)};
- for(let i=0;i<4;i++){stripe(P(150+i*24,0)[0],P(0,700)[1],.5);stripe(P(472+i*24,0)[0],P(0,700)[1],-.5)}
- const slot=new THREE.Mesh(new THREE.PlaneGeometry(.03,.09),new THREE.MeshBasicMaterial({color:0x111111}));slot.position.set(P(283,0)[0],P(0,700)[1],Z+.003);red.add(slot);
- // back: big solar panel in a red frame
- const solarTex=textTex(512,360,x=>{const g=x.createLinearGradient(0,0,512,360);g.addColorStop(0,'#1a2740');g.addColorStop(.5,'#0b1220');g.addColorStop(1,'#16223a');x.fillStyle=g;x.fillRect(0,0,512,360);
-  x.strokeStyle='#2a3a5a';x.lineWidth=2;for(let i=1;i<6;i++){x.beginPath();x.moveTo(i*512/6,0);x.lineTo(i*512/6,360);x.stroke()}for(let j=1;j<4;j++){x.beginPath();x.moveTo(0,j*90);x.lineTo(512,j*90);x.stroke()}
-  x.fillStyle='#ffffff10';x.beginPath();x.moveTo(0,0);x.lineTo(220,0);x.lineTo(0,200);x.fill()});
- const solar=new THREE.Mesh(new THREE.PlaneGeometry(RW-.28,RH-.3),new THREE.MeshStandardMaterial({map:solarTex,roughness:.15,metalness:.5}));solar.position.set(0,-.02,-Z-.003);solar.rotation.y=Math.PI;red.add(solar);
- screws(red,RW,RH,-Z-.004,0x5a0a0f);
+ const [o0x,o0y]=R(168,452),[o1x,o1y]=R(302,522);
+ const oMesh=new THREE.Mesh(new THREE.PlaneGeometry(o1x-o0x,o0y-o1y),new THREE.MeshBasicMaterial({map:oled.t,toneMapped:false}));oMesh.position.set((o0x+o1x)/2,(o0y+o1y)/2,.256);oMesh.visible=false;red.add(oMesh);
+ // LEDs: middle = blue (SOS sent), bottom = green (rescue confirmed)
+ const led=(py,col)=>{const [x,y]=R(338,py);const g=new THREE.Group();
+  const dot=new THREE.Mesh(new THREE.CircleGeometry(.04,24),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0,toneMapped:false}));
+  const halo=new THREE.Mesh(new THREE.CircleGeometry(.14,32),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}));
+  g.add(halo,dot);g.position.set(x,y,.258);red.add(g);return {set:o=>{dot.material.opacity=o;halo.material.opacity=o*.45}}};
+ const blue=led(487,0x3b7bff),green=led(530,0x3dff6a);
  root.add(red);
-
- /* --- green Aoun Rescue unit --- */
- const GW=1.98,GH=1.3,grn=shell(GRN,GW,GH);grn.position.x=1.08;antenna(grn,GW*.07,GH/2);
- const frame=new THREE.Mesh(new RoundedBoxGeometry(GW-.2,GH-.22,.06,4,.05),mat(GRN2));frame.position.set(0,-.04,Z+.01);grn.add(frame);
- const bez=new THREE.Mesh(new THREE.PlaneGeometry(GW-.42,GH-.4),new THREE.MeshBasicMaterial({color:0x0e1a12}));bez.position.set(0,-.04,Z+.042);grn.add(bez);
- const lw=GW-.5,lh=lw*306/460;
- const lcdBase=flat(lw,lh,tex('assets/awn-lcd.jpg'));lcdBase.position.set(0,-.04,Z+.045);grn.add(lcdBase);
+ const GW=1.98,GH=GW*440/670,grn=device(0x2bb53a,GW,GH,'assets/awn-green-front.webp','assets/awn-green-back.webp',GW*.07);grn.position.x=1.08;
+ const G=(x,y)=>[(x-768)/670*GW-GW/2,GH/2-(y-368)/440*GH];
  const lcd=canvasTex(480,300,(x,st)=>{x.fillStyle='#5f7184';x.fillRect(0,0,480,300);x.fillStyle='#2bb8e8';x.fillRect(0,0,480,44);x.fillStyle='#fff';x.font='bold 26px sans-serif';x.fillText('AOUN RESCUE',14,31);
   x.fillStyle='#ff4a4a';x.beginPath();x.roundRect(318,9,148,26,13);x.fill();x.fillStyle='#fff';x.font='bold 15px sans-serif';x.fillText('SOS!',375,27);
   x.strokeStyle='#e6f0f0';x.lineWidth=2;x.beginPath();x.arc(105,170,82,0,7);x.stroke();x.beginPath();x.arc(105,170,40,0,7);x.stroke();x.beginPath();x.moveTo(23,170);x.lineTo(187,170);x.moveTo(105,88);x.lineTo(105,252);x.stroke();
   x.fillStyle='#2bd8ff';x.beginPath();x.arc(105,170,7,0,7);x.fill();x.strokeStyle='#ffb000';x.lineWidth=3;x.beginPath();x.moveTo(105,170);x.lineTo(150,128);x.stroke();x.fillStyle='#ff4a4a';x.beginPath();x.arc(150,128,9,0,7);x.fill();
   x.fillStyle='#fff';x.font='bold 30px sans-serif';x.fillText('1.24 km',220,88);x.font='bold 22px sans-serif';x.fillText('NE 45 deg',220,116);x.font='15px sans-serif';x.fillText('Battery: 96 %',222,150);x.fillText('Signal: -6 dBm  SNR 11.3',222,172);x.fillText('Last heard: 0 s ago',222,194);
   x.fillStyle=st==='confirmed'?'#1f8a2c':'#3fd94a';x.fillRect(228,222,230,56);x.fillStyle='#04350a';x.font='bold 24px sans-serif';x.fillText(st==='confirmed'?'SENT ✓':'CONFIRM',st==='confirmed'?296:282,259)});
- const lMesh=flat(lw,lh,lcd.t);lMesh.position.set(0,-.04,Z+.047);lMesh.visible=false;grn.add(lMesh);
- // back: gold "عون" calligraphy + braille, 4 screws
- const back=flat(1.05,.82,awnLogo(true),{transparent:true});back.position.set(0,-.05,-Z-.004);back.rotation.y=Math.PI;grn.add(back);
- screws(grn,GW,GH,-Z-.004,0x0e4a18);
+ const [l1x,l1y]=G(882,465),[l2x,l2y]=G(1335,765);
+ const lMesh=new THREE.Mesh(new THREE.PlaneGeometry(l2x-l1x,l1y-l2y),new THREE.MeshBasicMaterial({map:lcd.t,toneMapped:false}));lMesh.position.set((l1x+l2x)/2,(l1y+l2y)/2,.256);lMesh.visible=false;grn.add(lMesh);
  root.add(grn);
-
  const base=new THREE.Mesh(new THREE.CylinderGeometry(2.7,2.8,.08,64),mat(0xf2f2ee,.85));base.position.y=-.73;root.add(base);
- let blink=0;
- window.awnState=st=>{if(st==='ready'){oMesh.visible=false;lMesh.visible=false;blink=0;return}
-  oled.redraw(st);oMesh.visible=true;if(st!=='sos'){lcd.redraw(st);lMesh.visible=true}if(st==='sos'||st==='confirmed')blink=140};
- let k=0;setTick(()=>{k++;leds[0].material.color.setHex(blink>0&&k%14<7?0x3b6bff:0x0c0c0c);btn.position.z=Z+(blink>125?.04:.07);if(blink>0)blink--})}
+ let st='ready';
+ window.awnState=s=>{st=s;if(s==='ready'){oMesh.visible=false;lMesh.visible=false;return}oled.redraw(s);oMesh.visible=true;if(s!=='sos'){lcd.redraw(s);lMesh.visible=true}};
+ let k=0;setTick(()=>{k++;const on=k%16<8;
+  blue.set(st==='sos'||st==='received'?(on?1:.15):0);
+  green.set(st==='confirmed'?1:0)})}
 </script>
 </body>
 </html>
