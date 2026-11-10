@@ -470,14 +470,17 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  const lp=(a,b,t)=>a+(b-a)*t;
  const n3=(x,y,z)=>{const i=Math.floor(x),j=Math.floor(y),k=Math.floor(z);let u=x-i,v=y-j,w=z-k;u=u*u*(3-2*u);v=v*v*(3-2*v);w=w*w*(3-2*w);
   return lp(lp(lp(hsh(i,j,k),hsh(i+1,j,k),u),lp(hsh(i,j+1,k),hsh(i+1,j+1,k),u),v),lp(lp(hsh(i,j,k+1),hsh(i+1,j,k+1),u),lp(hsh(i,j+1,k+1),hsh(i+1,j+1,k+1),u),v),w)};
- const FLAT=.92,geo=new THREE.SphereGeometry(1,280,200),p=geo.attributes.position,v=new THREE.Vector3();
+ const FLAT=.9,geo=new THREE.SphereGeometry(1,280,200),p=geo.attributes.position,v=new THREE.Vector3();
  for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=v.clone().normalize(),x=n.x,y=n.y,z=n.z;
-  const wx=x+.35*n3(x*2+5,y*2,z*2),wy=y+.35*n3(x*2,y*2+9,z*2),wz=z+.35*n3(x*2,y*2,z*2+3);
-  const ridge=1-Math.abs(2*n3(wx*4.8+3,wy*4.8,wz*4.8)-1);
-  const front=Math.min(1,Math.max(0,(z-.58)/.14));
-  let r=1+Math.pow(ridge,2.2)*.19*(1-front);
-  if(y>0||z<.3)r*=1-.13*Math.exp(-Math.pow(x/.045,2));
-  let X=x*r*1.32,Y=y*r*1.02,Z=z*r*1.22;if(Z>FLAT)Z=FLAT;if(Y<-.84)Y=-.84;p.setXYZ(i,X,Y,Z)}
+  // rounded-cube body (like the printed case)
+  const e=3,k=Math.pow(Math.pow(Math.abs(x),e)+Math.pow(Math.abs(y),e)+Math.pow(Math.abs(z),e),1/e);
+  const bx=x/k,by=y/k,bz=z/k;
+  // gyri: warped ridged noise, fine and winding
+  const wx=bx+.28*n3(bx*2.5+5,by*2.5,bz*2.5),wy=by+.28*n3(bx*2.5,by*2.5+9,bz*2.5),wz=bz+.28*n3(bx*2.5,by*2.5,bz*2.5+3);
+  const ridge=1-Math.abs(2*n3(wx*8.5+3,wy*8.5,wz*8.5)-1);
+  const front=Math.min(1,Math.max(0,(bz-.72)/.12));
+  let r=1+Math.pow(ridge,3)*.085*(1-front);
+  let X=bx*r*1.08,Y=by*r*.95,Z=bz*r*.98;const FZ=.9;if(Z>FZ)Z=FZ;if(Y<-.9)Y=-.9;p.setXYZ(i,X,Y,Z)}
  geo.computeVertexNormals();
  root.add(new THREE.Mesh(geo,M(0xff6c7c,.6)));
  // screen showing the MS SmartScan result (drawn, not a photo)
@@ -488,12 +491,13 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
   x.strokeStyle='#ff4a5a';x.lineWidth=3;[[-40,-60],[30,-20],[-20,40],[25,55]].forEach(([a,b])=>x.strokeRect(a,b,20,20));x.restore();
   x.fillStyle='#fff';x.fillRect(474,50,150,374);x.fillStyle='#e0303f';x.font='bold 18px sans-serif';x.fillText('ABNORMAL',486,80);x.fillStyle='#0b1733';x.font='bold 30px sans-serif';x.fillText('68.3%',486,130);
   x.fillStyle='#e9ecf3';x.fillRect(486,142,124,8);x.fillStyle='#e0303f';x.fillRect(486,142,84,8);x.fillStyle='#55607a';x.font='13px sans-serif';x.fillText('Regions flagged: 4',486,180);x.fillText('Time: 1.57 s',486,200)});scrT.redraw();
- const bez=new THREE.Mesh(new RoundedBoxGeometry(1.0,.7,.04,3,.02),M(0x101010,.3));bez.position.set(0,-.13,FLAT+.01);root.add(bez);
- const scr=new THREE.Mesh(new THREE.PlaneGeometry(.92,.62),new THREE.MeshBasicMaterial({map:scrT.t,toneMapped:false}));scr.position.set(0,-.13,FLAT+.032);root.add(scr);
- const cam=new THREE.Mesh(new RoundedBoxGeometry(.28,.2,.06,3,.02),M(0x0d0f14,.4));cam.position.set(0,.36,FLAT+.02);root.add(cam);
- const lens=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,.03,32),M(0x2a4166,.05,.9));lens.rotation.x=Math.PI/2;lens.position.set(0,.36,FLAT+.055);root.add(lens);
- for(const fx of [-1,1])for(const fz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),M(0xff6c7c,.6));f.position.set(fx*.75,-.89,fz*.5);root.add(f)}
- const base=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.68,.08,64),M(0xf2f2ee,.85));base.position.y=-.98;root.add(base);
+ const face=new THREE.Mesh(new RoundedBoxGeometry(1.86,1.66,.05,6,.24),M(0xff7584,.55));face.position.set(0,-.04,FLAT+.005);root.add(face);
+ const bez=new THREE.Mesh(new RoundedBoxGeometry(1.5,.98,.04,3,.03),M(0x101010,.3));bez.position.set(0,-.25,FLAT+.03);root.add(bez);
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.42,.9),new THREE.MeshBasicMaterial({map:scrT.t,toneMapped:false}));scr.position.set(0,-.25,FLAT+.052);root.add(scr);
+ const cam=new THREE.Mesh(new RoundedBoxGeometry(.34,.3,.07,3,.03),M(0x0d0f14,.4));cam.position.set(0,.5,FLAT+.04);root.add(cam);
+ const lens=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,.03,32),M(0x2a4166,.05,.9));lens.rotation.x=Math.PI/2;lens.position.set(0,.5,FLAT+.08);root.add(lens);
+ for(const fx of [-1,1])for(const fz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),M(0xff6c7c,.6));f.position.set(fx*.75,-.95,fz*.55);root.add(f)}
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.68,.08,64),M(0xf2f2ee,.85));base.position.y=-1.04;root.add(base);
  root.rotation.y=-.5;setTick(()=>{})}
 
 /* ---------- Awn: both devices modelled from measurements of the real prototypes ---------- */
@@ -522,7 +526,7 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  // speaker grille
  const [sgx,sgy]=R(410,430);[[0,0],[1,0],[2,0],[.5,1],[1.5,1],[0,2],[1,2],[2,2]].forEach(([a,b])=>hole(red,sgx-.05+a*.05,sgy+.05-b*.05,ZF,.012));
  // big SOS button (diameter ~70 px)
- const [bx,by]=R(637,487),br=35/643*RW;
+ const [bx,by]=R(637,487),br=40/643*RW;
  const ring=new THREE.Mesh(new THREE.CylinderGeometry(br*1.15,br*1.2,.03,48),M(RED2,.5));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,ZF+.01);red.add(ring);
  const btn=new THREE.Mesh(new THREE.CylinderGeometry(br,br*1.02,.09,48),M(0xe3141f,.3));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,ZF+.05);red.add(btn);
  const cap=new THREE.Mesh(new THREE.SphereGeometry(br,32,16,0,Math.PI*2,0,Math.PI*.18),M(0xe3141f,.3));cap.rotation.x=Math.PI/2;cap.position.set(bx,by,ZF+.06);red.add(cap);
