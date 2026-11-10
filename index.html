@@ -113,22 +113,9 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
-.pc{position:fixed;right:18px;bottom:10px;z-index:70;background:none;border:0;cursor:pointer;padding:0}
-.pc svg{width:96px;height:104px;display:block;overflow:visible;filter:drop-shadow(0 10px 18px #0009)}
-.pc .body{transform-origin:60px 112px;animation:squish 2.6s ease-in-out infinite}
-@keyframes squish{0%,100%{transform:scale(1,1)}50%{transform:scale(1.04,.95) translateY(2px)}}
-.pc .ant{transform-origin:60px 44px;animation:sway 2.2s ease-in-out infinite}
-@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
-.pc .waves circle{fill:none;stroke:#d9f067;stroke-width:2;opacity:0;transform-origin:60px 16px}
-.pc .w1{animation:wave 2.4s ease-out infinite}.pc .w2{animation:wave 2.4s ease-out 1.2s infinite}
-@keyframes wave{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(3.2)}}
-.pc .arm{transform-origin:98px 82px;transition:transform .3s}
-.pc:hover .arm,.pc.wave .arm{animation:hi .5s ease-in-out 3}
-@keyframes hi{0%,100%{transform:rotate(0)}50%{transform:rotate(-28deg)}}
-.pc .lid{transition:height .08s}
-.pc.blink .lid{height:26px}
-.pc.happy .mouth{d:path("M50 90 Q60 104 70 90")}
-.pc .tip{position:absolute;right:92px;top:30px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
+#bitsy{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:69}
+.pc{position:fixed;right:14px;bottom:8px;width:160px;height:180px;z-index:70;background:none;border:0;cursor:pointer;padding:0}
+.pc .tip{position:absolute;right:150px;top:44px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
 .pc:hover .tip,.pc.nudge .tip{opacity:1;transform:none}
 .term{position:fixed;right:clamp(10px,3vw,30px);bottom:120px;width:min(520px,94vw);height:min(360px,62vh);background:#0b1514;border:2px solid var(--lime);border-radius:16px;z-index:80;display:none;flex-direction:column;font:13px/1.55 'JetBrains Mono';box-shadow:0 30px 80px #000c;overflow:hidden}
 .term.open{display:flex;animation:pop .25s ease-out}@keyframes pop{from{transform:scale(.85) translateY(20px);opacity:0}}
@@ -139,7 +126,7 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:var(--lime);color:#000;font:600 12px 'JetBrains Mono';padding:10px 16px;z-index:95;display:none}
 canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 @media(max-width:860px){nav a{display:none}.about-g,.tl,.proj{grid-template-columns:1fr;gap:28px}.proj.rev .stage{order:0}.skills{grid-template-columns:1fr 1fr}.hint{position:relative;right:auto;bottom:auto;text-align:left;margin-top:20px}}
-@media(max-width:600px){.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}.pc svg{width:70px;height:76px}.term{bottom:96px}}
+@media(max-width:600px){.log{left:8px;right:8px;top:40px;bottom:auto;min-width:0;font-size:10px;padding:8px}.act{right:8px;bottom:8px;padding:8px 11px;font-size:11px}.pc{width:100px;height:118px}.term{bottom:96px}}
 @media(max-width:480px){.skills{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.doodle path{stroke-dashoffset:0}}
 </style>
@@ -284,26 +271,9 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 </main>
 <footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand · no framework</span><a href="#top">BACK TO TOP ↑</a></footer>
 
-<button class="pc" id="pc" aria-label="Open terminal — talk to Sigi"><span class="tip" id="tip">hi, I'm Sigi! click me ✦</span>
-  <svg viewBox="0 0 120 130" id="sigi">
-    <g class="waves"><path d="M60 14 a10 10 0 0 1 0 0" /><circle class="w1" cx="60" cy="16" r="8"/><circle class="w2" cx="60" cy="16" r="8"/></g>
-    <g class="ant"><line x1="60" y1="44" x2="60" y2="20" stroke="#1d2a28" stroke-width="4" stroke-linecap="round"/><circle cx="60" cy="16" r="6" fill="#ff5a4e"/><circle cx="58" cy="14" r="2" fill="#fff" opacity=".8"/></g>
-    <g class="body">
-      <path d="M22 78 C22 50 40 40 60 40 C80 40 98 50 98 78 C98 104 84 114 60 114 C36 114 22 104 22 78Z" fill="#d9f067"/>
-      <path d="M30 70 C34 54 46 47 58 46" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/>
-      <ellipse cx="60" cy="112" rx="30" ry="4" fill="#00000033"/>
-      <g class="eyes"><ellipse cx="46" cy="76" rx="9" ry="10.5" fill="#0b1514"/><ellipse cx="74" cy="76" rx="9" ry="10.5" fill="#0b1514"/>
-        <circle class="pupil" cx="46" cy="76" r="3.4" fill="#fff"/><circle class="pupil" cx="74" cy="76" r="3.4" fill="#fff"/></g>
-      <rect class="lid" x="34" y="64" width="52" height="0" fill="#d9f067"/>
-      <ellipse cx="36" cy="92" rx="6" ry="3.5" fill="#ff6f9c" opacity=".7"/><ellipse cx="84" cy="92" rx="6" ry="3.5" fill="#ff6f9c" opacity=".7"/>
-      <path class="mouth" d="M54 92 Q60 98 66 92" stroke="#0b1514" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path class="arm" d="M98 82 C108 78 112 70 110 62" stroke="#c4dc52" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <path d="M22 84 C14 86 12 92 14 98" stroke="#c4dc52" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <ellipse cx="46" cy="116" rx="9" ry="5" fill="#c4dc52"/><ellipse cx="74" cy="116" rx="9" ry="5" fill="#c4dc52"/>
-    </g>
-  </svg>
-</button>
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>📡 sigi · hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
+<canvas id="bitsy" aria-hidden="true"></canvas>
+<button class="pc" id="pc" aria-label="Open terminal — talk to Bitsy"><span class="tip" id="tip">hi, I'm Bitsy — made of pure code ✦</span></button>
+<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>📡 bitsy · hailah-os</span><button id="closeTerm" aria-label="Close terminal">✕</button></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="type help"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -389,20 +359,68 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('hi! I\'m <span class="p">Sigi</span> 📡 — Hailah\'s little signal buddy.\ntype <span class="p">help</span> to see what I can do.\n')}
-function toggleT(){term.classList.contains('open')?term.classList.remove('open'):openT()}
-pc.onclick=()=>{toggleT();pc.classList.add('happy');setTimeout(()=>pc.classList.remove('happy'),1200)};
-/* Sigi: eyes follow the mouse, blinks, waves when you come close */
-const pupils=pc.querySelectorAll('.pupil'),tips=["hi, I'm Sigi! click me ✦","psst… I know secrets","try: sudo hire hailah","I speak LoRa 📡","click me, I'm shy"];let ti2=0;
-addEventListener('mousemove',e=>{const r=pc.getBoundingClientRect(),sx=r.width/120,sy=r.height/130;
- pupils.forEach((p,i)=>{const ex=r.left+(i?74:46)*sx,ey=r.top+76*sy,a=Math.atan2(e.clientY-ey,e.clientX-ex),d=Math.min(4.5,Math.hypot(e.clientX-ex,e.clientY-ey)/40);
-  p.setAttribute('cx',(i?74:46)+Math.cos(a)*d);p.setAttribute('cy',76+Math.sin(a)*d)});
- const near=Math.hypot(e.clientX-(r.left+r.width/2),e.clientY-(r.top+r.height/2))<170;
- if(near&&!pc.classList.contains('wave')){pc.classList.add('wave');setTimeout(()=>pc.classList.remove('wave'),1600)}});
-(function blink(){pc.classList.add('blink');setTimeout(()=>pc.classList.remove('blink'),140);setTimeout(blink,2500+Math.random()*3000)})();
-pc.addEventListener('mouseenter',()=>{document.getElementById('tip').textContent=tips[ti2++%tips.length]});document.getElementById('closeTerm').onclick=()=>term.classList.remove('open');
+function openT(){term.classList.add('open');ti.focus();if(!to.innerHTML)out('beep. I\'m <span class="p">Bitsy</span> — a little creature made of 0s and 1s,\nand I just streamed myself in here 📡\ntype <span class="p">help</span> to see what I can do.\n')}
+let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
+/* ---- Bitsy: a creature made of code glyphs. Breathes, watches you, scatters like data, streams into the terminal ---- */
+const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2);
+function bsz(){BC.width=innerWidth*BD;BC.height=innerHeight*BD}bsz();addEventListener('resize',()=>{bsz();bHome()});
+const tips=["hi, I'm Bitsy — made of pure code ✦","I'm 0s and 1s, but I'm cute","psst… try: sudo hire hailah","I speak LoRa 📡","click me → I become a data stream"];let tipI=0;
+const BW=120,BH=135;let parts=[],eyesP=[],bmode='home',tB=0,bmx=-999,bmy=-999,bwaves=[];
+function inBody(x,y){const e=((x-60)/41)**2+((y-82)/35)**2;return e<1}
+function bHome(){const sc=innerWidth<600?.85:1.3,ax=innerWidth-14-BW*sc,ay=innerHeight-8-BH*sc;const pts=[];
+ const G=5.2;for(let y=40;y<=125;y+=G)for(let x=12;x<=108;x+=G*.9){
+  let kind=null;if(inBody(x,y)){const edge=((x-60)/41)**2+((y-82)/35)**2>.72;kind=edge?'edge':'fill'}
+  else if((((x-45)/9)**2+((y-119)/5)**2<1)||(((x-75)/9)**2+((y-119)/5)**2<1))kind='foot';
+  else if(Math.abs(x-60)<2.6&&y>=20&&y<48)kind='ant';
+  if(kind)pts.push({lx:x,ly:y,kind})}
+ for(let y=18;y<48;y+=5)pts.push({lx:60,ly:y,kind:'ant'});
+ [[96,72],[101,66],[105,60],[19,86],[14,92]].forEach(([x,y])=>pts.push({lx:x,ly:y,kind:'arm'}));
+ const old=parts;parts=pts.map((q,i)=>{const o=old[i];const ch=q.kind==='edge'?(q.lx<60?(q.ly<82?'/':'\\'):(q.ly<82?'\\':'/')).replace(/./,m=>Math.random()<.5?m:(q.lx<60?'{':'}')):q.kind==='ant'?'|':q.kind==='foot'?'=':q.kind==='arm'?'~':(Math.random()<.5?'0':'1');
+  return {...q,ch,hx:ax+q.lx*sc,hy:ay+q.ly*sc,x:o?o.x:ax+q.lx*sc,y:o?o.y:ay+q.ly*sc,vx:0,vy:0,ph:Math.random()*6.28,d:Math.random()}});
+ bx.sc=sc;bx.ax=ax;bx.ay=ay}
+bHome();
+addEventListener('mousemove',e=>{bmx=e.clientX;bmy=e.clientY});
+let blinkT=0;(function bl(){blinkT=8;setTimeout(bl,2600+Math.random()*3000)})();
+function termCenter(){const r=term.getBoundingClientRect();return r.width?[r.left+r.width/2,r.top+r.height/2]:[innerWidth-280,innerHeight-300]}
+function streamIn(){bmode='out';const [tx,ty]=termCenter();parts.forEach(p=>{p.tx=tx+(Math.random()-.5)*240;p.ty=ty+(Math.random()-.5)*160;p.delay=p.d*25});setTimeout(()=>{openT();bmode='hidden'},900)}
+function streamBack(){const [tx,ty]=termCenter();term.classList.remove('open');parts.forEach(p=>{p.x=tx+(Math.random()-.5)*200;p.y=ty+(Math.random()-.5)*140;p.vx=p.vy=0});bmode='home'}
+pc.onclick=()=>{if(term.classList.contains('open'))streamBack();else streamIn()};
+document.getElementById('closeTerm').onclick=streamBack;
+const _tog=toggleT;toggleT=()=>{term.classList.contains('open')?streamBack():streamIn()};
+pc.addEventListener('mouseenter',()=>{document.getElementById('tip').textContent=tips[tipI++%tips.length]});
+function bitsy(){tB+=.016;bx.setTransform(BD,0,0,BD,0,0);bx.clearRect(0,0,innerWidth,innerHeight);
+ const sc=bx.sc,breathe=1+Math.sin(tB*2.2)*.03,cx=bx.ax+60*sc,cy=bx.ay+120*sc;
+ bx.font=`600 ${9*sc}px JetBrains Mono, monospace`;bx.textAlign='center';bx.textBaseline='middle';
+ for(const p of parts){
+  if(bmode==='hidden'){p.x=p.tx;p.y=p.ty;continue}
+  let tx,ty;
+  if(bmode==='out'){if(p.delay>0){p.delay--;tx=p.hx;ty=p.hy}else{tx=p.tx;ty=p.ty}}
+  else{tx=cx+(p.hx-cx)*breathe+Math.sin(tB*1.5+p.ph)*.6;ty=cy+(p.hy-cy)*breathe+Math.cos(tB*1.3+p.ph)*.6;
+   if(p.kind==='arm'&&Math.hypot(bmx-cx,bmy-cy)<220){const a=Math.sin(tB*12)*6*sc;ty+=p.lx>60?-Math.abs(a):0}}
+  const dx=p.x-bmx,dy=p.y-bmy,dd=Math.hypot(dx,dy);if(bmode==='home'&&dd<55){const f=(55-dd)/55*3.2;p.vx+=dx/dd*f;p.vy+=dy/dd*f}
+  p.vx+=(tx-p.x)*(bmode==='out'?.06:.09);p.vy+=(ty-p.y)*(bmode==='out'?.06:.09);p.vx*=.8;p.vy*=.8;p.x+=p.vx;p.y+=p.vy;
+  if(Math.random()<.004&&p.kind==='fill')p.ch=p.ch==='0'?'1':'0';
+  const col=p.kind==='ant'?'#9fb0a6':p.kind==='edge'?'#efffb0':p.kind==='foot'||p.kind==='arm'?'#b9d24a':'#d9f067';
+  bx.fillStyle=col;bx.globalAlpha=bmode==='out'?.9:(.75+.25*Math.sin(tB*3+p.ph));bx.fillText(bmode==='out'&&p.delay<=0?(Math.random()<.5?'0':'1'):p.ch,p.x,p.y)}
+ bx.globalAlpha=1;
+ if(bmode==='home'){
+  // antenna bulb + code-signal bwaves
+  const bxp=cx,byp=bx.ay+14*sc*breathe+(cy-(bx.ay+14*sc))*(1-breathe);
+  bx.fillStyle='#ff5a4e';bx.font=`${14*sc}px sans-serif`;bx.fillText('●',bxp,byp);
+  if(Math.random()<.02)bwaves.push(0);bwaves=bwaves.map(r=>r+.9).filter(r=>r<34);
+  bx.font=`${8*sc}px JetBrains Mono`;for(const r of bwaves){bx.globalAlpha=1-r/34;bx.fillStyle='#d9f067';for(let a=-2.4;a<=-.7;a+=.32)bx.fillText(r%8<4?'1':'0',bxp+Math.cos(a)*r*sc,byp+Math.sin(a)*r*sc)}bx.globalAlpha=1;
+  // eyes follow the mouse, blink
+  const ey=bx.ay+78*sc+(cy-(bx.ay+78*sc))*(1-breathe);
+  [-1,1].forEach(sd=>{const ex=cx+sd*15*sc,a=Math.atan2(bmy-ey,bmx-ex),dist=Math.min(3*sc,Math.hypot(bmx-ex,bmy-ey)/50);
+   bx.fillStyle='#07100f';bx.beginPath();bx.ellipse(ex,ey,8*sc,(blinkT>0?1.5:9)*sc,0,0,7);bx.fill();
+   if(blinkT<=0){bx.fillStyle='#fff';bx.beginPath();bx.arc(ex+Math.cos(a)*dist,ey+Math.sin(a)*dist,3.2*sc,0,7);bx.fill()}});
+  if(blinkT>0)blinkT--;
+  bx.fillStyle='#ff6f9c';bx.font=`600 ${10*sc}px JetBrains Mono`;bx.fillText('* ',cx-27*sc,ey+12*sc);bx.fillText(' *',cx+27*sc,ey+12*sc);
+  bx.fillStyle='#07100f';bx.font=`700 ${12*sc}px JetBrains Mono`;bx.fillText(Math.hypot(bmx-cx,bmy-cy)<200?'ᴗ':'‿',cx,ey+15*sc)}
+ if(!RM)requestAnimationFrame(bitsy)}
+bitsy();
 setTimeout(()=>{pc.classList.add('nudge');setTimeout(()=>pc.classList.remove('nudge'),3500)},6000);
-addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape')term.classList.remove('open')});
+addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape'&&term.classList.contains('open'))streamBack()});
 const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
 const cmds={
  help:()=>'commands:\n  whoami     who is hailah\n  projects   list projects\n  awards     trophies\n  skills     tech stack\n  sos        send a distress signal\n  scan       run the MRI model\n  email      copy my email\n  contact    get in touch\n  cv         download the CV\n  sudo hire hailah\n  clear',
