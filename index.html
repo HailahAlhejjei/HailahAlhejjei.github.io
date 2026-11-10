@@ -458,7 +458,7 @@ function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
   OC.width=Math.ceil(w*BD);OC.height=Math.ceil(h*BD);ox.setTransform(BD,0,0,BD,0,0);ox.drawImage(imO,0,0,w,h);
   // ribbons grow outward from the body
   ox.globalCompositeOperation='destination-in';const rr=Math.max(1,(40+e*e*520)*ko*2.2);const mg=ox.createRadialGradient(bxo,byo,rr*.55,bxo,byo,rr);mg.addColorStop(0,'#000');mg.addColorStop(1,'rgba(0,0,0,0)');ox.fillStyle=mg;ox.fillRect(0,0,w,h);ox.globalCompositeOperation='source-over';
-  bx.save();bx.globalAlpha=openA;bx.translate(ax-70*s*e,ay+8*s-10*s*e);bx.rotate(Math.sin(tT*1.6)*.035*e);bx.scale(br*(LANG==='ar'?-1:1),1/br);
+  bx.save();bx.globalAlpha=openA;bx.translate(ax-(LANG==='ar'?-70:70)*s*e,ay+8*s-10*s*e);bx.rotate(Math.sin(tT*1.6)*.035*e);bx.scale(br*(LANG==='ar'?-1:1),1/br);
   if(glow>.05){bx.shadowColor='rgba(255,220,140,1)';bx.shadowBlur=glow*34}
   bx.drawImage(OC,-bxo,-byo,w,h);bx.restore()}
  bx.save();bx.globalCompositeOperation='lighter';const cg=bx.createRadialGradient(ax-(LANG==='ar'?-70:70)*s*e,ay+14*s,0,ax-70*s*e,ay+14*s,60*s);cg.addColorStop(0,`rgba(255,236,180,${.35*L})`);cg.addColorStop(1,'rgba(255,220,150,0)');bx.fillStyle=cg;bx.beginPath();bx.arc(ax-70*s*e,ay+14*s,60*s,0,7);bx.fill();bx.restore();
