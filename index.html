@@ -461,26 +461,49 @@ function scene3d(canvas,camZ,camY,swing){
  return {root,setTick:f=>tick=f}}
 function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const g=cv.getContext('2d');return {t,redraw:a=>{g.clearRect(0,0,w,h);draw(g,a);t.needsUpdate=true}}}
 
-/* ---------- MS SmartScan: pink brain case with a flat front, camera on top and screen below (like the real prototype) ---------- */
-{const {root,setTick}=scene3d(document.getElementById('brain3d'),5.4,.35,1.1);
- const geo=new THREE.SphereGeometry(1,200,150),p=geo.attributes.position,v=new THREE.Vector3();
- const K=[[.9,.3,.2],[.2,.95,.25],[.35,.15,.92],[.6,-.7,.4],[-.5,.4,.75],[.7,.5,-.5]];
+/* ---------- MS SmartScan: an anatomical 3D brain with the device camera + screen on the front ---------- */
+{const {root,setTick}=scene3d(document.getElementById('brain3d'),5.2,.55,1.15);
+ // small 3D value noise
+ const P=new Uint8Array(512);for(let i=0;i<256;i++)P[i]=i;for(let i=255;i>0;i--){const j=(Math.sin(i*91.7)*43758.5453%1+1)%1*(i+1)|0;[P[i],P[j]]=[P[j],P[i]]}for(let i=0;i<256;i++)P[i+256]=P[i];
+ const fade=t=>t*t*t*(t*(t*6-15)+10),lerp=(a,b,t)=>a+(b-a)*t;
+ const grad=(h,x,y,z)=>{const u=h<8?x:y,v=h<4?y:(h===12||h===14?x:z);return((h&1)?-u:u)+((h&2)?-v:v)};
+ function noise(x,y,z){const X=Math.floor(x)&255,Y=Math.floor(y)&255,Z=Math.floor(z)&255;x-=Math.floor(x);y-=Math.floor(y);z-=Math.floor(z);const u=fade(x),v=fade(y),w=fade(z);
+  const A=P[X]+Y,AA=P[A]+Z,AB=P[A+1]+Z,B=P[X+1]+Y,BA=P[B]+Z,BB=P[B+1]+Z;
+  return lerp(lerp(lerp(grad(P[AA]&15,x,y,z),grad(P[BA]&15,x-1,y,z),u),lerp(grad(P[AB]&15,x,y-1,z),grad(P[BB]&15,x-1,y-1,z),u),v),
+   lerp(lerp(grad(P[AA+1]&15,x,y,z-1),grad(P[BA+1]&15,x-1,y,z-1),u),lerp(grad(P[AB+1]&15,x,y-1,z-1),grad(P[BB+1]&15,x-1,y-1,z-1),u),v),w)}
+ // ridged noise -> worm-like gyri separated by sulci
+ const gyri=(x,y,z)=>{const wx=noise(x*1.3,y*1.3,z*1.3)*.9;const n=noise(x*3.2+wx,y*3.2+wx,z*3.2-wx);const n2=noise(x*6.5,y*6.5,z*6.5);return (1-Math.abs(n))*.8+(1-Math.abs(n2))*.2};
+ const pink=new THREE.MeshStandardMaterial({color:0xff6f93,roughness:.58});
+ // cerebrum
+ const geo=new THREE.SphereGeometry(1,260,200),p=geo.attributes.position,v=new THREE.Vector3();
  for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=v.clone().normalize();
-  let f=0;K.forEach((k,j)=>{const q=n.x*k[0]+n.y*k[1]+n.z*k[2];const w=Math.sin(q*11+j*1.7+Math.sin((n.x*k[2]-n.z*k[0])*6+j)*1.6);f+=(1-Math.abs(w))*.03});
-  const groove=Math.exp(-Math.pow(n.x/.05,2))*(n.y>-.1&&n.z<.7?.14:0);
-  const m=Math.max(Math.abs(n.x),Math.abs(n.y),Math.abs(n.z));const box=n.clone().divideScalar(m).multiplyScalar(.82);
-  v.copy(n).lerp(box,.3).multiplyScalar(1+f-groove);
-  v.x*=1.1;v.y*=.97;if(v.z>.78)v.z=.78+(v.z-.78)*.15;
-  p.setXYZ(i,v.x,v.y,v.z)}
+  let x=n.x*.98,y=n.y*.78,z=n.z*1.18;              // long front-to-back, lower than wide
+  if(y<-.25)y=-.25+(y+.25)*.55;                     // flatter underside
+  const side=Math.sign(n.x)||1;
+  x+=side*.06*Math.exp(-Math.pow((n.y-.2)/.6,2));     // rounded hemispheres
+  // temporal lobes bulge down on each side, lateral sulcus above them
+  const temp=Math.exp(-Math.pow((n.z-.05)/.45,2))*Math.exp(-Math.pow((Math.abs(n.x)-.85)/.25,2));y-=temp*.16*(n.y<0?1:.2);
+  const sylv=Math.exp(-Math.pow((n.y+.08-n.z*.25)/.05,2))*Math.exp(-Math.pow((Math.abs(n.x)-.9)/.2,2))*(n.z>-.5?1:0);
+  // deep longitudinal fissure between hemispheres
+  const fis=Math.exp(-Math.pow(n.x/.045,2))*(n.y>-.35?1:0);
+  const g=gyri(n.x*2.2,n.y*2.2,n.z*2.2);
+  const s=1+.07*g-.06-fis*.22-sylv*.07;
+  v.set(x*s,y*s,z*s);p.setXYZ(i,v.x,v.y,v.z)}
  geo.computeVertexNormals();
- root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xff6b8b,roughness:.62})));
- const face=new THREE.Mesh(new RoundedBoxGeometry(1.42,1.28,.14,5,.1),new THREE.MeshStandardMaterial({color:0xff7393,roughness:.55}));face.position.set(0,-.02,.8);root.add(face);
- const bezel=new THREE.Mesh(new RoundedBoxGeometry(1.1,.74,.06,3,.02),new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:.4}));bezel.position.set(0,-.22,.88);root.add(bezel);
- const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.0,.65),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.22,.915);root.add(scr);
- const camBox=new THREE.Mesh(new RoundedBoxGeometry(.3,.22,.12,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.5}));camBox.position.set(0,.4,.9);root.add(camBox);
- const lens=new THREE.Mesh(new THREE.CircleGeometry(.06,32),new THREE.MeshStandardMaterial({color:0x2a3a5a,roughness:.05,metalness:.8}));lens.position.set(0,.4,.962);root.add(lens);
- const base=new THREE.Mesh(new THREE.CylinderGeometry(1.25,1.32,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-1.02;root.add(base);
- root.rotation.y=-.35;setTick(t=>{root.position.y=Math.sin(t*1.2)*.03})}
+ const brain=new THREE.Mesh(geo,pink);brain.position.y=.12;root.add(brain);
+ // cerebellum with fine folia
+ const cg=new THREE.SphereGeometry(1,120,80),cp=cg.attributes.position;
+ for(let i=0;i<cp.count;i++){v.fromBufferAttribute(cp,i);const f=1+.035*Math.sin(v.y*38+Math.sin(v.x*4)*1.5)-Math.exp(-Math.pow(v.x/.06,2))*.12;cp.setXYZ(i,v.x*.62*f,v.y*.3*f,v.z*.42*f)}
+ cg.computeVertexNormals();const cb=new THREE.Mesh(cg,new THREE.MeshStandardMaterial({color:0xf2607f,roughness:.6}));cb.position.set(0,-.36,-.72);root.add(cb);
+ // brainstem
+ const stem=new THREE.Mesh(new THREE.CylinderGeometry(.16,.12,.55,24),new THREE.MeshStandardMaterial({color:0xe95a78,roughness:.6}));stem.position.set(0,-.62,-.3);stem.rotation.x=.25;root.add(stem);
+ // the device: camera on the forehead, screen on the front
+ const bezel=new THREE.Mesh(new RoundedBoxGeometry(.98,.64,.1,3,.03),new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:.4}));bezel.position.set(0,-.08,1.12);bezel.rotation.x=-.12;root.add(bezel);
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry(.9,.56),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.08,1.176);scr.rotation.x=-.12;root.add(scr);
+ const camBox=new THREE.Mesh(new RoundedBoxGeometry(.26,.18,.14,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.5}));camBox.position.set(0,.42,1.0);camBox.rotation.x=-.35;root.add(camBox);
+ const lens=new THREE.Mesh(new THREE.CircleGeometry(.05,32),new THREE.MeshStandardMaterial({color:0x2a3a5a,roughness:.05,metalness:.8}));lens.position.set(0,.445,1.07);lens.rotation.x=-.35;root.add(lens);
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(1.3,1.38,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-.92;root.add(base);
+ root.rotation.y=-.45;setTick(t=>{root.position.y=Math.sin(t*1.2)*.03})}
 
 /* ---------- Awn: the real device fronts (from the photo) on 3D bodies ---------- */
 {const {root,setTick}=scene3d(document.getElementById('awn3d'),6.8,.5,.95);
