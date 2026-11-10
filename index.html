@@ -82,7 +82,7 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 /* beyond uv */
 .uv>img{filter:brightness(1.45) saturate(1.05) contrast(1.08)}
 .uv .dark{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(200px circle at var(--mx,50%) var(--my,45%),transparent 0,transparent 40%,#05080a8c 85%)}
-.uv .glow{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(160px circle at var(--mx,50%) var(--my,45%),#c9a8ff55,transparent 70%);mix-blend-mode:screen}
+.uv .glow{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(160px circle at var(--mx,50%) var(--my,45%),#c9a8ff55,transparent 70%)}
 .clue{position:absolute;z-index:4;font:600 12px 'JetBrains Mono';color:#d9c4ff;text-shadow:0 0 12px #b48cff;opacity:0;transition:opacity .25s;pointer-events:none}
 /* satathon */
 .sat>img{filter:brightness(.75)}
@@ -113,8 +113,8 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
-#goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%);mix-blend-mode:screen}
-#goldLight.on{opacity:.82}
+#goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
+#goldLight.on{opacity:.9}
 #bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
 #bitsy{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:69}
 .pc{position:fixed;right:20px;bottom:20px;width:140px;height:140px;border-radius:50%;z-index:70;background:none;border:0;cursor:pointer;padding:0}
