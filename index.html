@@ -487,19 +487,19 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
  geo.computeVertexNormals();
  root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:PINK,roughness:.62})));
  // front panel (slightly lighter pink, rounded rectangle)
- const panel=new THREE.Mesh(new RoundedBoxGeometry(W*1.78,H*1.84,.08,6,.12),new THREE.MeshStandardMaterial({color:PINK2,roughness:.5}));panel.position.set(0,0,FZ);root.add(panel);
+ const panel=new THREE.Mesh(new RoundedBoxGeometry(W*1.62,H*1.66,.06,6,.22),new THREE.MeshStandardMaterial({color:PINK,roughness:.55}));panel.position.set(0,0,FZ);root.add(panel);
  // camera block at the top centre
- const cam=new THREE.Mesh(new RoundedBoxGeometry(.32,.3,.1,3,.03),new THREE.MeshStandardMaterial({color:0x151515,roughness:.45}));cam.position.set(0,.6,FZ+.06);root.add(cam);
- const lens=new THREE.Mesh(new THREE.CircleGeometry(.075,32),new THREE.MeshStandardMaterial({color:0x101a2a,roughness:.05,metalness:.9}));lens.position.set(0,.6,FZ+.112);root.add(lens);
- const glint=new THREE.Mesh(new THREE.CircleGeometry(.022,16),new THREE.MeshBasicMaterial({color:0x8fb4ff}));glint.position.set(-.025,.625,FZ+.114);root.add(glint);
+ const cam=new THREE.Mesh(new RoundedBoxGeometry(.32,.3,.1,3,.03),new THREE.MeshStandardMaterial({color:0x151515,roughness:.45}));cam.position.set(0,.52,FZ+.05);root.add(cam);
+ const lens=new THREE.Mesh(new THREE.CircleGeometry(.075,32),new THREE.MeshStandardMaterial({color:0x101a2a,roughness:.05,metalness:.9}));lens.position.set(0,.52,FZ+.102);root.add(lens);
+ const glint=new THREE.Mesh(new THREE.CircleGeometry(.022,16),new THREE.MeshBasicMaterial({color:0x8fb4ff}));glint.position.set(-.025,.545,FZ+.104);root.add(glint);
  // big screen with black bezel
- const bez=new THREE.Mesh(new RoundedBoxGeometry(1.62,1.08,.06,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.35}));bez.position.set(0,-.2,FZ+.05);root.add(bez);
- const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.52,.96),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.2,FZ+.082);root.add(scr);
+ const bez=new THREE.Mesh(new RoundedBoxGeometry(1.42,.98,.06,3,.03),new THREE.MeshStandardMaterial({color:0x111111,roughness:.35}));bez.position.set(0,-.2,FZ+.05);root.add(bez);
+ const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.33,.88),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));scr.position.set(0,-.2,FZ+.082);root.add(scr);
  // feet
  for(const sx of [-1,1])for(const sz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),new THREE.MeshStandardMaterial({color:0xff6f80,roughness:.6}));f.position.set(sx*.62,-H*.97-.05,sz*.55);root.add(f)}
  root.position.y=.08;
  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.4,1.48,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-1.02;root.add(base);
- root.rotation.y=-.5;setTick(t=>{})}
+ root.rotation.y=-.6;setTick(t=>{})}
 
 /* ---------- Awn: both devices modelled from the real prototypes (front + back) ---------- */
 {const {root,setTick}=scene3d(document.getElementById('awn3d'),7.2,.6,Infinity);
