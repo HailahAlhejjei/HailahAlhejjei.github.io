@@ -113,6 +113,12 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
+.chips2{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px 0;border-top:1px solid var(--line)}
+.chips2 button{font:12px 'JetBrains Mono';background:#13201f;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer}
+.chips2 button:hover{border-color:#ffd27a;color:#ffd27a}
+.chips2 .hot{width:100%;text-align:left;font:600 13px 'JetBrains Mono';background:linear-gradient(90deg,#ffd27a,#ffe9a8,#ffd27a);background-size:200% 100%;color:#2a1c05;border:0;padding:9px 12px;animation:shim 2.4s linear infinite,nudge2 3s ease-in-out infinite;box-shadow:0 0 18px #ffd27a88}
+.chips2 .hot:hover{color:#000;filter:brightness(1.08)}
+@keyframes shim{to{background-position:-200% 0}}@keyframes nudge2{0%,90%,100%{transform:none}93%{transform:rotate(-1.2deg)}96%{transform:rotate(1.2deg)}}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
 #bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
@@ -276,7 +282,7 @@ canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 
 <div id="goldLight" aria-hidden="true"></div><canvas id="bitsy" aria-hidden="true"></canvas>
 <button class="pc" id="pc" aria-label="Talk to Thanaya"><span class="tip" id="tip">hi… I'm Thanaya ✦ come closer</span></button>
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>✦ ask Thanaya</span><span><button id="voiceBtn" aria-label="Toggle voice" style="margin-right:6px">🔊</button><button id="closeTerm" aria-label="Close">✕</button></span></div><div class="term-o" id="to"></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="ask me anything… (e.g. tell me about Awn)"></div></div>
+<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>✦ ask Thanaya</span><span><button id="voiceBtn" aria-label="Toggle voice" style="margin-right:6px">🔊</button><button id="closeTerm" aria-label="Close">✕</button></span></div><div class="term-o" id="to"></div><div class="chips2" id="chips2"><button class="hot" data-q="what is it really like working with hailah">🤫 psst… what's it REALLY like working with Hailah?</button><button data-q="tell me about awn">Awn 🛰</button><button data-q="what are her projects">her projects</button><button data-q="how can i work with her">reach her ✉</button></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="ask me anything… (e.g. tell me about Awn)"></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -362,12 +368,12 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Ask me anything about Hailah, her projects, or how to work with her!")}
+function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Psst… want to know a secret? Ask me what it's REALLY like working with Hailah!")}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
 /* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
 const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
 function bsz(){BC.width=innerWidth*BD;BC.height=innerHeight*BD}bsz();addEventListener('resize',bsz);
-const tips=["hi… I'm Thanaya ✦ come closer","every fold hides a little light","psst… click me, I'll light everything up","ask me anything about Hailah","I unfold for curious people"];let tipI=0;
+const tips=["hi… I'm Thanaya ✦ come closer","psst… I know what working with Hailah is like 🤫","every fold hides a little light","psst… click me, I'll light everything up","ask me anything about Hailah","I unfold for curious people"];let tipI=0;
 let u=0,glow=0,lit=false,hover=false,tT=0,mxT=-999,myT=-999,blinkT=0,sparks=[];
 const SC=()=>innerWidth<600?.72:1;
 const anchor=()=>[innerWidth-100*SC(),innerHeight-96*SC()];
@@ -456,7 +462,7 @@ const A={
  contact:()=>`The fastest way to reach her: ${ME}. Or say hi on ${LI}. She'd love to hear from you!`,
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
  working:()=>"Ooh, working with Hailah? It's like magic, I promise! She's SO hungry to learn. Give her a task that needs a brand new skill, and two days later, poof, she knows it! And even when a task doesn't need anything new, she still makes it better, because she's a little perfectionist, hehe. She doesn't like doing things that have already been done. She always finds a way to make it unique. I mean, look at ME! She made me! Have you ever seen anyone like me before? Anywhere? Nope! That's Hailah!",
- help:()=>"You can ask me anything! Try: who is Hailah, how is it working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
+ help:()=>"You can ask me anything! Try: what's it really like working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
  sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS on 868 megahertz! Watch Awn!"},
  scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
  sudo:()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return `Permission granted! Wonderful choice! Make it official at ${ME}`},
@@ -465,6 +471,7 @@ const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what ca
  [/how (can|do|could|would|should) (i|we|you)?\s*(work|collaborate|team up) with|how to work with|work with her\?*$|get in touch/,'contact'],[/how('s| is| was)? (it )?(like )?(working|to work) with|what('s| is) (it like|she like)|like working with|is she (good|nice|fun|easy)|كيف الشغل|الشغل مع/,'working'],[/hire|co-?op|intern|job|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
  [/beyond|case 017|\bvr\b|virtual|quest/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|win|won|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|language|tech|know|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
  [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|هيله/,'hailah']];
+document.getElementById('chips2').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ti.value=b.dataset.q;ti.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'}));if(b.classList.contains('hot'))b.classList.remove('hot')});
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=raw.toLowerCase();ti.value='';if(!v)return;
  out('<span style="color:#9fb0a6">you:</span> '+raw.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;'));
  const hit=RULES.find(([re])=>re.test(v));const k=hit?hit[1]:'fallback';
