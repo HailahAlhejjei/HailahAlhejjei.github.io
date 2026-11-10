@@ -528,9 +528,9 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  const [sgx,sgy]=R(410,430);[[0,0],[1,0],[2,0],[.5,1],[1.5,1],[0,2],[1,2],[2,2]].forEach(([a,b])=>hole(red,sgx-.05+a*.05,sgy+.05-b*.05,ZF,.012));
  // big SOS button (diameter ~70 px)
  const [bx,by]=R(637,487),br=40/643*RW;
- const ring=new THREE.Mesh(new THREE.CylinderGeometry(br*1.15,br*1.2,.03,48),M(RED2,.5));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,ZF+.01);red.add(ring);
- const btn=new THREE.Mesh(new THREE.CylinderGeometry(br,br*1.02,.09,48),M(0xe3141f,.3));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,ZF+.05);red.add(btn);
- const cap=new THREE.Mesh(new THREE.SphereGeometry(br,32,16,0,Math.PI*2,0,Math.PI*.18),M(0xe3141f,.3));cap.rotation.x=Math.PI/2;cap.position.set(bx,by,ZF+.06);red.add(cap);
+ const ring=new THREE.Mesh(new THREE.CylinderGeometry(br*1.12,br*1.15,.012,48),M(RED2,.5));ring.rotation.x=Math.PI/2;ring.position.set(bx,by,ZF+.004);red.add(ring);
+ const btn=new THREE.Mesh(new THREE.CylinderGeometry(br,br*1.02,.04,48),M(0xe3141f,.3));btn.rotation.x=Math.PI/2;btn.position.set(bx,by,ZF+.02);red.add(btn);
+ const cap=new THREE.Mesh(new THREE.SphereGeometry(br,32,16,0,Math.PI*2,0,Math.PI*.18),M(0xe3141f,.3));cap.rotation.x=Math.PI/2;cap.position.set(bx,by,ZF+.03);red.add(cap);
  // raised ribbed emblem with traced "عون" + braille
  const [e0x,e0y]=R(400,628),[e1x,e1y]=R(560,780),ew=e1x-e0x,eh=e0y-e1y,ecx=(e0x+e1x)/2,ecy=(e0y+e1y)/2;
  const emb=new THREE.Mesh(new RoundedBoxGeometry(ew,eh,.04,3,.02),M(RED2,.6));emb.position.set(ecx,ecy,ZF+.01);red.add(emb);
@@ -571,7 +571,7 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  const base=new THREE.Mesh(new THREE.CylinderGeometry(2.7,2.8,.08,64),M(0xf2f2ee,.85));base.position.y=-.73;root.add(base);
  let st='ready';
  window.awnState=s=>{st=s;oled.redraw(s);lcd.redraw(s==='sos'?'ready':s)};
- let k=0;setTick(()=>{k++;const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.03:.05)})}
+ let k=0;setTick(()=>{k++;const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.008:.02)})}
 </script>
 </body>
 </html>
