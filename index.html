@@ -442,11 +442,20 @@ voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇
 function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
-function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;let t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);const T0=t;window._spT=setTimeout(()=>{let t=T0;t=t.replace(/Thanaya/g,'Thanaa-yaah');const kid=VOICE&&/Ana/i.test(VOICE.name);
- (t.match(/[^.!?]+[.!?]*/g)||[t]).forEach(p=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);m.lang='en-US';if(VOICE)m.voice=VOICE;
-  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)});speechSynthesis.resume()},120)}
-function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
+function speak(text,onWord,onEnd){if(!voiceOn||!('speechSynthesis' in window)){onEnd&&onEnd(false);return}
+ speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
+ window._spT=setTimeout(()=>{const t=text.replace(/Thanaya/g,'Thanaa-yaah');const m=new SpeechSynthesisUtterance(t);m.lang='en-US';if(VOICE)m.voice=VOICE;
+  const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=kid?1.15:1.4;m.rate=1.0;
+  let words=0,got=false;m.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;got=true;words++;onWord&&onWord(words,t.slice(ev.charIndex).split(/\s/)[0])};
+  m.onstart=()=>{setTimeout(()=>{if(!got)onEnd&&onEnd(false)},700)};m.onend=()=>onEnd&&onEnd(true);m.onerror=()=>onEnd&&onEnd(false);
+  speechSynthesis.speak(m);speechSynthesis.resume()},60)}
+function say(html){const line=document.createElement('div');line.innerHTML='<span class="p">✦ Thanaya:</span> <span class="w"></span>';to.appendChild(line);to.scrollTop=to.scrollHeight;
+ const span=line.querySelector('.w'),tmp=document.createElement('div');tmp.innerHTML=html;const plain=tmp.textContent;const toks=plain.split(/(\s+)/);let shown=0,done=false,typer=null;
+ const show=n=>{if(done)return;shown=Math.max(shown,n);const w=toks.filter(x=>!/^\s+$/.test(x));let c=0,out='';for(const x of toks){if(!/^\s+$/.test(x)){if(c>=shown)break;c++}out+=x}span.textContent=out;to.scrollTop=to.scrollHeight;if(shown>=w.length)finish()};
+ const finish=()=>{if(done)return;done=true;clearInterval(typer);span.innerHTML=html;to.scrollTop=to.scrollHeight};
+ const startTyper=()=>{if(typer||done)return;typer=setInterval(()=>show(shown+1),260)};
+ speak(plain.replace(/[✦→•📡🥇🥉🏁📜✓🤫]/g,' '),n=>{clearInterval(typer);typer=null;show(n)},ok=>{if(ok)finish();else startTyper()});
+ if(!voiceOn||!('speechSynthesis' in window))startTyper()}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
  hi:()=>"Oh, hello hello! You found me hiding in my folds! I'm Thanaya, and I'm SO happy you're here. Ask me about Hailah, her projects, or anything you're curious about!",
