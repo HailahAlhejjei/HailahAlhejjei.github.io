@@ -403,8 +403,8 @@ function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
  bx.save();bx.shadowColor='#ffcf6b';bx.shadowBlur=20+glow*25;const ig=bx.createRadialGradient(0,10*s,4,0,10*s,70*s);ig.addColorStop(0,`rgba(255,236,170,${.5+glow*.5})`);ig.addColorStop(1,'rgba(255,200,110,0)');bx.fillStyle=ig;bx.beginPath();bx.ellipse(0,8*s,68*s,48*s,0,0,7);bx.fill();bx.restore();
  bx.save();if(glow>.05){bx.shadowColor='rgba(255,210,120,.9)';bx.shadowBlur=glow*22}piece('base',k);bx.restore();
  // left / right hands
- const lp=IMG.left;bx.save();bx.translate((lp.x+186-CX)*k-e*30*s,(lp.y+40-CY)*k-e*34*s);bx.rotate(-e*.5-fl*.07);pieceAt('left',k,1,.5);bx.restore();
- const rp=IMG.right;bx.save();bx.translate((rp.x-CX)*k+e*30*s,(rp.y+40-CY)*k-e*38*s);bx.rotate(e*.5+fl*.07);pieceAt('right',k,0,.5);bx.restore();
+ const lp=IMG.left;bx.save();bx.translate((lp.x+186-CX)*k-e*30*s,(lp.y+40-CY)*k-e*34*s);bx.rotate(-e*.5-fl*.07);bx.scale(1+e*1.3,1-e*.15);pieceAt('left',k,1,.5);bx.restore();
+ const rp=IMG.right;bx.save();bx.translate((rp.x-CX)*k+e*30*s,(rp.y+40-CY)*k-e*38*s);bx.rotate(e*.5+fl*.07);bx.scale(1+e*1.3,1-e*.15);pieceAt('right',k,0,.5);bx.restore();
  bx.restore();
  pc.style.right=(innerWidth-ax-70*s)+'px';pc.style.bottom=(innerHeight-ay-70*s)+'px';
  if(!RM)requestAnimationFrame(thanaya)}
