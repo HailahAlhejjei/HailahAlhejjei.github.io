@@ -444,7 +444,7 @@ function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(text,onWord,onEnd){if(!voiceOn||!('speechSynthesis' in window)){onEnd&&onEnd(false);return}
  speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
- window._spT=setTimeout(()=>{const t=text.replace(/Thanaya/g,'Thanaa-yaah');const m=new SpeechSynthesisUtterance(t);m.lang='en-US';if(VOICE)m.voice=VOICE;
+ window._spT=setTimeout(()=>{const t=text.replace(/Thanaya/g,'Tha-naa-ya');const m=new SpeechSynthesisUtterance(t);m.lang='en-US';if(VOICE)m.voice=VOICE;
   const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=kid?1.15:1.4;m.rate=1.0;
   let words=0,got=false;m.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;got=true;words++;onWord&&onWord(words,t.slice(ev.charIndex).split(/\s/)[0])};
   m.onstart=()=>{setTimeout(()=>{if(!got)onEnd&&onEnd(false)},700)};m.onend=()=>onEnd&&onEnd(true);m.onerror=()=>onEnd&&onEnd(false);
@@ -461,8 +461,8 @@ const A={
  hi:()=>"Oh, hello hello! You found me hiding in my folds! I'm Thanaya, and I'm SO happy you're here. Ask me about Hailah, her projects, or anything you're curious about!",
  me:()=>"I'm Thanaya! I'm a little girl made of soft folds. Every fold hides a tiny light, and I open up for curious people like you. I take care of Hailah's work, and I LOVE talking about it!",
  hailah:()=>"Hailah! Oh, she's a builder of useful things. A developer from Riyadh who works across web, UX, real hardware and VR. She turns real problems into things you can hold, click, or step inside. And yes, she's open to co-op right now!",
- projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a rescue device that calls for help with no network at all. Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
- awn:()=>"Awn means help, and that's exactly what it does! Two little devices talk over LoRa radio with no tower and no internet. Someone lost in the desert presses SOS, the rescue team sees their location and replies, so the person knows help is coming. And guess what? It got into the SAIF 2026 finals!",
+ projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a rescue device that calls for help with no network, not even cell towers. It talks through satellites! Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
+ awn:()=>"Awn means help, and that's exactly what it does! It doesn't need a network, not even cell towers, because it talks through satellites! Someone lost in the desert presses SOS, the rescue team sees their location and replies, so the person knows help is coming. And guess what? It got into the SAIF 2026 finals!",
  ss:()=>"MS SmartScan is a brain-shaped device, literally! It looks at an MRI and highlights suspected lesions in seconds, completely offline. Hailah built the scanner and patient registry experiences and the secure doctor PIN. Their team won first place at the Riyadah AI Hackathon!",
  vr:()=>"Beyond, Case 017! Put on a Meta Quest, walk into a rainy crime scene, and interrogate suspects with your own voice. Hailah built the scene, the storm, the lightning and the phone call. It's spooky and wonderful!",
  sat:()=>"Satathon was magical! Her team, Digital Apollo, tracked satellites passing overhead and caught their real signals, decoding images and messages from the sky. They took third place!",
