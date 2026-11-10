@@ -436,9 +436,9 @@ function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;let t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thah-nah-yah').replace(/Ta-daa!?/gi,'Ta. Daaaaaaah!');const kid=VOICE&&/Ana/i.test(VOICE.name);
+ speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thanna-yah');const kid=VOICE&&/Ana/i.test(VOICE.name);
  (t.match(/[^.!?]+[.!?]*/g)||[t]).forEach(p=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);m.lang='en-US';if(VOICE)m.voice=VOICE;
-  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=/daaa/i.test(p)?.45:(/^ta\.?$/i.test(p)?.9:.95+(ex?.05:0));if(/daaa/i.test(p))m.pitch+=.15;speechSynthesis.speak(m)})}
+  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)})}
 function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
@@ -462,7 +462,7 @@ const A={
  sudo:()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
 const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam|السلام|مرحبا|هلا)/,'hi'],[/who are you|your name|thanaya|ثنايا|انت مين|من انت/,'me'],
- [/working with|work with her|work with hailah|like to work|is she (good|like)|what is she like|team ?mate|كيف الشغل|الشغل مع/,'working'],[/hire|co-?op|intern|job|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
+ [/how (can|do|could|would|should) (i|we|you)?\s*(work|collaborate|team up) with|how to work with|work with her\?*$|get in touch/,'contact'],[/how('s| is| was)? (it )?(like )?(working|to work) with|what('s| is) (it like|she like)|like working with|is she (good|nice|fun|easy)|كيف الشغل|الشغل مع/,'working'],[/hire|co-?op|intern|job|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
  [/beyond|case 017|\bvr\b|virtual|quest/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|win|won|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|language|tech|know|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
  [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|هيله/,'hailah']];
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=raw.toLowerCase();ti.value='';if(!v)return;
