@@ -6,7 +6,7 @@
 <meta name="description" content="Hailah Alhejjei — developer building web, UX, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026, SAIF 2026 finalist.">
 <meta name="theme-color" content="#07100f"><meta property="og:title" content="Hailah Alhejjei | Portfolio"><meta property="og:description" content="Web, UX, embedded and immersive VR/XR projects by Hailah Alhejjei."><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Reem+Kufi+Fun:wght@500&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
 :root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
@@ -120,7 +120,12 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .chips2 .hot:hover{color:#000;filter:brightness(1.08)}
 @keyframes shim{to{background-position:-200% 0}}@keyframes nudge2{0%,90%,100%{transform:none}93%{transform:rotate(-1.2deg)}96%{transform:rotate(1.2deg)}}
 .langbtn{background:none;border:0;color:inherit;font:12px 'JetBrains Mono';opacity:.75;cursor:pointer;padding:0 0 0 22px}.langbtn:hover{opacity:1;color:var(--lime)}
-html[lang=ar] body p,html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4,html[lang=ar] body li{unicode-bidi:plaintext;text-align:left}
+html[lang=ar] body,html[lang=ar] body *:not(svg):not(svg *){font-family:'IBM Plex Sans Arabic',sans-serif!important;letter-spacing:0!important}
+html[lang=ar] .hero h1,html[lang=ar] h2.big,html[lang=ar] .copy h3,html[lang=ar] .contact h2,html[lang=ar] .step h4,html[lang=ar] .skill h3,html[lang=ar] .marq span,html[lang=ar] .cta{font-family:'Noto Naskh Arabic',serif!important;line-height:1.25!important}
+html[lang=ar] .hero h1{font-size:clamp(56px,10vw,160px)!important}
+html[lang=ar] .note,html[lang=ar] .pc .tip,html[lang=ar] .guide{font-family:'Reem Kufi Fun','IBM Plex Sans Arabic',sans-serif!important}
+html[lang=ar] .marq div{animation-direction:reverse}
+html[lang=ar] .proj.rev .stage{order:0}html[lang=ar] .proj:not(.rev) .stage{order:2}
 html[lang=ar] .term-o,html[lang=ar] #ti{direction:rtl;text-align:right}
 footer{padding-right:calc(clamp(18px,5vw,64px) + 190px)!important;padding-bottom:40px!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
@@ -444,14 +449,14 @@ const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block
 /* ---- Thanaya speaks: enthusiastic, creative answers (typed + spoken aloud) ---- */
 let voiceOn=true;const voiceBtn=document.getElementById('voiceBtn');
 voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇';if(!voiceOn)speechSynthesis.cancel()};
-function pickVoice(){const all=speechSynthesis.getVoices();if(typeof LANG!=='undefined'&&LANG==='ar'){const V=all.filter(v=>/^ar/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));return by(/Zariyah|Salma|Fatima|Amany|Hoda|Laila|Mariam|Noura/i)||by(/Natural/i)||by(/Google/i)||V[0]||null}
+function pickVoice(){const all=speechSynthesis.getVoices();if(typeof LANG!=='undefined'&&LANG==='ar'){const V=all.filter(v=>/^ar/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));return by(/Zariyah.*Natural|Salma.*Natural|Fatima.*Natural|Amany.*Natural|Mouna.*Natural|Sana.*Natural/i)||by(/Natural/i)||by(/Google/i)||by(/Zariyah|Hoda|Laila|Mariam|Noura/i)||V[0]||null}
  const V=all.filter(v=>/^en[-_]US/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(text,onWord,onEnd){if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
  speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
  window._spT=setTimeout(()=>{const t=LANG==='ar'?text:text.replace(/Thanaya/g,'Tha-naa-ya');const m=new SpeechSynthesisUtterance(t);m.lang=LANG==='ar'?'ar-SA':'en-US';if(VOICE)m.voice=VOICE;
-  const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=kid?1.15:1.4;m.rate=1.0;
+  const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=LANG==='ar'?1.9:(kid?1.15:1.4);m.rate=LANG==='ar'?1.08:1.0;
   let words=0,got=false;m.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;got=true;words++;onWord&&onWord(words,t.slice(ev.charIndex).split(/\s/)[0])};
   m.onstart=()=>{started=true;setTimeout(()=>{if(!got)onEnd&&onEnd(false)},700)};m.onend=()=>onEnd&&onEnd(true);m.onerror=()=>onEnd&&onEnd(false);
   speechSynthesis.speak(m);speechSynthesis.resume()},60)}
@@ -539,10 +544,10 @@ const AR={
 "2026 · AWARD":"2026 · جائزة","🥉 3rd Place — Satathon 2026":"🥉 المركز الثالث — ساتاثون 2026","Digital Apollo · satellite & HF radio communications":"أبولو الرقمي · اتصالات الأقمار والراديو","EDUCATION":"التعليم","Programming & Web Development":"البرمجة وتطوير الويب","Technical and Vocational Training Corporation · Riyadh":"المؤسسة العامة للتدريب التقني والمهني · الرياض",
 "/ LET’S CONNECT":"/ لنتواصل","Have a role or project":"عندك فرصة أو مشروع","in mind?":"في بالك؟","Let’s talk.":"خلنا نتكلم.","← that's me!":"← هذي أنا!","copied ✓":"تم النسخ ✓","in  LINKEDIN ↗":"in  لينكدإن ↗","let's connect ✦":"لنتواصل ✦","GITHUB ↗":"جيت هب ↗","DOWNLOAD CV ↓":"حمّل السيرة الذاتية ↓","⧉ COPY EMAIL":"⧉ انسخ الإيميل",
 "Hailah Alhejjei":"هيلة الحجي","built by hand · no framework":"مبني يدوياً · بدون أطر جاهزة","BACK TO TOP ↑":"للأعلى ↑",
-"hi… I'm Thanaya ✦ come closer":"هلا… أنا ثنايا ✦ قرّب","✦ ask Thanaya":"✦ اسأل ثنايا","🤫 psst… what's it REALLY like working with Hailah?":"🤫 بِسّت… كيف الشغل مع هيلة فعلاً؟","Awn 🛰":"عون 🛰","her projects":"مشاريعها","reach her ✉":"تواصل معها ✉",
+"hi… I'm Thanaya ✦ come closer":"هلا… أنا ثنايا ✦ قرّب","✦ ask Thanaya":"✦ اسأل ثنايا","🤫 psst… what's it REALLY like working with Hailah?":"🤫 بِسّت… وش يعني تشتغل مع هيلة؟","Awn 🛰":"عون 🛰","her projects":"مشاريعها","reach her ✉":"تواصل معها ✉",
 "Awards":"الجوائز","Talk to Thanaya":"كلّم ثنايا","Terminal":"الطرفية","Toggle voice":"تشغيل/كتم الصوت","Close":"إغلاق","Terminal input":"اكتب سؤالك",
 "ask me anything… (e.g. tell me about Awn)":"اسألني أي شي… (مثلاً: كلميني عن عون)",
-"what is it really like working with hailah":"كيف الشغل مع هيلة فعلاً","tell me about awn":"كلميني عن عون","what are her projects":"وش مشاريعها","how can i work with her":"كيف أتواصل معها",
+"what is it really like working with hailah":"وش يعني تشتغل مع هيلة","tell me about awn":"علّميني عن عون","what are her projects":"وش مشاريعها","how can i work with her":"كيف أتواصل معها",
 "web & UX developer":"مطورة ويب وتجربة مستخدم","hardware tinkerer":"صانعة أجهزة","VR/XR builder":"بانية عوالم افتراضية","hackathon winner":"فائزة بالهاكاثونات",
 "▲ SOS SENT · attempt 1/3":"▲ أُرسل SOS · المحاولة 1/3","  blue LED blinking · GPS + BAT 96%":"  الضوء الأزرق يومض · الموقع + البطارية 96%","▼ AOUN RESCUE · SOS received":"▼ جهاز الإنقاذ · وصل النداء","  signal −6 dBm · SNR 11.3":"  الإشارة −6 dBm · SNR 11.3","▲ CONFIRMED · help is on the way":"▲ تم التأكيد · النجدة في الطريق","  green LED + vibration on SOS device":"  ضوء أخضر واهتزاز في جهاز الاستغاثة",
 "LOS · waiting for next pass…":"انقطع · بانتظار المرور القادم…","📡 AOS · signal received → ":"📡 بدأ المرور · وصلت الإشارة ← ",
@@ -550,39 +555,39 @@ const AR={
 "3D model of the MS SmartScan brain-shaped device, drag to rotate":"مجسم ثلاثي الأبعاد لجهاز MS SmartScan بشكل الدماغ، اسحب للتدوير","3D model of the two Awn devices, drag to rotate":"مجسم ثلاثي الأبعاد لجهازي عون، اسحب للتدوير","Real photo of the Awn prototype devices":"صورة حقيقية لجهازي عون","CASE 017 VR crime scene":"مسرح الجريمة في القضية 017","Digital Apollo satellite tracking station":"محطة تتبع الأقمار لفريق أبولو الرقمي"
 };
 
-const TIPS_AR=["هلا… أنا ثنايا ✦ قرّب","بِسّت… أعرف كيف الشغل مع هيلة 🤫","كل طيّة فيني تخبّي ضوء صغير","اضغطني وأنوّر لك كل شي!","اسألني أي شي عن هيلة","أنفتح بس للناس الفضوليين"];
-const GREET_AR=["تا-داا! نوّرتني! أنا ثنايا! بنت صغيرة مصنوعة من طيّات، وكل طيّة تخبّي ضوء. بِسّت… تبي تعرف سر؟ اسألني كيف الشغل مع هيلة فعلاً!","رجعت! ياااي! وش تبي تعرف هالمرة؟","هلا مرة ثانية! طيّاتي كانت تنتظرك! اسألني أي شي!","أووه، رجعت تشوفني! جرّب السؤال الذهبي، هو المفضل عندي!"];
+const TIPS_AR=["هلا… أنا ثنايا ✦ قرّب شوي","بِسّت… أعرف وش يعني تشتغل مع هيلة 🤫","كل طيّة فيني مخبّية نور صغير","اضغطني وأنوّر لك الدنيا!","اسألني أي شي عن هيلة","ما أنفتح إلا للفضوليين"];
+const GREET_AR=["تا-داا! نوّرتني! أنا ثنايا! بنت صغيرة كلي طيّات، وكل طيّة مخبّية نور. بِسّت… تبي أقولك سر؟ اسألني وش يعني تشتغل مع هيلة!","رجعت! ياااي! وش تبي تعرف هالمرة؟","هلا والله مرة ثانية! طيّاتي كانت تنتظرك! اسألني اللي تبيه!","أووه، رجعت عشاني؟ جرّب السؤال الذهبي، هو أحلى سؤال عندي!"];
 const MEA='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LIA='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A_AR={
- hi:"هلا هلا! لقيتني متخبية بين طيّاتي! أنا ثنايا، وفرحانة مرة إنك هنا. اسألني عن هيلة أو مشاريعها أو أي شي يخطر في بالك!",
- me:q=>/عمر|كم عمرك/.test(q)?"أنا جديدة مرة! هيلة صنعتني في نوفمبر 2026، يعني عمري كم يوم بس، هههه. بس أعرف كل شي عن شغلها!"
-  :/وين|ساكن/.test(q)?"أسكن هنا، في زاوية موقع هيلة! أتلفلف بطيّاتي إذا كان المكان هادي، وأنفتح أول ما يقرب أحد فضولي. مثلك!"
-  :/روبوت|انسان|إنسان|حقيقي|ذكاء/.test(q)?"لا أنا روبوت ولا إنسانة. أنا ثنايا، كائن صغير من طيّات وضوء ما شفت مثله بأي مكان. هيلة صنعتني من الصفر!"
-  :"اسمي ثنايا! يعني الطيّات، لأني بنت صغيرة مصنوعة من طيّات ناعمة، وكل طيّة تخبّي ضوء صغير. أنفتح للناس الفضوليين مثلك. هيلة صنعتني عشان أعتني بشغلها، وأحب أتكلم عنه مرة!",
- hailah:"هيلة! أوه، هي تصنع أشياء مفيدة. مطوّرة من الرياض تشتغل في الويب وتجربة المستخدم والأجهزة الحقيقية والواقع الافتراضي. تحوّل المشاكل الحقيقية لأشياء تقدر تمسكها أو تضغطها أو تدخل فيها. وإيه، هي متاحة للتدريب التعاوني الحين!",
- projects:"استعد، هذي المفضلة عندي! واحد: إم إس سمارت سكان، مساعد ذكي يشتغل بدون إنترنت ويكشف آفات التصلب المتعدد في رنين الدماغ. اثنين: عون، جهاز إنقاذ يطلب النجدة بدون شبكة ولا حتى أبراج، يتواصل عن طريق الأقمار الصناعية! ثلاثة: بيوند، القضية صفر سبعة عشر، قصة تحقيق بالواقع الافتراضي. أربعة: ساتاثون، التقاط إشارات أقمار حقيقية!",
- awn:"عون يعني مساعدة، وهذا بالضبط اللي يسويه! ما يحتاج شبكة ولا حتى أبراج، لأنه يتواصل عن طريق الأقمار الصناعية! اللي تايه في الصحراء يضغط SOS، وفريق الإنقاذ يشوف موقعه ويرد عليه، فيعرف إن النجدة جاية. وتدري؟ فيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل، وتأهل لنهائيات سيف 2026!",
- ss:"إم إس سمارت سكان جهاز على شكل مخ، حرفياً! يشوف صورة الرنين ويحدد الآفات المشتبه فيها خلال ثواني، وبدون إنترنت أبد. هيلة بنت تجربة الماسح وسجل المرضى ورمز الطبيب الآمن. وفريقهم أخذ المركز الأول في هاكاثون ريادة للذكاء الاصطناعي! وفيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل!",
- vr:"بيوند، القضية صفر سبعة عشر! تلبس نظارة ميتا كويست، وتدخل مسرح جريمة ممطر، وتستجوب المشتبهين بصوتك. هيلة بنت المكان والعاصفة والبرق والمكالمة. مخيفة وحلوة مرة!",
- sat:"ساتاثون كان سحري! فريقها أبولو الرقمي تتبع الأقمار وهي تمر فوقهم والتقط إشاراتها الحقيقية، وفك صور ورسايل من السما. وأخذوا المركز الثالث!",
- awards:"الأشياء اللامعة، المفضلة عندي! المركز الأول في هاكاثون ريادة للذكاء الاصطناعي، والتأهل لنهائيات سيف 2026 مع عون، والمركز الثالث في ساتاثون، وبراءتين اختراع قيد التسجيل!",
+ hi:"هلا والله هلا! لقيتني متخبية بين طيّاتي! أنا ثنايا، ومرّة مستانسة إنك جيت. اسألني عن هيلة، عن مشاريعها، أو أي شي في بالك!",
+ me:q=>/عمر|كم عمرك/.test(q)?"أنا جديدة مرة! هيلة سوّتني في نوفمبر ٢٠٢٦، يعني عمري كم يوم بس، هههه. بس والله أعرف كل شي عن شغلها!"
+  :/وين|ساكن|تسكن/.test(q)?"ساكنة هنا، بزاوية موقع هيلة! أتلفلف بطيّاتي إذا الدنيا هادية، وأنفتح أول ما يقرّب أحد فضولي. زيّك!"
+  :/روبوت|انسان|إنسان|حقيقي|ذكاء/.test(q)?"لا أنا روبوت ولا إنسانة. أنا ثنايا، كائن صغير من طيّات ونور، ما شفت زيي بأي مكان. هيلة سوّتني من الصفر!"
+  :"اسمي ثنايا! يعني الطيّات، لأني بنت صغيرة كلي طيّات ناعمة، وكل طيّة مخبّية نور صغير. أنفتح بس للفضوليين اللي زيّك. هيلة سوّتني عشان أهتم بشغلها، وأموت على الكلام عنه!",
+ hailah:"هيلة! يا حبي لها، هي تسوي أشياء تفيد الناس. مطوّرة من الرياض، تشتغل ويب وتجربة مستخدم وأجهزة حقيقية وواقع افتراضي. تاخذ مشكلة حقيقية وتحوّلها لشي تمسكه بيدك أو تضغطه أو تدخل فيه. وإيه، هي تدوّر تدريب تعاوني الحين!",
+ projects:"استعد، هذولي حبايبي! واحد: إم إس سمارت سكان، جهاز ذكي يشتغل بدون نت ويكشف آفات التصلب المتعدد في رنين المخ. اثنين: عون، جهاز إنقاذ يطلب الفزعة بدون شبكة ولا حتى أبراج، يتواصل عن طريق الأقمار الصناعية! ثلاثة: بيوند، القضية صفر سبعطعش، قصة تحقيق بالواقع الافتراضي. أربعة: ساتاثون، صادوا إشارات أقمار حقيقية!",
+ awn:"عون يعني فزعة، وهذا بالضبط اللي يسويه! ما يبي شبكة ولا حتى أبراج، لأنه يتكلم عن طريق الأقمار الصناعية! اللي ضايع بالبر يضغط SOS، وفريق الإنقاذ يشوف موقعه ويرد عليه، فيعرف إن الفزعة جاية. وتدري وش بعد؟ فيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل، وتأهل لنهائيات سيف ٢٠٢٦!",
+ ss:"إم إس سمارت سكان جهاز شكله مخ، حرفياً! يشوف صورة الرنين ويعلّم على الآفات المشكوك فيها بثواني، وبدون نت أبد. هيلة سوّت شاشة الفحص وسجل المرضى ورمز الدكتور الآمن. وفريقهم أخذ المركز الأول بهاكاثون ريادة للذكاء الاصطناعي! وفيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل!",
+ vr:"بيوند، القضية صفر سبعطعش! تلبس نظارة ميتا كويست، وتدخل مسرح جريمة والدنيا تمطر، وتحقق مع المشتبهين بصوتك. هيلة سوّت المكان والعاصفة والبرق والمكالمة. يخوّف بس يجنن!",
+ sat:"ساتاثون كان شي خيالي! فريقها أبولو الرقمي تتبّعوا الأقمار وهي تمر فوقهم وصادوا إشاراتها الحقيقية، وفكّوا صور ورسايل جاية من السما. وأخذوا المركز الثالث!",
+ awards:"الأشياء اللي تلمع، أحبها! المركز الأول بهاكاثون ريادة للذكاء الاصطناعي، والتأهل لنهائيات سيف ٢٠٢٦ مع عون، والمركز الثالث بساتاثون، وبراءتين اختراع قيد التسجيل!",
  skills:"تتكلم لغات كثيرة، بس لغات كمبيوتر! HTML وCSS وجافاسكربت وPHP وبايثون وSQL للويب، وESP32 وGPS وراسبيري باي للأجهزة، ويونتي وسي شارب وميتا كويست للواقع الافتراضي.",
- hire:()=>`إيه إيه إيه! هيلة تدور تدريب تعاوني يبدأ يناير 2027. راسلها على ${MEA} أو تواصل معها على ${LIA}. وقلها إن ثنايا اللي أرسلتك!`,
- contact:()=>`أسرع طريقة توصل لها: ${MEA}. أو سلّم عليها في ${LIA}. بتفرح مرة!`,
- cv:"هذي هي، طالعة من طيّاتي! سيرتها الذاتية تتحمّل الحين.",
- working:"أوووه، الشغل مع هيلة؟ مثل السحر، أوعدك! تحب تتعلم مرة مرة! أعطها مهمة تحتاج مهارة جديدة، وبعد يومين، بوف، صارت تعرفها! وحتى لو المهمة ما تحتاج شي جديد، بتسويها أحسن، لأنها شوي بيرفكشنست، هههه. ما تحب تسوي شي انسوى قبل، دايماً تلقى طريقة تخليه مميز. يعني شوفني أنا! هي اللي صنعتني! قد شفت أحد مثلي قبل؟ بأي مكان؟ لا! هذي هيلة!",
- help:"اسألني أي شي! جرّب: كيف الشغل مع هيلة فعلاً، وش مشاريعها، كلميني عن عون، وش مهاراتها، وش جوائزها، كيف أوظفها. أو اكتب sos أو scan أو sudo hire hailah عشان مفاجأة صغيرة!",
- sos:"أرسل نداء استغاثة عن طريق الأقمار! شوف عون!",
- scan:"يلا نشغّل الفحص! شوف عرض إم إس سمارت سكان الحقيقي!",
- sudo:()=>`تم منح الصلاحية! اختيار رائع! خلها رسمية على ${MEA}`,
- fallback:"هممم، هذا السؤال دغدغ طيّاتي! مو متأكدة، بس أعرف كل شي عن مشاريع هيلة ومهاراتها وجوائزها. جرّب تسألني عن عون أو سمارت سكان أو كيف توظفها!"};
-const RULES_AR=[[/كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة/,'hire'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا/,'me'],
- [/مشاريع|مشروع|وش سوت|اعمال|أعمال/,'projects'],[/عون|انقاذ|إنقاذ|استغاث/,'awn'],[/سمارت|رنين|مخ|دماغ|تصلب/,'ss'],[/بيوند|واقع افتراضي|في ار|القضية/,'vr'],[/ساتاثون|قمر|اقمار|أقمار/,'sat'],[/جائز|جوائز|فاز|مركز|براء/,'awards'],[/مهار|لغات|تقنيات|تعرف/,'skills'],[/سيرة|سي في/,'cv'],[/هيلة|هيله|مين هي|من هي/,'hailah'],[/^(هلا|مرحبا|السلام|اهلا|أهلا|هاي)/,'hi'],[/مساعدة|وش اسأل|ساعدني/,'help']];
+ hire:()=>`إيه والله إيه! هيلة تدوّر تدريب تعاوني يبدأ يناير ٢٠٢٧. راسلها على ${MEA} أو كلّمها في ${LIA}. وقلها ثنايا اللي جابتني!`,
+ contact:()=>`أسرع طريقة توصل لها: ${MEA}. أو سلّم عليها في ${LIA}. بتنبسط مرة!`,
+ cv:"خذ، طالعة من طيّاتي! سيرتها الذاتية تتحمّل الحين.",
+ working:"أوووه، الشغل مع هيلة؟ والله إنه سحر، أوعدك! تموت على التعلّم! عطها مهمة تبي مهارة جديدة، وبعد يومين، بوف، صارت تعرفها! وحتى لو المهمة ما تبي شي جديد، بتطلعها أحسن، لأنها شوي بيرفكشنست، هههه. ما تحب تسوي شي انسوى قبل، دايم تلقى طريقة تخليه غير. يعني شوفني أنا! هي اللي سوّتني! قد شفت أحد زيي قبل؟ بأي مكان؟ لا والله! هذي هيلة!",
+ help:"اسألني أي شي! جرّب: وش يعني تشتغل مع هيلة، وش مشاريعها، علّميني عن عون، وش مهاراتها، وش جوائزها، كيف أوظفها. أو اكتب sos أو scan أو sudo hire hailah وشوف المفاجأة!",
+ sos:"برسل نداء استغاثة عن طريق الأقمار! طالع عون!",
+ scan:"يلا نشغّل الفحص! طالع عرض سمارت سكان الحقيقي!",
+ sudo:()=>`تمّت الموافقة! اختيار يجنن! خلّها رسمية على ${MEA}`,
+ fallback:"هممم، هالسؤال دغدغ طيّاتي! مو متأكدة منه، بس أعرف كل شي عن مشاريع هيلة ومهاراتها وجوائزها. جرّب تسألني عن عون أو سمارت سكان أو كيف توظفها!"};
+const RULES_AR=[[/وش يعني تشتغل|كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة/,'hire'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا/,'me'],
+ [/مشاريع|مشروع|وش سوت|اعمال|أعمال/,'projects'],[/علّميني عن عون|عون|انقاذ|إنقاذ|استغاث/,'awn'],[/سمارت|رنين|مخ|دماغ|تصلب/,'ss'],[/بيوند|واقع افتراضي|في ار|القضية/,'vr'],[/ساتاثون|قمر|اقمار|أقمار/,'sat'],[/جائز|جوائز|فاز|مركز|براء/,'awards'],[/مهار|لغات|تقنيات|تعرف/,'skills'],[/سيرة|سي في/,'cv'],[/هيلة|هيله|مين هي|من هي/,'hailah'],[/^(هلا|مرحبا|السلام|اهلا|أهلا|هاي)/,'hi'],[/مساعدة|وش اسأل|ساعدني/,'help']];
 // --- swap all page text ---
 const tnodes=[];(function walk(n){for(const c of n.childNodes){if(c.nodeType===3){if(c.nodeValue.trim())tnodes.push(c)}else if(c.nodeType===1&&!/^(SCRIPT|STYLE|CANVAS|SVG|svg)$/.test(c.nodeName)&&c.id!=='to'&&c.id!=='i18nBtn')walk(c)}})(document.body);
 tnodes.forEach(n=>n._en=n.nodeValue);
 const attrEls=[...document.querySelectorAll('[placeholder],[aria-label],[alt],[data-q]')];attrEls.forEach(el=>{el._en={};['placeholder','aria-label','alt','data-q'].forEach(a=>{if(el.hasAttribute(a))el._en[a]=el.getAttribute(a)})});
-function applyLang(){document.documentElement.lang=LANG;
+function applyLang(){document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
  tnodes.forEach(n=>{const t=n._en.trim();if(LANG==='ar'&&AR[t]!==undefined)n.nodeValue=n._en.replace(t,AR[t]);else n.nodeValue=n._en});
  attrEls.forEach(el=>{for(const a in el._en){const t=el._en[a];el.setAttribute(a,LANG==='ar'&&AR[t]!==undefined?AR[t]:t)}});
  document.title=LANG==='ar'?'هيلة الحجي — ملف أعمال':'Hailah Alhejjei — Portfolio';
