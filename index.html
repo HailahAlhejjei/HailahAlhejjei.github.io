@@ -472,11 +472,7 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
  root.add(new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:0xffffff,map:skin,roughness:.6})));
  // front face = the real photo of the device front (camera + screen)
  const FW=1.78,FH=FW*428/478;
- const front=new THREE.Mesh(new THREE.PlaneGeometry(FW,FH),new THREE.MeshStandardMaterial({map:tex('assets/ss-front.webp'),transparent:true,roughness:.6}));front.position.set(0,-.06,FZ+.006);root.add(front);
- // live screen on top of the real (switched-off) screen: shows the AI result
- const sx0=26/478,sx1=455/478,sy0=140/428,sy1=402/428;
- const scr=new THREE.Mesh(new THREE.PlaneGeometry((sx1-sx0)*FW*.97,(sy1-sy0)*FH*.95),new THREE.MeshBasicMaterial({map:tex('assets/ss-result.jpg'),toneMapped:false}));
- scr.position.set(((sx0+sx1)/2-.5)*FW,-.06+(.5-(sy0+sy1)/2)*FH,FZ+.01);root.add(scr);
+ const front=new THREE.Mesh(new THREE.PlaneGeometry(FW,FH),new THREE.MeshBasicMaterial({map:tex('assets/ss-front.webp'),transparent:true,toneMapped:false}));front.position.set(0,-.06,FZ+.006);root.add(front);
  for(const fx of [-1,1])for(const fz of [-1,1]){const f=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.1,20),new THREE.MeshStandardMaterial({color:0xff6f80,roughness:.6}));f.position.set(fx*.6,-H*.95-.05,fz*.5);root.add(f)}
  root.position.y=.1;
  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.4,1.48,.08,64),new THREE.MeshStandardMaterial({color:0xf2f2ee,roughness:.85}));base.position.y=-1.02;root.add(base);
@@ -485,7 +481,7 @@ function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=
 /* ---------- Awn: front + back are the real photos of each device; LEDs and screens react to SOS ---------- */
 {const {root,setTick}=scene3d(document.getElementById('awn3d'),7.2,.6,Infinity);
  const mat=(c,r=.55)=>new THREE.MeshStandardMaterial({color:c,roughness:r});
- const face=(w,h,url,z,back)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshStandardMaterial({map:tex(url),transparent:true,roughness:.55}));m.position.z=z;if(back)m.rotation.y=Math.PI;return m};
+ const face=(w,h,url,z,back)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex(url),transparent:true,toneMapped:false}));m.position.z=z;if(back)m.rotation.y=Math.PI;return m};
  function device(color,w,h,f,b,antX){const g=new THREE.Group();g.add(new THREE.Mesh(new RoundedBoxGeometry(w,h,.5,6,.12),mat(color)));
   g.add(face(w,h,f,.253,false));g.add(face(w,h,b,-.253,true));
   for(const sx of [-1,1]){const lug=new THREE.Mesh(new THREE.TorusGeometry(.09,.045,12,24),mat(color));lug.position.set(sx*(w/2-.22),h/2+.03,0);g.add(lug)}
