@@ -368,7 +368,8 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
-function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);if(!to.innerHTML)say("Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Psst… want to know a secret? Ask me what it's REALLY like working with Hailah!")}
+const GREET=["Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Psst… want to know a secret? Ask me what it's REALLY like working with Hailah!","You're back! Yay! What do you want to know this time?","Hi again! My folds were waiting for you! Ask me anything!","Ooh, you came back to see me! Try the golden question, it's my favourite!"];let gI=0;
+function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);say(GREET[Math.min(gI,GREET.length-1)===0&&gI>0?1:(gI?1+((gI-1)%3):0)]);gI++}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
 /* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
 const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
@@ -442,9 +443,9 @@ function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;let t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thanna-yah');const kid=VOICE&&/Ana/i.test(VOICE.name);
+ speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);const T0=t;window._spT=setTimeout(()=>{let t=T0;t=t.replace(/Thanaya/g,'Thanna-yah');const kid=VOICE&&/Ana/i.test(VOICE.name);
  (t.match(/[^.!?]+[.!?]*/g)||[t]).forEach(p=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);m.lang='en-US';if(VOICE)m.voice=VOICE;
-  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)})}
+  const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)});speechSynthesis.resume()},120)}
 function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
