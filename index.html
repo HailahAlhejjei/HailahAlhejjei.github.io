@@ -436,7 +436,7 @@ function pickVoice(){const V=speechSynthesis.getVoices().filter(v=>/^en[-_]US/i.
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
 function speak(html){if(!voiceOn||!('speechSynthesis' in window))return;const t=html.replace(/<[^>]+>/g,'').replace(/[✦→•📡🥇🥉🏁📜✓]/g,' ').replace(/\s+/g,' ').trim();if(!t)return;
- speechSynthesis.cancel();const kid=VOICE&&/Ana/i.test(VOICE.name);
+ speechSynthesis.cancel();t=t.replace(/Thanaya/g,'Thah-nah-yah');const kid=VOICE&&/Ana/i.test(VOICE.name);
  (t.match(/[^.!?]+[.!?]*/g)||[t]).forEach(p=>{p=p.trim();if(!p)return;const m=new SpeechSynthesisUtterance(p);m.lang='en-US';if(VOICE)m.voice=VOICE;
   const ex=/!/.test(p),q=/\?/.test(p);m.pitch=(kid?1.1:1.35)+(ex?.1:0)+(q?.08:0);m.rate=.95+(ex?.05:0);speechSynthesis.speak(m)})}
 function say(html){out('<span class="p">✦ Thanaya:</span> '+html);speak(html)}
@@ -455,13 +455,14 @@ const A={
  hire:()=>`Oh yes yes yes! Hailah is looking for a co-op starting January 2027. Write to her at ${ME} or connect on ${LI}. Tell her Thanaya sent you!`,
  contact:()=>`The fastest way to reach her: ${ME}. Or say hi on ${LI}. She'd love to hear from you!`,
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
- help:()=>"You can ask me anything! Try: who is Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
+ working:()=>"Ooh, working with Hailah? It's like magic, I promise! She's SO hungry to learn. Give her a task that needs a brand new skill, and two days later, poof, she knows it! And even when a task doesn't need anything new, she still makes it better, because she's a little perfectionist, hehe. She doesn't like doing things that have already been done. She always finds a way to make it unique. I mean, look at ME! She made me! Have you ever seen anyone like me before? Anywhere? Nope! That's Hailah!",
+ help:()=>"You can ask me anything! Try: who is Hailah, how is it working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
  sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS on 868 megahertz! Watch Awn!"},
  scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
  sudo:()=>{confetti();toast('ACCESS GRANTED — welcome to the team ✦');return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
 const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam|السلام|مرحبا|هلا)/,'hi'],[/who are you|your name|thanaya|ثنايا|انت مين|من انت/,'me'],
- [/hire|co-?op|intern|job|work with|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
+ [/working with|work with her|work with hailah|like to work|is she (good|like)|what is she like|team ?mate|كيف الشغل|الشغل مع/,'working'],[/hire|co-?op|intern|job|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
  [/beyond|case 017|\bvr\b|virtual|quest/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|win|won|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|language|tech|know|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
  [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|هيله/,'hailah']];
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=raw.toLowerCase();ti.value='';if(!v)return;
