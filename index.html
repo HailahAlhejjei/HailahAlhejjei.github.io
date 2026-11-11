@@ -159,6 +159,7 @@ html[lang=ar] #mGuide{font-family:'Aref Ruqaa',cursive}
 html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4,html[lang=ar] body h2 *,html[lang=ar] body h3 *,html[lang=ar] body h4 *{line-height:1.75!important}html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4{padding-bottom:.35em!important;margin-bottom:.2em!important}
 html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
 @media(hover:none) and (max-width:600px){.pc{bottom:calc(86px + env(safe-area-inset-bottom))!important}.term{bottom:calc(190px + env(safe-area-inset-bottom))!important}#mGuide{bottom:calc(96px + env(safe-area-inset-bottom))!important;left:42%!important}}
+.pc{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
@@ -415,7 +416,7 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
 const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
 const GREET=["Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Psst… want to know a secret? Ask me what it's REALLY like working with Hailah!","You're back! Yay! What do you want to know this time?","Hi again! My folds were waiting for you! Ask me anything!","Ooh, you came back to see me! Try the golden question, it's my favourite!"];let gI=0;
-function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);say((LANG==='ar'?GREET_AR:GREET)[Math.min(gI,GREET.length-1)===0&&gI>0?1:(gI?1+((gI-1)%3):0)]);gI++}
+function openT(){term.classList.add('open');if(!matchMedia('(hover:none)').matches)setTimeout(()=>ti.focus(),50);say((LANG==='ar'?GREET_AR:GREET)[Math.min(gI,GREET.length-1)===0&&gI>0?1:(gI?1+((gI-1)%3):0)]);gI++}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
 /* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
 const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
@@ -426,13 +427,13 @@ const SC=()=>innerWidth<600?.56:1;
 const PCB=document.getElementById('pc');const anchor=()=>{if(BC.clientHeight!==BH||BC.clientWidth!==BW)bsz();const r=PCB.getBoundingClientRect(),c=BC.getBoundingClientRect();if(innerWidth>=600)return [LANG==='ar'?100:BW-100,BH-120];if(r.width)return [r.left+r.width/2-c.left,r.top+r.height/2-c.top+(innerWidth<600?6:10)];return [innerWidth-100,innerHeight-120]};
 addEventListener('mousemove',e=>{mxT=e.clientX;myT=e.clientY});
 (function bl(){blinkT=7;setTimeout(bl,2500+Math.random()*3500)})();
-pc.addEventListener('mouseenter',()=>{hover=true;document.getElementById('tip').textContent=(LANG==='ar'?TIPS_AR:tips)[tipI++%tips.length]});
+const TOUCH=matchMedia('(hover:none)').matches;pc.addEventListener('mouseenter',()=>{if(TOUCH)return;hover=true;document.getElementById('tip').textContent=(LANG==='ar'?TIPS_AR:tips)[tipI++%tips.length]});
 pc.addEventListener('mouseleave',()=>hover=false);
 let flash=0,litT=0;function lightUp(){flash=1;litT=0;lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
 function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');speechSynthesis&&speechSynthesis.cancel()}
-pc.onclick=e=>{e.stopPropagation();lit?lightDown():lightUp()};
+let lastTap=0;const tapT=e=>{e.stopPropagation();if(e.type==='touchend')e.preventDefault();const n=Date.now();if(n-lastTap<400)return;lastTap=n;lit?lightDown():lightUp()};pc.onclick=tapT;pc.addEventListener('touchend',tapT,{passive:false});
 document.getElementById('closeTerm').onclick=lightDown;
-addEventListener('mousedown',e=>{if(lit&&!term.contains(e.target)&&!pc.contains(e.target))lightDown()});
+addEventListener('mousedown',e=>{if(Date.now()-lastTap<700)return;if(lit&&!term.contains(e.target)&&!pc.contains(e.target))lightDown()});
 toggleT=()=>{lit?lightDown():lightUp()};
 function streamBack(){lightDown()}
 function spark(big){const [ax,ay]=anchor(),s=SC();sparks.push({x:ax+(Math.random()-.5)*60*s,y:ay+(Math.random()-.5)*50*s,vx:(Math.random()-.5)*(big?4:.6),vy:-Math.random()*(big?4:1)-.3,l:1,r:Math.random()*2+.8})}
