@@ -158,11 +158,12 @@ html[lang=ar] #mGuide{font-family:'Aref Ruqaa',cursive}
 @media(max-width:600px){.pc{width:84px!important;height:90px!important;right:12px!important;bottom:12px!important}html[lang=ar] .pc{left:12px!important;right:auto!important}.pc .tip{right:80px!important;top:10px!important;font-size:15px!important}html[lang=ar] .pc .tip{left:80px!important;right:auto!important}.term{left:8px!important;right:8px!important;width:auto!important;bottom:110px!important;height:min(360px,58vh)!important}footer{padding-right:clamp(18px,5vw,64px)!important;padding-bottom:110px!important}}
 html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4,html[lang=ar] body h2 *,html[lang=ar] body h3 *,html[lang=ar] body h4 *{line-height:1.75!important}html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4{padding-bottom:.35em!important;margin-bottom:.2em!important}
 html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
+@media(hover:none) and (max-width:600px){.pc{bottom:calc(86px + env(safe-area-inset-bottom))!important}.term{bottom:calc(190px + env(safe-area-inset-bottom))!important}#mGuide{bottom:calc(96px + env(safe-area-inset-bottom))!important;left:42%!important}}
 #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
 #bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
-#bitsy{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:69}
+#bitsy{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:69}
 .pc{position:fixed;right:20px;bottom:20px;width:140px;height:140px;border-radius:50%;z-index:70;background:none;border:0;cursor:pointer;padding:0}
 .pc .tip{position:absolute;right:130px;top:20px;background:var(--ink);color:#081615;font:600 17px 'Caveat',cursive;padding:5px 12px;border-radius:14px 14px 3px 14px;white-space:nowrap;opacity:0;transform:translateY(4px);transition:.3s;pointer-events:none}
 .pc:hover .tip,.pc.nudge .tip{opacity:1;transform:none}
@@ -418,11 +419,11 @@ function openT(){term.classList.add('open');setTimeout(()=>ti.focus(),50);say((L
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
 /* ---- Thanaya (ثَنايا): a soft being made of folds. It unfolds as you come closer, its folds become hands, and it lights the whole screen when you click it ---- */
 const BC=document.getElementById('bitsy'),bx=BC.getContext('2d'),BD=Math.min(devicePixelRatio||1,2),GOLD=document.getElementById('goldLight');
-function bsz(){BC.width=innerWidth*BD;BC.height=innerHeight*BD}bsz();addEventListener('resize',bsz);
+let BW=innerWidth,BH=innerHeight;function bsz(){BW=BC.clientWidth||innerWidth;BH=BC.clientHeight||innerHeight;BC.width=BW*BD;BC.height=BH*BD}bsz();addEventListener('resize',bsz);if(window.visualViewport)visualViewport.addEventListener('resize',bsz);
 const tips=["hi… I'm Thanaya ✦ come closer","psst… I know what working with Hailah is like 🤫","every fold hides a little light","psst… click me, I'll light everything up","ask me anything about Hailah","I unfold for curious people"];let tipI=0;
 let u=0,glow=0,lit=false,hover=false,tT=0,mxT=-999,myT=-999,blinkT=0,sparks=[];
 const SC=()=>innerWidth<600?.56:1;
-const anchor=()=>[LANG==='ar'?(innerWidth<600?62:100*SC()):innerWidth-(innerWidth<600?62:100*SC()),innerHeight-(innerWidth<600?70:120*SC())];
+const PCB=document.getElementById('pc');const anchor=()=>{if(BC.clientHeight!==BH||BC.clientWidth!==BW)bsz();const r=PCB.getBoundingClientRect(),c=BC.getBoundingClientRect();if(innerWidth>=600)return [LANG==='ar'?100:BW-100,BH-120];if(r.width)return [r.left+r.width/2-c.left,r.top+r.height/2-c.top+(innerWidth<600?6:10)];return [innerWidth-100,innerHeight-120]};
 addEventListener('mousemove',e=>{mxT=e.clientX;myT=e.clientY});
 (function bl(){blinkT=7;setTimeout(bl,2500+Math.random()*3500)})();
 pc.addEventListener('mouseenter',()=>{hover=true;document.getElementById('tip').textContent=(LANG==='ar'?TIPS_AR:tips)[tipI++%tips.length]});
