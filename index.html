@@ -160,6 +160,7 @@ html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] 
 html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
 @media(hover:none) and (max-width:600px){.pc{bottom:calc(86px + env(safe-area-inset-bottom))!important}.term{bottom:calc(190px + env(safe-area-inset-bottom))!important}#mGuide{bottom:calc(96px + env(safe-area-inset-bottom))!important;left:42%!important}}
 .pc{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media(max-width:860px){.hero{justify-content:center!important;min-height:100svh!important;padding-top:70px!important;padding-bottom:40px!important}}
 #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
@@ -430,7 +431,7 @@ addEventListener('mousemove',e=>{mxT=e.clientX;myT=e.clientY});
 const TOUCH=matchMedia('(hover:none)').matches;pc.addEventListener('mouseenter',()=>{if(TOUCH)return;hover=true;document.getElementById('tip').textContent=(LANG==='ar'?TIPS_AR:tips)[tipI++%tips.length]});
 pc.addEventListener('mouseleave',()=>hover=false);
 let flash=0,litT=0;function lightUp(){flash=1;litT=0;lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
-function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');speechSynthesis&&speechSynthesis.cancel()}
+function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');try{speechSynthesis.cancel()}catch(e){}window._tok=(window._tok||0)+1;if(typeof CUR!=='undefined'&&CUR){CUR.pause();CUR=null}try{AU.pause()}catch(e){}}
 let lastTap=0;const tapT=e=>{e.stopPropagation();if(e.type==='touchend')e.preventDefault();const n=Date.now();if(n-lastTap<400)return;lastTap=n;lit?lightDown():lightUp()};pc.onclick=tapT;pc.addEventListener('touchend',tapT,{passive:false});
 document.getElementById('closeTerm').onclick=lightDown;
 addEventListener('mousedown',e=>{if(Date.now()-lastTap<700)return;if(lit&&!term.contains(e.target)&&!pc.contains(e.target))lightDown()});
