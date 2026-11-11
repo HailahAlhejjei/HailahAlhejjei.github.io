@@ -149,6 +149,7 @@ html[lang=ar] .hero h1{margin-bottom:70px!important}
 
 html[lang=ar] #mail .note{line-height:1.3!important}@media(max-width:900px){html[lang=ar] #mail .note{display:none!important}}
 html[lang=ar] .note.lc{top:84px!important}
+html[lang=ar] #voiceBtn{display:none!important}
 #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
@@ -475,7 +476,7 @@ function pickVoice(){const all=speechSynthesis.getVoices();if(typeof LANG!=='und
  const V=all.filter(v=>/^en[-_]US/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
-function speak(text,onWord,onEnd){if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
+function speak(text,onWord,onEnd){if(LANG==='ar'){try{speechSynthesis.cancel()}catch(e){}onEnd&&onEnd(false);return}if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
  speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
  window._spT=setTimeout(()=>{const t=LANG==='ar'?text:text.replace(/Thanaya/g,'Tha-naa-ya');const m=new SpeechSynthesisUtterance(t);m.lang=LANG==='ar'?'ar-SA':'en-US';if(VOICE)m.voice=VOICE;
   const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=LANG==='ar'?2:(kid?1.15:1.4);m.rate=LANG==='ar'?1.2:1.0;
