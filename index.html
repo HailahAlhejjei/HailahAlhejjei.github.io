@@ -12,7 +12,7 @@
 :root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,Arial,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}::selection{background:var(--lime);color:#000}
-.skip{position:absolute;left:-999px}.skip:focus{left:10px;top:10px;background:var(--lime);color:#000;padding:10px;z-index:99}
+.skip{position:absolute;left:10px;top:0;transform:translateY(-200%)}html[lang=ar] .skip{left:auto;right:10px}.skip:focus{transform:none;top:10px;background:var(--lime);color:#000;padding:10px;z-index:99}
 .cur,.cur2{position:fixed;left:0;top:0;pointer-events:none;z-index:90;border-radius:50%}
 .cur{width:6px;height:6px;background:var(--lime)}.cur2{width:34px;height:34px;border:1px solid #d9f06788;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 .cur2.big{width:70px;height:70px;border-color:var(--lime)}
@@ -133,7 +133,7 @@ html[lang=ar] .pc{right:auto!important;left:20px!important}
 html[lang=ar] .pc .tip{right:auto!important;left:130px!important;border-radius:14px 14px 14px 3px!important}
 html[lang=ar] .term{right:auto!important;left:clamp(10px,3vw,30px)!important}
 html[lang=ar] footer{padding-right:clamp(18px,5vw,64px)!important;padding-left:calc(clamp(18px,5vw,64px) + 190px)!important}
-html[lang=ar] html[lang=ar] .hero h1{font-size:clamp(44px,7vw,96px)!important}
+html[lang=ar] .hero h1{font-size:clamp(44px,7vw,96px)!important}
 html[lang=ar] h2.big{font-size:clamp(34px,4.6vw,60px)!important}
 html[lang=ar] .contact h2{font-size:clamp(34px,5vw,68px)!important}
 html[lang=ar] .copy h3{font-size:clamp(30px,3.6vw,48px)!important}
@@ -161,7 +161,7 @@ html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
 @media(hover:none) and (max-width:600px){.pc{bottom:calc(86px + env(safe-area-inset-bottom))!important}.term{bottom:calc(190px + env(safe-area-inset-bottom))!important}#mGuide{bottom:calc(96px + env(safe-area-inset-bottom))!important;left:42%!important}}
 .pc{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 @media(max-width:860px){.hero{justify-content:flex-start!important;min-height:100svh!important;padding-top:76px!important;padding-bottom:40px!important}.hero-in{flex:1;display:flex;flex-direction:column}.hero-in>.hud{margin-top:auto!important;flex-wrap:nowrap!important;white-space:nowrap;gap:6px!important;font-size:8.4px!important;letter-spacing:0!important}.hero-in>.hud *{letter-spacing:0!important}.hero-in>:last-child{margin-bottom:auto!important}}
-#goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
+html[lang=ar] #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
 #bitsy{z-index:79!important}.pc{z-index:81!important}.term{z-index:82!important;bottom:200px!important;border-color:#ffd27a!important}.term-h{background:#ffd27a!important}
@@ -174,7 +174,7 @@ html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
 .term-h{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--lime);color:#081615;font-size:12px;font-weight:600}
 .term-h button{background:#081615;border:0;color:var(--lime);cursor:pointer;font:inherit;width:22px;height:22px;border-radius:50%}
 .term-o{flex:1;overflow:auto;padding:12px;white-space:pre-wrap}.term-o .p{color:var(--lime)}.term-o .e{color:var(--red)}.term-o a{color:var(--cyan);text-decoration:underline}
-.term-i{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}.term-i span{color:var(--lime)}.term-i input{flex:1;background:none;border:0;color:var(--ink);font:inherit;outline:none}
+.term-i{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}.term-i span{color:var(--lime)}.term-i input{flex:1;background:none;border:0;color:var(--ink);font:inherit;outline:none}@media(hover:none){.term-i input{font-size:16px}.term-i input::placeholder{font-size:13px}}
 .toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:var(--lime);color:#000;font:600 12px 'JetBrains Mono';padding:10px 16px;z-index:95;display:none}
 canvas.confetti{position:fixed;inset:0;pointer-events:none;z-index:94}
 @media(max-width:860px){nav a{display:none}.about-g,.tl,.proj{grid-template-columns:1fr;gap:28px}.proj.rev .stage{order:0}.skills{grid-template-columns:1fr 1fr}.hint{position:relative;right:auto;bottom:auto;text-align:left;margin-top:20px}}
@@ -432,7 +432,7 @@ const TOUCH=matchMedia('(hover:none)').matches;pc.addEventListener('mouseenter',
 pc.addEventListener('mouseleave',()=>hover=false);
 let flash=0,litT=0;function lightUp(){flash=1;litT=0;lit=true;GOLD.classList.add('on');openT();for(let i=0;i<40;i++)spark(true)}
 function lightDown(){lit=false;GOLD.classList.remove('on');term.classList.remove('open');try{speechSynthesis.cancel()}catch(e){}window._tok=(window._tok||0)+1;if(typeof CUR!=='undefined'&&CUR){CUR.pause();CUR=null}try{AU.pause()}catch(e){}}
-let lastTap=0;const tapT=e=>{e.stopPropagation();if(e.type==='touchend')e.preventDefault();const n=Date.now();if(n-lastTap<400)return;lastTap=n;lit?lightDown():lightUp()};pc.onclick=tapT;pc.addEventListener('touchend',tapT,{passive:false});
+let lastTap=0;const onBody=(x,y)=>{try{return bx.getImageData(Math.round(x*BD),Math.round(y*BD),1,1).data[3]>200}catch(_){return true}};const under=(x,y)=>{pc.style.pointerEvents='none';const el=document.elementFromPoint(x,y);pc.style.pointerEvents='';return el&&el.closest('a,button,input,select,textarea,label,[role=button]')};const tapT=e=>{const pt=e.changedTouches?e.changedTouches[0]:e;if(!lit&&pt&&!(e.type==='click'&&e.detail===0)&&!onBody(pt.clientX,pt.clientY)){const el=under(pt.clientX,pt.clientY);if(el&&!pc.contains(el)){e.stopPropagation();if(e.type==='touchend')e.preventDefault();el.click();return}}e.stopPropagation();if(e.type==='touchend')e.preventDefault();const n=Date.now();if(n-lastTap<400)return;lastTap=n;lit?lightDown():lightUp()};pc.onclick=tapT;pc.addEventListener('touchend',tapT,{passive:false});
 document.getElementById('closeTerm').onclick=lightDown;
 addEventListener('mousedown',e=>{if(Date.now()-lastTap<700)return;if(lit&&!term.contains(e.target)&&!pc.contains(e.target))lightDown()});
 toggleT=()=>{lit?lightDown():lightUp()};
@@ -440,7 +440,7 @@ function streamBack(){lightDown()}
 function spark(big){const [ax,ay]=anchor(),s=SC();sparks.push({x:ax+(Math.random()-.5)*60*s,y:ay+(Math.random()-.5)*50*s,vx:(Math.random()-.5)*(big?4:.6),vy:-Math.random()*(big?4:1)-.3,l:1,r:Math.random()*2+.8})}
 const imC=new Image();imC.src='assets/th-closed.webp';const imO=new Image();imO.src='assets/th-open.webp';
 const OC=document.createElement('canvas'),ox=OC.getContext('2d');
-function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
+function thanaya(){if(!RM)tT+=.016;const s=SC(),[ax,ay]=anchor();
  const d=Math.hypot(mxT-ax,myT-ay),near=Math.max(0,Math.min(1,1-(d-70)/330));
  const uT=lit?1:hover?Math.max(.85,near):Math.pow(near,1.2);
  u+=(uT-u)*(uT>u?.06:.03);const gT=lit?1:hover?.85:near*.5;glow+=(gT-glow)*.08;
@@ -479,7 +479,7 @@ function thanaya(){tT+=.016;const s=SC(),[ax,ay]=anchor();
   bx.drawImage(OC,-bxo,-byo,w,h);bx.restore()}
  bx.save();bx.globalCompositeOperation='lighter';const cg=bx.createRadialGradient(ax-(LANG==='ar'?-70:70)*s*e,ay+14*s,0,ax-70*s*e,ay+14*s,60*s);cg.addColorStop(0,`rgba(255,236,180,${.35*L})`);cg.addColorStop(1,'rgba(255,220,150,0)');bx.fillStyle=cg;bx.beginPath();bx.arc(ax-70*s*e,ay+14*s,60*s,0,7);bx.fill();bx.restore();
  pc.style.right=(innerWidth-ax-70*s)+'px';pc.style.bottom=(innerHeight-ay-70*s)+'px';
- if(!RM)requestAnimationFrame(thanaya)}
+ requestAnimationFrame(thanaya)}
 thanaya();
 setTimeout(()=>{pc.classList.add('nudge');setTimeout(()=>pc.classList.remove('nudge'),3500)},6000);
 addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.preventDefault();toggleT()}if(e.key==='Escape'&&lit)lightDown()});
@@ -538,8 +538,8 @@ const A={
  sudo:()=>{confetti();toast(tr('ACCESS GRANTED - welcome to the team ✦'));return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
 const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam)(\b|$|!)|السلام|مرحبا|هلا/,'hi'],[/who are (you|u)|(your|ur|yr) name|what are (you|u)|tell me about (yourself|urself|you|u)\b|about (yourself|you|u)$|how old|where (are|do) (you|u)|what do (you|u) do|do (you|u) like|(your|ur) (favou?rite|job)|are (you|u) (a |real|human|robot|ai)|thanaya|ثنايا|انت مين|من انت|اسمك|وش اسمك|مين انتي|من انتي/,'me'],
- [/how (can|do|could|would|should) (i|we|you)?\s*(work|collaborate|team up) with|how to work with|work with her\?*$|get in touch/,'contact'],[/how('s| is| was)? (it )?(like )?(working|to work) with|what('s| is) (it like|she like)|like working with|is she (good|nice|fun|easy)|كيف الشغل|الشغل مع/,'working'],[/hire|co-?op|intern|job|تدريب|توظيف/,'hire'],[/email|contact|reach|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/awn|عون|sos device|rescue|lora/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
- [/beyond|case 017|\bvr\b|virtual|quest/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|win|won|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|language|tech|know|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
+ [/how (can|do|could|would|should) (i|we|you)?\s*(work|collaborate|team up) with|how to work with|work with her\?*$|get in touch/,'contact'],[/how('s| is| was)? (it )?(like )?(working|to work) with|what('s| is) (it like|she like)|like working with|is she (good|nice|fun|easy)|كيف الشغل|الشغل مع/,'working'],[/\bhire|\bhiring|co-?op|\binterns?(hip)?\b|\bjobs?\b|availab|\bstart(s|ing)?\b|when can (she|i|we)|january|2027|placement|تدريب|توظيف/,'hire'],[/email|contact|\breach\b|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/\bawn\b|عون|sos device|rescue|\blora\b/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
+ [/beyond|case 017|\bvr\b|virtual|\bquest\b/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|\bwins?\b|\bwon\b|\bwinn|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|languages?\b|\btech|tools|what (does|can) she (know|do|use)|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
  [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|هيله/,'hailah']];
 document.getElementById('chips2').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ti.value=b.dataset.q;ti.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'}));if(b.classList.contains('hot'))b.classList.remove('hot')});
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=raw.toLowerCase();ti.value='';if(!v)return;
@@ -625,7 +625,7 @@ const A_AR={
  scan:"يلا نشغّل الفحص! طالع عرض سمارت سكان الحقيقي!",
  sudo:()=>`تمّت الموافقة! اختيار يجنن! خلّها رسمية على ${MEA}`,
  fallback:"هممم، هالسؤال دغدغ طيّاتي! مو متأكدة منه، بس أعرف كل شي عن مشاريع هيلة ومهاراتها وجوائزها. جرّب تسألني عن عون أو سمارت سكان أو كيف توظفها!"};
-const RULES_AR=[[/وش يعني تشتغل|كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة/,'hire'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا/,'me'],
+const RULES_AR=[[/وش يعني تشتغل|كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة|متى تبد|تبدأ|تبدا|متاح|يناير|2027|٢٠٢٧/,'hire'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا/,'me'],
  [/مشاريع|مشروع|وش سوت|اعمال|أعمال/,'projects'],[/علّميني عن عون|عون|انقاذ|إنقاذ|استغاث/,'awn'],[/سمارت|رنين|مخ|دماغ|تصلب/,'ss'],[/بيوند|واقع افتراضي|في ار|القضية/,'vr'],[/ساتاثون|قمر|اقمار|أقمار/,'sat'],[/جائز|جوائز|فاز|مركز|براء/,'awards'],[/مهار|لغات|تقنيات|تعرف/,'skills'],[/سيرة|سي في/,'cv'],[/هيلة|هيله|مين هي|من هي/,'hailah'],[/^(هلا|مرحبا|السلام|اهلا|أهلا|هاي)/,'hi'],[/مساعدة|وش اسأل|ساعدني/,'help']];
 // --- swap all page text ---
 const tnodes=[];(function walk(n){for(const c of n.childNodes){if(c.nodeType===3){if(c.nodeValue.trim())tnodes.push(c)}else if(c.nodeType===1&&!/^(SCRIPT|STYLE|CANVAS|SVG|svg)$/.test(c.nodeName)&&c.id!=='to'&&c.id!=='i18nBtn')walk(c)}})(document.body);
