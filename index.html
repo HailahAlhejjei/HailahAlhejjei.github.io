@@ -247,7 +247,7 @@ html[lang=ar] .btn{line-height:1.25}html[lang=ar] nav a.navcv{line-height:1.25;p
   </article>
 
   <article class="proj rev rv">
-    <div class="stage" id="awn"><span class="tag">SATELLITE LINK · NO NETWORK</span>
+    <div class="stage" id="awn"><span class="tag">LORA RADIO · NO NETWORK</span>
       <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
       <canvas class="lora" id="loraC"></canvas>
       <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices"></div>
@@ -260,8 +260,8 @@ html[lang=ar] .btn{line-height:1.25}html[lang=ar] nav a.navcv{line-height:1.25;p
       <h3>Awn <i>(عون)</i></h3>
       <span class="award">🏁 Accepted to the SAIF 2026 Finals</span><span class="award">⚙️ Working prototype · Patent pending</span>
       <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team - and the team replies, so the person knows help is coming.</p>
-      <p class="mine"><b>How it works:</b> Two handheld devices built on ESP32 talk through satellites - no mobile network, no internet, not even cell towers. The SOS device sends its NEO-6M GPS fix automatically and receives replies with LED and vibration alerts.</p>
-      <ul class="chips"><li>ESP32</li><li>Satellite link</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
+      <p class="mine"><b>How it works:</b> Two handheld ESP32 devices talk straight to each other over long-range LoRa radio, with no mobile network, internet, subscription or satellite. The SOS unit sends its GPS location encrypted, and the rescue unit shows the distance and direction, then sends back a confirmation: a green light, a beep and a message that help is coming.</p>
+      <ul class="chips"><li>ESP32</li><li>LoRa radio</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Aoun" target="_blank" rel="noreferrer">PROJECT SHOWCASE ↗</a></div>
   </article>
 
@@ -403,7 +403,7 @@ document.getElementById('sosBtn').onclick=()=>{if(sending)return;sending=true;lo
  const L=(t,cl,d)=>setTimeout(()=>{log.innerHTML+=`<div class="${cl||''}">${t}</div>`},d);
  window.awnState?.('sos');emit(1,'255,90,78',6);L(tr('▲ SOS SENT · attempt 1/3'),'w',0);L(tr('  blue LED blinking · GPS + BAT 96%'),'',500);
  setTimeout(()=>window.awnState?.('received'),1300);L(tr('▼ AOUN RESCUE · SOS received'),'',1400);L(tr('  signal −6 dBm · SNR 11.3'),'',1800);
- setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L(tr('▲ CONFIRMED · help is on the way'),'ok',2900);L(tr('  green LED + vibration on SOS device'),'ok',3300);
+ setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L(tr('▲ CONFIRMED · help is on the way'),'ok',2900);L(tr('  green LED + beep on SOS device'),'ok',3300);
  setTimeout(()=>sending=false,3600);setTimeout(()=>{if(!sending)window.awnState?.('ready')},9000)};
 const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
 photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'🧊 3D MODEL':'📷 REAL PHOTO')};
@@ -534,8 +534,8 @@ const A={
   :/do (you|u) do|job/.test(q)?"My job is the best job! I guard Hailah's work, I light up the screen, and I answer every question about her projects, skills and awards. Ask me anything!"
   :"My name is Thanaya! It means folds, because I'm a little girl made of soft folds, and every fold hides a tiny light. I unfold for curious people like you. Hailah created me to look after her work, and I LOVE talking about it!",
  hailah:()=>"Hailah! Oh, she's a builder of useful things. A developer from Riyadh who works across web, UX, real hardware and VR. She turns real problems into things you can hold, click, or step inside. And yes, she's open to co-op right now!",
- projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a rescue device that calls for help with no network, not even cell towers. It talks through satellites! Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
- awn:()=>"Awn means help, and that's exactly what it does! It doesn't need a network, not even cell towers, because it talks through satellites! Someone lost in the desert presses SOS, the rescue team sees their location and replies, so the person knows help is coming. And guess what? There's a real working prototype, it's patent pending, and it got into the SAIF 2026 finals!",
+ projects:()=>"Get ready, these are my favourites! One: MS SmartScan, an offline AI helper that spots MS lesions on brain MRI. Two: Awn, a pair of rescue devices that call for help with no phone network or internet. They talk over LoRa radio! Three: Beyond, Case 017, a VR detective story. Four: Satathon, catching real satellite signals!",
+ awn:()=>"Awn means help, and that's exactly what it does! Its two devices talk straight to each other over LoRa radio, so it needs no phone network, no internet and no satellites! Someone lost in the desert presses SOS, the rescue team sees how far away they are and which way to go, then replies, so the person knows help is coming. It's Hailah's graduation project, and she worked on everything from the idea to testing both devices. And guess what? There's a real working prototype, it's patent pending, and it got into the SAIF 2026 finals!",
  ss:()=>"MS SmartScan is a brain-shaped device, literally! It looks at an MRI and highlights suspected lesions in seconds, completely offline. Hailah was the team's UX, Web and Security Lead. She built the scanner and patient registry experiences and the secure doctor PIN. Their team won first place at the Riyadah AI Hackathon! And there's a real working prototype, and it's patent pending!",
  vr:()=>"Beyond, Case 017! Put on a Meta Quest, walk into a rainy crime scene, and interrogate suspects with your own voice. Hailah built the scene, the storm, the lightning and the phone call. It's spooky and wonderful!",
  sat:()=>"Satathon was magical! Her team, Digital Apollo, tracked satellites passing overhead and caught their real signals, decoding images and messages from the sky. Hailah documented the results and made the team's YouTube video. They took third place!",
@@ -554,7 +554,7 @@ const A={
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
  working:()=>"Ooh, working with Hailah? It's like magic, I promise! She's SO hungry to learn. Give her a task that needs a brand new skill, and two days later, poof, she knows it! And even when a task doesn't need anything new, she still makes it better, because she's a little perfectionist, hehe. She doesn't like doing things that have already been done. She always finds a way to make it unique. I mean, look at ME! She made me! Have you ever seen anyone like me before? Anywhere? Nope! That's Hailah!",
  help:()=>"You can ask me anything! Try: what's it really like working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
- sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS through the satellites! Watch Awn!"},
+ sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS over LoRa radio! Watch Awn!"},
  scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
  sudo:()=>{confetti();toast(tr('ACCESS GRANTED - welcome to the team ✦'));return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
@@ -590,11 +590,11 @@ const AR={
 "BUILT AT HEALTHON 2026 · TEAM PROJECT · PATENT PENDING":"بُني في هيلثون 2026 · مشروع فريق · براءة قيد التسجيل","🥇 1st Place · Riyadah AI Hackathon · Nov 2026":"🥇 المركز الأول · هاكاثون ريادة للذكاء الاصطناعي · نوفمبر 2026",
 "An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI - on a Raspberry Pi, in seconds.":"نموذج أولي لدعم القرار السريري يعمل بدون إنترنت، يساعد أطباء الأشعة على رصد آفات المادة البيضاء المشتبه بارتباطها بالتصلب المتعدد في رنين الدماغ - على Raspberry Pi وخلال ثوانٍ.",
 "My contribution:":"مساهمتي:","Designed and built the MRI Scanner and Patient Registry web experiences, the shared SQLite data layer, and doctor PIN authentication with salted PBKDF2 hashing.":"صممت وبنيت تجربتي ماسح الرنين وسجل المرضى على الويب، وطبقة بيانات SQLite المشتركة، ومصادقة رمز الطبيب بتشفير PBKDF2 مع الملح.",
-"PROJECT SHOWCASE ↗":"عرض المشروع ↗","SATELLITE LINK · NO NETWORK":"اتصال بالأقمار · بلا شبكة","📷 REAL PHOTO":"📷 الصورة الحقيقية","🧊 3D MODEL":"🧊 المجسم","● PRESS SOS":"● اضغط SOS",
+"PROJECT SHOWCASE ↗":"عرض المشروع ↗","LORA RADIO · NO NETWORK":"راديو LoRa · بلا شبكة","📷 REAL PHOTO":"📷 الصورة الحقيقية","🧊 3D MODEL":"🧊 المجسم","● PRESS SOS":"● اضغط SOS",
 "GRADUATION PROJECT · PATENT PENDING":"مشروع التخرج · براءة قيد التسجيل","Awn":"عون","(عون)":"","🏁 Accepted to the SAIF 2026 Finals":"🏁 مقبول في نهائيات سيف 2026",
 "An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team - and the team replies, so the person knows help is coming.":"نظام بحث وإنقاذ يعمل بعيداً عن الشبكات للتائهين في الصحاري والجبال بلا تغطية جوال. ضغطة واحدة على SOS ترسل موقع الشخص لفريق الإنقاذ - ويرد الفريق، فيعرف الشخص أن النجدة في الطريق.",
-"How it works:":"كيف يعمل:","Two handheld devices built on ESP32 talk through satellites - no mobile network, no internet, not even cell towers. The SOS device sends its NEO-6M GPS fix automatically and receives replies with LED and vibration alerts.":"جهازان محمولان مبنيان على ESP32 يتواصلان عبر الأقمار الصناعية - بلا شبكة جوال ولا إنترنت ولا حتى أبراج. جهاز الاستغاثة يرسل موقعه من NEO-6M تلقائياً ويستقبل الردود بتنبيه ضوئي واهتزاز.",
-"Satellite link":"اتصال بالأقمار","Embedded C++":"C++ مدمج","Two-way messaging":"مراسلة باتجاهين",
+"How it works:":"كيف يعمل:","Two handheld ESP32 devices talk straight to each other over long-range LoRa radio, with no mobile network, internet, subscription or satellite. The SOS unit sends its GPS location encrypted, and the rescue unit shows the distance and direction, then sends back a confirmation: a green light, a beep and a message that help is coming.":"جهازان محمولان مبنيان على ESP32 يتواصلان مباشرة عبر موجات LoRa بعيدة المدى، بلا شبكة جوال ولا إنترنت ولا اشتراك ولا أقمار صناعية. جهاز الاستغاثة يرسل موقعه من GPS مشفّراً، وجهاز الفريق يعرض المسافة والاتجاه ثم يرد بتأكيد: ضوء أخضر وصوت تنبيه ورسالة إن المساعدة في الطريق.",
+"LoRa radio":"راديو LoRa","Embedded C++":"C++ مدمج","Two-way messaging":"مراسلة باتجاهين",
 "UV LIGHT · MOVE TO SEARCH":"ضوء فوق بنفسجي · حرّك للبحث","CLUE #1 · FOOTPRINT":"دليل 1 · أثر قدم","CLUE #2 · TRACE":"دليل 2 · أثر","CLUE #3 · TIME 02:17":"دليل 3 · الساعة 02:17","TUWAIQ ACADEMY · TEAM PROJECT":"أكاديمية طويق · مشروع فريق","Beyond:":"Beyond:","Case 017":"القضية 017",
 "A story-driven VR detective experience for Meta Quest: investigate a crime scene, interrogate AI-driven suspects by voice, and reach your own conclusion.":"تجربة تحقيق قصصية بالواقع الافتراضي على Meta Quest: افحص مسرح الجريمة، واستجوب مشتبهين بالذكاء الاصطناعي بصوتك، ووصل لاستنتاجك بنفسك.",
 "Built and optimised the crime-scene environment; created the weather, lighting, rain, thunder and lightning systems; and developed the voice-driven phone call, countdown, ambience and scene transitions.":"بنيت بيئة مسرح الجريمة وحسّنتها، وصنعت أنظمة الطقس والإضاءة والمطر والرعد والبرق، وطوّرت المكالمة الصوتية والعد التنازلي والأجواء والانتقالات بين المشاهد.",
@@ -614,7 +614,7 @@ const AR={
 "ask me anything… (e.g. tell me about Awn)":"اسألني أي شي… (مثلاً: كلميني عن عون)",
 "what is it really like working with hailah":"وش يعني تشتغل مع هيلة","tell me about awn":"علّميني عن عون","what are her projects":"وش مشاريعها","how can i work with her":"كيف أتواصل معها",
 "web & UX developer":"تصمم ويب يحبه المستخدم","hardware tinkerer":"تفكّك وتركّب أجهزة","VR/XR builder":"تبني عوالم افتراضية","hackathon winner":"تكسب الهاكاثونات",
-"▲ SOS SENT · attempt 1/3":"▲ أُرسل SOS · المحاولة 1/3","  blue LED blinking · GPS + BAT 96%":"  الضوء الأزرق يومض · الموقع + البطارية 96%","▼ AOUN RESCUE · SOS received":"▼ جهاز الإنقاذ · وصل النداء","  signal −6 dBm · SNR 11.3":"  الإشارة −6 dBm · SNR 11.3","▲ CONFIRMED · help is on the way":"▲ تم التأكيد · النجدة في الطريق","  green LED + vibration on SOS device":"  ضوء أخضر واهتزاز في جهاز الاستغاثة",
+"▲ SOS SENT · attempt 1/3":"▲ أُرسل SOS · المحاولة 1/3","  blue LED blinking · GPS + BAT 96%":"  الضوء الأزرق يومض · الموقع + البطارية 96%","▼ AOUN RESCUE · SOS received":"▼ جهاز الإنقاذ · وصل النداء","  signal −6 dBm · SNR 11.3":"  الإشارة −6 dBm · SNR 11.3","▲ CONFIRMED · help is on the way":"▲ تم التأكيد · النجدة في الطريق","  green LED + beep on SOS device":"  ضوء أخضر وصوت تنبيه في جهاز الاستغاثة",
 "LOS · waiting for next pass…":"انقطع · بانتظار المرور القادم…","📡 AOS · signal received → ":"📡 بدأ المرور · وصلت الإشارة ← ",
 "ACCESS GRANTED - welcome to the team ✦":"تم منح الصلاحية - أهلاً في الفريق ✦",
 "3D model of the MS SmartScan brain-shaped device, drag to rotate":"مجسم ثلاثي الأبعاد لجهاز MS SmartScan بشكل الدماغ، اسحب للتدوير","3D model of the two Awn devices, drag to rotate":"مجسم ثلاثي الأبعاد لجهازي عون، اسحب للتدوير","Real photo of the Awn prototype devices":"صورة حقيقية لجهازي عون","CASE 017 VR crime scene":"مسرح الجريمة في القضية 017","Digital Apollo satellite tracking station":"محطة تتبع الأقمار لفريق أبولو الرقمي"
@@ -633,8 +633,8 @@ const A_AR={
   :/روبوت|انسان|إنسان|حقيقي|ذكاء/.test(q)?"لا أنا روبوت ولا إنسانة. أنا ثنايا، كائن صغير من طيّات ونور، ما شفت زيي بأي مكان. هيلة سوّتني من الصفر!"
   :"اسمي ثنايا! يعني الطيّات، لأني بنت صغيرة كلي طيّات ناعمة، وكل طيّة مخبّية نور صغير. أنفتح بس للفضوليين اللي زيّك. هيلة سوّتني عشان أهتم بشغلها، وأموت على الكلام عنه!",
  hailah:"هيلة! يا حبي لها، هي تسوي أشياء تفيد الناس. مطوّرة من الرياض، تشتغل ويب وتجربة مستخدم وأجهزة حقيقية وواقع افتراضي. تاخذ مشكلة حقيقية وتحوّلها لشي تمسكه بيدك أو تضغطه أو تدخل فيه. وإيه، هي تدوّر تدريب تعاوني الحين!",
- projects:"استعد، هذولي حبايبي! واحد: إم إس سمارت سكان، جهاز ذكي يشتغل بدون نت ويكشف آفات التصلب المتعدد في رنين المخ. اثنين: عون، جهاز إنقاذ يطلب الفزعة بدون شبكة ولا حتى أبراج، يتواصل عن طريق الأقمار الصناعية! ثلاثة: بيوند، القضية صفر سبعطعش، قصة تحقيق بالواقع الافتراضي. أربعة: ساتاثون، صادوا إشارات أقمار حقيقية!",
- awn:"عون يعني فزعة، وهذا بالضبط اللي يسويه! ما يبي شبكة ولا حتى أبراج، لأنه يتكلم عن طريق الأقمار الصناعية! اللي ضايع بالبر يضغط SOS، وفريق الإنقاذ يشوف موقعه ويرد عليه، فيعرف إن الفزعة جاية. وتدري وش بعد؟ فيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل، وتأهل لنهائيات سيف ٢٠٢٦!",
+ projects:"استعد، هذولي حبايبي! واحد: إم إس سمارت سكان، جهاز ذكي يشتغل بدون نت ويكشف آفات التصلب المتعدد في رنين المخ. اثنين: عون، جهازين إنقاذ يطلبون الفزعة بدون شبكة جوال ولا إنترنت، ويتكلمون مع بعض بموجات LoRa! ثلاثة: بيوند، القضية صفر سبعطعش، قصة تحقيق بالواقع الافتراضي. أربعة: ساتاثون، صادوا إشارات أقمار حقيقية!",
+ awn:"عون يعني فزعة، وهذا بالضبط اللي يسويه! جهازينه يتكلمون مع بعض مباشرة بموجات LoRa، فما يبي شبكة جوال ولا إنترنت ولا أقمار صناعية! اللي ضايع بالبر يضغط SOS، وفريق الإنقاذ يشوف كم يبعد وأي اتجاه يروح، ويرد عليه، فيعرف إن الفزعة جاية. وهو مشروع تخرج هيلة، وشاركت فيه من الفكرة لين اختبار الجهازين. وتدري وش بعد؟ فيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل، وتأهل لنهائيات سيف ٢٠٢٦!",
  ss:"إم إس سمارت سكان جهاز شكله مخ، حرفياً! يشوف صورة الرنين ويعلّم على الآفات المشكوك فيها بثواني، وبدون نت أبد. هيلة كانت مسؤولة تجربة المستخدم والويب والأمن في الفريق، وسوّت شاشة الفحص وسجل المرضى ورمز الدكتور الآمن. وفريقهم أخذ المركز الأول بهاكاثون ريادة للذكاء الاصطناعي! وفيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل!",
  vr:"بيوند، القضية صفر سبعطعش! تلبس نظارة ميتا كويست، وتدخل مسرح جريمة والدنيا تمطر، وتحقق مع المشتبهين بصوتك. هيلة سوّت المكان والعاصفة والبرق والمكالمة. يخوّف بس يجنن!",
  sat:"ساتاثون كان شي خيالي! فريقها أبولو الرقمي تتبّعوا الأقمار وهي تمر فوقهم وصادوا إشاراتها الحقيقية، وفكّوا صور ورسايل جاية من السما. وهيلة وثّقت النتايج وسوّت فيديو الفريق في يوتيوب. وأخذوا المركز الثالث!",
@@ -653,7 +653,7 @@ const A_AR={
  cv:"خذ، طالعة من طيّاتي! سيرتها الذاتية تتحمّل الحين.",
  working:"أوووه، الشغل مع هيلة؟ والله إنه سحر، أوعدك! تموت على التعلّم! عطها مهمة تبي مهارة جديدة، وبعد يومين، بوف، صارت تعرفها! وحتى لو المهمة ما تبي شي جديد، بتطلعها أحسن، لأنها شوي بيرفكشنست، هههه. ما تحب تسوي شي أحد سوّاه قبل، دايم تلقى طريقة تخليه غير. يعني شوفني أنا! هي اللي سوّتني! قد شفت أحد زيي قبل؟ بأي مكان؟ لا والله! هذي هيلة!",
  help:"اسألني أي شي! جرّب: وش يعني تشتغل مع هيلة، وش مشاريعها، علّميني عن عون، وش مهاراتها، وش جوائزها، كيف أوظفها. أو اكتب sos أو scan أو sudo hire hailah وشوف المفاجأة!",
- sos:"برسل نداء استغاثة عن طريق الأقمار! طالع عون!",
+ sos:"برسل نداء استغاثة بموجات LoRa! طالع عون!",
  scan:"يلا نشغّل الفحص! طالع عرض سمارت سكان الحقيقي!",
  sudo:()=>`تمّت الموافقة! اختيار يجنن! خلّها رسمية على ${MEA}`,
  fallback:"هممم، هالسؤال دغدغ طيّاتي! مو متأكدة منه، بس أعرف كل شي عن مشاريع هيلة ومهاراتها وجوائزها. جرّب تسألني عن عون أو سمارت سكان أو كيف توظفها!"};
