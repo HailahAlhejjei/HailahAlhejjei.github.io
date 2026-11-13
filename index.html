@@ -68,7 +68,16 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .app.on{opacity:1;pointer-events:auto}
 .bar{height:26px;background:#1b2333;display:flex;align-items:center;gap:6px;padding:0 10px;flex:none}.bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.bar i+i{background:#febc2e}.bar i+i+i{background:#28c840}
 .bar span{margin-left:10px;font:10px 'JetBrains Mono';color:#8a9bb5;background:#0e1524;padding:2px 10px;border-radius:4px;flex:1;max-width:260px}
-.screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.screen video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0b1220}
+.screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.ssx img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}.ssx img.on{opacity:1}
+.ssx-prog{position:absolute;top:7px;left:10px;right:10px;display:flex;gap:4px;z-index:2}
+.ssx-prog button{flex:1;height:5px;padding:0;border:0;border-radius:3px;background:#0b1a3326;cursor:pointer}
+.ssx-prog button.done{background:#0b1a33}.ssx-prog button.now{background:#2f7cf6}
+.ssx-cap{position:absolute;top:19px;inset-inline-start:10px;z-index:2;margin:0;display:flex;align-items:center;gap:8px;max-width:calc(100% - 20px);padding:6px 13px 6px 6px;border-radius:999px;background:#0b1a33;color:#fff;font:600 13px/1.35 Manrope,sans-serif;box-shadow:0 6px 18px #0b1a3340}
+html[lang=ar] .ssx-cap{padding:6px 6px 6px 13px}
+.ssx-cap b{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#2f7cf6;font-size:12px}
+.ssx-replay{position:absolute;left:10px;bottom:12px;z-index:2;display:none;font:600 12px 'JetBrains Mono';background:#0b1a33;color:#fff;border:0;padding:10px 13px;cursor:pointer}
+.ssx.end .ssx-replay{display:block}
+@media(max-width:600px){.ssx-prog{top:5px;left:8px;right:8px}.ssx-cap{top:14px;inset-inline-start:8px;max-width:calc(100% - 16px);gap:6px;padding:4px 10px 4px 4px;font-size:11.5px}html[lang=ar] .ssx-cap{padding:4px 4px 4px 10px}.ssx-cap b{width:18px;height:18px;font-size:10px}.ssx-replay{left:8px;bottom:8px;padding:8px 10px;font-size:11px}}
 .screen .res{opacity:0}.screen.done .res{opacity:1}.screen.done .home{opacity:0}
 .fakecur{position:absolute;width:18px;height:18px;z-index:3;left:70%;top:80%;transition:left .9s cubic-bezier(.6,.1,.3,1),top .9s cubic-bezier(.6,.1,.3,1);filter:drop-shadow(0 1px 2px #000)}
 .fakecur.click{animation:clk .25s}@keyframes clk{50%{transform:scale(.75)}}
@@ -234,7 +243,7 @@ html[lang=ar] .btn{line-height:1.25}html[lang=ar] nav a.navcv{line-height:1.25;p
     <div class="stage" id="ss"><span class="tag">MRI · ON-DEVICE AI</span>
       <canvas class="three" id="brain3d" aria-label="3D model of the MS SmartScan brain-shaped device, drag to rotate"></canvas>
       <span class="drag" id="ssDrag">⟲ DRAG TO ROTATE</span>
-      <div class="app" id="app"><div class="bar"><i></i><i></i><i></i><span>MS SmartScan · real website demo</span></div><div class="screen"><video id="ssVid" src="assets/ss-demo.mp4" muted playsinline preload="none"></video></div></div>
+      <div class="app" id="app"><div class="bar"><i></i><i></i><i></i><span>MS SmartScan · real website demo</span></div><div class="screen ssx" id="ssx"><img alt="" data-src="assets/ss/1-patient.webp"><img alt="" data-src="assets/ss/2a-scan.webp"><img alt="" data-src="assets/ss/2b-scan.webp"><img alt="" data-src="assets/ss/2c-scan.webp"><img alt="" data-src="assets/ss/3-result.webp"><img alt="" data-src="assets/ss/4-head.webp"><img alt="" data-src="assets/ss/5-doctors.webp"><img alt="" data-src="assets/ss/6-doctor.webp"><div class="ssx-prog"><button type="button" aria-label="Step 1"></button><button type="button" aria-label="Step 2"></button><button type="button" aria-label="Step 3"></button><button type="button" aria-label="Step 4"></button><button type="button" aria-label="Step 5"></button><button type="button" aria-label="Step 6"></button></div><p class="ssx-cap" aria-live="polite"><b>1</b><span></span></p><button type="button" class="ssx-replay">↺ Replay</button></div></div>
       <button class="act" id="ssBtn">▶ RUN AI SCAN</button>
     </div>
     <div class="copy"><span class="num">01</span> <span class="meta">BUILT AT HEALTHON 2026 · TEAM PROJECT · PATENT PENDING</span>
@@ -387,11 +396,17 @@ function field(){tt+=.016;fx.clearRect(0,0,W,H);fx.font=`${11*DPR}px JetBrains M
 field();
 document.querySelectorAll('.skill').forEach(s=>s.addEventListener('mousemove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--x',e.clientX-r.left+'px');s.style.setProperty('--y',e.clientY-r.top+'px')}));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-/* smartscan: play the real website demo */
-const app=document.getElementById('app'),vid=document.getElementById('ssVid'),ssBtn=document.getElementById('ssBtn');let ssOpen=false;
-const closeApp=()=>{app.classList.remove('on');vid.pause();ssOpen=false;ssBtn.textContent=tr('▶ RUN AI SCAN')};
-ssBtn.onclick=()=>{if(ssOpen)return closeApp();ssOpen=true;app.classList.add('on');vid.currentTime=0;vid.play().catch(()=>{});ssBtn.textContent=tr('↺ BACK TO 3D')};
-vid.addEventListener('ended',closeApp);
+/* smartscan: real frames from the real website, shown as a short story */
+const app=document.getElementById('app'),ssx=document.getElementById('ssx'),ssBtn=document.getElementById('ssBtn');let ssOpen=false,ssT=0;var ssCur=-1;
+const SSF=[...ssx.querySelectorAll('img')],SSP=[...ssx.querySelectorAll('.ssx-prog button')],SSC=ssx.querySelector('.ssx-cap'),SSR=ssx.querySelector('.ssx-replay');
+const SS=[{f:[0],ms:1400},{f:[1,2,3],ms:420},{f:[4],ms:2100},{f:[5],ms:1600},{f:[6],ms:1600},{f:[7],ms:1700}];
+const SSCAP=[['Patient details and doctor PIN','بيانات المريض ورمز الطبيب'],['The AI analyzes it in seconds','الذكاء الاصطناعي يحلل خلال ثوانٍ'],['Result with lesion locations and confidence','النتيجة مع مواقع الآفات ونسبة الثقة'],['The head of department sees every record','رئيسة القسم ترى كل سجلات القسم'],['Add a new doctor or disable access instantly','إضافة طبيب جديد وإيقاف صلاحيته فوراً'],['A doctor sees only their own patients','الطبيب يرى مرضاه فقط']];
+function ssRelabel(){if(ssCur<0)return;SSC.querySelector('b').textContent=ssCur+1;SSC.querySelector('span').textContent=SSCAP[ssCur][LANG==='ar'?1:0];SSR.textContent=LANG==='ar'?'↺ إعادة':'↺ Replay'}
+const ssShow=(fi,ci)=>{SSF.forEach((im,i)=>im.classList.toggle('on',i===fi));SSP.forEach((p,i)=>{p.classList.toggle('done',i<ci);p.classList.toggle('now',i===ci)});ssCur=ci;ssRelabel()};
+const ssPlay=(from=0)=>{clearTimeout(ssT);ssx.classList.remove('end');const q=[];SS.forEach((st,si)=>{if(si>=from)st.f.forEach(f=>q.push([f,st.ms,si]))});let k=0;const step=()=>{if(!ssOpen)return;const [f,ms,c]=q[k++];ssShow(f,c);ssT=setTimeout(k<q.length?step:()=>ssx.classList.add('end'),ms)};step()};
+const closeApp=()=>{app.classList.remove('on');clearTimeout(ssT);ssOpen=false;ssBtn.textContent=tr('▶ RUN AI SCAN')};
+ssBtn.onclick=()=>{if(ssOpen)return closeApp();ssOpen=true;SSF.forEach(im=>{if(!im.src)im.src=im.dataset.src});app.classList.add('on');ssBtn.textContent=tr('↺ BACK TO 3D');ssPlay(0)};
+SSP.forEach((p,i)=>p.addEventListener('click',()=>ssPlay(i)));SSR.addEventListener('click',()=>ssPlay(0));
 /* awn sos (2D waves + log over the 3D scene) */
 const lc=document.getElementById('loraC'),lx=lc.getContext('2d'),aw=document.getElementById('awn'),log=document.getElementById('awnLog');let waves=[],sending=false,lrun=false;
 function lsz(){lc.width=aw.offsetWidth;lc.height=aw.offsetHeight}lsz();addEventListener('resize',lsz);
@@ -672,7 +687,7 @@ function applyLang(){document.documentElement.lang=LANG;document.documentElement
  attrEls.forEach(el=>{for(const a in el._en){const t=el._en[a];el.setAttribute(a,LANG==='ar'&&AR[t]!==undefined?AR[t]:t)}});
  document.title=LANG==='ar'?'هيلة الحجي - ملف أعمال':'Hailah Alhejjei - Portfolio';
  const b=document.getElementById('i18nBtn');b.textContent=LANG==='ar'?'EN':'عربي';
- if(typeof ssBtn!=='undefined')ssBtn.textContent=tr(ssOpen?'↺ BACK TO 3D':'▶ RUN AI SCAN');
+ if(typeof ssBtn!=='undefined')ssBtn.textContent=tr(ssOpen?'↺ BACK TO 3D':'▶ RUN AI SCAN');ssRelabel();
  if(typeof photoBtn!=='undefined')photoBtn.textContent=tr(photo.classList.contains('on')?'🧊 3D MODEL':'📷 REAL PHOTO');
  document.getElementById('tip').textContent=LANG==='ar'?TIPS_AR[0]:"hi… I'm Thanaya ✦ come closer";
  VOICE=pickVoice();to.innerHTML='';gI=0;
