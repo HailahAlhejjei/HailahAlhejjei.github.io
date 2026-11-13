@@ -1,6 +1,6 @@
 # Hailah Alhejjei Portfolio
 
-A responsive, accessible static portfolio with no framework dependency.
+A responsive, accessible static portfolio.
 
 ## Preview
 Open `index.html` in any browser.
