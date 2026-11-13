@@ -64,8 +64,8 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:16px 0}.chips li{font:10px 'JetBrains Mono';border:1px solid var(--line);padding:4px 8px;color:var(--mute)}
 .go{font:600 12px 'JetBrains Mono';letter-spacing:.06em;border-bottom:1px solid var(--lime);padding-bottom:3px}.go:hover{color:var(--lime)}
 /* smartscan app run */
-.ssx-modal{position:fixed;inset:0;z-index:96;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(4,9,18,.8);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;overscroll-behavior:contain}
-.ssx-modal.on{opacity:1;visibility:visible;transition:opacity .3s ease}
+.ssx-modal{position:fixed;inset:0;z-index:96;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(4,9,18,.8);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;overscroll-behavior:contain;pointer-events:none}
+.ssx-modal.on{opacity:1;visibility:visible;transition:opacity .3s ease;pointer-events:auto}
 .app{position:relative;width:min(1200px,100%,calc((100vh - 70px)*16/9));display:flex;flex-direction:column;background:#0b1220;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px -10px rgba(0,0,0,.7);transform:translateY(16px) scale(.97);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
 @supports(height:100svh){.app{width:min(1200px,100%,calc((100svh - 70px)*16/9))}}
 .ssx-modal.on .app{transform:none}
@@ -73,7 +73,7 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 .bar span{margin-inline-start:8px;min-width:0;flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:11px 'JetBrains Mono';color:#a3b3cc;background:#0e1524;padding:3px 10px;border-radius:4px}
 .ssx-x{flex:none;width:36px;height:36px;margin-inline-start:4px;border:0;border-radius:8px;background:none;color:#c9d4e6;font:16px/1 Manrope,sans-serif;cursor:pointer}.ssx-x:hover{background:#ffffff17;color:#fff}
 .screen{position:relative;flex:1;overflow:hidden;background:#eef2f7}.ssx{flex:none;aspect-ratio:16/9}.ssx-cam{position:absolute;left:0;top:0;width:1920px;height:870px;transform-origin:0 0}
-.ssx-cam img{position:absolute;left:0;top:0;width:1920px;height:870px;max-width:none;opacity:0;visibility:hidden;z-index:1;transition:opacity .45s ease,visibility 0s linear .45s}.ssx-cam img.on{opacity:1;visibility:visible;transition:opacity .45s ease}.ssx-cam img.top{z-index:2}.ssx-cam img.out{transition:none}
+.ssx-cam img{position:absolute;left:0;top:0;width:1920px;height:870px;max-width:none;opacity:0;visibility:hidden;z-index:1;transition:opacity .45s ease,visibility 0s linear .45s}.ssx-cam img.on{opacity:1;visibility:inherit;transition:opacity .45s ease}.ssx-cam img.top{z-index:2}.ssx-cam img.out{transition:none}
 .ssx-mri{position:absolute;z-index:3;left:676px;top:207px;width:548px;height:548px;overflow:hidden;opacity:0;pointer-events:none}.ssx-mri.on{opacity:1}
 .ssx-band{position:absolute;left:0;right:0;top:0;height:70px;transform:translateY(-70px);background:linear-gradient(180deg,rgba(56,189,248,0),rgba(56,189,248,.3));border-bottom:2px solid rgba(186,236,255,.95);box-shadow:0 8px 22px rgba(56,189,248,.5)}
 .ssx-mri.on .ssx-band{animation:ssband 1.05s cubic-bezier(.45,0,.55,1) .15s forwards}@keyframes ssband{to{transform:translateY(548px)}}
@@ -435,7 +435,7 @@ function ssPlay(from=0){ssClear();ssx.classList.remove('end');ssRing([]);const k
 function ssShow(){if(ssOpen)return;ssOpen=true;ssClear();ssx.classList.remove('end');ssRing([]);SMRI.classList.remove('on');SSF.forEach(im=>im.classList.remove('on','top','out'));SSF[0].classList.add('on','top');ssSteps(0);ssFit('a',0);SSM.classList.add('on');document.body.classList.add('ssx-open');setTimeout(()=>{if(ssOpen)SSX.focus({preventScroll:true})},60);Promise.race([ssLoad(),new Promise(r=>setTimeout(r,1500))]).then(()=>{if(ssOpen)ssPlay(0)})}
 function ssHide(){if(!ssOpen)return;ssOpen=false;ssClear();SSM.classList.remove('on');document.body.classList.remove('ssx-open');dispatchEvent(new Event('ssx-close'));ssBtn.focus({preventScroll:true})}
 ssBtn.onclick=ssShow;SSX.onclick=ssHide;SSM.addEventListener('click',e=>{if(e.target===SSM)ssHide()});
-['wheel','touchmove'].forEach(t=>SSM.addEventListener(t,e=>e.preventDefault(),{passive:false}));
+['wheel','touchmove'].forEach(t=>SSM.addEventListener(t,e=>{if(ssOpen)e.preventDefault()},{passive:false}));
 addEventListener('keydown',e=>{if(!ssOpen)return;if(e.key==='Escape'){e.preventDefault();ssHide()}else if(e.key==='Tab'){const f=[SSX,...SSP,SSR].filter(el=>el.offsetParent),i=f.indexOf(document.activeElement);if(e.shiftKey?i<=0:i<0||i===f.length-1){e.preventDefault();f[e.shiftKey?f.length-1:0].focus()}}});
 SSP.forEach((p,i)=>p.addEventListener('click',()=>ssPlay(i)));SSR.addEventListener('click',()=>ssPlay(0));
 addEventListener('resize',()=>{if(ssOpen&&ssKey)ssFit(ssKey,0)});
