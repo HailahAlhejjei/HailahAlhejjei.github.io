@@ -2,52 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hailah Alhejjei - Portfolio</title>
-<meta name="description" content="Hailah Alhejjei - developer building web, UX, embedded and VR/XR projects. 1st place Riyadah AI Hackathon, 3rd place Satathon 2026, SAIF 2026 finalist.">
-<meta name="theme-color" content="#07100f"><meta property="og:title" content="Hailah Alhejjei | Portfolio"><meta property="og:description" content="Web, UX, embedded and immersive VR/XR projects by Hailah Alhejjei."><meta property="og:type" content="website"><meta property="og:url" content="https://hailahalhejjei.github.io/"><meta property="og:image" content="https://hailahalhejjei.github.io/assets/og-share.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Hailah Alhejjei portfolio"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://hailahalhejjei.github.io/assets/og-share.jpg">
+<title>Hailah Alhejjei · UI/UX Designer and Front-End Developer</title>
+<meta name="description" content="Hailah Alhejjei, UI/UX designer and front-end developer, also building VR/XR. Final-year Programming &amp; Web Development student in Riyadh. 1st place Riyadah AI Hackathon, SAIF 2026 finalist.">
+<meta name="theme-color" content="#04070f">
+<link rel="preload" as="image" href="assets/hero/tide-desktop.webp" media="(min-width:861px)">
+<link rel="preload" as="image" href="assets/hero/tide-phone.webp" media="(max-width:860px)"><meta property="og:title" content="Hailah Alhejjei · UI/UX Designer and Front-End Developer"><meta property="og:description" content="UI/UX design, front-end development and VR/XR projects by Hailah Alhejjei, Programming &amp; Web Development student in Riyadh."><meta property="og:type" content="website"><meta property="og:url" content="https://hailahalhejjei.github.io/"><meta property="og:image" content="https://hailahalhejjei.github.io/assets/og-share.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Hailah Alhejjei portfolio"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://hailahalhejjei.github.io/assets/og-share.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@400&family=Marhey:wght@500&family=Lateef:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&family=Reem+Kufi+Fun:wght@500&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@600&family=Aref+Ruqaa:wght@400;700&family=Lateef:wght@400;600&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
-:root{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
+:root{--bg:#04070f;--bg2:#070c18;--ink:#f3ead8;--mute:#b0aa9c;--lime:#ffcf6b;--red:#ff5a4e;--cyan:#5ee6ff;--pink:#ff6f9c;--line:#ffffff1f}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 Manrope,Arial,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}::selection{background:var(--lime);color:#000}
 .skip{position:absolute;left:10px;top:0;transform:translateY(-200%)}html[lang=ar] .skip{left:auto;right:10px}.skip:focus{transform:none;top:10px;background:var(--lime);color:#000;padding:10px;z-index:99}
-.cur,.cur2{position:fixed;left:0;top:0;pointer-events:none;z-index:97;border-radius:50%}
-.cur{width:6px;height:6px;background:var(--lime)}.cur2{width:34px;height:34px;border:1px solid #d9f06788;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
-.cur2.big{width:70px;height:70px;border-color:var(--lime)}
-/* guide arrow that follows the mouse and points to contact */
-.guide{position:fixed;left:0;top:0;z-index:89;pointer-events:none;display:flex;align-items:center;gap:6px;font:600 18px 'Caveat',cursive;color:var(--lime);transition:opacity .4s;white-space:nowrap}
-.guide svg{width:34px;height:34px;flex:none}
-.guide.hide{opacity:0}
-@media (hover:none){.cur,.cur2,.guide{display:none}}
+
 header{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,5vw,64px);mix-blend-mode:difference}
 .brand{font:600 15px 'JetBrains Mono';letter-spacing:.04em}.brand b{color:var(--lime)}
 nav{display:flex;gap:22px;font:12px 'JetBrains Mono'}nav a{opacity:.75}nav a:hover{opacity:1;color:var(--lime)}nav a span{color:var(--lime)}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(18px,5vw,64px) 48px;overflow:hidden}
-#field{position:absolute;inset:0;width:100%;height:100%}
+
 .hero:after{content:'';position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,#07100fe6 55%);pointer-events:none}
 .hero-in{position:relative;z-index:2;pointer-events:none}
 .hud{font:11px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em;display:flex;gap:24px;flex-wrap:wrap}.hud b{color:var(--lime);font-weight:400}
 .hero h1{font:400 clamp(60px,12vw,190px)/.92 'Instrument Serif';letter-spacing:-.035em;margin:18px 0 34px;max-width:100%;overflow-wrap:anywhere}.hero h1 i{color:var(--lime)}
 .lede{position:relative;max-width:620px;margin-top:0;font-size:clamp(16px,1.6vw,20px);color:#c9d6cd}
-.typed{color:var(--lime);font-family:'JetBrains Mono';font-size:.9em}.typed:after{content:'▍';animation:blink 1s steps(1) infinite}
+
 @keyframes blink{50%{opacity:0}}
 .hint{position:absolute;z-index:2;right:clamp(18px,5vw,64px);bottom:48px;font:11px 'JetBrains Mono';color:var(--mute);text-align:right;line-height:1.8;pointer-events:none}
-.marq{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:14px 0;background:var(--bg2)}
-.marq div{display:inline-block;animation:mq 42s linear infinite}.marq span{font:400 30px 'Instrument Serif';margin:0 28px}.marq em{color:var(--lime);font-style:normal;font:12px 'JetBrains Mono';vertical-align:middle}
-@keyframes mq{to{transform:translateX(-50%)}}
+
+
+
 section{padding:110px clamp(18px,5vw,64px)}
 .label{font:11px 'JetBrains Mono';letter-spacing:.14em;color:var(--mute)}.label b{color:var(--lime);font-weight:400}
 h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03em;margin:16px 0 30px}h2.big i{color:var(--lime)}
 .about-g{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end}.about p{color:#c3d1c7;font-size:17px;max-width:560px}
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:60px;border:1px solid var(--line)}
 .skill{background:var(--bg);padding:24px;min-height:170px;position:relative;overflow:hidden}
-.skill:before{content:'';position:absolute;inset:0;background:radial-gradient(260px circle at var(--x,50%) var(--y,50%),#d9f0671f,transparent 60%);opacity:0;transition:.3s}.skill:hover:before{opacity:1}
+.skill:before{content:'';position:absolute;inset:0;background:radial-gradient(260px circle at var(--x,50%) var(--y,50%),#ffcf6b1f,transparent 60%);opacity:0;transition:.3s}.skill:hover:before{opacity:1}
 .skill small{font:11px 'JetBrains Mono';color:var(--lime)}.skill h3{font:400 30px 'Instrument Serif';margin:28px 0 4px}.skill p{font-size:13px;color:var(--mute);margin:0}
 .proj{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,70px);padding:70px 0;border-top:1px solid var(--line);align-items:center}
 .proj.rev .stage{order:2}
-.stage{position:relative;aspect-ratio:4/3;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 40%,#1b2f2c,#060c0c 75%)}
+.stage{position:relative;aspect-ratio:4/3;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 40%,#16213a,#04070f 75%)}
 .stage>img{width:100%;height:100%;object-fit:cover;display:block}
 .stage canvas.three{position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab;touch-action:pan-y}.stage canvas.three:active{cursor:grabbing}
 .stage .tag{position:absolute;left:12px;top:12px;font:10px 'JetBrains Mono';background:#000a;padding:5px 8px;letter-spacing:.1em;z-index:5}
@@ -80,19 +75,19 @@ h2.big{font:400 clamp(44px,7vw,104px)/.95 'Instrument Serif';letter-spacing:-.03
 @media(prefers-reduced-motion:reduce){.ssx-mri{display:none}}
 .ssx-prog{flex:1 1 90px;max-width:240px;margin-inline-start:auto;display:flex;gap:4px}
 .ssx-prog button{flex:1;height:26px;padding:0;border:0;background:none;cursor:pointer;position:relative}.ssx-prog button::before{content:'';position:absolute;left:0;right:0;top:11px;height:4px;border-radius:2px;background:#ffffff2e;transition:background .3s}
-.ssx-prog button.done::before{background:#ffffffa6}.ssx-prog button.now::before{background:#d9f067}
+.ssx-prog button.done::before{background:#ffffffa6}.ssx-prog button.now::before{background:#ffcf6b}
 .ssx-cap{position:absolute;bottom:14px;inset-inline-start:12px;z-index:2;margin:0;display:flex;align-items:center;gap:8px;max-width:calc(100% - 20px);padding:6px 13px 6px 6px;border-radius:999px;background:#0b1a33;color:#fff;font:600 13px/1.35 Manrope,sans-serif;box-shadow:0 6px 18px #0b1a3340}
 html[lang=ar] .ssx-cap{padding:6px 6px 6px 13px}
-.ssx-cap b{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#d9f067;color:#0b1a33;font-size:12px;font-weight:800}
+.ssx-cap b{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#ffcf6b;color:#0b1a33;font-size:12px;font-weight:800}
 .ssx-replay{position:absolute;inset-inline-end:12px;bottom:14px;z-index:2;display:none;font:600 12px 'JetBrains Mono';background:#0b1a33;color:#fff;border:0;border-radius:999px;padding:10px 15px;cursor:pointer;box-shadow:0 6px 18px #0b1a3340}.ssx-replay:hover{background:#163160}
 .ssx.end .ssx-replay{display:block}.ssx.end .ssx-cap{max-width:calc(100% - 140px)}
 @media(max-width:600px){.ssx-modal{padding:8px}.app{width:100%;border-radius:10px}.ssx{aspect-ratio:auto;height:min(calc(100vh - 76px),155vw)}.bar{padding:0 4px 0 12px;gap:8px}html[dir=rtl] .bar{padding:0 12px 0 4px}.bar i{display:none}.bar span{margin:0;padding:3px 8px;font:600 11px Manrope,sans-serif}.ssx-prog{flex-basis:70px}.ssx-cap{bottom:10px;inset-inline-start:8px;max-width:calc(100% - 16px);gap:6px;padding:4px 10px 4px 4px;font-size:11.5px}html[lang=ar] .ssx-cap{padding:4px 4px 4px 10px}.ssx-cap b{width:18px;height:18px;font-size:11px}.ssx-replay{inset-inline-end:8px;bottom:10px;padding:8px 12px;font-size:11px}.ssx.end .ssx-cap{max-width:calc(100% - 112px)}}
 @supports(height:100svh){@media(max-width:600px){.ssx{height:min(calc(100svh - 76px),155vw)}}}
-.ssx-ring{position:absolute;z-index:4;border:3px solid #d9f067;opacity:0;transform:scale(1.18);transition:opacity .25s ease,transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none;box-shadow:0 0 0 2px #0b1a33,inset 0 0 0 1px #0b1a3366,0 0 26px 6px #d9f06780}
+.ssx-ring{position:absolute;z-index:4;border:3px solid #ffcf6b;opacity:0;transform:scale(1.18);transition:opacity .25s ease,transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none;box-shadow:0 0 0 2px #0b1a33,inset 0 0 0 1px #0b1a3366,0 0 26px 6px #ffcf6b80}
 .ssx-ring.on{opacity:1;transform:none}
-.ssx-ring::after{content:'';position:absolute;inset:-10px;border-radius:calc(var(--r,12px) + 10px);border:2px solid #d9f067;opacity:0}
+.ssx-ring::after{content:'';position:absolute;inset:-10px;border-radius:calc(var(--r,12px) + 10px);border:2px solid #ffcf6b;opacity:0}
 .ssx-ring.on::after{animation:ssping 1.1s ease-out .3s infinite}@keyframes ssping{from{opacity:.85;transform:scale(.92)}to{opacity:0;transform:scale(1.1)}}
-.ssx-x:focus-visible,.ssx-prog button:focus-visible,.ssx-replay:focus-visible{outline:2px solid #d9f067;outline-offset:2px}
+.ssx-x:focus-visible,.ssx-prog button:focus-visible,.ssx-replay:focus-visible{outline:2px solid #ffcf6b;outline-offset:2px}
 .screen .res{opacity:0}.screen.done .res{opacity:1}.screen.done .home{opacity:0}
 .fakecur{position:absolute;width:18px;height:18px;z-index:3;left:70%;top:80%;transition:left .9s cubic-bezier(.6,.1,.3,1),top .9s cubic-bezier(.6,.1,.3,1);filter:drop-shadow(0 1px 2px #000)}
 .fakecur.click{animation:clk .25s}@keyframes clk{50%{transform:scale(.75)}}
@@ -111,13 +106,13 @@ html[lang=ar] .ssx-cap{padding:6px 6px 6px 13px}
 /* satathon */
 .sat>img{filter:brightness(.75)}
 .orbit{position:absolute;inset:0;z-index:3;pointer-events:none}
-.satmsg{position:absolute;left:12px;bottom:12px;z-index:4;font:12px 'JetBrains Mono';background:#000c;border:1px solid #d9f06755;padding:8px 12px;color:var(--mute);transition:.3s}
+.satmsg{position:absolute;left:12px;bottom:12px;z-index:4;font:12px 'JetBrains Mono';background:#000c;border:1px solid #ffcf6b55;padding:8px 12px;color:var(--mute);transition:.3s}
 .satmsg b{color:var(--lime);font-weight:400}
 /* timeline */
 .tl{display:grid;grid-template-columns:1fr 1.3fr;gap:70px}.steps{border-left:1px solid var(--line)}
 .step{padding:0 0 34px 28px;position:relative}.step:before{content:'';position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--lime)}
 .step.gold:before{background:var(--lime);box-shadow:0 0 14px var(--lime)}
-.step small{font:11px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em}.step h4{font:400 28px/1.1 'Instrument Serif';margin:6px 0 4px}.step p{margin:0;color:var(--mute);font-size:14px}
+.step small{font:11px 'JetBrains Mono';color:var(--mute);letter-spacing:.1em}.step h3{font:400 28px/1.1 'Instrument Serif';margin:6px 0 4px}.step p{margin:0;color:var(--mute);font-size:14px}
 /* contact */
 .contact{min-height:90vh;display:flex;flex-direction:column;justify-content:center}
 .contact h2{font:400 clamp(52px,9vw,140px)/.92 'Instrument Serif';letter-spacing:-.03em;margin:18px 0 40px}.contact h2 i{color:var(--lime)}
@@ -135,7 +130,7 @@ html[lang=ar] .ssx-cap{padding:6px 6px 6px 13px}
 .note{position:absolute;font:600 22px 'Caveat',cursive;color:var(--lime);opacity:0;transition:opacity .5s .6s;white-space:nowrap;pointer-events:none}
 @keyframes draw{to{stroke-dashoffset:0}}
 footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:11px 'JetBrains Mono';color:var(--mute)}
-.rv{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s}.rv.in{opacity:1;transform:none}
+.rv.in{opacity:1;transform:none}
 /* little computer that opens the terminal */
 .chips2{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px 0;border-top:1px solid var(--line)}
 .chips2 button{font:12px 'JetBrains Mono';background:#13201f;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer}
@@ -146,10 +141,10 @@ footer{border-top:1px solid var(--line);padding:22px clamp(18px,5vw,64px);displa
 .langbtn{background:none;border:0;color:inherit;font:12px 'JetBrains Mono';opacity:.75;cursor:pointer;padding:0 0 0 22px}.langbtn{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);padding:6px 0!important}
 header{padding-left:calc(clamp(18px,5vw,64px) + 48px)!important}.langbtn:hover{opacity:1;color:var(--lime)}
 html[lang=ar] body,html[lang=ar] body *:not(svg):not(svg *){font-family:'Lateef','Aref Ruqaa',cursive!important;font-weight:400!important;font-size-adjust:.62;letter-spacing:0!important}
-html[lang=ar] .hero h1,html[lang=ar] h2.big,html[lang=ar] .copy h3,html[lang=ar] .contact h2,html[lang=ar] .step h4,html[lang=ar] .skill h3,html[lang=ar] .marq span,html[lang=ar] .cta{font-family:'Aref Ruqaa',cursive!important;font-weight:400!important;line-height:1.3!important}
+html[lang=ar] .hero h1,html[lang=ar] h2.big,html[lang=ar] .copy h3,html[lang=ar] .contact h2,html[lang=ar] .step h3,html[lang=ar] .skill h3,html[lang=ar] .marq span,html[lang=ar] .cta{font-family:'Aref Ruqaa',cursive!important;font-weight:400!important;line-height:1.3!important}
 
 html[lang=ar] .note,html[lang=ar] .pc .tip,html[lang=ar] .guide{font-family:'Aref Ruqaa',cursive!important}
-html[lang=ar] .marq div{animation-direction:reverse}
+
 html[lang=ar] .proj.rev .stage{order:0}html[lang=ar] .proj:not(.rev) .stage{order:2}
 html[lang=ar] .term-o,html[lang=ar] #ti{direction:rtl;text-align:right}
 footer{padding-right:calc(clamp(18px,5vw,64px) + 190px)!important;padding-bottom:40px!important}
@@ -165,22 +160,22 @@ html[lang=ar] .skill h3{font-size:24px!important}
 html[lang=ar] .hero h1,html[lang=ar] .hero h1 *,html[lang=ar] h2,html[lang=ar] h2 *,html[lang=ar] h3,html[lang=ar] h3 *,html[lang=ar] h4,html[lang=ar] h4 *{line-height:1.7!important;transform:none!important;margin-top:0!important}
 html[lang=ar] h2 br+*,html[lang=ar] h2 span,html[lang=ar] h2 em,html[lang=ar] h2 i{display:inline!important}
 html[lang=ar] body #mail,html[lang=ar] body #mail span{font-family:'Instrument Serif',serif!important;direction:ltr;white-space:nowrap;font-size:clamp(28px,5.2vw,72px)!important}
-html[lang=ar] .step h4,html[lang=ar] .step h4 *{font-size:clamp(20px,2vw,28px)!important}
+html[lang=ar] .step h3,html[lang=ar] .step h3 *{font-size:clamp(20px,2vw,28px)!important}
 html[lang=ar] #mail .note{direction:rtl!important;white-space:nowrap!important;left:auto!important;right:calc(100% + 12px)!important;top:30px!important;bottom:auto!important;font-family:'Aref Ruqaa',cursive!important;font-weight:400!important;font-size:22px!important;transform:rotate(6deg)!important}
 html[lang=ar] #mail .note::before{content:'← ';font-family:'Caveat',cursive;display:inline-block;transform:scaleX(-1);margin-left:6px}
-html[lang=ar] #mail .doodle.pink{right:auto!important;left:-34px!important;top:-26px!important;transform:scaleX(-1)}
+html[lang=ar] #mail .star{right:auto;left:-56px;top:-42px}
 html[lang=ar] .hero h1{margin-bottom:70px!important}
 
 html[lang=ar] #mail .note{line-height:1.3!important}@media(max-width:900px){html[lang=ar] #mail .note{display:none!important}}
 html[lang=ar] .note.lc{top:84px!important}
 html[lang=ar] #voiceBtn{display:none!important}
-@media(max-width:860px){html,body{overflow-x:clip}#mail .note,#mail .doodle.pink{display:none!important}}
+@media(max-width:860px){html,body{overflow-x:clip}#mail .note{display:none!important}}
 @media(max-width:600px){.pc{width:84px!important;height:90px!important;right:12px!important;bottom:12px!important}html[lang=ar] .pc{left:12px!important;right:auto!important}.pc .tip{right:80px!important;top:10px!important;font-size:15px!important}html[lang=ar] .pc .tip{left:80px!important;right:auto!important}.term{left:8px!important;right:8px!important;width:auto!important;bottom:110px!important;height:min(360px,58vh)!important}footer{padding-right:clamp(18px,5vw,64px)!important;padding-bottom:110px!important}}
 html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4,html[lang=ar] body h2 *,html[lang=ar] body h3 *,html[lang=ar] body h4 *{line-height:1.75!important}html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4{padding-bottom:.35em!important;margin-bottom:.2em!important}
 html[lang=ar] body :is(h2,h3,h4)+*{margin-top:12px!important}
 @media(hover:none) and (max-width:600px){.pc{bottom:calc(86px + env(safe-area-inset-bottom))!important}.term{bottom:calc(190px + env(safe-area-inset-bottom))!important}}
 .pc{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-@media(max-width:860px){.hero{justify-content:flex-start!important;min-height:100svh!important;padding-top:76px!important;padding-bottom:40px!important}.hero-in{flex:1;display:flex;flex-direction:column}.hero-in>.hud{margin-top:auto!important;flex-wrap:nowrap!important;white-space:nowrap;gap:6px!important;font-size:8.4px!important;letter-spacing:0!important}.hero-in>.hud *{letter-spacing:0!important}.hero-in>:last-child{margin-bottom:auto!important}}
+@media(max-width:860px){.hero{justify-content:flex-start!important;min-height:100svh!important;padding-top:76px!important;padding-bottom:40px!important}.hero-in{flex:1;display:flex;flex-direction:column}.hero-in>.hud{margin-top:auto!important;flex-wrap:nowrap!important;white-space:nowrap;gap:6px!important;font-size:12px!important;letter-spacing:0!important}.hero-in>.hud *{letter-spacing:0!important}.hero-in>:last-child{margin-bottom:auto!important}}
 html[lang=ar] #goldLight{background:radial-gradient(circle at 92px calc(100% - 92px),#fffbe8 0%,#fff1b8 30%,#ffe08a 65%,#ffd36b 100%)!important}
 #goldLight{position:fixed;inset:0;z-index:77;pointer-events:none;opacity:0;transition:opacity .9s ease;background:radial-gradient(circle at calc(100% - 100px) calc(100% - 96px),#fffef6 0%,#fff6cf 12%,#ffe9a0 32%,#ffd977 60%,#f5c25a 100%)}
 #goldLight.on{opacity:.9}
@@ -210,147 +205,251 @@ nav a.navcv{opacity:1;color:var(--lime);border:1px solid currentColor;padding:4p
 html[lang=ar] .btn{line-height:1.25}html[lang=ar] nav a.navcv{line-height:1.25;padding:4px 10px}
 .hero{padding-top:84px}.hero h1{font-size:clamp(60px,min(12vw,18vh),190px)}
 @media(min-width:861px) and (max-height:760px){html[lang=ar] .hero h1 br{display:none}html[lang=ar] .hero h1 i{margin-inline-start:.28em}html[lang=ar] .hero h1{margin-bottom:40px!important}}
+
+.stage{scroll-margin-top:90px}
+/* ===== Golden Tide: one night sea, one light ===== */
+:root{--gold:#ffcf6b;--cream:#fff1c9}
+/* Thanaya, her chat and her messages keep their own colours exactly as they were */
+.pc,.term,.toast,#goldLight,#bitsy{--bg:#07100f;--bg2:#0c1918;--ink:#e9f0ea;--mute:#93a69b;--lime:#d9f067;--line:#ffffff1f}
+.term,#goldLight,#bitsy{color:#e9f0ea}
+::selection{background:var(--gold);color:#0b1020}
+header{mix-blend-mode:normal;background:#04070ff2;border-bottom:1px solid #ffffff14;padding-top:10px;padding-bottom:10px}
+.brand{font:600 16px Manrope,Arial,sans-serif;letter-spacing:-.005em}
+nav{font:500 14px Manrope,Arial,sans-serif;gap:26px;align-items:center}
+nav a{opacity:1;color:#d9d2c3;position:relative;padding:10px 0}
+nav a:hover{opacity:1;color:var(--ink)}
+nav a.on{color:var(--ink)}
+nav a.on::after{content:'';position:absolute;left:0;right:0;bottom:4px;height:2px;border-radius:2px;background:var(--gold)}
+nav a.navcv{color:var(--gold);border:1px solid #ffcf6b99;border-radius:999px;padding:8px 15px}
+nav a.navcv::after{display:none}
+.langbtn{font:600 15px Manrope,Arial,sans-serif;opacity:1;min-width:44px;min-height:44px;color:var(--ink)}
+.hero{justify-content:center;padding:104px clamp(18px,5vw,64px) 64px;background:#04070f}
+/* the plate keeps its glow clear of the text column: full height on wide screens, smaller (anchored to Thanaya's corner) on narrow ones */
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:#04070f url(assets/hero/tide-desktop.webp) right bottom/min(160vh,calc((100vw - clamp(18px,5vw,64px) - min(620px,46vw) - 24px)*2.22)) auto no-repeat}
+html[lang=ar] .hero::before{transform:scaleX(-1)}
+.hero:after{display:none}
+.hero-in{pointer-events:auto;max-width:min(620px,46vw)}
+.hero h1{font-size:clamp(64px,min(10.5vw,18vh),168px);line-height:.9;margin:0 0 .22em}
+.hero .role{display:block;margin:0 0 12px;font:600 clamp(19px,1.9vw,27px)/1.25 Manrope,Arial,sans-serif;color:var(--ink);letter-spacing:-.01em}
+.hero .avail{margin:0 0 10px;font-size:clamp(16px,1.35vw,18px);line-height:1.55;color:#e7dfcf}
+.hero .lede{margin:0;max-width:34em;font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:#bdb6a8}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}
+.proof{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:6px 30px;list-style:none;margin:28px 0 0;padding:16px 0 0;border-top:1px solid #ffffff17;font:500 14px/1.45 Manrope,Arial,sans-serif;color:#bdb6a8}
+.proof b{color:var(--ink);font-weight:700}
+.proof a{display:inline-block;padding:4px 0}
+.proof a:hover b,.proof a:focus-visible b{color:var(--gold)}
+html[lang=ar] .hero h1{margin-bottom:.12em!important}
+html[lang=ar] .hero .role{margin-top:0!important;font-size:clamp(24px,2.5vw,32px)!important;line-height:1.5!important}
+html[lang=ar] .proof{font-size:18px!important}
+.btn{font:600 15px Manrope,Arial,sans-serif;padding:13px 22px;border:1px solid #f3ead84d;border-radius:999px;background:transparent;color:var(--ink);letter-spacing:0}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.pri{background:var(--gold);border-color:var(--gold);color:#0b1020}
+.btn.pri:hover{color:#0b1020;filter:brightness(1.06)}
+html[lang=ar] .btn{font-size:18px!important}
+.sec{font:400 clamp(44px,6vw,88px)/1 'Instrument Serif',serif;letter-spacing:-.02em;margin:0 0 12px}
+.sec-sub{margin:0 0 40px;font:500 15px Manrope,Arial,sans-serif;color:var(--mute)}
+html[lang=ar] .sec{font-family:'Aref Ruqaa',cursive!important;font-size:clamp(36px,4.6vw,60px)!important;line-height:1.3!important}
+.stage .tag{font:600 13px Manrope,Arial,sans-serif;letter-spacing:0;text-transform:none;border-radius:999px;padding:6px 11px}
+.stage .drag{font:500 13px Manrope,Arial,sans-serif;letter-spacing:0;border-radius:999px;padding:5px 11px}
+.stage .act{font:700 14px Manrope,Arial,sans-serif;letter-spacing:0;border-radius:999px;padding:12px 18px}
+.stage .act.red{background:#c9362b;color:#fff}
+.mini{font:600 13px Manrope,Arial,sans-serif;border-radius:999px;padding:7px 12px}
+.copy .meta{display:block;margin:2px 0 16px;font:500 14px/1.5 Manrope,Arial,sans-serif;letter-spacing:0;color:var(--mute)}
+.award{font:600 13px Manrope,Arial,sans-serif;letter-spacing:0;border:1px solid #ffcf6b80;color:var(--gold);border-radius:999px;padding:5px 12px}
+.chips li{font:500 13px Manrope,Arial,sans-serif;border-radius:999px;padding:5px 11px;color:#c9c2b4}
+.copy .go{font:600 14px Manrope,Arial,sans-serif;letter-spacing:0;display:inline-block;padding:10px 0 6px;border-bottom:1px solid var(--gold)}
+.step small{font:600 13px Manrope,Arial,sans-serif;letter-spacing:0;color:var(--mute)}
+.step.gold:before{box-shadow:none}
+footer{font:500 13px Manrope,Arial,sans-serif}
+footer a{padding:10px 0}
+.copied{font:600 13px Manrope,Arial,sans-serif}
+.skills{gap:28px 40px;background:none;border:0;border-top:1px solid var(--line);padding-top:32px}
+.skill{background:none;padding:0;min-height:0}
+.skill:before{display:none}
+.skill p{font-size:14px;line-height:1.6;color:#c9c2b4}
+html[lang=ar] .stage .tag,html[lang=ar] .stage .drag,html[lang=ar] .copy .meta,html[lang=ar] .award,html[lang=ar] .chips li,html[lang=ar] .step small,html[lang=ar] footer,html[lang=ar] .sec-sub,html[lang=ar] nav,html[lang=ar] .copy .go,html[lang=ar] .skill p{font-size:17px!important}
+html[lang=ar] .stage .act,html[lang=ar] .mini{font-size:18px!important}
+/* if the 3D library cannot load, the stages keep their words and the real photo instead of empty boxes */
+.no3d .stage canvas.three,.no3d .stage .drag{display:none}
+.no3d #awnPhoto{opacity:1}
+.thread{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:1;overflow:hidden}
+.ray{position:absolute;inset:0;pointer-events:none;z-index:1}
+/* the email sits above its glowing underline */
+#mail{z-index:2}
+/* where the light ends: a star of the same light (painted with the thread), in the place the heart had */
+#mail .star{position:absolute;right:-52px;top:-30px;width:40px;height:40px;pointer-events:none}
+/* it appears with "that's me!", the way the heart used to draw itself in: once, when the contact comes into view */
+.starlight{position:absolute;pointer-events:none;z-index:1;opacity:0;transform:scale(.5);transition:opacity .7s .45s ease,transform .9s .45s cubic-bezier(.2,.8,.2,1)}
+.starlight.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.starlight{transform:none;transition:opacity .3s}}
+@media(max-width:860px){#mail .star{width:24px;height:24px;top:auto;bottom:-14px;right:-26px}html[lang=ar] #mail .star{left:-10px;right:auto;top:auto}}
+@media(max-width:860px){
+ .hero{padding-top:84px!important;padding-bottom:calc(78vw + env(safe-area-inset-bottom))!important;justify-content:flex-start!important}
+ .hero::before{background:#04070f url(assets/hero/tide-phone.webp) center bottom/100% auto no-repeat}
+ .hero-in{max-width:none}
+ .hero h1{font-size:clamp(52px,15vw,84px)}
+ .proof{gap:4px 18px;font-size:14px}
+}
+/* the proof row: four lit awards, the award in gold serif like her name, the event beneath */
+.proof{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:30px 0 0;padding:0;border-top:0}
+.proof li{border-inline-start:1px solid #ffffff21;padding:2px 12px 2px 16px}
+.proof li:first-child{border-inline-start:0;padding-inline-start:0}
+.proof a{display:block;padding:0}
+.proof b{display:block;margin:0 0 6px;font:italic 400 clamp(24px,2.2vw,32px)/1.1 'Instrument Serif',serif;color:var(--gold);letter-spacing:-.01em}
+.proof span{display:block;font:500 13.5px/1.4 Manrope,Arial,sans-serif;color:#cfc7b6}
+.proof a:hover b,.proof a:focus-visible b{color:var(--cream)}
+.proof a:hover span,.proof a:focus-visible span{color:var(--ink)}
+@media(max-width:1100px){.proof{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}.proof li:nth-child(3){border-inline-start:0;padding-inline-start:0}}
+html[lang=ar] .proof{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}html[lang=ar] .proof li:nth-child(3){border-inline-start:0;padding-inline-start:0}
+html[lang=ar] .proof b{font-family:'Aref Ruqaa',cursive!important;font-size:clamp(22px,1.9vw,27px)!important;line-height:1.45!important;font-style:normal}
+html[lang=ar] .proof span{font-size:17px!important;line-height:1.4!important}
+/* Arabic reads right to left: the timeline's line and dots sit at the start of its text, away from the golden thread */
+html[dir=rtl] .steps{border-left:0;border-right:1px solid var(--line)}
+html[dir=rtl] .step{padding:0 28px 34px 0}
+html[dir=rtl] .step:before{left:auto;right:-5px}
+/* Arabic name on one line on desktop, so the whole first screen fits */
+@media(min-width:861px){html[lang=ar] .hero h1 br{display:none}html[lang=ar] .hero h1 i{margin-inline-start:.28em}}
+@media(max-width:600px){
+ .stage .drag{left:10px;bottom:12px;transform:none}
+ .stage .act{font-size:13px;padding:10px 14px}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="cur"></div><div class="cur2"></div>
-<div class="guide hide" id="guide" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M6 20 C14 18 22 18 32 20 M24 12 L33 20 L24 28" fill="none" stroke="#d9f067" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>say hi!</span></div>
-<header><a class="brand" href="#top">HAILAH<b>.</b>ALHEJJEI</a><nav><a href="#about"><span>01</span> about</a><a href="#work"><span>02</span> work</a><a href="#path"><span>03</span> path</a><a href="#contact"><span>04</span> contact</a><a class="navcv" href="Hailah_Alhejjei_CV_2026.pdf" download>CV ↓</a></nav><button id="i18nBtn" class="langbtn" aria-label="Switch language">عربي</button></header>
+<header><a class="brand" href="#top">Hailah Alhejjei</a><nav aria-label="Sections"><a href="#about">About</a><a href="#work">Work</a><a href="#path">Path</a><a href="#contact">Contact</a><a class="navcv" href="Hailah_Alhejjei_CV_2026.pdf" download>CV ↓</a></nav><button id="i18nBtn" class="langbtn" aria-label="Switch language">عربي</button></header>
 <main id="main">
 <section class="hero" id="top">
-  <canvas id="field" aria-hidden="true"></canvas>
   <div class="hero-in">
-    <div class="hud"><span>RIYADH · SA</span><span>FREQ <b id="freq">868.000</b> MHz</span><span>SIGNAL <b id="sig">LISTENING</b></span><span>STATUS <b>OPEN TO CO-OP</b></span></div>
     <h1>Hailah<br><i>Alhejjei</i></h1>
+    <p class="role">UI/UX Designer and Front-End Developer</p>
     <p class="avail">Final-year Programming &amp; Web Development diploma student in Riyadh, <b>open to a co-op from January 2027.</b></p>
-    <p class="lede">I build things that send a signal: AI that reads an MRI, a device that calls for help with no network, worlds you can walk into in VR.<br><span class="typed" id="typed"></span></p>
+    <p class="lede">I design the experience and then build it: from notebook sketch and Figma to working code, for the web and for VR and extended reality (XR).</p>
+    <div class="hero-cta"><a class="btn pri" href="#work">See my work ↓</a><a class="btn" href="Hailah_Alhejjei_CV_2026.pdf" download>Download CV</a></div>
+    <ul class="proof" aria-label="Highlights"><li><a href="#ss"><b>1st place</b><span>Riyadah AI Hackathon</span></a></li><li><a href="#awn"><b>Finalist</b><span>SAIF 2026</span></a></li><li><a href="#sat"><b>3rd place</b><span>Satathon 2026</span></a></li><li><a href="#work"><b>2 patents</b><span>pending · named inventor</span></a></li></ul>
   </div>
-  
 </section>
 
-<div class="marq" aria-label="Awards"><div>
-  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🏁 SAIF 2026 Finals <em>AWN · ACCEPTED</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
-  <span>🥇 1st Place <em>RIYADAH AI HACKATHON</em></span><span>🏁 SAIF 2026 Finals <em>AWN · ACCEPTED</em></span><span>🥉 3rd Place <em>SATATHON 2026</em></span><span>2× Patent pending <em>AWN · MS SMARTSCAN</em></span><span>Healthon 2026 <em>KSU MEDICAL CITY</em></span><span>160h VR Bootcamp <em>TUWAIQ ACADEMY</em></span>
-</div></div>
-
 <section class="about" id="about">
-  <p class="label"><b>01</b> / ABOUT</p>
   <div class="about-g rv"><h2 class="big">Dreams between the folds, unfolded into <i>code that glows.</i></h2>
-  <div><p>I work across web development, UX, embedded hardware, and immersive VR/XR. Every project starts with real people and real constraints - a radiologist with too little time, a hiker with no signal - and ends as something you can actually hold, click or step inside.</p>
-  <p>Programming &amp; Web Development student at the Technical and Vocational Training Corporation, Riyadh.</p></div></div>
+  <div><p>I design user experiences and build them for the web, and I also create worlds for virtual and extended reality (VR/XR). Every project starts with real people and real constraints, like a radiologist with too little time or a hiker lost in the desert, and ends as something you can actually click, hold or step inside.</p>
+  <p>Diploma in Programming and Web Development Technology, Technical and Vocational Training Corporation, Riyadh. GPA 4.58 / 5.</p></div></div>
   <div class="skills rv">
-    <div class="skill"><small>01</small><h3>Web &amp; UX</h3><p>HTML · CSS · JavaScript · PHP<br>Responsive interfaces · UX design</p></div>
-    <div class="skill"><small>02</small><h3>Data &amp; Back end</h3><p>Python · SQL · PL/SQL · SQLite<br>Oracle · Authentication</p></div>
-    <div class="skill"><small>03</small><h3>Hardware</h3><p>ESP32 · LoRa · GPS · Raspberry Pi<br>3D-printed enclosures</p></div>
-    <div class="skill"><small>04</small><h3>VR / XR</h3><p>Unity · C# · Meta Quest<br>XR Interaction Toolkit · Voice SDK</p></div>
+    <div class="skill"><h3>UI/UX Design</h3><p>Figma · Canva<br>Hand sketching · character illustration</p></div>
+    <div class="skill"><h3>Front-End</h3><p>HTML · CSS · JavaScript · PHP<br>Responsive interfaces · GitHub</p></div>
+    <div class="skill"><h3>VR &amp; XR</h3><p>Unity · C# · Meta Quest<br>XR Interaction Toolkit · Voice SDK</p></div>
+    <div class="skill"><h3>Back end &amp; Hardware</h3><p>Python · SQL · PL/SQL · SQLite<br>Raspberry Pi · ESP32 · Fusion 360</p></div>
   </div>
 </section>
 
 <section id="work">
-  <p class="label"><b>02</b> / SELECTED WORK - <span style="color:var(--ink)">drag the models, press the buttons, explore.</span></p>
+  <h2 class="sec">Selected work</h2>
+  <p class="sec-sub">Drag the models, press the buttons, explore.</p>
 
   <article class="proj rv">
-    <div class="stage" id="ss"><span class="tag">MRI · ON-DEVICE AI</span>
+    <div class="stage" id="ss"><span class="tag">MRI · On-device AI</span>
       <canvas class="three" id="brain3d" aria-label="3D model of the MS SmartScan brain-shaped device, drag to rotate"></canvas>
-      <span class="drag" id="ssDrag">⟲ DRAG TO ROTATE</span>
-      <button class="act" id="ssBtn">▶ RUN AI SCAN</button>
+      <span class="drag" id="ssDrag">Drag to rotate</span>
+      <button class="act" id="ssBtn">Look at the website</button>
     </div>
-    <div class="copy"><span class="num">01</span> <span class="meta">BUILT AT HEALTHON 2026 · TEAM PROJECT · PATENT PENDING</span>
+    <div class="copy">
       <h3>MS <i>SmartScan</i></h3>
-      <span class="award">🥇 1st Place · Riyadah AI Hackathon · Nov 2026</span><span class="award">⚙️ Working prototype · Patent pending</span>
-      <p>An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI - on a Raspberry Pi, in seconds.</p>
+      <p class="meta">Built at Healthon 2026 · UX, web and security lead · Patent pending</p>
+      <span class="award">1st place · Riyadah AI Hackathon · Nov 2026</span><span class="award">Working prototype · Patent pending</span>
+      <p>An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI, on a Raspberry Pi, in seconds.</p>
       <p class="mine"><b>My contribution:</b> Designed and built the MRI Scanner and Patient Registry web experiences, the shared SQLite data layer, and doctor PIN authentication with salted PBKDF2 hashing.</p>
       <ul class="chips"><li>Python</li><li>SQLite</li><li>Web UX</li><li>Raspberry Pi</li></ul>
-      <a class="go" href="https://github.com/HailahAlhejjei/MS-SmartScan" target="_blank" rel="noreferrer">PROJECT SHOWCASE ↗</a></div>
+      <a class="go" href="https://github.com/HailahAlhejjei/MS-SmartScan" target="_blank" rel="noreferrer">Project showcase ↗</a></div>
   </article>
 
   <article class="proj rev rv">
-    <div class="stage" id="awn"><span class="tag">LORA RADIO · NO NETWORK</span>
+    <div class="stage" id="awn"><span class="tag">Off-grid SOS device</span>
       <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
       <canvas class="lora" id="loraC"></canvas>
-      <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices"></div>
-      <button class="mini" id="photoBtn">📷 REAL PHOTO</button>
-      <span class="drag">⟲ DRAG TO ROTATE</span>
+      <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices" loading="lazy" decoding="async"></div>
+      <button class="mini" id="photoBtn">Real photo</button>
+      <span class="drag">Drag to rotate</span>
       <div class="log" id="awnLog"></div>
-      <button class="act red" id="sosBtn">● PRESS SOS</button>
+      <button class="act red" id="sosBtn">Press SOS</button>
     </div>
-    <div class="copy"><span class="num">02</span> <span class="meta">GRADUATION PROJECT · PATENT PENDING</span>
+    <div class="copy">
       <h3>Awn <i>(عون)</i></h3>
-      <span class="award">🏁 Accepted to the SAIF 2026 Finals</span><span class="award">⚙️ Working prototype · Patent pending</span>
-      <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team - and the team replies, so the person knows help is coming.</p>
-      <p class="mine"><b>How it works:</b> Two handheld ESP32 devices talk straight to each other over long-range LoRa radio, with no mobile network, internet, subscription or satellite. The SOS unit sends its GPS location encrypted, and the rescue unit shows the distance and direction, then sends back a confirmation: a green light, a beep and a message that help is coming.</p>
-      <ul class="chips"><li>ESP32</li><li>LoRa radio</li><li>GPS</li><li>Embedded C++</li><li>Two-way messaging</li></ul>
-      <a class="go" href="https://github.com/HailahAlhejjei/Aoun" target="_blank" rel="noreferrer">PROJECT SHOWCASE ↗</a></div>
+      <p class="meta">Graduation project · Co-developer · Patent pending</p>
+      <span class="award">SAIF 2026 finalist</span><span class="award">Working prototype · Patent pending</span>
+      <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team, and the team replies, so the person knows help is coming.</p>
+      <p class="mine"><b>My contribution:</b> Designed both 3D-printed device enclosures in Fusion 360 and co-wrote the ESP32 C++ firmware with my teammates. I took part in every stage, from first idea to finished build.</p>
+      <ul class="chips"><li>Enclosure design</li><li>Fusion 360</li><li>3D printing</li><li>ESP32</li><li>Embedded C++</li></ul>
+      <a class="go" href="https://github.com/HailahAlhejjei/Aoun" target="_blank" rel="noreferrer">Project showcase ↗</a></div>
   </article>
 
   <article class="proj rv">
-    <div class="stage uv" id="uv"><span class="tag">UV LIGHT · MOVE TO SEARCH</span>
-      <img src="https://raw.githubusercontent.com/HailahAlhejjei/Beyond-VR-Experience/main/media/screenshots/uv-flashlight.jpg" alt="CASE 017 VR crime scene">
+    <div class="stage uv" id="uv"><span class="tag">UV light · Move to search</span>
+      <img src="https://raw.githubusercontent.com/HailahAlhejjei/Beyond-VR-Experience/main/media/screenshots/uv-flashlight.jpg" alt="CASE 017 VR crime scene" loading="lazy" decoding="async">
       <div class="dark"></div><div class="glow"></div>
       <span class="clue" style="left:14%;top:30%">CLUE #1 · FOOTPRINT</span><span class="clue" style="left:52%;top:64%">CLUE #2 · TRACE</span><span class="clue" style="left:60%;top:22%">CLUE #3 · TIME 02:17</span>
     </div>
-    <div class="copy"><span class="num">03</span> <span class="meta">TUWAIQ ACADEMY · TEAM PROJECT</span>
+    <div class="copy">
       <h3>Beyond: <i>Case 017</i></h3>
+      <p class="meta">VR / XR · Tuwaiq Academy · Team project</p>
       <p>A story-driven VR detective experience for Meta Quest: investigate a crime scene, interrogate AI-driven suspects by voice, and reach your own conclusion.</p>
       <p class="mine"><b>My contribution:</b> Built and optimised the crime-scene environment; created the weather, lighting, rain, thunder and lightning systems; and developed the voice-driven phone call, countdown, ambience and scene transitions.</p>
       <ul class="chips"><li>Unity</li><li>C#</li><li>Meta Quest</li><li>Voice SDK</li></ul>
-      <a class="go" href="https://github.com/HailahAlhejjei/Beyond-VR-Experience" target="_blank" rel="noreferrer">VIEW PROJECT &amp; TRAILER ↗</a></div>
+      <a class="go" href="https://github.com/HailahAlhejjei/Beyond-VR-Experience" target="_blank" rel="noreferrer">Project and trailer ↗</a></div>
   </article>
 
   <article class="proj rev rv">
-    <div class="stage sat" id="sat"><span class="tag">SATELLITE PASS · LIVE</span>
-      <img src="https://raw.githubusercontent.com/HailahAlhejjei/Satathon/main/media/station/satellite-tracking-station.jpeg" alt="Digital Apollo satellite tracking station">
+    <div class="stage sat" id="sat"><span class="tag">Satellite pass</span>
+      <img src="https://raw.githubusercontent.com/HailahAlhejjei/Satathon/main/media/station/satellite-tracking-station.jpeg" alt="Digital Apollo satellite tracking station" loading="lazy" decoding="async">
       <svg class="orbit" id="orbit" viewBox="0 0 400 300" preserveAspectRatio="none">
-        <path id="orbPath" d="M-20 150 Q200 -60 420 150" fill="none" stroke="#d9f06788" stroke-width="1.2" stroke-dasharray="4 6"/>
+        <path id="orbPath" d="M-20 150 Q200 -60 420 150" fill="none" stroke="#ffcf6b88" stroke-width="1.2" stroke-dasharray="4 6"/>
         <g id="satG"><rect x="-6" y="-4" width="12" height="8" fill="#e9f0ea"/><rect x="-18" y="-2.5" width="10" height="5" fill="#5ee6ff"/><rect x="8" y="-2.5" width="10" height="5" fill="#5ee6ff"/></g>
-        <line id="beam" x1="0" y1="0" x2="200" y2="250" stroke="#d9f067" stroke-width="1.5" stroke-dasharray="3 4" opacity="0"/>
-        <circle id="ping" cx="200" cy="250" r="6" fill="none" stroke="#d9f067" stroke-width="2" opacity="0"/>
+        <line id="beam" x1="0" y1="0" x2="200" y2="250" stroke="#ffcf6b" stroke-width="1.5" stroke-dasharray="3 4" opacity="0"/>
+        <circle id="ping" cx="200" cy="250" r="6" fill="none" stroke="#ffcf6b" stroke-width="2" opacity="0"/>
       </svg>
       <div class="satmsg" id="satmsg">waiting for satellite pass…</div>
     </div>
-    <div class="copy"><span class="num">04</span> <span class="meta">SATATHON 2026 · DIGITAL APOLLO TEAM</span>
+    <div class="copy">
       <h3>Satathon: Signal, <i>received.</i></h3>
-      <span class="award">🥉 3rd Place · Satathon 2026</span>
-      <p>A hands-on satellite and HF radio challenge: tracking satellites as they pass overhead, receiving their live signals, decoding multiple modes and logging every contact.</p>
-      <p class="mine"><b>Team work:</b> Digital Apollo documented satellite tracking, manual tuning, CW/Morse, FT8, WSPR, SSTV, voice reception and structured signal logging.</p>
-      <ul class="chips"><li>Satellite tracking</li><li>SDR</li><li>FT8</li><li>SSTV</li></ul>
-      <a class="go" href="https://github.com/HailahAlhejjei/Satathon" target="_blank" rel="noreferrer">EXPLORE THE FIELD LOG ↗</a></div>
+      <p class="meta">Satathon 2026 · Digital Apollo team</p>
+      <span class="award">3rd place · Satathon 2026</span>
+      <p>A team competition by the Saudi Amateur Radio Society: track satellites as they pass overhead and decode what they send.</p>
+      <p class="mine"><b>My part:</b> I tracked satellites, decoded Morse code and SSTV images, and produced the team's submission video.</p>
+      <ul class="chips"><li>Teamwork</li><li>Video production</li><li>Satellite tracking</li></ul>
+      <a class="go" href="https://github.com/HailahAlhejjei/Satathon" target="_blank" rel="noreferrer">Field log ↗</a></div>
   </article>
 </section>
 
 <section id="path" style="background:var(--bg2)">
-  <div class="tl"><div class="rv"><p class="label"><b>03</b> / TRAJECTORY</p><h2 class="big">Built step by step, <i>signal by signal.</i></h2><p style="color:var(--mute);max-width:440px">Each step expanded how I work: the foundations of the web, building in teams under pressure, and shipping real hardware.</p></div>
+  <div class="tl"><div class="rv"><h2 class="big">Built step by step, <i>pixel by pixel.</i></h2><p style="color:var(--mute);max-width:440px">Each step expanded how I work: the foundations of the web, designing for real users, building in teams under pressure, and stepping into VR.</p></div>
   <div class="steps rv">
-    <div class="step gold"><small>NOV 2026 · AWARD</small><h4>🥇 1st Place - Riyadah AI Hackathon</h4><p>MS SmartScan team · AI-assisted MRI lesion detection</p></div>
-    <div class="step gold"><small>NOV 2026 · FINALIST</small><h4>🏁 Accepted to the SAIF 2026 Finals - Awn (عون)</h4><p>Final acceptance for our team · finals hackathon, Nov 2026</p></div>
-    <div class="step"><small>OCT 2026 · HACKATHON</small><h4>Healthon 2026</h4><p>Healthcare AI prototype · KSU Medical City</p></div>
-    <div class="step"><small>JUL-SEP 2026 · TRAINING</small><h4>VR Development &amp; Emerging Technologies Bootcamp</h4><p>Tuwaiq Academy · 160 hours</p></div>
-    <div class="step gold"><small>2026 · AWARD</small><h4>🥉 3rd Place - Satathon 2026</h4><p>Digital Apollo · satellite &amp; HF radio communications</p></div>
-    <div class="step"><small>EDUCATION</small><h4>Programming &amp; Web Development</h4><p>Technical and Vocational Training Corporation · Riyadh</p></div>
+    <div class="step gold"><small>Nov 2026 · Award</small><h3>1st place · Riyadah AI Hackathon</h3><p>MS SmartScan team · AI-assisted MRI lesion detection</p></div>
+    <div class="step gold"><small>Nov 2026 · Finalist</small><h3>SAIF 2026 finalist · Awn (عون)</h3><p>Final acceptance for our team · finals hackathon, Nov 2026</p></div>
+    <div class="step"><small>Oct 2026 · Hackathon</small><h3>Healthon 2026</h3><p>Healthcare AI prototype · KSU Medical City</p></div>
+    <div class="step"><small>Jul to Sep 2026 · Training</small><h3>VR Development &amp; Emerging Technologies Bootcamp</h3><p>Tuwaiq Academy · 160 hours</p></div>
+    <div class="step gold"><small>2026 · Award</small><h3>3rd place · Satathon 2026</h3><p>Digital Apollo · satellite tracking competition</p></div>
+    <div class="step"><small>Education</small><h3>Programming &amp; Web Development</h3><p>Technical and Vocational Training Corporation · Riyadh</p></div>
   </div></div>
 </section>
 
 <section class="contact" id="contact">
-  <p class="label"><b>04</b> / LET’S CONNECT</p>
   <h2 class="rv">Your next co-op student is <i>one email away.</i></h2>
   <div><a class="cta" id="mail" href="mailto:alhejjeihailah@gmail.com"><span>alhejjeihailah@gmail.com</span><span style="font-size:.6em">↗</span>
     <svg class="doodle" style="left:-18px;top:-26px;width:calc(100% + 36px);height:calc(100% + 46px)" viewBox="0 0 400 120" preserveAspectRatio="none"><path style="--l:1100" d="M30 70 C20 20 200 8 360 22 C410 30 400 100 300 108 C180 118 40 112 28 80 C22 60 60 40 110 34"/></svg>
-    <svg class="doodle pink" style="right:-70px;top:-40px;width:70px;height:70px" viewBox="0 0 70 70"><path style="--l:200" d="M35 58 C10 40 8 22 20 16 C28 12 34 18 35 24 C36 18 42 12 50 16 C62 22 60 40 35 58Z"/><path style="--l:40" d="M8 8 L16 14"/><path style="--l:40" d="M62 6 L56 14"/></svg>
+    <span class="star" aria-hidden="true"></span>
     <span class="note" style="right:-150px;top:48px">← that's me!</span>
   </a> <span class="copied" id="copied">copied ✓</span></div>
   <div class="row">
-    <a class="btn pri" href="Hailah_Alhejjei_CV_2026.pdf" download>DOWNLOAD CV ↓</a>
-    <a class="btn" id="liBtn" href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noreferrer">in&nbsp; LINKEDIN ↗
+    <a class="btn pri" href="Hailah_Alhejjei_CV_2026.pdf" download>Download CV ↓</a>
+    <a class="btn" id="liBtn" href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noreferrer">LinkedIn ↗
       <svg class="doodle" style="left:-14px;top:-16px;width:calc(100% + 28px);height:calc(100% + 32px)" viewBox="0 0 200 80" preserveAspectRatio="none"><path style="--l:600" d="M18 40 C14 10 120 4 182 14 C200 30 196 66 120 72 C60 76 10 70 14 44"/></svg>
       <svg class="doodle" style="right:-46px;top:-30px;width:46px;height:46px" viewBox="0 0 46 46"><path style="--l:30" d="M23 4 V14"/><path style="--l:30" d="M42 23 H32"/><path style="--l:30" d="M37 9 L30 16"/><path style="--l:30" d="M4 23 H12"/></svg>
       <span class="note lc" style="left:20px;top:64px">let's connect ✦</span></a>
-    <a class="btn" href="https://github.com/HailahAlhejjei" target="_blank" rel="noreferrer">GITHUB ↗</a>
-    <button class="btn" id="copyBtn" style="cursor:pointer;color:inherit">⧉ COPY EMAIL</button>
+    <a class="btn" href="https://github.com/HailahAlhejjei" target="_blank" rel="noreferrer">GitHub ↗</a>
+    <button class="btn" id="copyBtn" style="cursor:pointer;color:inherit">Copy email</button>
   </div>
 </section>
 </main>
-<footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand</span><a href="#top">BACK TO TOP ↑</a></footer>
+<footer><span>© <span id="yr"></span> Hailah Alhejjei</span><span>built by hand</span><a href="#top">Back to top ↑</a></footer>
 
 <div class="ssx-modal" id="ssxM"><div class="app" id="app" role="dialog" aria-modal="true" aria-label="MS SmartScan demo"><div class="bar"><i></i><i></i><i></i><span>MS SmartScan · real website demo</span><div class="ssx-prog"><button type="button" aria-label="Step 1"></button><button type="button" aria-label="Step 2"></button><button type="button" aria-label="Step 3"></button><button type="button" aria-label="Step 4"></button><button type="button" aria-label="Step 5"></button><button type="button" aria-label="Step 6"></button></div><button type="button" class="ssx-x" aria-label="Close demo">✕</button></div><div class="screen ssx" id="ssx"><div class="ssx-cam"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f1.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f2.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f3.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f4.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f5.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f6.webp"><div class="ssx-mri"><i class="ssx-band"></i></div><i class="ssx-ring"></i><i class="ssx-ring"></i></div><p class="ssx-cap" aria-live="polite"><b>1</b><span></span></p><button type="button" class="ssx-replay">↺ Replay</button></div></div></div>
 <div id="goldLight" aria-hidden="true"></div><canvas id="bitsy" aria-hidden="true"></canvas>
@@ -362,48 +461,16 @@ html[lang=ar] .btn{line-height:1.25}html[lang=ar] nav a.navcv{line-height:1.25;p
 var LANG='en';function tr(x){return LANG==='ar'&&typeof AR!=='undefined'&&AR[x]!==undefined?AR[x]:x}
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,DPR=Math.min(devicePixelRatio||1,2);
 document.getElementById('yr').textContent=new Date().getFullYear();
-/* cursor + guide arrow */
-const c1=document.querySelector('.cur'),c2=document.querySelector('.cur2'),guide=document.getElementById('guide'),mailEl=document.getElementById('mail'),contactSec=document.getElementById('contact');
-let mx=-99,my=-99,cx=mx,cy=my,gx=-99,gy=-99,moved=false;
-addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;moved=true;c1.style.transform=`translate(${mx-3}px,${my-3}px)`});
-(function lp(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;c2.style.left=cx+'px';c2.style.top=cy+'px';
- const r=mailEl.getBoundingClientRect(),tx=r.left+r.width/2,ty=r.top+r.height/2,ang=Math.atan2(ty-my,tx-mx),dist=Math.hypot(tx-mx,ty-my);
- const near=dist<260||r.top<innerHeight*.75&&r.bottom>0;
- const ox=mx+Math.cos(ang)*80-17,oy=my+Math.sin(ang)*80-17;gx+=(ox-gx)*.08;gy+=(oy-gy)*.08;
- guide.style.transform=`translate(${gx}px,${gy}px)`;guide.querySelector('svg').style.transform=`rotate(${ang}rad)`;
- guide.classList.toggle('hide',!moved||near||scrollY<innerHeight*.5);
- requestAnimationFrame(lp)})();
-document.querySelectorAll('a,button,.stage').forEach(el=>{el.addEventListener('mouseenter',()=>c2.classList.add('big'));el.addEventListener('mouseleave',()=>c2.classList.remove('big'))});
+/* contact */
+const mailEl=document.getElementById('mail'),contactSec=document.getElementById('contact');
 /* doodles drawn when you reach email / linkedin */
 [mailEl,document.getElementById('liBtn')].forEach(el=>{el.addEventListener('mouseenter',()=>el.classList.add('drawn'));el.addEventListener('focus',()=>el.classList.add('drawn'))});
 /* phones: the circles draw when you reach contact */
 if(matchMedia('(hover:none)').matches){
  let reached=false;const upd=()=>{const r=contactSec.getBoundingClientRect();const at=r.top<innerHeight*.7;if(at&&!reached){reached=true;mailEl.classList.add('drawn');document.getElementById('liBtn').classList.add('drawn')}};addEventListener('scroll',upd,{passive:true});upd()}
 
-const copyEmail=()=>{navigator.clipboard?.writeText('alhejjeihailah@gmail.com');const c=document.getElementById('copied');c.classList.add('on');setTimeout(()=>c.classList.remove('on'),1600)};
+const copyEmail=()=>{const c=document.getElementById('copied'),ok=()=>{c.classList.add('on');setTimeout(()=>c.classList.remove('on'),1600)};(navigator.clipboard?navigator.clipboard.writeText('alhejjeihailah@gmail.com'):Promise.reject()).then(ok,()=>{location.href='mailto:alhejjeihailah@gmail.com'})};
 document.getElementById('copyBtn').onclick=copyEmail;
-/* typed */
-const words=['web & UX developer','hardware tinkerer','VR/XR builder','hackathon winner'];let wi=0,ci=0,del=false;const ty=document.getElementById('typed');
-(function t(){const w=tr(words[wi]);ty.textContent='> '+w.slice(0,ci);if(!del&&ci<w.length)ci++;else if(del&&ci>0)ci--;else if(!del){del=true;return setTimeout(t,1400)}else{del=false;wi=(wi+1)%words.length}setTimeout(t,del?35:70)})();
-/* hero field */
-const F=document.getElementById('field'),fx=F.getContext('2d');let W,H,pts=[],pulses=[];const chars='01·:+*';
-function rs(){W=F.width=F.offsetWidth*DPR;H=F.height=F.offsetHeight*DPR;pts=[];const g=22*DPR;for(let y=g/2;y<H;y+=g)for(let x=g/2;x<W;x+=g)pts.push({x,y,c:chars[Math.random()*chars.length|0]})}
-rs();addEventListener('resize',rs);
-const hero=document.querySelector('.hero');let hx=-9999,hy=-9999;
-hero.addEventListener('mousemove',e=>{const r=F.getBoundingClientRect();hx=(e.clientX-r.left)*DPR;hy=(e.clientY-r.top)*DPR});
-hero.addEventListener('mouseleave',()=>{hx=hy=-9999});
-hero.addEventListener('click',e=>{const r=F.getBoundingClientRect();pulses.push({x:(e.clientX-r.left)*DPR,y:(e.clientY-r.top)*DPR,r:0});const s=document.getElementById('sig');s.textContent=tr('PULSE SENT');setTimeout(()=>s.textContent=tr('LISTENING'),900)});
-let tt=0,heroOn=true;new IntersectionObserver(e=>{heroOn=e[0].isIntersecting;if(heroOn&&!RM)requestAnimationFrame(field)}).observe(hero);
-function field(){tt+=.016;fx.clearRect(0,0,W,H);fx.font=`${11*DPR}px JetBrains Mono, monospace`;fx.textAlign='center';
- for(const p of pulses)p.r+=9*DPR;pulses=pulses.filter(p=>p.r<Math.max(W,H));const R=170*DPR,B=40*DPR;
- for(const p of pts){const dx=p.x-hx,dy=p.y-hy,d=Math.hypot(dx,dy)||1;let ox=0,oy=0,a=.12+.06*Math.sin(tt*1.4+p.x*.004+p.y*.006),col='233,240,234';
-  if(d<R){const f=1-d/R;ox=dx/d*f*26*DPR;oy=dy/d*f*26*DPR;a+=f*.8;if(f>.5)col='217,240,103'}
-  for(const q of pulses){const w=Math.abs(Math.hypot(p.x-q.x,p.y-q.y)-q.r);if(w<B){const f=1-w/B;a+=f;col='94,230,255';oy-=f*8}}
-  if(Math.random()<.002)p.c=chars[Math.random()*chars.length|0];
-  fx.fillStyle=`rgba(${col},${Math.min(a,1)})`;fx.fillText(p.c,p.x+ox,p.y+oy)}
- document.getElementById('freq').textContent=(868+Math.sin(tt)*.012).toFixed(3);
- if(!RM&&heroOn)requestAnimationFrame(field)}
-field();
 document.querySelectorAll('.skill').forEach(s=>s.addEventListener('mousemove',e=>{const r=s.getBoundingClientRect();s.style.setProperty('--x',e.clientX-r.left+'px');s.style.setProperty('--y',e.clientY-r.top+'px')}));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 /* smartscan: real frames from the real website, shown big, with a moving camera and a ring on the detail that matters */
@@ -419,7 +486,8 @@ const SSK=[[0,0,'a',0,0,[]],[50,0,'p',850,0,[['pin',550]]],[1300,1,'s',650,1,[],
 function ssRelabel(){if(ssCur<0)return;SSC.querySelector('b').textContent=ssCur+1;SSC.querySelector('span').textContent=SSCAP[ssCur][LANG==='ar'?1:0];SSR.textContent=LANG==='ar'?'↺ إعادة':'↺ Replay'}
 function ssFit(v,ms){const W=ssx.clientWidth,H=ssx.clientHeight;if(!W||!H)return;ssKey=v;const V=SSV[v],fit=b=>Math.min(W/b[2],H/b[3],1);let b=V[0];if(fit(b)<(V[2]||.72))b=V[1];const k=Math.max(fit(b),W/1920,H/870),vw=W/k,vh=H/k,x=Math.min(Math.max(1920-vw>=200?200:0,b[0]+b[2]/2-vw/2),1920-vw),y=Math.min(Math.max(0,b[1]+b[3]/2-vh/2),870-vh);SCAM.style.transition=ms?'transform '+ms+'ms cubic-bezier(.45,0,.15,1)':'none';SCAM.style.transform='translate('+(-x*k).toFixed(1)+'px,'+(-y*k).toFixed(1)+'px) scale('+k.toFixed(4)+')'}
 const ssLoad=()=>Promise.all(SSF.map(im=>{if(!im.src)im.src=im.dataset.src;return im.decode?im.decode().catch(()=>{}):Promise.resolve()}));
-new IntersectionObserver(es=>{if(es[0].isIntersecting)ssLoad()},{rootMargin:'600px'}).observe(document.getElementById('ss'));
+/* the demo's frames load when someone heads for the button, not before */
+['pointerenter','focus','touchstart'].forEach(t=>document.getElementById('ssBtn').addEventListener(t,()=>ssLoad(),{once:true,passive:true}));
 const ssClear=()=>{ssTs.forEach(clearTimeout);ssTs=[]};
 function ssFrame(f){const was=SSF.findIndex(im=>im.classList.contains('top'));if(was===f)return;SSF.forEach((im,j)=>{im.classList.remove('top','out');if(j!==f&&j!==was)im.classList.remove('on')});SSF[f].classList.add('on','top');if(was>=0)ssTs.push(setTimeout(()=>{SSF[was].classList.add('out');SSF[was].classList.remove('on')},480))}
 function ssRing(list){SSG.forEach((g,i)=>{const r=list[i],n=r?r[0]:'';if(g.dataset.k===n)return;g.classList.remove('on');g.dataset.k=n;if(r)ssTs.push(setTimeout(()=>{const b=SSRB[n];g.style.cssText='left:'+b[0]+'px;top:'+b[1]+'px;width:'+b[2]+'px;height:'+b[3]+'px;border-radius:'+b[4]+'px;--r:'+b[4]+'px';void g.offsetWidth;g.classList.add('on')},r[1]))})}
@@ -445,10 +513,10 @@ document.getElementById('sosBtn').onclick=()=>{if(sending)return;sending=true;lo
  const L=(t,cl,d)=>setTimeout(()=>{log.innerHTML+=`<div class="${cl||''}">${t}</div>`},d);
  window.awnState?.('sos');emit(1,'255,90,78',6);L(tr('▲ SOS SENT · attempt 1/3'),'w',0);L(tr('  blue LED blinking · GPS + BAT 96%'),'',500);
  setTimeout(()=>window.awnState?.('received'),1300);L(tr('▼ AOUN RESCUE · SOS received'),'',1400);L(tr('  signal −6 dBm · SNR 11.3'),'',1800);
- setTimeout(()=>emit(-1,'217,240,103',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L(tr('▲ CONFIRMED · help is on the way'),'ok',2900);L(tr('  green LED + beep on SOS device'),'ok',3300);
+ setTimeout(()=>emit(-1,'255,207,107',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L(tr('▲ CONFIRMED · help is on the way'),'ok',2900);L(tr('  green LED + beep on SOS device'),'ok',3300);
  setTimeout(()=>sending=false,3600);setTimeout(()=>{if(!sending)window.awnState?.('ready')},9000)};
 const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
-photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'🧊 3D MODEL':'📷 REAL PHOTO')};
+photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'3D model':'Real photo')};
 /* uv flashlight */
 const uv=document.getElementById('uv'),clues=uv.querySelectorAll('.clue');
 function uvMove(x0,y0){const r=uv.getBoundingClientRect(),x=x0-r.left,y=y0-r.top;uv.style.setProperty('--mx',x+'px');uv.style.setProperty('--my',y+'px');
@@ -664,7 +732,8 @@ const AR={
 "LOS · waiting for next pass…":"انقطع · بانتظار المرور القادم…","📡 AOS · signal received → ":"📡 بدأ المرور · وصلت الإشارة ← ",
 "ACCESS GRANTED - welcome to the team ✦":"تم منح الصلاحية - أهلاً في الفريق ✦",
 "3D model of the MS SmartScan brain-shaped device, drag to rotate":"مجسم ثلاثي الأبعاد لجهاز MS SmartScan بشكل الدماغ، اسحب للتدوير","3D model of the two Awn devices, drag to rotate":"مجسم ثلاثي الأبعاد لجهازي عون، اسحب للتدوير","Real photo of the Awn prototype devices":"صورة حقيقية لجهازي عون","CASE 017 VR crime scene":"مسرح الجريمة في القضية 017","Digital Apollo satellite tracking station":"محطة تتبع الأقمار لفريق أبولو الرقمي"
-};
+,
+"UI/UX Designer and Front-End Developer":"مصممة UI/UX ومطوّرة واجهات أمامية","I design the experience and then build it: from notebook sketch and Figma to working code, for the web and for VR and extended reality (XR).":"أصمم التجربة ثم أبنيها: من رسمة في دفتري وتصميم في Figma إلى كود يعمل، للويب وللواقع الافتراضي والواقع الممتد (XR).","I design user experiences and build them for the web, and I also create worlds for virtual and extended reality (VR/XR). Every project starts with real people and real constraints, like a radiologist with too little time or a hiker lost in the desert, and ends as something you can actually click, hold or step inside.":"أصمم تجربة المستخدم وأبنيها للويب، وأصنع أيضاً عوالم للواقع الافتراضي والممتد (VR/XR). كل مشروع يبدأ من أناس حقيقيين وقيود حقيقية، مثل طبيب أشعة وقته ضيق أو متنزّه تائه في الصحراء، وينتهي بشيء تقدر تضغطه أو تمسكه أو تدخل فيه.","Diploma in Programming and Web Development Technology, Technical and Vocational Training Corporation, Riyadh. GPA 4.58 / 5.":"دبلوم تقنية البرمجة وتطوير الويب، المؤسسة العامة للتدريب التقني والمهني، الرياض. المعدل 4.58 من 5.","UI/UX Design":"تصميم UI/UX","Hand sketching · character illustration":"رسم يدوي · رسم الشخصيات","Front-End":"الواجهات الأمامية","Responsive interfaces · GitHub":"واجهات متجاوبة · GitHub","VR & XR":"الواقع الافتراضي والممتد","Back end & Hardware":"الخلفية والعتاد","BUILT AT HEALTHON 2026 · UX, WEB AND SECURITY LEAD · PATENT PENDING":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","VR / XR · TUWAIQ ACADEMY · TEAM PROJECT":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","OFF-GRID SOS DEVICE":"جهاز استغاثة يعمل بلا تغطية","GRADUATION PROJECT · CO-DEVELOPER · PATENT PENDING":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team, and the team replies, so the person knows help is coming.":"نظام بحث وإنقاذ يعمل بعيداً عن الشبكات للتائهين في الصحاري والجبال بلا تغطية جوال. ضغطة واحدة على SOS ترسل موقع الشخص لفريق الإنقاذ، ويرد الفريق، فيعرف الشخص أن النجدة في الطريق.","Designed both 3D-printed device enclosures in Fusion 360 and co-wrote the ESP32 C++ firmware with my teammates. I took part in every stage, from first idea to finished build.":"صممتُ علبتي الجهازين المطبوعتين ثلاثياً في Fusion 360، وكتبتُ برمجة ESP32 بلغة C++ مع فريقي. وشاركت في كل مرحلة، من أول فكرة إلى الجهاز النهائي.","Enclosure design":"تصميم العلب","3D printing":"طباعة ثلاثية الأبعاد","A team competition by the Saudi Amateur Radio Society: track satellites as they pass overhead and decode what they send.":"مسابقة فرق من الجمعية السعودية لهواة الراديو: تتبّع الأقمار الصناعية وهي تمر فوقنا وفكّ ما ترسله.","My part:":"دوري:","I tracked satellites, decoded Morse code and SSTV images, and produced the team's submission video.":"تتبعتُ الأقمار الصناعية، وفككتُ شفرة مورس وصور SSTV، وأنتجتُ فيديو مشاركة الفريق.","Teamwork":"العمل الجماعي","Video production":"إنتاج الفيديو","Each step expanded how I work: the foundations of the web, designing for real users, building in teams under pressure, and stepping into VR.":"كل خطوة وسّعت طريقة عملي: أساسيات الويب، والتصميم لمستخدمين حقيقيين، والعمل في فرق تحت الضغط، والدخول إلى الواقع الافتراضي.","Digital Apollo · satellite tracking competition":"أبولو الرقمي · مسابقة تتبع الأقمار الصناعية","pixel by pixel.":"بكسل ببكسل.","the MRI Scanner I designed":"موقع الفحص اللي صممته","a VR crime scene I built":"مسرح جريمة بالواقع الافتراضي بنيته","the SOS device I helped build":"جهاز الاستغاثة اللي شاركت في بنائه","every fold hides a little light ✦":"كل طيّة مخبّية نور صغير ✦","calm blue, so doctors feel at ease":"أزرق هادي، عشان يرتاح الطبيب","the result screen I designed":"شاشة النتيجة اللي صممتها","every function within a doctor's reach":"كل وظيفة قريبة من يد الطبيب","I made its rain, thunder and lightning":"سوّيت مطره ورعده وبرقه","I designed both 3D-printed cases":"صممت العلبتين المطبوعتين ثلاثياً","1st":"الأول","Riyadah AI Hackathon":"هاكاثون ريادة للذكاء الاصطناعي","MS SMARTSCAN · NOV 2026":"MS SmartScan · نوفمبر 2026","Final":"نهائي","SAIF 2026 finalist":"متأهلة لنهائيات سيف 2026","AWN · SMART CITIES & IoT":"عون · المدن الذكية وإنترنت الأشياء","3rd":"الثالث","Satathon 2026":"ساتاثون 2026","DIGITAL APOLLO TEAM":"فريق أبولو الرقمي","Patents pending":"براءتا اختراع قيد التسجيل","NAMED INVENTOR":"مخترعة مسجّلة","160h":"160 ساعة","VR bootcamp":"معسكر الواقع الافتراضي","GPA out of 5":"المعدل من 5","PROGRAMMING & WEB DEVELOPMENT":"البرمجة وتطوير الويب","Sections":"الأقسام","About":"نبذة","Work":"أعمالي","Path":"مسيرتي","Contact":"تواصل","See my work ↓":"شوف أعمالي ↓","Download CV":"حمّل السيرة","Highlights":"أبرز الإنجازات","1st place":"المركز الأول","at Riyadah AI Hackathon":"في هاكاثون ريادة للذكاء الاصطناعي","Finalist":"متأهلة للنهائيات","at SAIF 2026":"سيف 2026","3rd place":"المركز الثالث","at Satathon 2026":"في ساتاثون 2026","2 patents":"براءتا اختراع","pending":"قيد التسجيل","Selected work":"أعمال مختارة","Drag the models, press the buttons, explore.":"اسحب المجسمات، اضغط الأزرار، واستكشف.","MRI · On-device AI":"رنين مغناطيسي · ذكاء على الجهاز","Off-grid SOS device":"جهاز استغاثة يعمل بلا تغطية","UV light · Move to search":"ضوء فوق بنفسجي · حرّك للبحث","Satellite pass":"مرور قمر صناعي","Drag to rotate":"اسحب للتدوير","Look at the website":"شوف الموقع","Press SOS":"اضغط SOS","Real photo":"صورة حقيقية","3D model":"مجسم ثلاثي الأبعاد","Built at Healthon 2026 · UX, web and security lead · Patent pending":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","Graduation project · Co-developer · Patent pending":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","VR / XR · Tuwaiq Academy · Team project":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","Satathon 2026 · Digital Apollo team":"ساتاثون 2026 · فريق أبولو الرقمي","1st place · Riyadah AI Hackathon · Nov 2026":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي · نوفمبر 2026","Working prototype · Patent pending":"نموذج أولي يعمل · براءة اختراع قيد التسجيل","3rd place · Satathon 2026":"المركز الثالث · ساتاثون 2026","An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI, on a Raspberry Pi, in seconds.":"نموذج أولي لدعم القرار السريري يعمل بدون إنترنت، يساعد أطباء الأشعة على رصد آفات المادة البيضاء المشتبه بارتباطها بالتصلب المتعدد في رنين الدماغ، على Raspberry Pi وخلال ثوانٍ.","Project showcase ↗":"عرض المشروع ↗","Project and trailer ↗":"المشروع والإعلان ↗","Field log ↗":"سجل الميدان ↗","Nov 2026 · Award":"نوفمبر 2026 · جائزة","Nov 2026 · Finalist":"نوفمبر 2026 · نهائيات","Oct 2026 · Hackathon":"أكتوبر 2026 · هاكاثون","Jul to Sep 2026 · Training":"يوليو إلى سبتمبر 2026 · تدريب","2026 · Award":"2026 · جائزة","Education":"التعليم","1st place · Riyadah AI Hackathon":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي","SAIF 2026 finalist · Awn (عون)":"متأهلة لنهائيات سيف 2026 · عون","Download CV ↓":"حمّل السيرة ↓","LinkedIn ↗":"لينكدإن ↗","GitHub ↗":"جيت هب ↗","Copy email":"انسخ الإيميل","Back to top ↑":"للأعلى ↑","pending · named inventor":"قيد التسجيل · مخترعة مسجّلة","SAIF 2026":"سيف 2026"};
 
 const TIPS_AR=["هلا… أنا ثنايا ✦ قرّب شوي","بِسّت… أعرف وش يعني تشتغل مع هيلة 🤫","كل طيّة فيني مخبّية نور صغير","اضغطني وأنوّر لك الدنيا!","اسألني أي شي عن هيلة","ما أنفتح إلا للفضوليين"];
 const GREET_AR=["تا-داا! نوّرتني! أنا ثنايا! بنت صغيرة كلي طيّات، وكل طيّة مخبّية نور. بِسّت… تبي أقولك سر؟ اسألني وش يعني تشتغل مع هيلة!","رجعت! ياااي! وش تبي تعرف هالمرة؟","هلا والله مرة ثانية! طيّاتي كانت تنتظرك! اسألني اللي تبيه!","أووه، رجعت عشاني؟ جرّب السؤال الذهبي، هو أحلى سؤال عندي!"];
@@ -715,40 +784,196 @@ const attrEls=[...document.querySelectorAll('[placeholder],[aria-label],[alt],[d
 function applyLang(){document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
  tnodes.forEach(n=>{const t=n._en.trim();if(LANG==='ar'&&AR[t]!==undefined)n.nodeValue=n._en.replace(t,AR[t]);else n.nodeValue=n._en});
  attrEls.forEach(el=>{for(const a in el._en){const t=el._en[a];el.setAttribute(a,LANG==='ar'&&AR[t]!==undefined?AR[t]:t)}});
- document.title=LANG==='ar'?'هيلة الحجي - ملف أعمال':'Hailah Alhejjei - Portfolio';
+ document.title=LANG==='ar'?'هيلة الحجي · مصممة UI/UX ومطوّرة واجهات أمامية':'Hailah Alhejjei · UI/UX Designer and Front-End Developer';
  const b=document.getElementById('i18nBtn');b.textContent=LANG==='ar'?'EN':'عربي';
- if(typeof ssBtn!=='undefined')ssBtn.textContent=tr('▶ RUN AI SCAN');ssRelabel();
- if(typeof photoBtn!=='undefined')photoBtn.textContent=tr(photo.classList.contains('on')?'🧊 3D MODEL':'📷 REAL PHOTO');
+ if(typeof ssBtn!=='undefined')ssBtn.textContent=tr('Look at the website');ssRelabel();
+ if(typeof photoBtn!=='undefined')photoBtn.textContent=tr(photo.classList.contains('on')?'3D model':'Real photo');
  document.getElementById('tip').textContent=LANG==='ar'?TIPS_AR[0]:"hi… I'm Thanaya ✦ come closer";
  VOICE=pickVoice();to.innerHTML='';gI=0;
  try{localStorage.setItem('lang',LANG)}catch(e){}}
 document.getElementById('i18nBtn').onclick=()=>{LANG=LANG==='ar'?'en':'ar';speechSynthesis&&speechSynthesis.cancel();applyLang()};
 try{if(localStorage.getItem('lang')==='ar'){LANG='ar';applyLang()}}catch(e){}
 
+/* the golden light, painted once as shining plankton like the sea above (no animation) and repainted only when the
+   layout changes: a thread from Thanaya's corner down the margin, across above the last heading and into the start of
+   the email's underline (her doodles sit at its other end), and a far smaller ray that seeps from the sea to her name */
+const TH=document.createElement('div');TH.className='thread';TH.setAttribute('aria-hidden','true');document.body.appendChild(TH);
+const RAY=document.createElement('div');RAY.className='ray';RAY.setAttribute('aria-hidden','true');document.getElementById('top').appendChild(RAY);
+const STAR=document.createElement('div');STAR.className='starlight';STAR.setAttribute('aria-hidden','true');document.body.appendChild(STAR);
+{const ml=document.getElementById('mail'),show=()=>{if(ml.classList.contains('drawn'))STAR.classList.add('on')};new MutationObserver(show).observe(ml,{attributes:true,attributeFilter:['class']});show()}
+let thW=0,thSig='';
+const RNG=sd=>()=>(sd=sd*16807%2147483647)/2147483647,gauss=r=>Math.sqrt(-2*Math.log(r()||1e-9))*Math.cos(6.2832*r());
+const L3=(p,q)=>[p,[p[0]+(q[0]-p[0])/3,p[1]+(q[1]-p[1])/3],[p[0]+2*(q[0]-p[0])/3,p[1]+2*(q[1]-p[1])/3],q];
+function samplePath(segs,ds){const Q=[];
+ for(const [a,b,c,d] of segs){const est=Math.hypot(b[0]-a[0],b[1]-a[1])+Math.hypot(c[0]-b[0],c[1]-b[1])+Math.hypot(d[0]-c[0],d[1]-c[1]),n=Math.max(4,Math.ceil(est/ds*1.5));
+  for(let i=Q.length?1:0;i<=n;i++){const t=i/n,u=1-t;Q.push([u*u*u*a[0]+3*u*u*t*b[0]+3*u*t*t*c[0]+t*t*t*d[0],u*u*u*a[1]+3*u*u*t*b[1]+3*u*t*t*c[1]+t*t*t*d[1]])}}
+ const P=[{x:Q[0][0],y:Q[0][1],s:0}];let acc=0,next=ds;
+ for(let i=1;i<Q.length;i++){const x0=Q[i-1][0],y0=Q[i-1][1],x1=Q[i][0],y1=Q[i][1],L=Math.hypot(x1-x0,y1-y0);if(!L)continue;
+  while(acc+L>=next){const f=(next-acc)/L;P.push({x:x0+(x1-x0)*f,y:y0+(y1-y0)*f,s:next});next+=ds}acc+=L}
+ for(let i=0;i<P.length;i++){const a=P[Math.max(0,i-3)],b=P[Math.min(P.length-1,i+3)],dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy)||1;P[i].nx=-dy/L;P[i].ny=dx/L}
+ return P}
+const LQ=[];let lqOn=false;
+/* each canvas is painted as its own small job when the browser is idle, so painting never blocks scrolling or input */
+const ric=window.requestIdleCallback?(f=>requestIdleCallback(f,{timeout:400})):(f=>setTimeout(()=>f(null),16));
+function pumpLight(){const t0=performance.now();while(LQ.length){LQ.shift()();if(performance.now()-t0>10)break}if(LQ.length)ric(pumpLight);else lqOn=false}
+function kickLight(){if(!lqOn&&LQ.length){lqOn=true;ric(pumpLight)}}
+function boxH(s,d,W,H,r){const k=1/(2*r+1);for(let o=0,e=W*H;o<e;o+=W){let a=s[o]*(r+1);for(let x=1;x<=r;x++)a+=s[o+(x<W?x:W-1)];
+ for(let x=0;x<W;x++){d[o+x]=a*k;const xa=x+r+1,xs=x-r;a+=s[o+(xa<W?xa:W-1)]-s[o+(xs>0?xs:0)]}}}
+function boxV(s,d,W,H,r){const k=1/(2*r+1),c=new Float32Array(W);for(let x=0;x<W;x++)c[x]=s[x]*(r+1);
+ for(let y=1;y<=r;y++){const o=(y<H?y:H-1)*W;for(let x=0;x<W;x++)c[x]+=s[o+x]}
+ for(let y=0;y<H;y++){const o=y*W,ya=y+r+1,ys=y-r,oa=(ya<H?ya:H-1)*W,os=(ys>0?ys:0)*W;for(let x=0;x<W;x++){d[o+x]=c[x]*k;c[x]+=s[oa+x]-s[os+x]}}}
+function blurIn(a,t,W,H,r,it){for(let i=0;i<it;i++){boxH(a,t,W,H,r);boxV(t,a,W,H,r)}return a}
+/* the sea's tone curve as a lookup: light in, gold out (alpha carries the brightness so it melts into the dark page) */
+const TONE=(()=>{const t=new Uint8ClampedArray(1024*4);for(let i=0;i<1024;i++){const l=1-Math.exp(-i/256*1.35),R=Math.min(1,l*1.08),G=Math.min(1,Math.pow(l,1.18)*.9),B=Math.min(1,Math.pow(l,2.4)*.74)*.9,al=Math.max(R,G,B)||1e-6;t[i*4]=R/al*255;t[i*4+1]=G/al*255;t[i*4+2]=B/al*255;t[i*4+3]=Math.max(R,G,B)*255}return t})();
+function paintGlow(host,P,o){
+ if(P.length<2)return;const dpr=o.dpr||Math.min(window.devicePixelRatio||1,1.5),R=RNG(o.seed),hw=host.clientWidth,total=P[P.length-1].s;
+ const pad=Math.ceil(o.sig*4.5+o.bloom*2.2+4),pieces=[];let cur=[],bx0=1e9,by0=1e9,bx1=-1e9,by1=-1e9;
+ for(const p of P){cur.push(p);bx0=Math.min(bx0,p.x);bx1=Math.max(bx1,p.x);by0=Math.min(by0,p.y);by1=Math.max(by1,p.y);
+  if(cur.length>40&&((bx1-bx0+2*pad)*(by1-by0+2*pad)>70000||by1-by0>420)){pieces.push(cur);cur=[p];bx0=bx1=p.x;by0=by1=p.y}}
+ if(cur.length)pieces.push(cur);
+ const ph1=R()*6,ph2=R()*6,CL=s=>.25+.75*(.5+.5*Math.sin(s/o.c1+ph1))*(.55+.45*Math.sin(s/o.c2+ph2));
+ for(const pc of pieces){
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const p of pc){x0=Math.min(x0,p.x);x1=Math.max(x1,p.x);y0=Math.min(y0,p.y);y1=Math.max(y1,p.y)}
+  let wm=1;for(const p of pc)wm=Math.max(wm,o.wid(p.s,p.t||total));const pd=Math.ceil(o.sig*wm*4.5+o.bloom*Math.sqrt(wm)*2.2+4);
+  x0=Math.max(0,Math.floor(x0-pd));x1=Math.min(hw,Math.ceil(x1+pd));y0=Math.floor(y0-pd);y1=Math.ceil(y1+pd);if(x1<=x0)continue;
+  const seed=(R()*2e9|0)+1;
+  LQ.push(()=>{
+   const r=RNG(seed),w=x1-x0,h=y1-y0,W=Math.max(1,Math.round(w*dpr)),H=Math.max(1,Math.round(h*dpr)),A=new Float32Array(W*H);
+   const sp=(x,y,v)=>{const e=o.noEdge?99:(x<hw-x?x:hw-x);if(e<26){if(e<=0)return;v*=(e/26)**1.6}x=(x-x0)*dpr;y=(y-y0)*dpr;if(x<0||y<0||x>=W-1||y>=H-1)return;const ix=x|0,iy=y|0,fx=x-ix,fy=y-iy,i=iy*W+ix;A[i]+=v*(1-fx)*(1-fy);A[i+1]+=v*fx*(1-fy);A[i+W]+=v*(1-fx)*fy;A[i+W+1]+=v*fx*fy};
+   for(const p of pc){const f=o.env(p.s,p.t||total);if(f<=0)continue;const wd=o.wid(p.s,p.t||total),sg=o.sig*wd,cl=CL(p.s),wv=(o.wave?o.wave*Math.sin(p.s/o.waveL):0)+(o.shift?o.shift(p.s):0),cx=p.x+p.nx*wv,cy=p.y+p.ny*wv,v=f*o.v*(p.b||1);
+    for(let n=Math.round(o.core*cl*(.6+.8*r())*Math.max(1,wd*.85));n>0;n--){const d=gauss(r)*sg;sp(cx+p.nx*d+gauss(r)*.3,cy+p.ny*d+gauss(r)*.3,(.11+r()**8*3.4*(o.grain||1))*v)}
+    /* silky fibres, like glowing hair: continuous strands across the body, each catching the light along its length */
+    /* where the strand leaves the sea it carries the sea's own soft, bright haze, fading as it slims to silk */
+    const hz=o.haze?o.haze(p.s):0;if(hz>.01){const hv=o.hazeV*v*hz;for(let n=o.hazeN;n>0;n--){const d=gauss(r)*sg*.85;sp(cx+p.nx*d+gauss(r)*1.5,cy+p.ny*d+gauss(r)*1.5,hv*(.6+.8*r()))}}
+    if(o.fib)for(let k=0;k<o.fib;k++){const u=k/(o.fib-1)-.5,d=u*2.4*sg*(1+.25*Math.sin(p.s/90+k))+1.5*Math.sin(p.s/(40+5*k)+k*2),b=o.fv*v*(.35+.65*Math.sin(p.s/(70+9*k)+k)**2)*(1-Math.abs(u)*.8)*(1-.55*hz);sp(cx+p.nx*d,cy+p.ny*d,b);sp(cx+p.nx*d+p.ny*.75,cy+p.ny*d-p.nx*.75,b)}
+    for(const k of [-1.3,1.2])if(r()<.6*cl){const d=k*sg*(1.1+.5*Math.sin(p.s/(47+9*k)))+gauss(r)*sg*.35;sp(cx+p.nx*d,cy+p.ny*d,(.1+r()**8*2.4)*v*.8)}
+    if(r()<.8){const d=gauss(r)*sg*3.2+gauss(r)*2;sp(cx+p.nx*d,cy+p.ny*d,r()**10*1.4*v)}
+    if(r()<o.spark*cl){const d=gauss(r)*sg*.6,q=(.05+.42*r()**3)*v*1.8,qx=cx+p.nx*d,qy=cy+p.ny*d;for(let j=0;j<12;j++)sp(qx+gauss(r)*.7,qy+gauss(r)*.7,q)}
+    for(let k=-o.lines;k<=o.lines;k++){if(!k)continue;const d=k/o.lines*sg*3+1.6*Math.sin(p.s/(55+7*Math.abs(k))+k);sp(p.x+p.nx*d,p.y+p.ny*d,(.045+.045*(Math.abs(k)*3<=o.lines))*v*(.5+.5*Math.sin(p.s/37+k)**2))}}
+   // the sea's three lights: a crisp core, a soft glow, and a wide bloom computed at quarter size
+   const n=W*H,tmp=new Float32Array(n),b2=blurIn(Float32Array.from(A),tmp,W,H,Math.max(1,Math.round(1.35*dpr)),1);
+   const QW=Math.max(2,(W+3)>>2),QH=Math.max(2,(H+3)>>2),Qb=new Float32Array(QW*QH);
+   for(let y=0;y<H;y++){const qy=(y>>2)*QW,oy=y*W;for(let x=0;x<W;x++)Qb[qy+(x>>2)]+=A[oy+x]}
+   for(let i=0;i<QW*QH;i++)Qb[i]*=.125;
+   blurIn(Qb,new Float32Array(QW*QH),QW,QH,Math.max(1,Math.round(o.bloom*Math.sqrt(wm)*dpr/4*.9)),2);
+   const cv=document.createElement('canvas');cv.width=W;cv.height=H;cv.style.cssText='position:absolute;left:'+x0+'px;top:'+y0+'px;width:'+w+'px;height:'+h+'px';
+   const g=cv.getContext('2d'),img=g.createImageData(W,H),D=img.data,XQ=new Int32Array(W),WX=new Float32Array(W);
+   for(let x=0;x<W;x++){let f=(x+.5)/4-.5;f=f<0?0:f>QW-1.001?QW-1.001:f;XQ[x]=f|0;WX[x]=f-(f|0)}
+   for(let y=0;y<H;y++){let fy=(y+.5)/4-.5;fy=fy<0?0:fy>QH-1.001?QH-1.001:fy;const yq=fy|0,wy=fy-yq,r0=yq*QW,r1=r0+QW,oy=y*W;
+    for(let x=0;x<W;x++){const i=oy+x,xq=XQ[x],wx=WX[x],I=A[i]*1.8+b2[i]*2.3+((Qb[r0+xq]*(1-wx)+Qb[r0+xq+1]*wx)*(1-wy)+(Qb[r1+xq]*(1-wx)+Qb[r1+xq+1]*wx)*wy);if(I<.004)continue;
+     const t=(I>=4?1023:I*256|0)*4,j=i*4;D[j]=TONE[t];D[j+1]=TONE[t+1];D[j+2]=TONE[t+2];D[j+3]=TONE[t+3]}}
+   g.putImageData(img,0,0);host.appendChild(cv)})}}
+function drawLight(){
+ const de=document.documentElement,W=de.clientWidth,rtl=de.dir==='rtl',hero=document.getElementById('top'),mail=document.getElementById('mail'),ct=document.getElementById('contact'),h2=ct&&ct.querySelector('h2'),h1=hero&&hero.querySelector('h1'),nm=h1&&h1.querySelector('i'),ft=document.querySelector('footer');
+ if(!hero||!mail||!h2||!nm||!ft)return;
+ const sy=scrollY,sx=scrollX,hb=hero.getBoundingClientRect(),m=mail.getBoundingClientRect(),cr=ct.getBoundingClientRect(),hr=h2.getBoundingClientRect(),nr=nm.getBoundingClientRect(),H=Math.ceil(ft.getBoundingClientRect().bottom+sy);
+ const probe=document.createElement('span');probe.style.cssText='display:inline-block;width:0;height:0;vertical-align:baseline';nm.appendChild(probe);
+ const base=probe.getBoundingClientRect().top-hb.top;probe.remove();
+ const sig=[W,H,rtl,hb.width,hb.height,m.left,m.right,m.bottom-hb.top,cr.top-hb.top,hr.top-hb.top,nr.left,nr.right,nr.top-hb.top,base,getComputedStyle(hero,'::before').backgroundSize].map(v=>typeof v==='number'?Math.round(v):v).join();
+ thW=W;if(sig===thSig)return;thSig=sig;LQ.length=0;TH.textContent='';RAY.textContent='';STAR.textContent='';
+ const phone=W<=600,mid=W<=860,g=phone?8:Math.min(44,Math.max(14,W*.03)),X=rtl?g:W-g,X2=W-X,amp=phone?3:Math.min(5,g*.3),dir=rtl?-1:1;
+ // the small ray, in first-screen coordinates: from the sea's nearest strand to just under the end of her name
+ const bs=getComputedStyle(hero,'::before').backgroundSize.split(' ')[0],hw=hero.clientWidth,hh=hero.clientHeight;
+ const pw=bs.endsWith('%')?hw*parseFloat(bs)/100:parseFloat(bs),nat=mid?[780,1688]:[2880,1800],ph=pw*nat[1]/nat[0],pl=mid?(hw-pw)/2:hw-pw,pt=hh-ph;
+ const plate=(x,y)=>{const hx=pl+x*pw/nat[0];return [rtl?hw-hx:hx,pt+y*ph/nat[1]]};
+ const fs=parseFloat(getComputedStyle(h1).fontSize),nl=nr.left-hb.left,nrr=nr.right-hb.left,nw=nr.width;
+ const end=rtl?nl+nw*.46:nrr-nw*.46,arr=rtl?nl-fs*.12:nrr+fs*.12,ay=base-fs*.2,ey=base-fs*.24,bl=Math.abs(arr-end),rs=[];
+ if(!mid){const S=plate(2160,600),dx=Math.abs(S[0]-arr);rs.push([S,[S[0]-(S[0]-arr)*.45,S[1]-dx*.1],[arr+(S[0]-arr)*.35,ay-dx*.06],[arr,ay]])}
+ else{const S=plate(745,1262),xm=rtl?9:hw-9;rs.push([S,[S[0]+(xm-S[0])*.6,S[1]],[xm,S[1]-30],[xm,S[1]-70]]);rs.push(L3([xm,S[1]-70],[xm,ay+44]));rs.push([[xm,ay+44],[xm,ay+10],[arr+(xm-arr)*.35,ay],[arr,ay]])}
+ rs.push([[arr,ay],[arr+(end-arr)/3,ay],[end-(end-arr)/3,ey],[end,ey]]);
+ // it grows out of the loop slowly (no seam), in the sea's own grain and brightness
+ const soft=(s,t,keep)=>Math.min(1,s/110)**1.6*Math.max(0,1-Math.max(0,s-t*keep)/(t*(1-keep)))**1.6;
+ LQ.push(()=>paintGlow(RAY,samplePath(rs,1.5),{seed:11,sig:mid?3:6,core:24,v:1,grain:.45,fib:mid?7:10,fv:.5,spark:.008,lines:3,bloom:mid?8:12,wave:mid?2:4,waveL:70,c1:23,c2:7,dpr:2,
+  env:(s,t)=>{const a=t-bl-40,e=Math.max(0,Math.min(1,(s-a)/(t-a)));return Math.min(1,s/110)**1.6*(1-e*e*(3-2*e))},wid:(s,t)=>Math.max(.3,1.15-.85*s/t)}));
+ // a few shorter strands fan out of the same loop, each its own length and strength, and fade before the text
+ const hi=hero.querySelector('.hero-in').getBoundingClientRect(),tr=rtl?hi.left-hb.left:hi.right-hb.left,sc=Math.min(1,pw/(mid?390:1440)),d=rtl?1:-1;
+ (mid?[[735,1236,.12,.42,120,2.4]]:[[2170,545,-.45,.42,230,4.4],[2165,660,.1,.5,390,5],[2180,725,.32,.3,170,3.6],[2150,500,-.8,.26,140,3.2]]).forEach(([px,py,ang,v,len,sg],i)=>{
+  const S=plate(px,py),room=rtl?tr-30-S[0]:S[0]-(tr+30),L=Math.min(len*sc,room);if(L<60)return;
+  const E=[S[0]+d*L,S[1]+L*ang*.35],C1=[S[0]+d*L*.4,S[1]],C2=[E[0]-d*L*.3,E[1]-L*.05];
+  LQ.push(()=>paintGlow(RAY,samplePath([[S,C1,C2,E]],1.5),{seed:21+i,sig:sg*Math.max(.6,sc),core:20,v:v*1.6,grain:.45,fib:6,fv:.45,spark:.006,lines:2,bloom:mid?7:10,wave:3,waveL:60,c1:19,c2:6,dpr:2,
+   env:(s,t)=>soft(s,t,.3),wid:(s,t)=>Math.max(.35,1.15-.8*s/t)}))})
+ // the thread, in page coordinates
+ const FL=phone?300:520,FM=phone?2.5:4.5,y0=hb.bottom+sy-(phone?110:160),y1=cr.top+sy-40,y2=hr.top+sy-24,uy=m.bottom+sy-1,ex=(rtl?m.right:m.left)+sx;
+ TH.style.height=H+'px';
+ if(y2-y1>=60&&uy>y2&&y1>y0+300){
+  const segs=[];let y=y0,sg=1;const step=Math.max(360,Math.min(640,(y1-y0)/8));
+  while(y+step<y1){segs.push([[X,y],[X+amp*sg,y+step*.35],[X+amp*sg,y+step*.65],[X,y+step]]);y+=step;sg=-sg}
+  segs.push(L3([X,y],[X,y1]));
+  const k=(y2-y1)*.6,r=Math.max(6,Math.min(30,Math.abs(ex-X2)*.9));
+  segs.push([[X,y1],[X,y1+k],[X2,y2-k],[X2,y2]]);segs.push(L3([X2,y2],[X2,uy-r]));
+  segs.push([[X2,uy-r],[X2,uy-r*.45],[X2+dir*r*.45,uy],[X2+dir*r,uy]]);segs.push(L3([X2+dir*r,uy],[ex,uy]));
+  /* then it becomes the email's underline, glowing all the way to its end */
+  const fx=(rtl?m.left:m.right)+sx,ul=Math.abs(fx-ex);segs.push(L3([ex,uy],[fx,uy]));
+  LQ.push(()=>paintGlow(TH,samplePath(segs,1.5),{seed:7,sig:phone?2.6:4.8,core:22,grain:.35,v:1.1,fib:phone?7:11,fv:.5,haze:s=>Math.max(0,1-s/(FL*1.15))**1.4,hazeN:40,hazeV:1,shift:s=>(rtl?-1:1)*FM*Math.max(0,1-s/FL)**2*(phone?2.6:4.8)*1.1,spark:.012,lines:3,bloom:phone?8:13,dpr:2,c1:31,c2:9,
+   env:(s,t)=>Math.min(1,s/130)**1.3*Math.min(1,(t-s)/60+.15),wid:(s,t)=>Math.max(.5,Math.min(1,(t-ul-s)/160+.5))*(1+FM*Math.max(0,1-s/FL)**2)}))}
+ // the star: a soft, glowing five-pointed star with little twinkles around it, so it is never alone
+ const st=mail.querySelector('.star');if(st&&st.offsetParent){const q=st.getBoundingClientRect(),cx=q.left+q.width/2+sx,cy=q.top+q.height/2+sy,R=q.width/2,M=Math.ceil(R*3.8+30),ox=cx-M,oy=cy-M;
+  STAR.style.cssText='left:'+ox+'px;top:'+oy+'px;width:'+2*M+'px;height:'+2*M+'px';
+  const nt=mail.querySelector('.note'),keep=[mail.getBoundingClientRect(),h2.getBoundingClientRect()];if(nt&&nt.offsetParent)keep.push(nt.getBoundingClientRect());
+  const hit=(x,y,pd)=>keep.some(k=>x>k.left+sx-pd&&x<k.right+sx+pd&&y>k.top+sy-pd&&y<k.bottom+sy+pd)||x<8||x>W-8;
+  LQ.push(()=>{const dp=Math.min(2,Math.max(1.5,window.devicePixelRatio||1)),S=2*M,cv=document.createElement('canvas');cv.width=cv.height=Math.round(S*dp);cv.style.cssText='position:absolute;left:0;top:0;width:'+S+'px;height:'+S+'px';
+   const g=cv.getContext('2d');g.scale(dp,dp);g.lineJoin='round';const c=M,Ro=R*1.02,Ri=Ro*.5;
+   const star=()=>{g.beginPath();for(let i=0;i<10;i++){const an=-Math.PI/2+i*Math.PI/5,r=i%2?Ri:Ro;g.lineTo(c+Math.cos(an)*r,c+Math.sin(an)*r)}g.closePath()};
+   // the warm glow around it
+   for(const [bl,al] of [[Ro*3.4,.6],[Ro*1.9,.7],[Ro*1,.9]]){g.save();g.shadowColor='rgba(255,190,85,'+al+')';g.shadowBlur=bl*dp;g.fillStyle='rgba(255,205,110,'+al*.6+')';star();g.fill();g.restore()}
+   // its body has depth: deep gold at the rounded tips, warming toward the middle
+   const gr=g.createRadialGradient(c,c-Ro*.06,0,c,c,Ro*1.05);gr.addColorStop(0,'#fff6dc');gr.addColorStop(.38,'#ffe3a0');gr.addColorStop(.72,'#f4bb52');gr.addColorStop(1,'#d48a28');
+   g.fillStyle=gr;g.strokeStyle=gr;g.lineWidth=Ro*.22;star();g.fill();g.stroke();
+   // each arm has a lit side and a shaded side along its ridge, so it reads as a solid star
+   const P=k=>{const an=-Math.PI/2+k*Math.PI/5,r=k%2?Ri:Ro;return [c+Math.cos(an)*r,c+Math.sin(an)*r]};
+   for(let i=0;i<5;i++){const t=P(2*i),l=P(2*i+9),rt=P(2*i+1);
+    g.fillStyle='rgba(255,255,255,.16)';g.beginPath();g.moveTo(c,c);g.lineTo(...l);g.lineTo(...t);g.closePath();g.fill();
+    g.fillStyle='rgba(150,72,0,.14)';g.beginPath();g.moveTo(c,c);g.lineTo(...t);g.lineTo(...rt);g.closePath();g.fill()}
+   // the light inside: a white-hot core that glows outward, and a soft shade just inside the edges
+   g.save();star();g.clip();
+   const ig=g.createRadialGradient(c,c-Ro*.05,0,c,c,Ro*.8);ig.addColorStop(0,'rgba(255,255,255,1)');ig.addColorStop(.3,'rgba(255,252,236,.85)');ig.addColorStop(.62,'rgba(255,236,180,.3)');ig.addColorStop(1,'rgba(255,230,170,0)');
+   g.fillStyle=ig;g.fillRect(c-Ro,c-Ro,Ro*2,Ro*2);
+   g.shadowColor='rgba(170,88,10,.55)';g.shadowBlur=Ro*.35*dp;g.strokeStyle='rgba(185,100,20,.28)';g.lineWidth=Ro*.3;star();g.stroke();g.restore();
+   // little four-point twinkles and dots, kept off the words
+   const rr=RNG(17),T=phone?4:7,D=phone?5:10;let tw=0,dots=0;
+   for(let i=0;i<300&&(tw<T||dots<D);i++){const an=rr()*6.2832,d=R*(1.5+2.2*Math.pow(rr(),.9)),x=c+Math.cos(an)*d,y=c+Math.sin(an)*d*.85;if(hit(x+ox,y+oy,10))continue;
+    if(tw<T&&(rr()<.5||dots>=D)){tw++;const L=R*(.2+.26*rr())*(tw===1?1.5:1),w=Math.max(.7,L*.11);g.save();g.translate(x,y);g.shadowColor='rgba(255,246,220,.95)';g.shadowBlur=L*.9*dp;g.fillStyle='#fffaf0';
+     g.beginPath();g.moveTo(0,-L*1.3);g.lineTo(w,-w);g.lineTo(L,0);g.lineTo(w,w);g.lineTo(0,L*1.3);g.lineTo(-w,w);g.lineTo(-L,0);g.lineTo(-w,-w);g.closePath();g.fill();
+     g.beginPath();g.arc(0,0,w*1.3,0,7);g.fill();g.restore()}
+    else if(dots<D){dots++;g.save();g.shadowColor='rgba(255,240,210,.9)';g.shadowBlur=3*dp;g.fillStyle='rgba(255,250,240,'+(.45+.5*rr())+')';g.beginPath();g.arc(x,y,.6+.8*rr(),0,7);g.fill();g.restore()}}
+   STAR.appendChild(cv)})}
+ kickLight()}
+let thT;const reLight=()=>{clearTimeout(thT);thT=setTimeout(drawLight,160)};
+addEventListener('load',drawLight);
+/* phones fire resize when the address bar slides while scrolling: redraw only when the width really changes */
+addEventListener('resize',()=>{if(document.documentElement.clientWidth!==thW)reLight()});
+document.fonts&&document.fonts.ready.then(reLight);
+document.getElementById('i18nBtn').addEventListener('click',()=>setTimeout(drawLight,90));
+if(window.ResizeObserver){let bh=0;new ResizeObserver(es=>{const h=es[0].contentRect.height;if(Math.abs(h-bh)>1){bh=h;reLight()}}).observe(document.body)}
+/* the menu marks the section you are reading */
+{const links=[...document.querySelectorAll('nav a[href^="#"]')],map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+ const io2=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;links.forEach(l=>{l.classList.remove('on');l.removeAttribute('aria-current')});const a=map.get(e.target.id);if(a){a.classList.add('on');a.setAttribute('aria-current','true')}}),{rootMargin:'-45% 0px -50% 0px'});
+ ['top','about','work','path','contact'].forEach(id=>{const el=document.getElementById(id);el&&io2.observe(el)})}
 </script>
 
 <script type="module">
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+const boot3d=async()=>{
+const THREE=await import('three');
+const {OrbitControls}=await import('three/addons/controls/OrbitControls.js');
+const {RoundedBoxGeometry}=await import('three/addons/geometries/RoundedBoxGeometry.js');
 const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const loader=new THREE.TextureLoader();
+const loader=new THREE.TextureLoader();const BUMPS=[];THREE.DefaultLoadingManager.onLoad=()=>BUMPS.forEach(f=>f());
 const tex=u=>{const t=loader.load(u);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;return t};
-// front-facing scene: gentle sway, drag to turn (limited so the back is never the main view)
+// front-facing scene: still until you drag it (limited so the back is never the main view); draws only when something changes
 function scene3d(canvas,camZ,camY,swing){
  const r=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.outputColorSpace=THREE.SRGBColorSpace;
  const s=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,.1,100);cam.position.set(0,camY,camZ);
- s.add(new THREE.HemisphereLight(0xffffff,0x334444,1.9));const d=new THREE.DirectionalLight(0xffffff,1.8);d.position.set(2,4,6);s.add(d);const d2=new THREE.DirectionalLight(0xd9f067,.5);d2.position.set(-5,1,-3);s.add(d2);
- const c=new OrbitControls(cam,canvas);c.enableZoom=false;c.enablePan=false;c.enableDamping=true;
+ s.add(new THREE.HemisphereLight(0xffffff,0x334444,1.9));const d=new THREE.DirectionalLight(0xffffff,1.8);d.position.set(2,4,6);s.add(d);const d2=new THREE.DirectionalLight(0xffcf6b,.5);d2.position.set(-5,1,-3);s.add(d2);
+ const c=new OrbitControls(cam,canvas);c.enableZoom=false;c.enablePan=false;c.enableDamping=true;canvas.style.touchAction='pan-y';
  c.minAzimuthAngle=-swing;c.maxAzimuthAngle=swing;c.minPolarAngle=Math.PI*.32;c.maxPolarAngle=Math.PI*.58;
- const root=new THREE.Group();s.add(root);let held=false,idle=9;
- c.addEventListener('start',()=>held=true);c.addEventListener('end',()=>{held=false;idle=0});
- function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+ const root=new THREE.Group();s.add(root);let held=false,need=90;
+ c.addEventListener('start',()=>held=true);c.addEventListener('end',()=>held=false);c.addEventListener('change',()=>need=Math.max(need,2));
+ function size(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();need=Math.max(need,2)}
  size();addEventListener('resize',size);let vis=false,tick=null,t=0,run=false;
- const loop=()=>{if(!vis||document.body.classList.contains('ssx-open')){run=false;return}run=true;t+=.016;idle+=.016;
-  if(!held&&!RM&&idle>2.5){if(swing===Infinity)root.rotation.y+=.005;else root.rotation.y+=(Math.sin(t*.6)*swing*.55-root.rotation.y)*.03}
-  tick&&tick(t);c.update();r.render(s,cam);requestAnimationFrame(loop)};
- new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis){size();if(!run)loop()}}).observe(canvas);addEventListener('ssx-close',()=>{if(vis&&!run)loop()});
+ const loop=()=>{if(!vis||document.body.classList.contains('ssx-open')){run=false;return}run=true;t+=.016;
+  const anim=tick?tick(t):false;c.update();if(held||anim||need>0){r.render(s,cam);if(need>0)need--}requestAnimationFrame(loop)};
+ new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis){size();need=Math.max(need,30);if(!run)loop()}}).observe(canvas);addEventListener('ssx-close',()=>{need=Math.max(need,2);if(vis&&!run)loop()});
+ BUMPS.push(()=>{need=Math.max(need,30);if(vis&&!run)loop()});
  return {root,setTick:f=>tick=f}}
 function canvasTex(w,h,draw){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;const g=cv.getContext('2d');return {t,redraw:a=>{g.clearRect(0,0,w,h);draw(g,a);t.needsUpdate=true}}}
 
@@ -872,7 +1097,12 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  const base=new THREE.Mesh(new THREE.CylinderGeometry(2.7,2.8,.08,64),M(0xf2f2ee,.85));base.position.y=-.73;root.add(base);
  let st='ready';
  window.awnState=s=>{st=s;oled.redraw(s);lcd.redraw(s==='sos'?'ready':s)};
- let k=0;setTick(()=>{k++;const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.008:.02)})}
+ let k=0,last=st,settle=0;setTick(()=>{k++;if(st!==last){last=st;settle=20}const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.008:.02);return st==='sos'||st==='received'||settle-->0})}
+};
+/* the 3D scenes are built while the visitor reads the first screen, so scrolling into the projects stays smooth */
+{const go=()=>boot3d().then(()=>document.documentElement.classList.add('has3d')).catch(()=>document.documentElement.classList.add('no3d')),
+ idle=()=>(window.requestIdleCallback||(f=>setTimeout(f,200)))(go,{timeout:2000});
+ if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})}
 </script>
 </body>
 </html>
