@@ -168,7 +168,7 @@ html[lang=ar] .hero h1{margin-bottom:70px!important}
 
 html[lang=ar] #mail .note{line-height:1.3!important}@media(max-width:900px){html[lang=ar] #mail .note{display:none!important}}
 html[lang=ar] .note.lc{top:84px!important}
-html[lang=ar] #voiceBtn{display:none!important}
+
 @media(max-width:860px){html,body{overflow-x:clip}#mail .note{display:none!important}}
 @media(max-width:600px){.pc{width:84px!important;height:90px!important;right:12px!important;bottom:12px!important}html[lang=ar] .pc{left:12px!important;right:auto!important}.pc .tip{right:80px!important;top:10px!important;font-size:15px!important}html[lang=ar] .pc .tip{left:80px!important;right:auto!important}.term{left:8px!important;right:8px!important;width:auto!important;bottom:110px!important;height:min(360px,58vh)!important}footer{padding-right:clamp(18px,5vw,64px)!important;padding-bottom:110px!important}}
 html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4,html[lang=ar] body h2 *,html[lang=ar] body h3 *,html[lang=ar] body h4 *{line-height:1.75!important}html[lang=ar] body h1,html[lang=ar] body h2,html[lang=ar] body h3,html[lang=ar] body h4{padding-bottom:.35em!important;margin-bottom:.2em!important}
@@ -323,6 +323,89 @@ html[lang=ar] .copy .meta{font-size:19px!important}
  .stage .drag{left:10px;bottom:12px;transform:none}
  .stage .act{font-size:13px;padding:10px 14px}
 }
+
+/* ===== the work shows what she designed and built ===== */
+.copy .who{margin:2px 0 4px;font:600 18px/1.4 Manrope,Arial,sans-serif;color:var(--ink)}
+.copy .tools-l{margin:20px 0 -8px;font:600 12.5px Manrope,Arial,sans-serif;color:var(--mute);letter-spacing:.02em}
+html[lang=ar] .copy .who{font-size:22px!important;font-size-adjust:none!important;line-height:1.5!important}
+html[lang=ar] .copy .tools-l{font-size:17px!important;font-size-adjust:none!important}
+.proj.feat{grid-template-columns:minmax(0,1.55fr) minmax(280px,.75fr);align-items:center}
+.shot{position:relative;margin:0;padding:70px 0 84px;direction:ltr;scroll-margin-top:90px}
+.shot-in{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #ffffff1f,0 34px 70px -34px #000}
+.shot-in img{display:block;width:100%;height:auto}
+.pin{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px #0b1020b3;font-size:0;color:transparent}
+.why{list-style:none;margin:0;padding:0}
+.why li{position:absolute;max-width:11.5em;font:600 21px/1.08 'Caveat',cursive;color:var(--gold)}
+.why li:nth-child(1){left:0;top:4px}.why li:nth-child(2){left:36.5%;top:0;max-width:10em}.why li:nth-child(3){right:0;top:4px;text-align:right;max-width:9.5em}
+.why li:nth-child(4){left:6%;bottom:8px}.why li:nth-child(5){right:0;bottom:8px;text-align:right}
+.arrows{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.arrows path{fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);transition:stroke-dashoffset .9s ease}
+.drawn .arrows path,.drawn.photo .awn-arrows path{stroke-dashoffset:0}
+.feat-go{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px}
+.feat-go .go{margin:0}
+html[lang=ar] .why li{font-family:'Aref Ruqaa',cursive!important;font-size:18px!important;font-size-adjust:none!important;line-height:1.5!important;direction:rtl}
+.photo .awn-note{position:absolute;left:50%;top:7%;transform:translateX(-50%);margin:0;max-width:78%;padding:4px 14px;border-radius:12px;background:#04070fcc;font:600 21px/1.2 'Caveat',cursive;color:var(--gold);text-align:center}
+.awn-arrows{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.awn-arrows path{fill:none;stroke:var(--gold);stroke-width:.4;stroke-linecap:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);transition:stroke-dashoffset .9s .3s ease}
+.photo.on~.drag{display:none}
+html[lang=ar] .photo .awn-note{font-family:'Aref Ruqaa',cursive!important;font-size:18px!important;font-size-adjust:none!important;line-height:1.5!important}
+.toolbox{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line);font:500 15px/1.8 Manrope,Arial,sans-serif;color:#c9c2b4}
+.toolbox b{display:block;margin-bottom:4px;font:italic 400 26px/1.2 'Instrument Serif',serif;color:var(--gold)}
+html[lang=ar] .toolbox span{font-size:18px!important;font-size-adjust:none!important}
+html[lang=ar] .toolbox b{font-family:'Aref Ruqaa',cursive!important;font-size:24px!important;font-size-adjust:none!important;font-style:normal}
+.uv .glow{background:radial-gradient(160px circle at var(--mx,50%) var(--my,45%),#ffcf6b4d,transparent 70%)}
+.clue{color:#ffe3a0;text-shadow:0 0 12px #ffb84d}
+@media(prefers-reduced-motion:reduce){.arrows path,.awn-arrows path{transition:none;stroke-dashoffset:0}}
+@media(max-width:860px){
+ .proj.feat{grid-template-columns:1fr}
+ .shot{padding:0}
+ .arrows{display:none}
+ .pin{width:20px;height:20px;margin:-10px 0 0 -10px;font:700 11px/20px Manrope,Arial,sans-serif;color:#0b1020;text-align:center;font-style:normal}
+ .why{counter-reset:w;display:grid;gap:8px;margin:16px 0 0}
+ .why li{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;max-width:none;text-align:start!important;padding-inline-start:30px;font-size:20px}
+ .why li::before{counter-increment:w;content:counter(w);position:absolute;inset-inline-start:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#0b1020;font:700 11px/20px Manrope,Arial,sans-serif;text-align:center}
+ html[lang=ar] .why{direction:rtl}
+ .photo .awn-note{font-size:17px;top:5%;max-width:86%}
+}
+
+/* ===== talking with Thanaya: a conversation in speech bubbles, not a code terminal ===== */
+.term{background:#0a1020f7!important;border:1px solid #ffd27a8c!important;border-radius:22px!important;font:15px/1.55 Manrope,Arial,sans-serif;box-shadow:0 30px 80px #000c,0 0 0 6px #ffd27a12}
+.term-h{background:none!important;color:var(--ink);padding:12px 12px 10px 16px;border-bottom:1px solid #ffffff14;font-size:inherit;font-weight:400}
+.th-who b{display:block;font:700 27px/1 'Caveat',cursive;color:#ffd27a}
+.th-who small{display:block;margin-top:3px;font:500 12.5px Manrope,Arial,sans-serif;color:#b9b2a2}
+.th-ctl{display:flex;align-items:center;gap:6px}
+.term-h button{width:36px;height:36px;display:grid;place-items:center;background:#ffffff10;color:#ffd27a;border-radius:50%;margin:0!important}
+.term-h button svg{width:18px;height:18px}
+#voiceBtn .x,#voiceBtn.off .w{display:none}#voiceBtn.off .x{display:inline}
+.th-talk{display:inline-flex;align-items:center;gap:3px;height:18px;margin-inline-end:4px;opacity:0;transition:opacity .2s}
+.th-talk i{width:3px;height:5px;border-radius:2px;background:#ffd27a}
+.term.talking .th-talk{opacity:1}
+.term.talking .th-talk i{animation:thTalk .8s ease-in-out infinite}.term.talking .th-talk i:nth-child(2){animation-delay:.14s}.term.talking .th-talk i:nth-child(3){animation-delay:.28s}
+@keyframes thTalk{50%{height:16px}}
+@media(prefers-reduced-motion:reduce){.term.talking .th-talk i{animation:none;height:12px}}
+.term-o{white-space:normal;display:flex;flex-direction:column;gap:10px;padding:14px 14px 10px}
+.term-o>div{max-width:88%;padding:9px 13px;border-radius:17px;line-height:1.5}
+.term-o>.th{align-self:flex-start;background:#ffd27a17;border:1px solid #ffd27a38;border-end-start-radius:5px;color:#f3ead8}
+.term-o>.me{align-self:flex-end;background:#ffffff12;border-end-end-radius:5px;color:#e9f0ea}
+.term-o .p{display:none}
+.term-o a{color:#ffd27a;text-decoration:underline}
+.chips2{border-top:0;padding:2px 14px 8px;gap:7px}
+.chips2 button{font:600 13px Manrope,Arial,sans-serif;background:#ffd27a12;color:#ffd27a;border:1px solid #ffd27a59;padding:7px 12px}
+.chips2 .hot{font:700 13.5px Manrope,Arial,sans-serif;border:0;color:#2a1c05}
+.term-i{gap:8px;padding:10px 12px 12px;border-top:1px solid #ffffff14;align-items:center}
+.term-i input{background:#ffffff0d;border-radius:999px;padding:10px 16px;font:16px Manrope,Arial,sans-serif;color:var(--ink)}
+.term-i input::placeholder{color:#b9b2a2;font-size:14px}
+#tiSend{flex:none;width:40px;height:40px;border:0;border-radius:50%;background:#ffd27a;color:#0b1020;display:grid;place-items:center;cursor:pointer}
+#tiSend svg{width:20px;height:20px}
+html[dir=rtl] #tiSend svg{transform:scaleX(-1)}
+html[lang=ar] .term,html[lang=ar] .term *{font-size-adjust:none!important}
+html[lang=ar] .term-o{font-size:23px;line-height:1.45}html[lang=ar] .chips2 button{font-size:19px!important}html[lang=ar] .term-i input{font-size:21px}html[lang=ar] .term-i input::placeholder{font-size:19px}
+/* room to talk: a taller chat, and on phones the suggestions sit in one row you can swipe */
+.term{height:min(450px,66vh)!important}
+@media(max-width:600px){.term{height:min(500px,68vh)!important}.chips2{gap:6px}.chips2 button{font-size:12.5px;padding:6px 10px}}
+html[lang=ar] .th-who b{font-family:'Aref Ruqaa',cursive!important;font-size:24px!important}html[lang=ar] .th-who small{font-size:15px!important}
+#illus{background:none;color:inherit;border-radius:4px;transition:background .5s,color .5s,box-shadow .5s}
+#illus.lit{background:#ffcf6b33;box-shadow:0 0 0 4px #ffcf6b33;color:var(--cream)}
 </style>
 </head>
 <body>
@@ -344,51 +427,56 @@ html[lang=ar] .copy .meta{font-size:19px!important}
   <div class="about-g rv"><h2 class="big">Dreams between the folds, unfolded into <i>code that glows.</i></h2>
   <div><p>I design user experiences and build them for the web, and I also create worlds for virtual and extended reality (VR/XR). Every project starts with real people and real constraints, like a radiologist with too little time or a hiker lost in the desert, and ends as something you can actually click, hold or step inside.</p>
   <p>Diploma in Programming and Web Development Technology, Technical and Vocational Training Corporation, Riyadh. GPA 4.58 / 5.</p></div></div>
-  <div class="skills rv">
-    <div class="skill"><h3>UI/UX Design</h3><p>Figma · Canva<br>Hand sketching · character illustration</p></div>
-    <div class="skill"><h3>Front-End</h3><p>HTML · CSS · JavaScript · PHP<br>Responsive interfaces · GitHub</p></div>
-    <div class="skill"><h3>VR &amp; XR</h3><p>Unity · C# · Meta Quest<br>XR Interaction Toolkit · Voice SDK</p></div>
-    <div class="skill"><h3>Back end &amp; Hardware</h3><p>Python · SQL · PL/SQL · SQLite<br>Raspberry Pi · ESP32 · Fusion 360</p></div>
-  </div>
+  <p class="toolbox rv" id="toolbox"><b>My toolbox</b> <span>Figma · Canva · hand sketching · </span><mark id="illus">character illustration</mark><span> · HTML · CSS · JavaScript · PHP · Python · Java · C# · SQL · PL/SQL · Unity 6 · Meta Quest · Fusion 360 · ESP32 · Raspberry Pi</span></p>
 </section>
 
 <section id="work">
   <h2 class="sec">Selected work</h2>
-  <p class="sec-sub">Drag the models, press the buttons, explore.</p>
+  <p class="sec-sub">What I designed, what I built, and why.</p>
 
-  <article class="proj rv">
-    <div class="stage" id="ss"><span class="tag">MRI · On-device AI</span>
-      <canvas class="three" id="brain3d" aria-label="3D model of the MS SmartScan brain-shaped device, drag to rotate"></canvas>
-      <span class="drag" id="ssDrag">Drag to rotate</span>
-      <button class="act" id="ssBtn">Look at the website</button>
-    </div>
+  <article class="proj feat rv">
+    <figure class="shot" id="ss">
+      <div class="shot-in"><img src="assets/ss/f3.webp" alt="The MRI Scanner screen I designed: patient details, the MRI viewer with highlighted lesions, and the AI finding" width="1920" height="870" loading="lazy" decoding="async">
+        <i class="pin" style="left:27%;top:4.5%">1</i><i class="pin" style="left:47%;top:15%">2</i><i class="pin" style="left:64%;top:4.5%">3</i><i class="pin" style="left:24%;top:55%">4</i><i class="pin" style="left:83%;top:40%">5</i></div>
+      <svg class="arrows" aria-hidden="true"></svg>
+      <ol class="why">
+        <li data-ax=".55">Calm clinical blue, chosen after studying hospital websites</li>
+        <li data-ax=".5">Sketched by hand first, then refined in Figma</li>
+        <li data-ax=".4">Runs offline, right on a Raspberry Pi</li>
+        <li data-ax=".5">Doctor PIN sign-in, salted and hashed</li>
+        <li data-ax=".5">Every function easy for a doctor to reach</li>
+      </ol>
+    </figure>
     <div class="copy">
       <h3>MS <i>SmartScan</i></h3>
-      <p class="meta">Built at Healthon 2026 · UX, web and security lead · Patent pending</p>
+      <p class="who">UX, web and security lead · team of three</p>
+      <p class="meta">Built at Healthon 2026 · Patent pending</p>
       <span class="award">1st place · Riyadah AI Hackathon · Nov 2026</span><span class="award">Working prototype · Patent pending</span>
       <p>An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI, on a Raspberry Pi, in seconds.</p>
       <p class="mine"><b>My contribution:</b> Designed and built the MRI Scanner and Patient Registry web experiences, the shared SQLite data layer, and doctor PIN authentication with salted PBKDF2 hashing.</p>
-      <ul class="chips"><li>Python</li><li>SQLite</li><li>Web UX</li><li>Raspberry Pi</li></ul>
-      <a class="go" href="https://github.com/HailahAlhejjei/MS-SmartScan" target="_blank" rel="noreferrer">Project showcase ↗</a></div>
+      <p class="tools-l">Tools I used</p>
+      <ul class="chips"><li>Figma</li><li>Hand sketching</li><li>HTML, CSS, JavaScript</li><li>Python</li><li>SQLite</li><li>Raspberry Pi</li></ul>
+      <div class="feat-go"><button class="btn pri" id="ssBtn">Look at the website</button><a class="go" href="https://github.com/HailahAlhejjei/MS-SmartScan" target="_blank" rel="noreferrer">Project showcase ↗</a></div></div>
   </article>
 
   <article class="proj rev rv">
     <div class="stage" id="awn"><span class="tag">Off-grid SOS device</span>
       <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
-      <canvas class="lora" id="loraC"></canvas>
-      <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices" loading="lazy" decoding="async"></div>
-      <button class="mini" id="photoBtn">Real photo</button>
+      <div class="photo on" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices" loading="lazy" decoding="async">
+        <svg class="awn-arrows" viewBox="0 0 100 75" aria-hidden="true"><path style="--l:20" d="M36 16.5 C31 18 27.5 21 26 25.5"/><path style="--l:20" d="M64 16.5 C69 18 72 22 73 27.5"/></svg>
+        <p class="hand awn-note">I designed both of these cases in Fusion 360</p></div>
+      <button class="mini" id="photoBtn">3D model</button>
       <span class="drag">Drag to rotate</span>
-      <div class="log" id="awnLog"></div>
-      <button class="act red" id="sosBtn">Press SOS</button>
     </div>
     <div class="copy">
       <h3>Awn <i>(عون)</i></h3>
-      <p class="meta">Graduation project · Co-developer · Patent pending</p>
+      <p class="who">Co-developer · designed both enclosures</p>
+      <p class="meta">Graduation project · team of five · Patent pending</p>
       <span class="award">SAIF 2026 finalist</span><span class="award">Working prototype · Patent pending</span>
       <p>An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team, and the team replies, so the person knows help is coming.</p>
       <p class="mine"><b>My contribution:</b> Designed both 3D-printed device enclosures in Fusion 360 and co-wrote the ESP32 C++ firmware with my teammates. I took part in every stage, from first idea to finished build.</p>
-      <ul class="chips"><li>Enclosure design</li><li>Fusion 360</li><li>3D printing</li><li>ESP32</li><li>Embedded C++</li></ul>
+      <p class="tools-l">Tools I used</p>
+      <ul class="chips"><li>Fusion 360</li><li>3D printing</li><li>ESP32</li><li>Embedded C++</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Aoun" target="_blank" rel="noreferrer">Project showcase ↗</a></div>
   </article>
 
@@ -400,10 +488,12 @@ html[lang=ar] .copy .meta{font-size:19px!important}
     </div>
     <div class="copy">
       <h3>Beyond: <i>Case 017</i></h3>
-      <p class="meta">VR / XR · Tuwaiq Academy · Team project</p>
+      <p class="who">Built the crime scene, its storm and the voice phone</p>
+      <p class="meta">VR / XR · Tuwaiq Academy · team of five</p>
       <p>A story-driven VR detective experience for Meta Quest: investigate a crime scene, interrogate AI-driven suspects by voice, and reach your own conclusion.</p>
       <p class="mine"><b>My contribution:</b> Built and optimised the crime-scene environment; created the weather, lighting, rain, thunder and lightning systems; and developed the voice-driven phone call, countdown, ambience and scene transitions.</p>
-      <ul class="chips"><li>Unity</li><li>C#</li><li>Meta Quest</li><li>Voice SDK</li></ul>
+      <p class="tools-l">Tools I used</p>
+      <ul class="chips"><li>Unity 6</li><li>C#</li><li>Meta Voice SDK</li><li>Meta Quest</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Beyond-VR-Experience" target="_blank" rel="noreferrer">Project and trailer ↗</a></div>
   </article>
 
@@ -420,11 +510,13 @@ html[lang=ar] .copy .meta{font-size:19px!important}
     </div>
     <div class="copy">
       <h3>Satathon: Signal, <i>received.</i></h3>
+      <p class="who">Tracked, decoded, and made the team's video</p>
       <p class="meta">Satathon 2026 · Digital Apollo team</p>
       <span class="award">3rd place · Satathon 2026</span>
       <p>A team competition by the Saudi Amateur Radio Society: track satellites as they pass overhead and decode what they send.</p>
       <p class="mine"><b>My part:</b> I tracked satellites, decoded Morse code and SSTV images, and produced the team's submission video.</p>
-      <ul class="chips"><li>Teamwork</li><li>Video production</li><li>Satellite tracking</li></ul>
+      <p class="tools-l">Tools I used</p>
+      <ul class="chips"><li>Satellite tracking</li><li>Morse and SSTV decoding</li><li>Video production</li></ul>
       <a class="go" href="https://github.com/HailahAlhejjei/Satathon" target="_blank" rel="noreferrer">Field log ↗</a></div>
   </article>
 </section>
@@ -432,12 +524,13 @@ html[lang=ar] .copy .meta{font-size:19px!important}
 <section id="path" style="background:var(--bg2)">
   <div class="tl"><div class="rv"><h2 class="big">Built step by step, <i>pixel by pixel.</i></h2><p style="color:var(--mute);max-width:440px">Each step expanded how I work: the foundations of the web, designing for real users, building in teams under pressure, and stepping into VR.</p></div>
   <div class="steps rv">
-    <div class="step gold"><small>Nov 2026 · Award</small><h3>1st place · Riyadah AI Hackathon</h3><p>MS SmartScan team · AI-assisted MRI lesion detection</p></div>
-    <div class="step gold"><small>Nov 2026 · Finalist</small><h3>SAIF 2026 finalist · Awn (عون)</h3><p>Final acceptance for our team · finals hackathon, Nov 2026</p></div>
     <div class="step"><small>Oct 2026 · Hackathon</small><h3>Healthon 2026</h3><p>Healthcare AI prototype · KSU Medical City</p></div>
     <div class="step"><small>Jul to Sep 2026 · Training</small><h3>VR Development &amp; Emerging Technologies Bootcamp</h3><p>Tuwaiq Academy · 160 hours</p></div>
-    <div class="step gold"><small>2026 · Award</small><h3>3rd place · Satathon 2026</h3><p>Digital Apollo · satellite tracking competition</p></div>
-    <div class="step"><small>Education</small><h3>Programming &amp; Web Development</h3><p>Technical and Vocational Training Corporation · Riyadh</p></div>
+    <div class="step"><small>May 2026 · Training</small><h3>Database Programming with PL/SQL</h3><p>Oracle Academy</p></div>
+    <div class="step gold"><small>Jul to Aug 2025 · Volunteering</small><h3>Art teacher: clay and creative art for children</h3><p>Community Development Association</p></div>
+    <div class="step"><small>Jan 2025 to May 2027 · Education</small><h3>Programming &amp; Web Development</h3><p>Technical and Vocational Training Corporation · Riyadh</p></div>
+    <div class="step"><small>Mar 2024 · Training</small><h3>Web Design Fundamentals</h3><p>Tuwaiq Academy</p></div>
+    <div class="step gold"><small>Jul to Aug 2022 · Volunteering</small><h3>Children's activity instructor: creative play</h3><p>Afkar Association</p></div>
   </div></div>
 </section>
 
@@ -464,7 +557,7 @@ html[lang=ar] .copy .meta{font-size:19px!important}
 <div class="ssx-modal" id="ssxM"><div class="app" id="app" role="dialog" aria-modal="true" aria-label="MS SmartScan demo"><div class="bar"><i></i><i></i><i></i><span>MS SmartScan · real website demo</span><div class="ssx-prog"><button type="button" aria-label="Step 1"></button><button type="button" aria-label="Step 2"></button><button type="button" aria-label="Step 3"></button><button type="button" aria-label="Step 4"></button><button type="button" aria-label="Step 5"></button><button type="button" aria-label="Step 6"></button></div><button type="button" class="ssx-x" aria-label="Close demo">✕</button></div><div class="screen ssx" id="ssx"><div class="ssx-cam"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f1.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f2.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f3.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f4.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f5.webp"><img alt="" width="1920" height="870" decoding="async" data-src="assets/ss/f6.webp"><div class="ssx-mri"><i class="ssx-band"></i></div><i class="ssx-ring"></i><i class="ssx-ring"></i></div><p class="ssx-cap" aria-live="polite"><b>1</b><span></span></p><button type="button" class="ssx-replay">↺ Replay</button></div></div></div>
 <div id="goldLight" aria-hidden="true"></div><canvas id="bitsy" aria-hidden="true"></canvas>
 <button class="pc" id="pc" aria-label="Talk to Thanaya"><span class="tip" id="tip">hi… I'm Thanaya ✦ come closer</span></button>
-<div class="term" id="term" role="dialog" aria-label="Terminal"><div class="term-h"><span>✦ ask Thanaya</span><span><button id="voiceBtn" aria-label="Toggle voice" style="margin-right:6px">🔊</button><button id="closeTerm" aria-label="Close">✕</button></span></div><div class="term-o" id="to"></div><div class="chips2" id="chips2"><button class="hot" data-q="what is it really like working with hailah">🤫 psst… what's it REALLY like working with Hailah?</button><button data-q="tell me about awn">Awn 🛰</button><button data-q="what are her projects">her projects</button><button data-q="how can i work with her">reach her ✉</button></div><div class="term-i"><span>❯</span><input id="ti" autocomplete="off" spellcheck="false" aria-label="Terminal input" placeholder="ask me anything… (e.g. tell me about Awn)"></div></div>
+<div class="term" id="term" role="dialog" aria-label="Chat with Thanaya"><div class="term-h"><span class="th-who"><b>Thanaya</b><small>made of folds · drawn by Hailah</small></span><span class="th-ctl"><span class="th-talk" aria-hidden="true"><i></i><i></i><i></i></span><button id="voiceBtn" aria-label="Toggle voice" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path class="w" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="x" d="M16 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button id="closeTerm" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11m0-11l-11 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span></div><div class="term-o" id="to"></div><div class="chips2" id="chips2"><button class="hot" data-q="what is it really like working with hailah">🤫 psst… what's it REALLY like working with Hailah?</button><button data-q="what did hailah make">What did Hailah make?</button><button data-q="who drew you">Who drew you?</button><button data-q="when can she start">When can she start?</button></div><div class="term-i"><input id="ti" autocomplete="off" spellcheck="false" aria-label="Message Thanaya" placeholder="Talk to me… ask about Hailah, or about me"><button id="tiSend" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12m-5-5.5L17.5 12 12 17.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -512,21 +605,8 @@ ssBtn.onclick=ssShow;SSX.onclick=ssHide;SSM.addEventListener('click',e=>{if(e.ta
 addEventListener('keydown',e=>{if(!ssOpen)return;if(e.key==='Escape'){e.preventDefault();ssHide()}else if(e.key==='Tab'){const f=[SSX,...SSP,SSR].filter(el=>el.offsetParent),i=f.indexOf(document.activeElement);if(e.shiftKey?i<=0:i<0||i===f.length-1){e.preventDefault();f[e.shiftKey?f.length-1:0].focus()}}});
 SSP.forEach((p,i)=>p.addEventListener('click',()=>ssPlay(i)));SSR.addEventListener('click',()=>ssPlay(0));
 addEventListener('resize',()=>{if(ssOpen&&ssKey)ssFit(ssKey,0)});
-/* awn sos (2D waves + log over the 3D scene) */
-const lc=document.getElementById('loraC'),lx=lc.getContext('2d'),aw=document.getElementById('awn'),log=document.getElementById('awnLog');let waves=[],sending=false,lrun=false;
-function lsz(){lc.width=aw.offsetWidth;lc.height=aw.offsetHeight}lsz();addEventListener('resize',lsz);
-function lora(){lx.clearRect(0,0,lc.width,lc.height);const sy=lc.height*.42,max=lc.width*.42;
- for(const w of waves){w.r+=3;lx.strokeStyle=`rgba(${w.c},${Math.max(0,1-w.r/max)})`;lx.lineWidth=2.5;lx.beginPath();if(w.dir>0)lx.arc(w.x,sy,w.r,-Math.PI/4,Math.PI/4);else lx.arc(w.x,sy,w.r,Math.PI*3/4,Math.PI*5/4);lx.stroke()}
- waves=waves.filter(w=>w.r<max);if(waves.length)requestAnimationFrame(lora);else{lrun=false;lx.clearRect(0,0,lc.width,lc.height)}}
-function emit(dir,c,n){let k=0;const iv=setInterval(()=>{waves.push({x:dir>0?lc.width*.32:lc.width*.68,r:10,dir,c});if(!lrun){lrun=true;lora()}if(++k>=n)clearInterval(iv)},180)}
-document.getElementById('sosBtn').onclick=()=>{if(sending)return;sending=true;log.className='log on';log.innerHTML='';
- const L=(t,cl,d)=>setTimeout(()=>{log.innerHTML+=`<div class="${cl||''}">${t}</div>`},d);
- window.awnState?.('sos');emit(1,'255,90,78',6);L(tr('▲ SOS SENT · attempt 1/3'),'w',0);L(tr('  blue LED blinking · GPS + BAT 96%'),'',500);
- setTimeout(()=>window.awnState?.('received'),1300);L(tr('▼ AOUN RESCUE · SOS received'),'',1400);L(tr('  signal −6 dBm · SNR 11.3'),'',1800);
- setTimeout(()=>emit(-1,'255,207,107',5),2300);setTimeout(()=>window.awnState?.('confirmed'),2900);L(tr('▲ CONFIRMED · help is on the way'),'ok',2900);L(tr('  green LED + beep on SOS device'),'ok',3300);
- setTimeout(()=>sending=false,3600);setTimeout(()=>{if(!sending)window.awnState?.('ready')},9000)};
 const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
-photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'3D model':'Real photo')};
+photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'3D model':'Real photo');if(!on&&window.need3d)need3d()};
 /* uv flashlight */
 const uv=document.getElementById('uv'),clues=uv.querySelectorAll('.clue');
 function uvMove(x0,y0){const r=uv.getBoundingClientRect(),x=x0-r.left,y=y0-r.top;uv.style.setProperty('--mx',x+'px');uv.style.setProperty('--my',y+'px');
@@ -545,7 +625,7 @@ function satLoop(){sp=(sp+.0022)%1;const p=orbP.getPointAtLength(sp*OL);satG.set
  if(satVis&&!RM)requestAnimationFrame(satLoop)}
 /* terminal */
 const term=document.getElementById('term'),to=document.getElementById('to'),ti=document.getElementById('ti'),pc=document.getElementById('pc');
-const out=h=>{to.innerHTML+=h+'\n';to.scrollTop=to.scrollHeight};
+const out=h=>{const d=document.createElement('div');d.className='me';d.innerHTML=h;to.appendChild(d);to.scrollTop=to.scrollHeight};
 const GREET=["Ta-daa! You lit me up! I'm Thanaya! I'm a little girl made of folds, and every fold hides a light. Psst… want to know a secret? Ask me what it's REALLY like working with Hailah!","You're back! Yay! What do you want to know this time?","Hi again! My folds were waiting for you! Ask me anything!","Ooh, you came back to see me! Try the golden question, it's my favourite!"];let gI=0;
 function openT(){term.classList.add('open');if(!matchMedia('(hover:none)').matches)setTimeout(()=>ti.focus(),50);say((LANG==='ar'?GREET_AR:GREET)[Math.min(gI,GREET.length-1)===0&&gI>0?1:(gI?1+((gI-1)%3):0)]);gI++}
 let toggleT=function(){term.classList.contains('open')?term.classList.remove('open'):openT()};
@@ -616,33 +696,43 @@ addEventListener('keydown',e=>{if(e.key==='`'&&document.activeElement!==ti){e.pr
 const go=id=>document.getElementById(id).scrollIntoView({behavior:'smooth',block:'center'});
 /* ---- Thanaya speaks: enthusiastic, creative answers (typed + spoken aloud) ---- */
 let voiceOn=true;const voiceBtn=document.getElementById('voiceBtn');
-voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.textContent=voiceOn?'🔊':'🔇';if(!voiceOn)speechSynthesis.cancel()};
+voiceBtn.onclick=()=>{voiceOn=!voiceOn;voiceBtn.classList.toggle('off',!voiceOn);voiceBtn.setAttribute('aria-pressed',voiceOn);if(!voiceOn){try{speechSynthesis.cancel()}catch(e){}try{AU.pause()}catch(e){}term.classList.remove('talking')}};
 function pickVoice(){const all=speechSynthesis.getVoices();if(typeof LANG!=='undefined'&&LANG==='ar'){const V=all.filter(v=>/^ar/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));return by(/Zariyah.*Natural|Salma.*Natural|Fatima.*Natural|Amany.*Natural|Mouna.*Natural|Sana.*Natural/i)||by(/Natural/i)||by(/Google/i)||by(/Zariyah|Hoda|Laila|Mariam|Noura/i)||V[0]||null}
  const V=all.filter(v=>/^en[-_]US/i.test(v.lang));const by=re=>V.find(v=>re.test(v.name));
  return by(/Ana.*Natural|Microsoft Ana/i)||by(/Jenny.*Natural|Aria.*Natural|Ava.*Natural|Emma.*Natural|Michelle.*Natural/i)||by(/Google US English/i)||by(/Samantha|Zira/i)||V[0]}
 let VOICE=null;if('speechSynthesis' in window){VOICE=pickVoice();speechSynthesis.onvoiceschanged=()=>{VOICE=pickVoice()}}
-const AU=new Audio();AU.preload='auto';let auOK=false;const unlockAU=()=>{if(auOK)return;auOK=true;AU.src='data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQxAADB8AhSmxhIIEVCSiJrDCQBTcu3UrAIwUdkRgQbFAZC1CQEwTJ9mjRvBA4UOLD8nKVOWfh+UlK3z/177OXrfOdKl7pyn3Xf//WreyTRUoAWgBgkOAGbZHBgG1OF6zM82DWbZaUmMBptgQhGjsyYqc9ae9XFz280948NMBWInljyzsNRFLPWdnZGWrddDsjK1unuSrVN9jJsK8KuQtQCtMBjCEtImISdNKJOopIpBFpNSMbIHCSRpRR5iakjTiyzLhchUUBwCgyKiweBv/7UsQbg8isVNoMPMjAAAA0gAAABEVFGmgqK////9bP/6XCykxBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq';AU.play().then(()=>AU.pause()).catch(()=>{})};addEventListener('touchend',unlockAU,{once:true,passive:true});addEventListener('click',unlockAU,{once:true});let CLIPS=null;fetch('assets/voice/index.json').then(r=>r.json()).then(j=>CLIPS=j).catch(()=>{});let CUR=null;
+const AU=new Audio();AU.preload='auto';let auOK=false;const unlockAU=()=>{if(auOK)return;auOK=true;AU.src='data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQxAADB8AhSmxhIIEVCSiJrDCQBTcu3UrAIwUdkRgQbFAZC1CQEwTJ9mjRvBA4UOLD8nKVOWfh+UlK3z/177OXrfOdKl7pyn3Xf//WreyTRUoAWgBgkOAGbZHBgG1OF6zM82DWbZaUmMBptgQhGjsyYqc9ae9XFz280948NMBWInljyzsNRFLPWdnZGWrddDsjK1unuSrVN9jJsK8KuQtQCtMBjCEtImISdNKJOopIpBFpNSMbIHCSRpRR5iakjTiyzLhchUUBwCgyKiweBv/7UsQbg8isVNoMPMjAAAA0gAAABEVFGmgqK////9bP/6XCykxBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq';AU.play().then(()=>AU.pause()).catch(()=>{})};addEventListener('touchend',unlockAU,{once:true,passive:true});addEventListener('click',unlockAU,{once:true});let CLIPS=null;fetch('assets/voice/index.json?v=20261118').then(r=>r.json()).then(j=>CLIPS=j).catch(()=>{});let CUR=null;
 function hsh(t){let x=5381;for(let i=0;i<t.length;i++)x=(Math.imul(x,33)^t.charCodeAt(i))>>>0;return x.toString(16).padStart(8,'0')}
 function playClip(text,onWord,onEnd){const k=hsh(text);if(!CLIPS||!CLIPS[k])return false;const marks=CLIPS[k];
  const a=AU;a.onplay=a.onended=a.onerror=null;a.src='assets/voice/'+k+'.mp3';CUR=a;const tok=window._tok=(window._tok||0)+1;let i=0,raf=0;const tick=()=>{if(window._tok!==tok)return;const ms=a.currentTime*1000;while(i<marks.length&&marks[i]<=ms){i++;onWord&&onWord(i)}raf=requestAnimationFrame(tick)};
  a.onplay=()=>{raf=requestAnimationFrame(tick)};a.onended=()=>{cancelAnimationFrame(raf);if(window._tok!==tok)return;CUR=null;onEnd&&onEnd(true)};a.onerror=()=>{cancelAnimationFrame(raf);onEnd&&onEnd(false)};
  a.play().catch(()=>{cancelAnimationFrame(raf);onEnd&&onEnd(false)});return true}
-function speak(text,onWord,onEnd){if(LANG==='ar'){try{speechSynthesis.cancel()}catch(e){}onEnd&&onEnd(false);return}window._tok=(window._tok||0)+1;if(CUR){CUR.pause();CUR.onended=CUR.onplay=CUR.onerror=null;CUR=null}if(voiceOn&&playClip(text,onWord,onEnd))return;if(CLIPS){onEnd&&onEnd(false);return}if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
+function speak(text,onWord,onEnd){if(LANG==='ar'){try{speechSynthesis.cancel()}catch(e){}window._tok=(window._tok||0)+1;if(CUR){CUR.pause();CUR.onended=CUR.onplay=CUR.onerror=null;CUR=null}if(voiceOn&&playClip(text,onWord,onEnd))return;onEnd&&onEnd(false);return}window._tok=(window._tok||0)+1;if(CUR){CUR.pause();CUR.onended=CUR.onplay=CUR.onerror=null;CUR=null}if(voiceOn&&playClip(text,onWord,onEnd))return;if(CLIPS){onEnd&&onEnd(false);return}if(!voiceOn||!('speechSynthesis' in window)||!VOICE){onEnd&&onEnd(false);return}let started=false;setTimeout(()=>{if(!started)onEnd&&onEnd(false)},1500);
  speechSynthesis.cancel();speechSynthesis.resume();clearTimeout(window._spT);
  window._spT=setTimeout(()=>{const t=LANG==='ar'?text:text.replace(/Thanaya/g,'Tha-naa-ya');const m=new SpeechSynthesisUtterance(t);m.lang=LANG==='ar'?'ar-SA':'en-US';if(VOICE)m.voice=VOICE;
   const kid=VOICE&&/Ana/i.test(VOICE.name);m.pitch=LANG==='ar'?2:(kid?1.15:1.4);m.rate=LANG==='ar'?1.2:1.0;
   let words=0,got=false;m.onboundary=ev=>{if(ev.name&&ev.name!=='word')return;got=true;words++;onWord&&onWord(words,t.slice(ev.charIndex).split(/\s/)[0])};
   m.onstart=()=>{started=true;setTimeout(()=>{if(!got)onEnd&&onEnd(false)},700)};m.onend=()=>onEnd&&onEnd(true);m.onerror=()=>onEnd&&onEnd(false);
   speechSynthesis.speak(m);speechSynthesis.resume()},60)}
-function say(html){const line=document.createElement('div');line.innerHTML='<span class="p">✦ '+(LANG==='ar'?'ثنايا:':'Thanaya:')+'</span> <span class="w"></span>';to.appendChild(line);to.scrollTop=to.scrollHeight;
+{const sp0=speak;speak=(t,w,e)=>{term.classList.add('talking');sp0(t,w,ok=>{term.classList.remove('talking');e&&e(ok)})}}
+function say(html){const line=document.createElement('div');line.className='th';line.innerHTML='<span class="p">✦ '+(LANG==='ar'?'ثنايا:':'Thanaya:')+'</span> <span class="w"></span>';to.appendChild(line);to.scrollTop=to.scrollHeight;
  const span=line.querySelector('.w'),tmp=document.createElement('div');tmp.innerHTML=html;const plain=tmp.textContent;const toks=plain.split(/(\s+)/);let shown=0,done=false,typer=null;
  const show=n=>{if(done)return;shown=Math.max(shown,n);const w=toks.filter(x=>!/^\s+$/.test(x));let c=0,out='';for(const x of toks){if(!/^\s+$/.test(x)){if(c>=shown)break;c++}out+=x}span.textContent=out;to.scrollTop=to.scrollHeight;if(shown>=w.length)finish()};
- const finish=()=>{if(done)return;done=true;clearInterval(typer);span.innerHTML=html;to.scrollTop=to.scrollHeight};
+ const finish=()=>{if(done)return;done=true;clearInterval(typer);span.innerHTML=html;to.scrollTop=to.scrollHeight;const f=window._after;window._after=null;if(f)setTimeout(f,1300)};
  const startTyper=()=>{if(typer||done)return;typer=setInterval(()=>show(shown+1),260)};
  speak(plain.replace(/[✦→•📡🥇🥉🏁📜✓🤫]/g,' '),n=>{clearInterval(typer);typer=null;show(n)},ok=>{if(ok)finish();else startTyper()});
  if(!voiceOn||!('speechSynthesis' in window))startTyper()}
 const ME='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LI='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A={
+ design:()=>{window._after=()=>{lightDown();go('ss');const f=document.querySelector('.shot');f&&f.classList.add('drawn')};return "Ooh, lots! She made the two MS SmartScan websites doctors use, from a sketch in her notebook all the way to working code. She made both Awn cases in Fusion 360, and the stormy crime scene in Beyond. Come, I'll show you her SmartScan notes!"},
+ drew:()=>{window._after=()=>{lightDown();go('toolbox');const m=document.getElementById('illus');if(m){m.classList.add('lit');setTimeout(()=>m.classList.remove('lit'),4000)}};return "Hailah did, fold by fold! I started as one of her drawings, and character illustration is one of her skills. Look, I'll show you!"},
+ start:()=>{window._after=()=>{lightDown();go('contact');const m=document.getElementById('mail');m&&m.classList.add('drawn')};return "January 2027! And she's happy to stay longer than the co-op asks. Here's her email, I'll take you there!"},
+ feel:"I'm glowing, thank you for asking! Every time someone talks to me, my folds get a little brighter.",
+ colour:"Gold, of course! It's the colour of my light.",
+ shy:"Just a little! I curl up in my folds when it's quiet, and I unfold the moment someone curious comes close. Like you!",
+ sleep:"When nobody's around, I fold up tight and dream about what Hailah will build next.",
+ friends:"Hailah is my maker, so she's kind of like my mom! And everyone who talks to me becomes my friend. So now you're my friend too!",
+ want:"She wants a co-op as a UI/UX designer and front-end developer. She designs the experience, then she builds it! She can start in January 2027.",
  hi:()=>"Oh, hello hello! You found me hiding in my folds! I'm Thanaya, and I'm SO happy you're here. Ask me about Hailah, her projects, or anything you're curious about!",
  me:q=>/old/.test(q)?"Hmm, I'm brand new! Hailah dreamed me up in November 2026, hehe. But I already know everything about her work!"
   :/where/.test(q)?"I live right here, in the corner of Hailah's website! I curl up in my folds when it's quiet, and I unfold the moment someone curious comes close. Like you!"
@@ -674,21 +764,22 @@ const A={
  cv:()=>{const a=document.createElement('a');a.href='Hailah_Alhejjei_CV_2026.pdf';a.download='';a.click();return "Here it comes, floating out of my folds! Her CV is downloading now."},
  working:()=>"Ooh, working with Hailah? It's like magic, I promise! She's SO hungry to learn. Give her a task that needs a brand new skill, and two days later, poof, she knows it! And even when a task doesn't need anything new, she still makes it better, because she's a little perfectionist, hehe. She doesn't like doing things that have already been done. She always finds a way to make it unique. I mean, look at ME! She made me! Have you ever seen anyone like me before? Anywhere? Nope! That's Hailah!",
  help:()=>"You can ask me anything! Try: what's it really like working with Hailah, what are her projects, tell me about Awn, what skills does she have, what did she win, how can I hire her. Or type sos, scan, or sudo hire hailah for a little surprise!",
- sos:()=>{lightDown();setTimeout(()=>{go('awn');setTimeout(()=>document.getElementById('sosBtn').click(),700)},300);return "Sending an SOS over LoRa radio! Watch Awn!"},
+ sos:()=>{lightDown();setTimeout(()=>go('awn'),300);return A.awn()},
  scan:()=>{lightDown();setTimeout(()=>{go('ss');setTimeout(()=>{if(!ssOpen)ssBtn.click()},700)},300);return "Let's run the scan! Watch the real MS SmartScan demo!"},
  sudo:()=>{confetti();toast(tr('ACCESS GRANTED - welcome to the team ✦'));return `Permission granted! Wonderful choice! Make it official at ${ME}`},
  fallback:q=>"Hmm, that one tickles my folds! I'm not sure, but I know everything about Hailah's projects, skills and awards. Try asking me about Awn, MS SmartScan, or how to hire her!"};
-const RULES=[[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam)(\b|$|!)|السلام|مرحبا|هلا/,'hi'],[/who are (you|u)|(your|ur|yr) name|what are (you|u)|tell me about (yourself|urself|you|u)\b|about (yourself|you|u)$|how old|where (are|do) (you|u)|what do (you|u) do|do (you|u) like|(your|ur) (favou?rite|job)|are (you|u) (a |real|human|robot|ai)|who (made|drew|created|designed|built) (you|u)|why do (you|u) (glow|shine|light)|(you|u) made of|your (creator|mom|mother|maker)|thanaya|ثنايا|انت مين|من انت|اسمك|وش اسمك|مين انتي|من انتي/,'me'],
+const RULES=[[/what (did|does|do|has) (she|hailah) (make|made|code|coded|build|built|create|design)|what has she (made|built|coded)|her design|design process|how (does|did) she design/,'design'],[/who (drew|draws|draw|made|created|designed) (you|u)|who is your (mom|mother|maker|creator)/,'drew'],[/when (can|could|will|does) she start|start date|when is she (free|available)|availab/,'start'],[/how are (you|u)|how r u|how do (you|u) feel/,'feel'],[/(fav(ou)?rite|fav) colou?r|what colou?r/,'colour'],[/\bshy\b/,'shy'],[/\bsleep|tired|dream/,'sleep'],[/\bfriends?\b|your (mom|mother|family)|\bfamily\b/,'friends'],[/what (job|role|position)|what does she want|looking for/,'want'],[/sudo hire/,'sudo'],[/^(clear|cls)$/,'clear'],[/^(help|\?)|what can you|commands/,'help'],[/(^| )(hi|hey|hello|salam)(\b|$|!)|السلام|مرحبا|هلا/,'hi'],[/who are (you|u)|(your|ur|yr) name|what are (you|u)|tell me about (yourself|urself|you|u)\b|about (yourself|you|u)$|how old|where (are|do) (you|u)|what do (you|u) do|do (you|u) like|(your|ur) (favou?rite|job)|are (you|u) (a |real|human|robot|ai)|who (made|drew|created|designed|built) (you|u)|why do (you|u) (glow|shine|light)|(you|u) made of|your (creator|mom|mother|maker)|thanaya|ثنايا|انت مين|من انت|اسمك|وش اسمك|مين انتي|من انتي/,'me'],
  [/how (can|do|could|would|should) (i|we|you)?\s*(work|collaborate|team up) with|how to work with|work with her\?*$|get in touch/,'contact'],[/how('s| is| was)? (it )?(like )?(working|to work) with|what('s| is) (it like|she like)|like working with|is she (good|nice|fun|easy)|كيف الشغل|الشغل مع/,'working'],[/\bhire|\bhiring|co-?op|\binterns?(hip)?\b|\bjobs?\b|availab|\bstart(s|ing)?\b|when can (she|i|we)|january|2027|placement|how long (can|could|will|would) (she|hailah)|duration|stay longer|extend|تدريب|توظيف/,'hire'],[/\bstud(y|ies|ying|ent)\b|degree|diploma|\bmajor\b|college|universit|school|graduat|\bgpa\b|educat|دراس|تخصص|دبلوم/,'study'],[/where (is|does) (she|hailah)|\bbased\b|located|location|which city|riyadh|relocat|saudi/,'location'],[/worst|worse|weak|\bflaws?\b|\bbad\b|negative|downside|\bfaults?\b|struggl|imperfect|perfectionist|obsess/,'flaw'],[/hobb|free time|\bdraw|\bart\b|artist|paint|fun fact/,'hobby'],[/\bstrengths?\b|best (trait|quality|thing about)|good at/,'strength'],[/certif|course|training|bootcamp|tuwaiq|oracle|cisco|qualif/,'certs'],[/volunteer|charity|community|non-?profit|\bkids\b|children/,'volunteer'],[/speak|arabic|english|\bstep\b|ielts|toefl|spoken/,'langs'],[/email|contact|\breach\b|linkedin|تواصل|ايميل/,'contact'],[/\bcv\b|resume|سيرة/,'cv'],[/\bawn\b|عون|sos device|rescue|\blora\b/,'awn'],[/smartscan|smart scan|\bms\b|mri|brain|مخ/,'ss'],
  [/beyond|case 017|\bvr\b|virtual|\bquest\b/,'vr'],[/satathon|satellite|ساتاثون|قمر/,'sat'],[/award|\bwins?\b|\bwon\b|\bwinn|prize|patent|جائز|فاز|مركز/,'awards'],[/skill|stack|languages?\b|\btech|tools|programm|coding|\bcode\b|what (does|can) she (know|do|use)|مهار/,'skills'],[/project|work|built|مشاريع|مشروع/,'projects'],
  [/^sos$/,'sos'],[/^scan$/,'scan'],[/who is|about hailah|hailah|experience|background|about her\b|هيله/,'hailah']];
+document.getElementById('tiSend').addEventListener('click',()=>{ti.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'}));ti.focus()});
 document.getElementById('chips2').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ti.value=b.dataset.q;ti.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter'}));if(b.classList.contains('hot'))b.classList.remove('hot')});
 const VOC='worst worse weak weakest weakness weaknesses flaw flaws negative downside struggle trait traits strength strengths quality qualities perfectionist skill skills still stack projects project built awards award aware patent satellite satellites satathon smart smartscan scanner registry beyond virtual quest rescue volunteer volunteering charity community children hobby hobbies artist paint painting drawing speak spoken arabic english languages language certificate certificates certification courses course training train bootcamp tuwaiq oracle cisco qualification study studies studying student degree diploma major college university school graduate graduation education location located based riyadh saudi relocate hire hiring intern internship available availability start starts january placement duration longer extend contact contract reach email linkedin github resume working collaborate favourite favorite robot human thanaya hailah hello commands tracking track tracked signal signals decode decoding receive receiving building design designing designer coding programming programmer developer development website websites device devices network networks prototype hackathon hackathons competition competitions interview experience teamwork leadership problem problems solve solving really about there their where which would could should things think other after before being doing going people person learn learning learned quickly better great created create making maker drawn video videos screen photo photos images image doctor doctors patient patients lesions brain'.split(' '),VS=new Set(VOC);
 const osa=(a,b)=>{const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 9;const d=[];for(let i=0;i<=m;i++)d[i]=[i];for(let j=1;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]};
 /* read a misspelled word as the closest word Thanaya knows: 1 letter off, or 2 for long words */
 const fixTypos=t=>t.replace(/[a-z]{5,}/g,w=>{if(VS.has(w))return w;const max=w.length>=8?2:1;let best=w,bd=max+1;for(const v of VOC){const x=osa(w,v);if(x<bd){bd=x;best=v}}return bd<=max?best:w});
 ti.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const raw=ti.value.trim(),v=fixTypos(raw.toLowerCase());ti.value='';if(!v)return;
- out('<span style="color:#9fb0a6">'+(LANG==='ar'?'أنت:':'you:')+'</span> '+raw.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;'));
+ out(raw.replace(/[<&]/g,m=>m==='<'?'&lt;':'&amp;'));
  const va=arN(v),hit=(LANG==='ar'&&RULES_AR.find(([re])=>re.test(va)))||RULES.find(([re])=>re.test(v));const k=hit?hit[1]:'fallback';
  if(k==='clear'){to.innerHTML='';return}
  setTimeout(()=>{let r=typeof A[k]==='function'?A[k](v):A[k];if(LANG==='ar'&&A_AR[k]!==undefined)r=typeof A_AR[k]==='function'?A_AR[k](v):A_AR[k];say(r)},350)});
@@ -743,12 +834,21 @@ const AR={
 "ACCESS GRANTED - welcome to the team ✦":"تم منح الصلاحية - أهلاً في الفريق ✦",
 "3D model of the MS SmartScan brain-shaped device, drag to rotate":"مجسم ثلاثي الأبعاد لجهاز MS SmartScan بشكل الدماغ، اسحب للتدوير","3D model of the two Awn devices, drag to rotate":"مجسم ثلاثي الأبعاد لجهازي عون، اسحب للتدوير","Real photo of the Awn prototype devices":"صورة حقيقية لجهازي عون","CASE 017 VR crime scene":"مسرح الجريمة في القضية 017","Digital Apollo satellite tracking station":"محطة تتبع الأقمار لفريق أبولو الرقمي"
 ,
-"UI/UX Designer and Front-End Developer":"مصممة UI/UX ومطوّرة واجهات أمامية","I design the experience and then build it: from notebook sketch and Figma to working code, for the web and for VR and extended reality (XR).":"أصمم التجربة ثم أبنيها: من رسمة في دفتري وتصميم في Figma إلى كود يعمل، للويب وللواقع الافتراضي والواقع الممتد (XR).","I design user experiences and build them for the web, and I also create worlds for virtual and extended reality (VR/XR). Every project starts with real people and real constraints, like a radiologist with too little time or a hiker lost in the desert, and ends as something you can actually click, hold or step inside.":"أصمم تجربة المستخدم وأبنيها للويب، وأصنع أيضاً عوالم للواقع الافتراضي والممتد (VR/XR). كل مشروع يبدأ من أناس حقيقيين وقيود حقيقية، مثل طبيب أشعة وقته ضيق أو متنزّه تائه في الصحراء، وينتهي بشيء تقدر تضغطه أو تمسكه أو تدخل فيه.","Diploma in Programming and Web Development Technology, Technical and Vocational Training Corporation, Riyadh. GPA 4.58 / 5.":"دبلوم تقنية البرمجة وتطوير الويب، المؤسسة العامة للتدريب التقني والمهني، الرياض. المعدل 4.58 من 5.","UI/UX Design":"تصميم UI/UX","Hand sketching · character illustration":"رسم يدوي · رسم الشخصيات","Front-End":"الواجهات الأمامية","Responsive interfaces · GitHub":"واجهات متجاوبة · GitHub","VR & XR":"الواقع الافتراضي والممتد","Back end & Hardware":"الخلفية والعتاد","BUILT AT HEALTHON 2026 · UX, WEB AND SECURITY LEAD · PATENT PENDING":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","VR / XR · TUWAIQ ACADEMY · TEAM PROJECT":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","OFF-GRID SOS DEVICE":"جهاز استغاثة يعمل بلا تغطية","GRADUATION PROJECT · CO-DEVELOPER · PATENT PENDING":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team, and the team replies, so the person knows help is coming.":"نظام بحث وإنقاذ يعمل بعيداً عن الشبكات للتائهين في الصحاري والجبال بلا تغطية جوال. ضغطة واحدة على SOS ترسل موقع الشخص لفريق الإنقاذ، ويرد الفريق، فيعرف الشخص أن النجدة في الطريق.","Designed both 3D-printed device enclosures in Fusion 360 and co-wrote the ESP32 C++ firmware with my teammates. I took part in every stage, from first idea to finished build.":"صممتُ علبتي الجهازين المطبوعتين ثلاثياً في Fusion 360، وكتبتُ برمجة ESP32 بلغة C++ مع فريقي. وشاركت في كل مرحلة، من أول فكرة إلى الجهاز النهائي.","Enclosure design":"تصميم العلب","3D printing":"طباعة ثلاثية الأبعاد","A team competition by the Saudi Amateur Radio Society: track satellites as they pass overhead and decode what they send.":"مسابقة فرق من الجمعية السعودية لهواة الراديو: تتبّع الأقمار الصناعية وهي تمر فوقنا وفكّ ما ترسله.","My part:":"دوري:","I tracked satellites, decoded Morse code and SSTV images, and produced the team's submission video.":"تتبعتُ الأقمار الصناعية، وفككتُ شفرة مورس وصور SSTV، وأنتجتُ فيديو مشاركة الفريق.","Teamwork":"العمل الجماعي","Video production":"إنتاج الفيديو","Each step expanded how I work: the foundations of the web, designing for real users, building in teams under pressure, and stepping into VR.":"كل خطوة وسّعت طريقة عملي: أساسيات الويب، والتصميم لمستخدمين حقيقيين، والعمل في فرق تحت الضغط، والدخول إلى الواقع الافتراضي.","Digital Apollo · satellite tracking competition":"أبولو الرقمي · مسابقة تتبع الأقمار الصناعية","pixel by pixel.":"بكسل ببكسل.","the MRI Scanner I designed":"موقع الفحص اللي صممته","a VR crime scene I built":"مسرح جريمة بالواقع الافتراضي بنيته","the SOS device I helped build":"جهاز الاستغاثة اللي شاركت في بنائه","every fold hides a little light ✦":"كل طيّة مخبّية نور صغير ✦","calm blue, so doctors feel at ease":"أزرق هادي، عشان يرتاح الطبيب","the result screen I designed":"شاشة النتيجة اللي صممتها","every function within a doctor's reach":"كل وظيفة قريبة من يد الطبيب","I made its rain, thunder and lightning":"سوّيت مطره ورعده وبرقه","I designed both 3D-printed cases":"صممت العلبتين المطبوعتين ثلاثياً","1st":"الأول","Riyadah AI Hackathon":"هاكاثون ريادة للذكاء الاصطناعي","MS SMARTSCAN · NOV 2026":"MS SmartScan · نوفمبر 2026","Final":"نهائي","SAIF 2026 finalist":"متأهلة لنهائيات سيف 2026","AWN · SMART CITIES & IoT":"عون · المدن الذكية وإنترنت الأشياء","3rd":"الثالث","Satathon 2026":"ساتاثون 2026","DIGITAL APOLLO TEAM":"فريق أبولو الرقمي","Patents pending":"براءتا اختراع قيد التسجيل","NAMED INVENTOR":"مخترعة مسجّلة","160h":"160 ساعة","VR bootcamp":"معسكر الواقع الافتراضي","GPA out of 5":"المعدل من 5","PROGRAMMING & WEB DEVELOPMENT":"البرمجة وتطوير الويب","Sections":"الأقسام","About":"نبذة","Work":"أعمالي","Path":"مسيرتي","Contact":"تواصل","See my work ↓":"شوف أعمالي ↓","Download CV":"حمّل السيرة","Highlights":"أبرز الإنجازات","1st place":"المركز الأول","at Riyadah AI Hackathon":"في هاكاثون ريادة للذكاء الاصطناعي","Finalist":"متأهلة للنهائيات","at SAIF 2026":"سيف 2026","3rd place":"المركز الثالث","at Satathon 2026":"في ساتاثون 2026","2 patents":"براءتا اختراع","pending":"قيد التسجيل","Selected work":"أعمال مختارة","Drag the models, press the buttons, explore.":"اسحب المجسمات، اضغط الأزرار، واستكشف.","MRI · On-device AI":"رنين مغناطيسي · ذكاء على الجهاز","Off-grid SOS device":"جهاز استغاثة يعمل بلا تغطية","UV light · Move to search":"ضوء فوق بنفسجي · حرّك للبحث","Satellite pass":"مرور قمر صناعي","Drag to rotate":"اسحب للتدوير","Look at the website":"شوف الموقع","Press SOS":"اضغط SOS","Real photo":"صورة حقيقية","3D model":"مجسم ثلاثي الأبعاد","Built at Healthon 2026 · UX, web and security lead · Patent pending":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","Graduation project · Co-developer · Patent pending":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","VR / XR · Tuwaiq Academy · Team project":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","Satathon 2026 · Digital Apollo team":"ساتاثون 2026 · فريق أبولو الرقمي","1st place · Riyadah AI Hackathon · Nov 2026":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي · نوفمبر 2026","Working prototype · Patent pending":"نموذج أولي يعمل · براءة اختراع قيد التسجيل","3rd place · Satathon 2026":"المركز الثالث · ساتاثون 2026","An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI, on a Raspberry Pi, in seconds.":"نموذج أولي لدعم القرار السريري يعمل بدون إنترنت، يساعد أطباء الأشعة على رصد آفات المادة البيضاء المشتبه بارتباطها بالتصلب المتعدد في رنين الدماغ، على Raspberry Pi وخلال ثوانٍ.","Project showcase ↗":"عرض المشروع ↗","Project and trailer ↗":"المشروع والإعلان ↗","Field log ↗":"سجل الميدان ↗","Nov 2026 · Award":"نوفمبر 2026 · جائزة","Nov 2026 · Finalist":"نوفمبر 2026 · نهائيات","Oct 2026 · Hackathon":"أكتوبر 2026 · هاكاثون","Jul to Sep 2026 · Training":"يوليو إلى سبتمبر 2026 · تدريب","2026 · Award":"2026 · جائزة","Education":"التعليم","1st place · Riyadah AI Hackathon":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي","SAIF 2026 finalist · Awn (عون)":"متأهلة لنهائيات سيف 2026 · عون","Download CV ↓":"حمّل السيرة ↓","LinkedIn ↗":"لينكدإن ↗","GitHub ↗":"جيت هب ↗","Copy email":"انسخ الإيميل","Back to top ↑":"للأعلى ↑","pending · named inventor":"قيد التسجيل · مخترعة مسجّلة","SAIF 2026":"سيف 2026"};
+"UI/UX Designer and Front-End Developer":"مصممة UI/UX ومطوّرة واجهات أمامية","I design the experience and then build it: from notebook sketch and Figma to working code, for the web and for VR and extended reality (XR).":"أصمم التجربة ثم أبنيها: من رسمة في دفتري وتصميم في Figma إلى كود يعمل، للويب وللواقع الافتراضي والواقع الممتد (XR).","I design user experiences and build them for the web, and I also create worlds for virtual and extended reality (VR/XR). Every project starts with real people and real constraints, like a radiologist with too little time or a hiker lost in the desert, and ends as something you can actually click, hold or step inside.":"أصمم تجربة المستخدم وأبنيها للويب، وأصنع أيضاً عوالم للواقع الافتراضي والممتد (VR/XR). كل مشروع يبدأ من أناس حقيقيين وقيود حقيقية، مثل طبيب أشعة وقته ضيق أو متنزّه تائه في الصحراء، وينتهي بشيء تقدر تضغطه أو تمسكه أو تدخل فيه.","Diploma in Programming and Web Development Technology, Technical and Vocational Training Corporation, Riyadh. GPA 4.58 / 5.":"دبلوم تقنية البرمجة وتطوير الويب، المؤسسة العامة للتدريب التقني والمهني، الرياض. المعدل 4.58 من 5.","UI/UX Design":"تصميم UI/UX","Hand sketching · character illustration":"رسم يدوي · رسم الشخصيات","Front-End":"الواجهات الأمامية","Responsive interfaces · GitHub":"واجهات متجاوبة · GitHub","VR & XR":"الواقع الافتراضي والممتد","Back end & Hardware":"الخلفية والعتاد","BUILT AT HEALTHON 2026 · UX, WEB AND SECURITY LEAD · PATENT PENDING":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","VR / XR · TUWAIQ ACADEMY · TEAM PROJECT":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","OFF-GRID SOS DEVICE":"جهاز استغاثة يعمل بلا تغطية","GRADUATION PROJECT · CO-DEVELOPER · PATENT PENDING":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","An off-grid search-and-rescue system for people lost in deserts and mountains with no mobile coverage. One press of SOS sends the person’s GPS location to the rescue team, and the team replies, so the person knows help is coming.":"نظام بحث وإنقاذ يعمل بعيداً عن الشبكات للتائهين في الصحاري والجبال بلا تغطية جوال. ضغطة واحدة على SOS ترسل موقع الشخص لفريق الإنقاذ، ويرد الفريق، فيعرف الشخص أن النجدة في الطريق.","Designed both 3D-printed device enclosures in Fusion 360 and co-wrote the ESP32 C++ firmware with my teammates. I took part in every stage, from first idea to finished build.":"صممتُ علبتي الجهازين المطبوعتين ثلاثياً في Fusion 360، وكتبتُ برمجة ESP32 بلغة C++ مع فريقي. وشاركت في كل مرحلة، من أول فكرة إلى الجهاز النهائي.","Enclosure design":"تصميم العلب","3D printing":"طباعة ثلاثية الأبعاد","A team competition by the Saudi Amateur Radio Society: track satellites as they pass overhead and decode what they send.":"مسابقة فرق من الجمعية السعودية لهواة الراديو: تتبّع الأقمار الصناعية وهي تمر فوقنا وفكّ ما ترسله.","My part:":"دوري:","I tracked satellites, decoded Morse code and SSTV images, and produced the team's submission video.":"تتبعتُ الأقمار الصناعية، وفككتُ شفرة مورس وصور SSTV، وأنتجتُ فيديو مشاركة الفريق.","Teamwork":"العمل الجماعي","Video production":"إنتاج الفيديو","Each step expanded how I work: the foundations of the web, designing for real users, building in teams under pressure, and stepping into VR.":"كل خطوة وسّعت طريقة عملي: أساسيات الويب، والتصميم لمستخدمين حقيقيين، والعمل في فرق تحت الضغط، والدخول إلى الواقع الافتراضي.","Digital Apollo · satellite tracking competition":"أبولو الرقمي · مسابقة تتبع الأقمار الصناعية","pixel by pixel.":"بكسل ببكسل.","the MRI Scanner I designed":"موقع الفحص اللي صممته","a VR crime scene I built":"مسرح جريمة بالواقع الافتراضي بنيته","the SOS device I helped build":"جهاز الاستغاثة اللي شاركت في بنائه","every fold hides a little light ✦":"كل طيّة مخبّية نور صغير ✦","calm blue, so doctors feel at ease":"أزرق هادي، عشان يرتاح الطبيب","the result screen I designed":"شاشة النتيجة اللي صممتها","every function within a doctor's reach":"كل وظيفة قريبة من يد الطبيب","I made its rain, thunder and lightning":"سوّيت مطره ورعده وبرقه","I designed both 3D-printed cases":"صممت العلبتين المطبوعتين ثلاثياً","1st":"الأول","Riyadah AI Hackathon":"هاكاثون ريادة للذكاء الاصطناعي","MS SMARTSCAN · NOV 2026":"MS SmartScan · نوفمبر 2026","Final":"نهائي","SAIF 2026 finalist":"متأهلة لنهائيات سيف 2026","AWN · SMART CITIES & IoT":"عون · المدن الذكية وإنترنت الأشياء","3rd":"الثالث","Satathon 2026":"ساتاثون 2026","DIGITAL APOLLO TEAM":"فريق أبولو الرقمي","Patents pending":"براءتا اختراع قيد التسجيل","NAMED INVENTOR":"مخترعة مسجّلة","160h":"160 ساعة","VR bootcamp":"معسكر الواقع الافتراضي","GPA out of 5":"المعدل من 5","PROGRAMMING & WEB DEVELOPMENT":"البرمجة وتطوير الويب","Sections":"الأقسام","About":"نبذة","Work":"أعمالي","Path":"مسيرتي","Contact":"تواصل","See my work ↓":"شوف أعمالي ↓","Download CV":"حمّل السيرة","Highlights":"أبرز الإنجازات","1st place":"المركز الأول","at Riyadah AI Hackathon":"في هاكاثون ريادة للذكاء الاصطناعي","Finalist":"متأهلة للنهائيات","at SAIF 2026":"سيف 2026","3rd place":"المركز الثالث","at Satathon 2026":"في ساتاثون 2026","2 patents":"براءتا اختراع","pending":"قيد التسجيل","Selected work":"أعمال مختارة","Drag the models, press the buttons, explore.":"اسحب المجسمات، اضغط الأزرار، واستكشف.","MRI · On-device AI":"رنين مغناطيسي · ذكاء على الجهاز","Off-grid SOS device":"جهاز استغاثة يعمل بلا تغطية","UV light · Move to search":"ضوء فوق بنفسجي · حرّك للبحث","Satellite pass":"مرور قمر صناعي","Drag to rotate":"اسحب للتدوير","Look at the website":"شوف الموقع","Press SOS":"اضغط SOS","Real photo":"صورة حقيقية","3D model":"مجسم ثلاثي الأبعاد","Built at Healthon 2026 · UX, web and security lead · Patent pending":"بُني في هيلثون 2026 · قائدة تجربة المستخدم والويب والأمان · براءة قيد التسجيل","Graduation project · Co-developer · Patent pending":"مشروع التخرج · مطوّرة مشاركة · براءة قيد التسجيل","VR / XR · Tuwaiq Academy · Team project":"واقع افتراضي وممتد · أكاديمية طويق · مشروع فريق","Satathon 2026 · Digital Apollo team":"ساتاثون 2026 · فريق أبولو الرقمي","1st place · Riyadah AI Hackathon · Nov 2026":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي · نوفمبر 2026","Working prototype · Patent pending":"نموذج أولي يعمل · براءة اختراع قيد التسجيل","3rd place · Satathon 2026":"المركز الثالث · ساتاثون 2026","An offline clinical decision-support prototype that helps radiologists spot suspected MS-related white-matter lesions on brain MRI, on a Raspberry Pi, in seconds.":"نموذج أولي لدعم القرار السريري يعمل بدون إنترنت، يساعد أطباء الأشعة على رصد آفات المادة البيضاء المشتبه بارتباطها بالتصلب المتعدد في رنين الدماغ، على Raspberry Pi وخلال ثوانٍ.","Project showcase ↗":"عرض المشروع ↗","Project and trailer ↗":"المشروع والإعلان ↗","Field log ↗":"سجل الميدان ↗","Nov 2026 · Award":"نوفمبر 2026 · جائزة","Nov 2026 · Finalist":"نوفمبر 2026 · نهائيات","Oct 2026 · Hackathon":"أكتوبر 2026 · هاكاثون","Jul to Sep 2026 · Training":"يوليو إلى سبتمبر 2026 · تدريب","2026 · Award":"2026 · جائزة","Education":"التعليم","1st place · Riyadah AI Hackathon":"المركز الأول · هاكاثون ريادة للذكاء الاصطناعي","SAIF 2026 finalist · Awn (عون)":"متأهلة لنهائيات سيف 2026 · عون","Download CV ↓":"حمّل السيرة ↓","LinkedIn ↗":"لينكدإن ↗","GitHub ↗":"جيت هب ↗","Copy email":"انسخ الإيميل","Back to top ↑":"للأعلى ↑","pending · named inventor":"قيد التسجيل · مخترعة مسجّلة","SAIF 2026":"سيف 2026","What I designed, what I built, and why.":"وش صممت، ووش بنيت، وليش.","The MRI Scanner screen I designed: patient details, the MRI viewer with highlighted lesions, and the AI finding":"شاشة فحص الرنين اللي صممتها: بيانات المريض، وعارض الرنين مع الآفات المحددة، ونتيجة الذكاء الاصطناعي","Calm clinical blue, chosen after studying hospital websites":"أزرق طبي هادي، اخترته بعد ما درست مواقع المستشفيات","Sketched by hand first, then refined in Figma":"رسمتها بيدي أول، وبعدين ضبطتها في Figma","Runs offline, right on a Raspberry Pi":"تشتغل بدون إنترنت، على Raspberry Pi","Doctor PIN sign-in, salted and hashed":"دخول الطبيب برمز PIN مشفّر","Every function easy for a doctor to reach":"كل وظيفة قريبة من يد الطبيب","UX, web and security lead · team of three":"قائدة تجربة المستخدم والويب والأمان · فريق من ثلاث","Built at Healthon 2026 · Patent pending":"بُني في هيلثون 2026 · براءة قيد التسجيل","Tools I used":"الأدوات اللي استخدمتها","Hand sketching":"الرسم باليد","Co-developer · designed both enclosures":"مطوّرة مشاركة · صممت الغلافين","Graduation project · team of five · Patent pending":"مشروع التخرج · فريق من خمس · براءة قيد التسجيل","I designed both of these cases in Fusion 360":"صممت غلاف الجهازين في Fusion 360","Built the crime scene, its storm and the voice phone":"بنيت مسرح الجريمة وعاصفته والجوال الصوتي","VR / XR · Tuwaiq Academy · team of five":"واقع افتراضي وممتد · أكاديمية طويق · فريق من خمس","Tracked, decoded, and made the team's video":"تتبّعت وفكّيت الشفرات وصوّرت فيديو الفريق","Morse and SSTV decoding":"فك شفرة مورس وصور SSTV","My toolbox":"أدواتي","Figma · Canva · hand sketching · character illustration · HTML · CSS · JavaScript · PHP · Python · Java · C# · SQL · PL/SQL · Unity 6 · Meta Quest · Fusion 360 · ESP32 · Raspberry Pi":"Figma · Canva · الرسم باليد · رسم الشخصيات · HTML · CSS · JavaScript · PHP · Python · Java · C# · SQL · PL/SQL · Unity 6 · Meta Quest · Fusion 360 · ESP32 · Raspberry Pi","May 2026 · Training":"مايو 2026 · تدريب","Database Programming with PL/SQL":"برمجة قواعد البيانات بـ PL/SQL","Oracle Academy":"أكاديمية أوراكل","Jul to Aug 2025 · Volunteering":"يوليو إلى أغسطس 2025 · تطوع","Art teacher: clay and creative art for children":"معلمة فن: الصلصال والفن الإبداعي للأطفال","Community Development Association":"جمعية التنمية المجتمعية","Jan 2025 to May 2027 · Education":"يناير 2025 إلى مايو 2027 · التعليم","Mar 2024 · Training":"مارس 2024 · تدريب","Web Design Fundamentals":"أساسيات تصميم الويب","Tuwaiq Academy":"أكاديمية طويق","Jul to Aug 2022 · Volunteering":"يوليو إلى أغسطس 2022 · تطوع","Children's activity instructor: creative play":"منسّقة أنشطة للأطفال: اللعب الإبداعي","Afkar Association":"جمعية أفكار","Chat with Thanaya":"سوالف مع ثنايا","Thanaya":"ثنايا","made of folds · drawn by Hailah":"مصنوعة من طيّات · رسمتني هيلة","What did Hailah design?":"وش صمّمت هيلة؟","Who drew you?":"مين رسمك؟","When can she start?":"متى تقدر تبدأ؟","what did hailah design":"وش صممت هيلة","who drew you":"مين رسمك","when can she start":"متى تقدر تبدأ","Message Thanaya":"اكتب لثنايا","Talk to me… ask about Hailah, or about me":"سولف معي… اسألني عن هيلة أو عني","Send":"إرسال","Figma · Canva · hand sketching ·":"Figma · Canva · الرسم باليد ·","character illustration":"رسم الشخصيات","· HTML · CSS · JavaScript · PHP · Python · Java · C# · SQL · PL/SQL · Unity 6 · Meta Quest · Fusion 360 · ESP32 · Raspberry Pi":"· HTML · CSS · JavaScript · PHP · Python · Java · C# · SQL · PL/SQL · Unity 6 · Meta Quest · Fusion 360 · ESP32 · Raspberry Pi","What did Hailah make?":"وش سوّت هيلة؟","what did hailah make":"وش سوت هيلة"};
 
 const TIPS_AR=["هلا… أنا ثنايا ✦ قرّب شوي","بِسّت… أعرف وش يعني تشتغل مع هيلة 🤫","كل طيّة فيني مخبّية نور صغير","اضغطني وأنوّر لك الدنيا!","اسألني أي شي عن هيلة","ما أنفتح إلا للفضوليين"];
 const GREET_AR=["تا-داا! نوّرتني! أنا ثنايا! بنت صغيرة كلي طيّات، وكل طيّة مخبّية نور. بِسّت… تبي أقولك سر؟ اسألني وش يعني تشتغل مع هيلة!","رجعت! ياااي! وش تبي تعرف هالمرة؟","هلا والله مرة ثانية! طيّاتي كانت تنتظرك! اسألني اللي تبيه!","أووه، رجعت عشاني؟ جرّب السؤال الذهبي، هو أحلى سؤال عندي!"];
 const MEA='<a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a>',LIA='<a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank">linkedin.com/in/hailah-alhejjei</a>';
 const A_AR={
+ design:"أوه، كثير! سوّت موقعين MS SmartScan اللي يستخدمها الأطباء، من رسمة في دفترها لين صارت كود يشتغل. وسوّت غلافين عون في Fusion 360، ومسرح الجريمة الممطر في Beyond. تعال أوريك ملاحظاتها على SmartScan!",
+ drew:"هيلة، ثنية ثنية! كنت رسمة من رسماتها، ورسم الشخصيات من مهاراتها. تعال أوريك!",
+ start:"من يناير ٢٠٢٧! وما عندها مانع تكمّل أكثر من مدة التدريب. هذا إيميلها، تعال أوديك له!",
+ feel:"منوّرة، يسلم عليك! كل ما أحد سولف معي، طيّاتي تنوّر أكثر.",
+ colour:"الذهبي أكيد! هذا لون نوري.",
+ shy:"شوي! أتلفلف بطيّاتي إذا الدنيا هادية، وأنفتح أول ما يقرّب أحد فضولي. زيّك!",
+ sleep:"إذا ما فيه أحد، أتطوّى وأحلم وش بتبني هيلة بعدين.",
+ friends:"هيلة هي اللي سوّتني، يعني تقريباً هي أمي! وكل واحد يسولف معي يصير صديقي. يعني الحين أنت صديقي!",
+ want:"تبي تدريب تعاوني كمصممة UI/UX ومطوّرة واجهات أمامية. تصمم التجربة، وبعدين تبنيها! وتقدر تبدأ من يناير ٢٠٢٧.",
  hi:"هلا والله هلا! لقيتني متخبية بين طيّاتي! أنا ثنايا، ومرّة مستانسة إنك جيت. اسألني عن هيلة، عن مشاريعها، أو أي شي في بالك!",
  me:q=>/عمر|كم عمرك/.test(q)?"أنا جديدة مرة! هيلة سوّتني في نوفمبر ٢٠٢٦، هههه. بس والله أعرف كل شي عن شغلها!"
   :/وين|ساكن|تسكن/.test(q)?"ساكنة هنا، بزاوية موقع هيلة! أتلفلف بطيّاتي إذا الدنيا هادية، وأنفتح أول ما يقرّب أحد فضولي. زيّك!"
@@ -778,11 +878,11 @@ const A_AR={
  cv:"خذ، طالعة من طيّاتي! سيرتها الذاتية تتحمّل الحين.",
  working:"أوووه، الشغل مع هيلة؟ والله إنه سحر، أوعدك! تموت على التعلّم! عطها مهمة تبي مهارة جديدة، وبعد يومين، بوف، صارت تعرفها! وحتى لو المهمة ما تبي شي جديد، بتطلعها أحسن، لأنها شوي بيرفكشنست، هههه. ما تحب تسوي شي أحد سوّاه قبل، دايم تلقى طريقة تخليه غير. يعني شوفني أنا! هي اللي سوّتني! قد شفت أحد زيي قبل؟ بأي مكان؟ لا والله! هذي هيلة!",
  help:"اسألني أي شي! جرّب: وش يعني تشتغل مع هيلة، وش مشاريعها، علّميني عن عون، وش مهاراتها، وش جوائزها، كيف أوظفها. أو اكتب sos أو scan أو sudo hire hailah وشوف المفاجأة!",
- sos:"برسل نداء استغاثة بموجات LoRa! طالع عون!",
+ sos:"عون يعني فزعة، وهذا بالضبط اللي يسويه! جهازينه يتكلمون مع بعض مباشرة بموجات LoRa، فما يبي شبكة جوال ولا إنترنت ولا أقمار صناعية! اللي ضايع بالبر يضغط SOS، وفريق الإنقاذ يشوف كم يبعد وأي اتجاه يروح، ويرد عليه، فيعرف إن الفزعة جاية. وهو مشروع تخرج هيلة، وشاركت فيه من الفكرة لين اختبار الجهازين. وتدري وش بعد؟ فيه نموذج أولي حقيقي شغّال، وبراءة الاختراع قيد التسجيل، وتأهل لنهائيات سيف ٢٠٢٦!",
  scan:"يلا نشغّل الفحص! طالع عرض سمارت سكان الحقيقي!",
  sudo:()=>`تمّت الموافقة! اختيار يجنن! خلّها رسمية على ${MEA}`,
  fallback:"هممم، هالسؤال دغدغ طيّاتي! مو متأكدة منه، بس أعرف كل شي عن مشاريع هيلة ومهاراتها وجوائزها. جرّب تسألني عن عون أو سمارت سكان أو كيف توظفها!"};
-const RULES_AR=[[/وش يعني تشتغل|كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة|متى تبد|تبدأ|تبدا|متاح|يناير|2027|٢٠٢٧|كم مدة|المدة|تكمّل|تكمل|تمدد/,'hire'],[/تدرس|دراست|دراسة|تخصص|دبلوم|كلية|جامعة|تتخرج|تخرج/,'study'],[/(وين|من وين|أين|اين|مدينة).{0,20}هيل[ةه]|هيل[ةه].{0,20}(وين|من وين|ساكن|تسكن|مدينة)|مقرها/,'location'],[/عيب|عيوب|أسوأ|أسوء|سيئ|سيء|سلبي|ضعف/,'flaw'],[/هواي|ترسم|فن|وقت فراغ/,'hobby'],[/(أحسن|أحلى|أفضل|أجمل|أقوى) (صف|شيء? فيها|شيء? عندها|ميز)|مميزات|ميزات|نقاط (ال)?قو|قوتها|يميزها/,'strength'],[/شهاد|دورة|دورات|معسكر|طويق|أوراكل|اوراكل|سيسكو/,'certs'],[/تطوع|متطوع|جمعي|خيري/,'volunteer'],[/تتكلم|إنجليزي|انجليزي|ستيب|ايلتس/,'langs'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا|سواك|سوّاك|صنعك|رسمك|سوتك|سوّتك|بنت ولا ولد|ولد ولا بنت|انتي بنت|تنورين|تلمعين|من وش مسوية|وش انتي/,'me'],
+const RULES_AR=[[/وش سوت|وش سوّت|وش صنعت|وش برمجت|وش بنت|وش صممت|التصميم|تصاميمها/,'design'],[/مين رسمك|من رسمك|مين سواك|مين سوّاك|مين صممك/,'drew'],[/متى تبدا|متى تبدأ|متى تقدر|متى متاحة|تاريخ البدء/,'start'],[/كيفك|كيف حالك|شلونك|شخبارك/,'feel'],[/لونك|اللون المفضل|وش لونك/,'colour'],[/تستحين|خجول/,'shy'],[/تنامين|تنام|تحلمين|تعبان/,'sleep'],[/صديق|صحاب|امك|أمك|عيلتك|اهلك|أهلك/,'friends'],[/وش تبي تشتغل|وش الوظيفة|وش تدور|تدور وظيفة/,'want'],[/وش يعني تشتغل|كيف (ال)?شغل|كيف العمل|وش رايك فيها|كيف هي|شخصيتها|تشتغل معها/,'working'],[/كيف (اتواصل|أتواصل|اوصل|أوصل)|ابي اتواصل|تواصل|ايميل|إيميل|لينكد/,'contact'],[/وظف|توظيف|تدريب|تعاوني|فرصة|متى تبد|تبدأ|تبدا|متاح|يناير|2027|٢٠٢٧|كم مدة|المدة|تكمّل|تكمل|تمدد/,'hire'],[/تدرس|دراست|دراسة|تخصص|دبلوم|كلية|جامعة|تتخرج|تخرج/,'study'],[/(وين|من وين|أين|اين|مدينة).{0,20}هيل[ةه]|هيل[ةه].{0,20}(وين|من وين|ساكن|تسكن|مدينة)|مقرها/,'location'],[/عيب|عيوب|أسوأ|أسوء|سيئ|سيء|سلبي|ضعف/,'flaw'],[/هواي|ترسم|فن|وقت فراغ/,'hobby'],[/(أحسن|أحلى|أفضل|أجمل|أقوى) (صف|شيء? فيها|شيء? عندها|ميز)|مميزات|ميزات|نقاط (ال)?قو|قوتها|يميزها/,'strength'],[/شهاد|دورة|دورات|معسكر|طويق|أوراكل|اوراكل|سيسكو/,'certs'],[/تطوع|متطوع|جمعي|خيري/,'volunteer'],[/تتكلم|إنجليزي|انجليزي|ستيب|ايلتس/,'langs'],[/اسمك|من انت|مين انت|من انتي|مين انتي|عرفي|عرّفي|نفسك|كم عمرك|وين ساكن|روبوت|ثنايا|سواك|سوّاك|صنعك|رسمك|سوتك|سوّتك|بنت ولا ولد|ولد ولا بنت|انتي بنت|تنورين|تلمعين|من وش مسوية|وش انتي/,'me'],
  [/مشاريع|مشروع|وش سوت|اعمال|أعمال/,'projects'],[/علّميني عن عون|عون|انقاذ|إنقاذ|استغاث/,'awn'],[/سمارت|رنين|مخ|دماغ|تصلب/,'ss'],[/بيوند|واقع (ال)?افتراضي|في ار|القضية/,'vr'],[/ساتاثون|قمر|اقمار|أقمار/,'sat'],[/جائز|جوائز|فاز|مركز|براء/,'awards'],[/مهار|لغات|تقنيات|تعرف/,'skills'],[/سيرة|سيرت|سي في/,'cv'],[/هيلة|هيله|مين هي|من هي/,'hailah'],[/^(هلا|مرحبا|السلام|اهلا|أهلا|هاي)/,'hi'],[/مساعدة|وش اسأل|ساعدني/,'help']];
 /* read Arabic the way people type it: no short vowels, any alef with hamza as ا, ى as ي, a word-final ه as ة */
 const arN=t=>t.replace(/[\u064B-\u0652\u0670\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ه(?![\u0621-\u064A])/g,'ة');
@@ -955,6 +1055,19 @@ addEventListener('resize',()=>{if(document.documentElement.clientWidth!==thW)reL
 document.fonts&&document.fonts.ready.then(reLight);
 document.getElementById('i18nBtn').addEventListener('click',()=>setTimeout(drawLight,90));
 if(window.ResizeObserver){let bh=0;new ResizeObserver(es=>{const h=es[0].contentRect.height;if(Math.abs(h-bh)>1){bh=h;reLight()}}).observe(document.body)}
+
+/* SmartScan: each of her design notes is joined to the part of the screen it explains; drawn once on first view */
+{const fig=document.querySelector('.shot');if(fig){const img=fig.querySelector('img'),svg=fig.querySelector('.arrows'),lis=[...fig.querySelectorAll('.why li')],pins=[...fig.querySelectorAll('.pin')],ns='http://www.w3.org/2000/svg';let w0=-1;
+ const draw=()=>{const f=fig.getBoundingClientRect();w0=f.width;svg.textContent='';if(getComputedStyle(svg).display==='none')return;const r=img.getBoundingClientRect();if(!r.width)return;
+  svg.setAttribute('viewBox','0 0 '+f.width+' '+f.height);svg.setAttribute('width',f.width);svg.setAttribute('height',f.height);
+  lis.forEach((li,i)=>{const p=pins[i];if(!p)return;const b=li.getBoundingClientRect(),tx=r.left-f.left+r.width*parseFloat(p.style.left)/100,ty=r.top-f.top+r.height*parseFloat(p.style.top)/100,above=b.bottom<=r.top+2;
+   const sx=b.left-f.left+b.width*(+li.dataset.ax||.5),sy=above?b.bottom-f.top+6:b.top-f.top-6,dx=tx-sx,dy=ty-sy,L=Math.hypot(dx,dy)||1,e=Math.min(13,L*.25),ex=tx-dx/L*e,ey=ty-dy/L*e,bd=(i%2?-.16:.16)*L,cx=(sx+ex)/2-dy/L*bd,cy=(sy+ey)/2+dx/L*bd;
+   const path=document.createElementNS(ns,'path');path.setAttribute('d','M'+sx.toFixed(1)+' '+sy.toFixed(1)+' Q'+cx.toFixed(1)+' '+cy.toFixed(1)+' '+ex.toFixed(1)+' '+ey.toFixed(1));svg.appendChild(path);
+   const l=path.getTotalLength();path.style.setProperty('--l',l.toFixed(1));path.style.transitionDelay=(i*.14).toFixed(2)+'s'})};
+ draw();img.addEventListener('load',draw);addEventListener('load',draw);document.fonts&&document.fonts.ready.then(draw);
+ addEventListener('resize',()=>{if(fig.getBoundingClientRect().width!==w0)draw()});document.getElementById('i18nBtn').addEventListener('click',()=>setTimeout(draw,120));
+ new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){fig.classList.add('drawn');o.disconnect()}},{threshold:.3}).observe(fig);
+ const ap=document.getElementById('awnPhoto');ap&&new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){ap.classList.add('drawn');o.disconnect()}},{threshold:.4}).observe(ap)}}
 /* the menu marks the section you are reading */
 {const links=[...document.querySelectorAll('nav a[href^="#"]')],map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
  const io2=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;links.forEach(l=>{l.classList.remove('on');l.removeAttribute('aria-current')});const a=map.get(e.target.id);if(a){a.classList.add('on');a.setAttribute('aria-current','true')}}),{rootMargin:'-45% 0px -50% 0px'});
@@ -1000,8 +1113,8 @@ function braille(g,cx,cy,z,cell,dotR,col){const pat=[[1,0,1,1,0,0],[1,0,0,1,1,0]
  pat.forEach((d,ci)=>d.forEach((on,k)=>{if(!on)return;const s=new THREE.Mesh(new THREE.SphereGeometry(dotR,12,8,0,Math.PI*2,0,Math.PI/2),mat);s.rotation.x=Math.PI/2;s.position.set(cx+(ci-1)*cell*2.4+(k%2)*cell,cy-Math.floor(k/2)*cell,z);g.add(s)}))}
 function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,.02,24),M(col,.9));m.rotation.x=Math.PI/2;m.position.set(x,y,z);g.add(m);return m}
 
-/* ---------- MS SmartScan: brain-shaped device ---------- */
-{const {root,setTick}=scene3d(document.getElementById('brain3d'),5.6,.55,1.2);
+/* ---------- MS SmartScan: brain-shaped device (not on the page now: the real screens lead) ---------- */
+if(document.getElementById('brain3d')){const {root,setTick}=scene3d(document.getElementById('brain3d'),5.6,.55,1.2);
  const hsh=(x,y,z)=>{const s=Math.sin(x*127.1+y*311.7+z*74.7)*43758.5453;return s-Math.floor(s)};
  const lp=(a,b,t)=>a+(b-a)*t;
  const n3=(x,y,z)=>{const i=Math.floor(x),j=Math.floor(y),k=Math.floor(z);let u=x-i,v=y-j,w=z-k;u=u*u*(3-2*u);v=v*v*(3-2*v);w=w*w*(3-2*w);
@@ -1109,10 +1222,9 @@ function hole(g,x,y,z,r,col=0x0a0a0a){const m=new THREE.Mesh(new THREE.CylinderG
  window.awnState=s=>{st=s;oled.redraw(s);lcd.redraw(s==='sos'?'ready':s)};
  let k=0,last=st,settle=0;setTick(()=>{k++;if(st!==last){last=st;settle=20}const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.008:.02);return st==='sos'||st==='received'||settle-->0})}
 };
-/* the 3D scenes are built while the visitor reads the first screen, so scrolling into the projects stays smooth */
-{const go=()=>boot3d().then(()=>document.documentElement.classList.add('has3d')).catch(()=>document.documentElement.classList.add('no3d')),
- idle=()=>(window.requestIdleCallback||(f=>setTimeout(f,200)))(go,{timeout:2000});
- if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})}
+/* the 3D model loads only when someone asks for it ("3D model" on Awn), so the page itself stays light */
+{let started=false;const de=document.documentElement;window.need3d=()=>{if(started)return;started=true;de.classList.add('loading3d');
+ boot3d().then(()=>{de.classList.remove('loading3d');de.classList.add('has3d')}).catch(()=>{de.classList.remove('loading3d');de.classList.add('no3d');const p=document.getElementById('awnPhoto');p&&p.classList.add('on')})}}
 </script>
 </body>
 </html>
