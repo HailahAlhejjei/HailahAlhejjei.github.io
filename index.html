@@ -468,8 +468,10 @@ html[lang=ar] .own-try li{font-family:'Aref Ruqaa',cursive!important;font-size:1
 
 
 /* ===== on my own time: a stack of open windows ===== */
-.stk{--ox:56px;--oy:66px;display:grid;grid-template-columns:minmax(0,520px) minmax(300px,560px);gap:clamp(32px,5vw,72px);align-items:center;border-top:1px solid var(--line);padding-top:30px}
-.stk-wins{display:grid;padding:calc(var(--cnt,1)*var(--oy)) 0 0 calc(var(--cnt,1)*var(--ox))}
+.stk{--oy:50px;display:grid;grid-template-columns:minmax(0,520px) minmax(300px,560px);gap:clamp(32px,5vw,72px);align-items:center;border-top:1px solid var(--line);padding-top:30px}
+.stk-side{container-type:inline-size}
+/* each window behind shows a third of itself: the offset is a third of a window's width */
+.stk-wins{--ox:calc(100cqw / (3 + var(--cnt,1)));display:grid;padding:calc(var(--cnt,1)*var(--oy)) 0 0 calc(var(--cnt,1)*var(--ox))}
 html[dir=rtl] .stk-wins{padding:calc(var(--cnt,1)*var(--oy)) calc(var(--cnt,1)*var(--ox)) 0 0}
 .win{grid-area:1/1;display:block;min-width:0;border-radius:12px;overflow:hidden;background:#1a2133;color:var(--ink);text-decoration:none;box-shadow:0 0 0 1px #ffffff1f,0 30px 60px -30px #000;
  --tx:calc(var(--d,0)*var(--ox)*-1);--ty:calc(var(--d,0)*var(--oy)*-1);transform:translate(var(--tx),var(--ty));filter:brightness(calc(1 - var(--d,0)*.16));transition:transform .55s cubic-bezier(.3,.7,.2,1),filter .3s}
@@ -497,7 +499,7 @@ html[lang=ar] .stk-d{font-size:19px!important;font-size-adjust:none!important;li
 html[lang=ar] .stk-hint{font-family:'Aref Ruqaa',cursive!important;font-size:20px!important;font-size-adjust:none!important}
 html[lang=ar] .win-bar{font-size:15px!important;font-size-adjust:none!important}
 html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-size:11.5px!important;font-size-adjust:none!important}
-@media(max-width:860px){.stk{--ox:18px;--oy:56px;grid-template-columns:minmax(0,1fr);gap:22px}.stk-side{max-width:420px}.win-url{display:none}}
+@media(max-width:860px){.stk{--oy:42px;grid-template-columns:minmax(0,1fr);gap:22px}.stk-side{max-width:420px}.win-url{display:none}}
 @media(prefers-reduced-motion:reduce){.win{transition:none}.stk-p{animation:none}}
 </style>
 </head>
