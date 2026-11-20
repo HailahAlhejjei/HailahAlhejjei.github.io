@@ -468,20 +468,20 @@ html[lang=ar] .own-try li{font-family:'Aref Ruqaa',cursive!important;font-size:1
 
 
 /* ===== on my own time: a stack of open windows ===== */
-.stk{--ox:46px;--oy:52px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:clamp(28px,4.5vw,64px);align-items:center;border-top:1px solid var(--line);padding-top:30px}
+.stk{--ox:56px;--oy:66px;display:grid;grid-template-columns:minmax(0,520px) minmax(300px,560px);gap:clamp(32px,5vw,72px);align-items:center;border-top:1px solid var(--line);padding-top:30px}
 .stk-wins{display:grid;padding:calc(var(--cnt,1)*var(--oy)) 0 0 calc(var(--cnt,1)*var(--ox))}
 html[dir=rtl] .stk-wins{padding:calc(var(--cnt,1)*var(--oy)) calc(var(--cnt,1)*var(--ox)) 0 0}
 .win{grid-area:1/1;display:block;min-width:0;border-radius:12px;overflow:hidden;background:#1a2133;color:var(--ink);text-decoration:none;box-shadow:0 0 0 1px #ffffff1f,0 30px 60px -30px #000;
- --tx:calc(var(--d,0)*var(--ox)*-1);--ty:calc(var(--d,0)*var(--oy)*-1);transform:translate(var(--tx),var(--ty));filter:brightness(calc(1 - var(--d,0)*.32));transition:transform .55s cubic-bezier(.3,.7,.2,1),filter .3s}
+ --tx:calc(var(--d,0)*var(--ox)*-1);--ty:calc(var(--d,0)*var(--oy)*-1);transform:translate(var(--tx),var(--ty));filter:brightness(calc(1 - var(--d,0)*.16));transition:transform .55s cubic-bezier(.3,.7,.2,1),filter .3s}
 html[dir=rtl] .win{--tx:calc(var(--d,0)*var(--ox))}
 .win:not(.front){cursor:pointer}
-.win:not(.front):hover,.win:not(.front):focus-visible{filter:brightness(.9);transform:translate(var(--tx),calc(var(--ty) - 8px))}
+.win:not(.front):hover,.win:not(.front):focus-visible{filter:brightness(1.05);transform:translate(var(--tx),calc(var(--ty) - 8px))}
 .win-bar{display:flex;align-items:center;gap:12px;height:34px;padding:0 14px;background:#1a2133;font:600 13px Manrope,Arial,sans-serif;white-space:nowrap}
 .win-dots{display:flex;gap:5px;flex:none}.win-dots i{width:7px;height:7px;border-radius:50%;background:#ffffff55}
 .win.front .win-bar b{color:var(--gold)}
 .win-url{margin-inline-start:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font:500 11.5px 'JetBrains Mono',monospace;color:var(--mute)}
 .win img{display:block;width:100%;height:auto}
-.stk-hint{display:flex;align-items:flex-end;gap:8px;margin:16px 0 0;font:600 20px/1.2 'Caveat',cursive;color:var(--gold)}
+.stk-hint{display:flex;align-items:flex-end;gap:8px;margin:16px 0 0;font:600 23px/1.2 'Caveat',cursive;color:var(--gold)}
 .stk-hint svg{width:40px;height:26px;flex:none;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round}
 html[dir=rtl] .stk-hint svg{transform:scaleX(-1)}
 .stk-p{animation:stkIn .45s ease both}
@@ -494,10 +494,10 @@ html[dir=rtl] .stk-hint svg{transform:scaleX(-1)}
 html[lang=ar] .stk .go{font-size:18px!important;font-size-adjust:none!important}
 html[lang=ar] .stk-l{font-family:'Aref Ruqaa',cursive!important;font-size:clamp(26px,2.6vw,36px)!important;line-height:1.5!important}
 html[lang=ar] .stk-d{font-size:19px!important;font-size-adjust:none!important;line-height:1.7!important}
-html[lang=ar] .stk-hint{font-family:'Aref Ruqaa',cursive!important;font-size:18px!important;font-size-adjust:none!important}
+html[lang=ar] .stk-hint{font-family:'Aref Ruqaa',cursive!important;font-size:20px!important;font-size-adjust:none!important}
 html[lang=ar] .win-bar{font-size:15px!important;font-size-adjust:none!important}
 html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-size:11.5px!important;font-size-adjust:none!important}
-@media(max-width:860px){.stk{--ox:22px;--oy:44px;grid-template-columns:minmax(0,1fr);gap:22px}.win-url{display:none}}
+@media(max-width:860px){.stk{--ox:18px;--oy:56px;grid-template-columns:minmax(0,1fr);gap:22px}.stk-side{max-width:420px}.win-url{display:none}}
 @media(prefers-reduced-motion:reduce){.win{transition:none}.stk-p{animation:none}}
 </style>
 </head>
@@ -634,8 +634,8 @@ html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-siz
   <div class="stk" id="own">
     <div class="stk-side">
       <div class="stk-wins">
-      <a class="win" data-k="2008" href="https://hailahalhejjei.github.io/internet-2008/" target="_blank" rel="noreferrer"><span class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Internet 2008</b><span class="win-url" dir="ltr">hailahalhejjei.github.io/internet-2008</span></span><img src="assets/fun/internet-2008.webp" srcset="assets/fun/internet-2008-800.webp 800w, assets/fun/internet-2008.webp 1440w" sizes="(max-width:860px) 88vw, 52vw" alt="Internet 2008: an old Windows style desktop with Internet Explorer open on a made-up search engine called Dawwer, and a Messenger chat with Nouri" width="1440" height="900" loading="lazy" decoding="async"></a>
-      <a class="win" data-k="mem" href="https://hailahalhejjei.github.io/what-if-memories-had-shapes/" target="_blank" rel="noreferrer"><span class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>What if memories had shapes</b><span class="win-url" dir="ltr">hailahalhejjei.github.io/what-if-memories-had-shapes</span></span><img src="assets/fun/mem-threads.webp" srcset="assets/fun/mem-threads-800.webp 800w, assets/fun/mem-threads.webp 1440w" sizes="(max-width:860px) 88vw, 52vw" alt="What if memories had shapes: a memory called Walking by the sea with my sisters, shown as a sculpture of woven threads, with the controls beside it" width="1440" height="900" loading="lazy" decoding="async"></a>
+      <a class="win" data-k="2008" href="https://hailahalhejjei.github.io/internet-2008/" target="_blank" rel="noreferrer"><span class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Internet 2008</b><span class="win-url" dir="ltr">hailahalhejjei.github.io/internet-2008</span></span><img src="assets/fun/internet-2008.webp" srcset="assets/fun/internet-2008-800.webp 800w, assets/fun/internet-2008.webp 1440w" sizes="(max-width:860px) 80vw, 480px" alt="Internet 2008: an old Windows style desktop with Internet Explorer open on a made-up search engine called Dawwer, and a Messenger chat with Nouri" width="1440" height="900" loading="lazy" decoding="async"></a>
+      <a class="win" data-k="mem" href="https://hailahalhejjei.github.io/what-if-memories-had-shapes/" target="_blank" rel="noreferrer"><span class="win-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>What if memories had shapes</b><span class="win-url" dir="ltr">hailahalhejjei.github.io/what-if-memories-had-shapes</span></span><img src="assets/fun/mem-threads.webp" srcset="assets/fun/mem-threads-800.webp 800w, assets/fun/mem-threads.webp 1440w" sizes="(max-width:860px) 80vw, 480px" alt="What if memories had shapes: a memory called Walking by the sea with my sisters, shown as a sculpture of woven threads, with the controls beside it" width="1440" height="900" loading="lazy" decoding="async"></a>
       </div>
       <p class="stk-hint" id="stkHint"><svg viewBox="0 0 46 30" aria-hidden="true"><path d="M42 27 C30 25 18 18 8 5"/><path d="M8 5 L9 15 M8 5 L17 8"/></svg>tap the window behind to bring it forward</p>
     </div>
