@@ -557,10 +557,10 @@ html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-siz
   <article class="proj rev rv">
     <div class="stage" id="awn"><span class="tag">Off-grid SOS device</span>
       <canvas class="three" id="awn3d" aria-label="3D model of the two Awn devices, drag to rotate"></canvas>
-      <div class="photo on" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices" loading="lazy" decoding="async">
+      <div class="photo" id="awnPhoto"><img src="assets/awn-devices.webp" alt="Real photo of the Awn prototype devices" loading="lazy" decoding="async">
         <svg class="awn-arrows" viewBox="0 0 100 75" aria-hidden="true"><path style="--l:20" d="M36 16.5 C31 18 27.5 21 26 25.5"/><path style="--l:20" d="M64 16.5 C69 18 72 22 73 27.5"/></svg>
         <p class="hand awn-note">I designed both of these cases in Fusion 360</p></div>
-      <button class="mini" id="photoBtn">3D model</button>
+      <button class="mini" id="photoBtn">Real photo</button>
       <span class="drag">Drag to rotate</span>
     </div>
     <div class="copy">
@@ -753,7 +753,7 @@ addEventListener('keydown',e=>{if(!ssOpen)return;if(e.key==='Escape'){e.preventD
 SSP.forEach((p,i)=>p.addEventListener('click',()=>ssPlay(i)));SSR.addEventListener('click',()=>ssPlay(0));
 addEventListener('resize',()=>{if(ssOpen&&ssKey)ssFit(ssKey,0)});
 const photo=document.getElementById('awnPhoto'),photoBtn=document.getElementById('photoBtn');
-photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'3D model':'Real photo');if(!on&&window.need3d)need3d()};
+photoBtn.onclick=()=>{const on=photo.classList.toggle('on');photoBtn.textContent=tr(on?'3D model':'Real photo');if(on)requestAnimationFrame(()=>photo.classList.add('drawn'));else if(window.need3d)need3d()};
 /* uv flashlight */
 const uv=document.getElementById('uv'),clues=uv.querySelectorAll('.clue');
 function uvMove(x0,y0){const r=uv.getBoundingClientRect(),x=x0-r.left,y=y0-r.top;uv.style.setProperty('--mx',x+'px');uv.style.setProperty('--my',y+'px');
@@ -1224,7 +1224,7 @@ if(window.ResizeObserver){let bh=0;new ResizeObserver(es=>{const h=es[0].content
  draw();img.addEventListener('load',draw);addEventListener('load',draw);document.fonts&&document.fonts.ready.then(draw);
  addEventListener('resize',()=>{if(fig.getBoundingClientRect().width!==w0)draw()});document.getElementById('i18nBtn').addEventListener('click',()=>setTimeout(draw,120));
  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){fig.classList.add('drawn');o.disconnect()}},{threshold:.3}).observe(fig);
- const ap=document.getElementById('awnPhoto');ap&&new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){ap.classList.add('drawn');o.disconnect()}},{threshold:.4}).observe(ap)}}
+ const ap=document.getElementById('awnPhoto');ap&&new IntersectionObserver((es,o)=>{if(es[0].isIntersecting&&ap.classList.contains('on')){ap.classList.add('drawn');o.disconnect()}},{threshold:.4}).observe(ap)}}
 
 /* course projects: one journey open at a time; its gold line draws once each time it opens.
    Screens in a sideways strip are not always picked up by the browser's own lazy loading, so each strip loads its
@@ -1400,9 +1400,10 @@ if(document.getElementById('brain3d')){const {root,setTick}=scene3d(document.get
  window.awnState=s=>{st=s;oled.redraw(s);lcd.redraw(s==='sos'?'ready':s)};
  let k=0,last=st,settle=0;setTick(()=>{k++;if(st!==last){last=st;settle=20}const on=k%16<8;blue(st==='sos'||st==='received'?(on?1:.15):0);green(st==='confirmed'?1:0);btn.position.z=ZF+(st==='sos'&&k%60<6?.008:.02);return st==='sos'||st==='received'||settle-->0})}
 };
-/* the 3D model loads only when someone asks for it ("3D model" on Awn), so the page itself stays light */
+/* Awn's 3D model loads when its section comes near (or when someone asks for it), so the top of the page stays light */
 {let started=false;const de=document.documentElement;window.need3d=()=>{if(started)return;started=true;de.classList.add('loading3d');
- boot3d().then(()=>{de.classList.remove('loading3d');de.classList.add('has3d')}).catch(()=>{de.classList.remove('loading3d');de.classList.add('no3d');const p=document.getElementById('awnPhoto');p&&p.classList.add('on')})}}
+ boot3d().then(()=>{de.classList.remove('loading3d');de.classList.add('has3d')}).catch(()=>{de.classList.remove('loading3d');de.classList.add('no3d');const p=document.getElementById('awnPhoto');p&&p.classList.add('on')})};
+ const aw=document.getElementById('awn');aw&&('IntersectionObserver' in window?new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();need3d()}},{rootMargin:'500px 0px'}).observe(aw):need3d())}
 </script>
 </body>
 </html>
