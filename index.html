@@ -503,6 +503,9 @@ html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-siz
 @media(prefers-reduced-motion:reduce){.win{transition:none}.stk-p{animation:none}}
 
 /* Awn in 3D: her note, arrows, and the SOS story */
+/* until the 3D has drawn its first frame, the real photo (with her note) fills the box, so it is never empty */
+#awn:not(.drawn3d) #awnPhoto{opacity:1}
+#awn:not(.drawn3d) .awn-arrows path{stroke-dashoffset:0}
 .awn-ov{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:3}
 .awn-ov path{fill:none;stroke:var(--gold);stroke-width:1.7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
 #awn.drawn3d .awn-ov .fa{stroke-dashoffset:0;transition:stroke-dashoffset .9s .3s ease,opacity .3s}
@@ -518,7 +521,7 @@ html[lang=ar] .win-url{font-family:'JetBrains Mono',monospace!important;font-siz
 .awn-say{position:absolute;left:50%;bottom:46px;transform:translateX(-50%);z-index:6;max-width:92%;padding:6px 16px;border-radius:999px;border:1px solid #ffcf6b80;background:#04070fe0;font:600 21px/1.2 'Caveat',cursive;color:var(--gold);cursor:pointer;text-align:center}
 .awn-say:hover,.awn-say:focus-visible{border-color:var(--gold)}
 #awn.sending .awn-say{cursor:default}
-html:not(.has3d) .awn-ov,html:not(.has3d) .awn-3dnote,html:not(.has3d) .awn-say,.photo.on~.awn-ov,.photo.on~.awn-3dnote,.photo.on~.awn-say{display:none}
+#awn:not(.drawn3d) .awn-ov,#awn:not(.drawn3d) .awn-3dnote,#awn:not(.drawn3d) .awn-say,#awn:not(.drawn3d) .drag,.photo.on~.awn-ov,.photo.on~.awn-3dnote,.photo.on~.awn-say{display:none}
 html[lang=ar] .awn-3dnote,html[lang=ar] .awn-say{font-family:'Aref Ruqaa',cursive!important;font-size:18px!important;font-size-adjust:none!important;line-height:1.5!important}
 @media(max-width:860px){.awn-3dnote{font-size:16px;top:15%;max-width:72%;padding:3px 10px}.awn-say{font-size:16px;bottom:34px;white-space:normal;padding:4px 12px}html[lang=ar] .awn-say{font-size:15px!important}}
 @media(prefers-reduced-motion:reduce){.awn-ov path{transition:none!important}}
@@ -1455,7 +1458,7 @@ if(document.getElementById('brain3d')){const {root,setTick}=scene3d(document.get
 /* Awn's 3D model loads when its section comes near (or when someone asks for it), so the top of the page stays light */
 {let started=false;const de=document.documentElement;window.need3d=()=>{if(started)return;started=true;de.classList.add('loading3d');
  boot3d().then(()=>{de.classList.remove('loading3d');de.classList.add('has3d')}).catch(()=>{de.classList.remove('loading3d');de.classList.add('no3d');const p=document.getElementById('awnPhoto');p&&p.classList.add('on')})};
- const aw=document.getElementById('awn');aw&&('IntersectionObserver' in window?new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();need3d()}},{rootMargin:'500px 0px'}).observe(aw):need3d())}
+ const aw=document.getElementById('awn');aw&&('IntersectionObserver' in window?new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){o.disconnect();need3d()}},{rootMargin:'1400px 0px'}).observe(aw):need3d())}
 </script>
 </body>
 </html>
