@@ -21,46 +21,33 @@ main{max-width:560px;margin:0 auto;padding:20px 16px 26px}
 .kick{margin:0 0 2px;font:600 18px/1.2 Caveat,cursive;color:var(--gold)}
 h1{margin:0;font:400 36px/1 'Instrument Serif',serif;letter-spacing:-.01em}
 h1 span{display:inline-block;margin-inline-start:8px;font:400 26px/1.2 'Aref Ruqaa',serif;color:var(--gold)}
-.sub{margin:10px 0 16px;color:var(--mute);font-size:13.5px;line-height:1.5}
+.sub{margin:10px 4px 18px;color:var(--mute);font-size:13.5px;line-height:1.5}
 .sub b{color:var(--ink);font-weight:600}
 ul{list-style:none;margin:0;padding:0}
 a{-webkit-tap-highlight-color:transparent}
-.card{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:16px;background:#fff;color:inherit;text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s}
-.card:hover,.card:focus-visible{border-color:var(--slate);transform:translateY(-2px);box-shadow:0 8px 20px -14px rgba(40,50,80,.5)}
-.card:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
-.wa{padding:12px 14px;border-color:#9fd8b4;background:linear-gradient(135deg,#f2fbf5,#e5f6eb)}
-.wa .ic{flex:none;width:40px;height:40px;border-radius:50%;background:#25a35a;display:grid;place-items:center}
-.wa .ic svg{width:22px;height:22px;fill:#fff}
-.wa small,.mini small{display:block;font:500 12px/1.3 Manrope,Arial,sans-serif;color:var(--mute)}
-.wa b{display:block;font:700 21px/1.2 Manrope,Arial,sans-serif;color:#1c7c45;letter-spacing:.01em}
-.wa .go{margin-inline-start:auto;padding:7px 12px;border-radius:999px;background:#1c7c45;color:#fff;font:700 13px Manrope,Arial,sans-serif;white-space:nowrap}
-.duo{display:grid;grid-template-columns:1.35fr 1fr;gap:8px;margin:8px 0 18px}
-.mini{padding:10px 12px;min-width:0}
-.mini b{display:block;font:700 13.5px/1.3 Manrope,Arial,sans-serif;color:var(--ink);overflow-wrap:anywhere}
-.sec{margin:0 0 8px;font:600 12px/1 Manrope,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.tile{display:block;border-radius:16px;overflow:hidden;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink);transition:transform .2s,box-shadow .2s}
-.tile:hover,.tile:focus-visible{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(40,30,10,.55)}
-.tile:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
-.tile img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
-.tile .cap{display:block;padding:9px 11px 11px}
-.tile b{display:block;font:700 15px/1.2 Manrope,Arial,sans-serif}
-.tile i{display:block;font:400 19px/1.2 Lateef,serif;font-style:normal;color:var(--gold)}
-.tile.pf{background:#05060a;border-color:#2a2418;color:#fff}
-.tile.pf i{color:#f2c879}
-.tile .tag{float:right;margin-top:1px;font:700 12px Manrope,Arial,sans-serif;color:var(--slate)}
-.tile.pf .tag{color:#f2c879}
-.cvimg{display:block;background:#f4f1ea;padding:7px 7px 0}
-.cvimg img{border-radius:6px 6px 0 0;box-shadow:0 2px 10px rgba(0,0,0,.12)}
-.docs{display:grid;gap:7px}
-.row{padding:10px 12px}
-.n{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eef1f7;color:var(--slate);font:400 18px/1 'Instrument Serif',serif}
-.row .t{flex:1;min-width:0;font:600 14.5px/1.25 Manrope,Arial,sans-serif}
-.row .t i{display:block;font:400 18px/1.2 Lateef,serif;font-style:normal;color:var(--gold)}
-.row .go{flex:none;font:600 13px Manrope,Arial,sans-serif;color:var(--slate)}
-.note{margin:14px 0 0;font:600 18px/1.3 Caveat,cursive;color:var(--gold)}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px}
+.sec{margin:0 0 8px 4px;font:600 12px/1 Manrope,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.ph{display:flex;align-items:center;gap:12px;padding:16px 16px 14px;color:inherit;text-decoration:none}
+.ph .ic{flex:none;width:38px;height:38px;border-radius:50%;background:#1c7c45;display:grid;place-items:center}
+.ph .ic svg{width:21px;height:21px;fill:#fff}
+.ph small{display:block;font:500 12.5px/1.3 Manrope,Arial,sans-serif;color:var(--mute)}
+.ph b{display:block;font:700 22px/1.2 Manrope,Arial,sans-serif;color:var(--ink)}
+.links{display:flex;border-top:1px solid var(--line)}
+.links a{flex:1;min-width:0;padding:11px 16px;color:var(--ink);text-decoration:none;font:600 13.5px/1.3 Manrope,Arial,sans-serif;overflow-wrap:anywhere}
+.links a+a{border-inline-start:1px solid var(--line)}
+.links small{display:block;font:500 12px/1.3 Manrope,Arial,sans-serif;color:var(--mute)}
+.list li+li{border-top:1px solid var(--line)}
+.list a{display:flex;align-items:center;gap:12px;padding:13px 16px;color:var(--ink);text-decoration:none}
+.list .t{flex:1;min-width:0;font:600 15px/1.3 Manrope,Arial,sans-serif}
+.list .t span{display:block;font:500 13px/1.4 Manrope,Arial,sans-serif;color:var(--gold)}
+.list .go{flex:none;font:600 16px Manrope,Arial,sans-serif;color:var(--slate)}
+.list .key .t{font-size:16px}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--line)}
+.key .dot{background:var(--gold)}
+a:focus-visible{outline:2px solid var(--slate);outline-offset:-2px}
+.ph:hover b,.list a:hover .t,.links a:hover{color:var(--slate)}
+.note{margin:6px 0 0 4px;font:600 18px/1.3 Caveat,cursive;color:var(--gold)}
 .note span{font:400 17px/1.5 'Aref Ruqaa',serif;margin-inline-start:8px}
-@media(prefers-reduced-motion:reduce){.card,.tile{transition:none}}
 </style>
 </head>
 <body>
@@ -73,20 +60,18 @@ a{-webkit-tap-highlight-color:transparent}
     </div>
   </div>
   <p class="sub"><b>UI/UX Designer and Front-End Developer</b> · Programming and Web Development diploma, Riyadh · co-op from 24 January 2027, 14 weeks</p>
-  <a class="card wa" href="https://wa.me/966505579839" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg></span><span><small>WhatsApp · واتساب</small><b dir="ltr">+966 50 557 9839</b></span><span class="go">Chat</span></a>
-  <div class="duo">
-    <a class="card mini" href="mailto:alhejjeihailah@gmail.com"><span><small>Email · الإيميل</small><b>alhejjeihailah@gmail.com</b></span></a>
-    <a class="card mini" href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noopener"><span><small>LinkedIn · لينكدإن</small><b>hailah-alhejjei ↗</b></span></a>
+  <p class="sec">Contact · تواصل</p>
+  <div class="box">
+    <a class="ph" href="https://wa.me/966505579839" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg></span><span><small>WhatsApp · واتساب</small><b dir="ltr">+966 50 557 9839</b></span></a>
+    <div class="links"><a href="mailto:alhejjeihailah@gmail.com"><small>Email</small>alhejjeihailah@gmail.com</a><a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noopener"><small>LinkedIn</small>hailah-alhejjei</a></div>
   </div>
-  <p class="sec">My work · أعمالي</p>
-  <div class="feat">
-    <a class="tile" href="../Hailah_Alhejjei_CV_2026.pdf" target="_blank" rel="noopener"><span class="cvimg"><img src="cv-preview.webp" alt="Preview of Hailah's CV" width="600" height="372"></span><span class="cap"><span class="tag">PDF ↗</span><b>CV</b><i>السيرة الذاتية</i></span></a>
-    <a class="tile pf" href="https://hailahalhejjei.github.io/"><img src="../assets/og-share-2026-11.jpg" alt="Preview of Hailah's portfolio website" width="1200" height="630"><span class="cap"><span class="tag">Open ↗</span><b>Portfolio</b><i>البورتفوليو</i></span></a>
-  </div>
-  <ul class="docs">
-    <li><a class="card row" href="Hailah_Alhejjei_Coop_Request_Letter.pdf" target="_blank" rel="noopener"><span class="n">1</span><span class="t">Co-op request letter<i>خطاب طلب فرصة تدريب تعاوني</i></span><span class="go">PDF ↗</span></a></li>
-    <li><a class="card row" href="Hailah_Alhejjei_Transcript.pdf" target="_blank" rel="noopener"><span class="n">2</span><span class="t">Academic transcript · GPA 4.58<i>السجل الأكاديمي</i></span><span class="go">PDF ↗</span></a></li>
-    <li><a class="card row" href="Hailah_Alhejjei_Training_Plan.pdf" target="_blank" rel="noopener"><span class="n">3</span><span class="t">Training plan<i>خطة التدريب التفصيلية</i></span><span class="go">PDF ↗</span></a></li>
+  <p class="sec">Documents · المستندات</p>
+  <ul class="box list">
+    <li class="key"><a href="../Hailah_Alhejjei_CV_2026.pdf" target="_blank" rel="noopener"><span class="dot"></span><span class="t">CV<span>السيرة الذاتية</span></span><span class="go">↗</span></a></li>
+    <li class="key"><a href="https://hailahalhejjei.github.io/"><span class="dot"></span><span class="t">Portfolio<span>البورتفوليو</span></span><span class="go">↗</span></a></li>
+    <li><a href="Hailah_Alhejjei_Coop_Request_Letter.pdf" target="_blank" rel="noopener"><span class="dot"></span><span class="t">Co-op request letter<span>خطاب طلب فرصة تدريب تعاوني</span></span><span class="go">↗</span></a></li>
+    <li><a href="Hailah_Alhejjei_Transcript.pdf" target="_blank" rel="noopener"><span class="dot"></span><span class="t">Academic transcript<span>السجل الأكاديمي · GPA 4.58 / 5</span></span><span class="go">↗</span></a></li>
+    <li><a href="Hailah_Alhejjei_Training_Plan.pdf" target="_blank" rel="noopener"><span class="dot"></span><span class="t">Training plan<span>خطة التدريب التفصيلية</span></span><span class="go">↗</span></a></li>
   </ul>
   <p class="note">thank you for looking!<span>شكرًا لوقتك!</span></p>
 </main>
