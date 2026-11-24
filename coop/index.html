@@ -29,6 +29,11 @@ main{max-width:420px;margin:0 auto}
 .sp.s1{left:2px;top:-6px}.sp.s2{left:30px;top:10px;width:4px;height:4px;animation-delay:.6s}.sp.s3{left:118px;top:70px;animation-delay:1.1s}.sp.s4{left:96px;top:96px;width:4px;height:4px;animation-delay:1.7s}.sp.s5{left:228px;top:42px;width:5px;height:5px;animation-delay:.9s}
 @keyframes tw{0%,100%{opacity:.25;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
 @media (prefers-reduced-motion:reduce){.sp{animation:none;opacity:.8}}
+.lang{position:absolute;top:0;right:0;z-index:2;min-height:36px;min-width:56px;padding:0 14px;border:0;border-radius:999px;background:rgba(255,255,255,.75);color:var(--ink);font:600 15px var(--sys);cursor:pointer}
+.top{direction:ltr}
+.t b{font-weight:inherit}
+html[lang=ar] body{font-family:"SF Arabic","Segoe UI",Tahoma,var(--sys)}
+html[lang=ar] .eyebrow{letter-spacing:0}
 .point img{display:block;width:100%;height:auto}
 .card{position:relative;z-index:1;background:var(--card);border-radius:22px;padding:22px 18px 16px;box-shadow:0 1px 0 rgba(0,0,0,.04),0 18px 40px -22px rgba(40,30,10,.45)}
 .eyebrow{margin:0;font:600 13px var(--sys);letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
@@ -56,28 +61,45 @@ a:focus-visible{outline:2px solid var(--tint);outline-offset:2px}
 <body>
 <main>
   <div class="top">
-    <div class="pf"><a href="https://hailahalhejjei.github.io/">Portfolio ↗</a></div>
+    <div class="pf"><a href="https://hailahalhejjei.github.io/" data-ar="معرض أعمالي ↗">Portfolio ↗</a></div>
+    <button class="lang" type="button" id="lang" lang="ar">عربي</button>
     <div class="point" aria-hidden="true"><img src="thanaya-point.webp" alt="" width="700" height="456"><i class="sp s1"></i><i class="sp s2"></i><i class="sp s3"></i><i class="sp s4"></i><i class="sp s5"></i></div>
   </div>
   <div class="stage">
     <section class="card">
-      <p class="eyebrow">Co-op opportunity</p>
+      <p class="eyebrow" data-ar="فرصة تدريب تعاوني">Co-op opportunity</p>
       <p class="ar" lang="ar" dir="rtl">هيلة الحجي</p>
       <h1>Hailah Alhejjei</h1>
-      <p class="role">Front-End &amp; Back-End Developer · UI/UX Designer</p>
+      <p class="role" data-ar="مطوّرة واجهات أمامية وخلفية · مصممة UI/UX">Front-End &amp; Back-End Developer · UI/UX Designer</p>
       <ul class="list">
-        <li><a href="../Hailah_Alhejjei_CV_2026.pdf" target="_blank" rel="noopener"><span class="t">CV</span><span class="btn">Open</span></a></li>
-        <li><a href="Hailah_Alhejjei_Coop_Request_Letter.pdf" target="_blank" rel="noopener"><span class="t">Request letter</span><span class="btn">Open</span></a></li>
-        <li><a href="Hailah_Alhejjei_Transcript.pdf" target="_blank" rel="noopener"><span class="t">Transcript<small>GPA 4.58 / 5</small></span><span class="btn">Open</span></a></li>
-        <li><a href="Hailah_Alhejjei_Training_Plan.pdf" target="_blank" rel="noopener"><span class="t">Training plan</span><span class="btn">Open</span></a></li>
+        <li><a href="../Hailah_Alhejjei_CV_2026.pdf" target="_blank" rel="noopener"><span class="t" data-ar="السيرة الذاتية">CV</span><span class="btn" data-ar="فتح">Open</span></a></li>
+        <li><a href="Hailah_Alhejjei_Coop_Request_Letter.pdf" target="_blank" rel="noopener"><span class="t" data-ar="خطاب طلب التدريب">Request letter</span><span class="btn" data-ar="فتح">Open</span></a></li>
+        <li><a href="Hailah_Alhejjei_Transcript.pdf" target="_blank" rel="noopener"><span class="t"><b data-ar="السجل الأكاديمي">Transcript</b><small data-ar="المعدل 4.58 من 5">GPA 4.58 / 5</small></span><span class="btn" data-ar="فتح">Open</span></a></li>
+        <li><a href="Hailah_Alhejjei_Training_Plan.pdf" target="_blank" rel="noopener"><span class="t" data-ar="الخطة التدريبية">Training plan</span><span class="btn" data-ar="فتح">Open</span></a></li>
       </ul>
       <a class="wa" href="https://wa.me/966505579839" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg>
-        <span class="t">WhatsApp<small>+966 50 557 9839</small></span><span class="go">Chat</span>
+        <span class="t"><b data-ar="واتساب">WhatsApp</b><small>+966 50 557 9839</small></span><span class="go" data-ar="محادثة">Chat</span>
       </a>
-      <div class="foot"><a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a><a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="foot"><a href="mailto:alhejjeihailah@gmail.com">alhejjeihailah@gmail.com</a><a href="https://www.linkedin.com/in/hailah-alhejjei" target="_blank" rel="noopener" data-ar="لينكدإن">LinkedIn</a></div>
     </section>
   </div>
 </main>
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-ar]'));
+  els.forEach(function(e){e.setAttribute('data-en',e.textContent)});
+  var btn=document.getElementById('lang'), card=document.querySelector('.card');
+  function set(l){
+    els.forEach(function(e){e.textContent=e.getAttribute(l==='ar'?'data-ar':'data-en')});
+    document.documentElement.lang=l; card.dir=l==='ar'?'rtl':'ltr';
+    btn.textContent=l==='ar'?'English':'عربي'; btn.lang=l==='ar'?'en':'ar';
+    try{localStorage.setItem('coop-lang',l)}catch(e){}
+  }
+  btn.addEventListener('click',function(){set(document.documentElement.lang==='ar'?'en':'ar')});
+  var saved=null; try{saved=localStorage.getItem('coop-lang')}catch(e){}
+  if(saved==='ar')set('ar');
+})();
+</script>
 </body>
 </html>
